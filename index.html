@@ -1,6 +1,81 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NeuroGames UNATI/UEM</title><meta name="theme-color" content="#07152d"><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="style.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script></head><body>
-<div class="bubbles"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-<header class="hero"><div class="hero-top"><div><p class="tag">UEM • Medicina • Neuroanatomia • UNATI</p><h1>NeuroGames para a Pessoa Idosa</h1><p class="subtitle">Calendário imersivo do curso: estudantes do 1º ano de Medicina desenvolvendo jogos digitais em Neuroanatomia para o público 60+ da UNATI/UEM.</p></div><div class="hero-actions"><button id="installBtn" class="btn primary">⬇ Baixar / Instalar App</button><button onclick="gerarPDF()" class="btn secondary">📄 Gerar PDF das datas</button></div></div><section class="info-grid"><article><b>Disciplina</b><span>Neuroanatomia</span></article><article><b>Profª Dra. Sônia Trannin de Mello</b><span>Base neuroanatômica</span></article><article><b>Profª Dra. Cláudia Regina Pinheiro Lopes</b><span>Tecnologia, IA, HTML e PWA</span></article><article><b>Público</b><span>UNATI/UEM</span></article></section></header>
-<main><section class="notice"><h2>Calendário com liberação por data</h2><p>Cada encontro aparece com cadeado e contagem regressiva. A aula 1 abre no dia 09/06 às 17h com etapas, checklist e prompts para teste com IA.</p></section><nav class="tabs"><button class="tab active" onclick="abrirAba('junho')">Junho</button><button class="tab" onclick="abrirAba('julho')">Julho</button><button class="tab" onclick="abrirAba('agosto')">Agosto</button><button class="tab" onclick="abrirAba('final')">Apresentação final</button></nav><section id="junho" class="tab-content active"></section><section id="julho" class="tab-content"></section><section id="agosto" class="tab-content"></section><section id="final" class="tab-content"></section><section class="research"><h2>Jogos escolhidos a partir da escuta da UNATI</h2><div class="game-grid"><div>🧠 Quiz</div><div>🔢 Sudoku</div><div>🃏 Cartas/Memória</div><div>✍️ Palavras cruzadas</div><div>🫧 Bolhas</div></div><p>Eixos: memória, atenção, Alzheimer, equilíbrio e prevenção de quedas.</p></section></main>
-<section id="pdfArea" class="pdf-area"><h1>Calendário do Curso — NeuroGames UNATI/UEM</h1><p><b>Período:</b> 09/06/2026 a 31/08/2026</p><p><b>Horário:</b> 17h às 18h.</p><table><thead><tr><th>Data</th><th>Encontro</th><th>Conteúdo</th></tr></thead><tbody id="pdfTable"></tbody></table></section>
-<button class="chat-toggle" onclick="toggleChat()">💬</button><aside class="chatbot" id="chatbot"><div class="chat-head"><b>NeuroBot UNATI</b><button onclick="toggleChat()">×</button></div><div class="chat-body" id="chatBody"><p class="bot">Escolha uma dúvida rápida:</p><button onclick="responder('unati')">O que é a UNATI?</button><button onclick="responder('idosa')">O que é pessoa idosa?</button><button onclick="responder('respeito')">Como valorizar a pessoa idosa?</button><button onclick="responder('jogos')">Por que esses jogos?</button><button onclick="responder('neuro')">Por que Neuroanatomia?</button><button onclick="responder('ia')">Posso usar ChatGPT, Gemini ou Canva?</button></div></aside><script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="NeuroGames" />
+  <title>NeuroGames Academy | Semana 2 Canva</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="aurora"></div>
+  <div class="app-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <div class="brand"><span class="brand-icon">🧠</span><span>NeuroGames Academy</span></div>
+        <button id="installBtn" class="pill hidden">Instalar app</button>
+      </nav>
+      <section class="hero-grid">
+        <div>
+          <p class="eyebrow">Neuroanatomia • Medicina • UNATI</p>
+          <h1>Semana 2: Canva com prompts passo a passo</h1>
+          <p class="subtitle">Aula de hoje e amanhã: <strong>16 e 17 de junho</strong>. Cada grupo vai transformar a escolha da Semana 1 em um protótipo visual que será usado nas próximas semanas para montar o PWA no GitHub.</p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#semana2">Começar aula de hoje</a>
+            <button class="ghost-btn" id="resetProgress">Resetar progresso</button>
+          </div>
+        </div>
+        <button class="brain-card" id="brainCard" aria-label="Abrir explicação interativa">
+          <div class="brain-orbit"><span></span><span></span><span></span></div>
+          <div class="brain-emoji">🧠</div>
+          <p>Toque para ver como o Canva vira PWA</p>
+        </button>
+      </section>
+    </header>
+
+    <main>
+      <section class="panel roadmap" id="roadmap">
+        <div class="section-head">
+          <div><p class="eyebrow">Percurso completo</p><h2>9 semanas até o aplicativo PWA</h2></div>
+          <div class="xp"><span id="xpValue">0</span> XP</div>
+        </div>
+        <div class="weeks-grid" id="weeksGrid"></div>
+      </section>
+
+      <section class="panel today" id="semana2">
+        <div class="section-head sticky-head">
+          <div><p class="eyebrow">Missão ativa</p><h2>Semana 2 — Oficina Canva</h2><p class="micro">Abra uma missão por vez. Copie o prompt, faça no Canva, marque o checklist e avance.</p></div>
+          <div class="progress-ring"><span id="missionProgress">0/8</span></div>
+        </div>
+
+        <div class="class-alert">
+          <strong>Importante:</strong> hoje não é “fazer capa bonita”. Hoje é construir o <strong>protótipo visual do aplicativo</strong>. Esse material será usado na Semana 3 para organizar assets, perguntas, imagens, sons e estrutura do jogo.
+        </div>
+
+        <div class="groups-box">
+          <button class="tab active" data-turma="terca">Turma de terça</button>
+          <button class="tab" data-turma="quarta">Turma de quarta</button>
+          <div id="groupList" class="group-list"></div>
+        </div>
+
+        <div class="missions" id="missions"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal hidden" id="modal">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Prompt copiado!</div>
+  <script src="app.js"></script>
+</body>
+</html>
