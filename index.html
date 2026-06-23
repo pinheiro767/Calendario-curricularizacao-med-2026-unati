@@ -84,7 +84,7 @@
       <div class="glass-card robot-card">
         <div class="robot">🤖</div>
         <h2>Chatrôbo da Semana 3</h2>
-        <p id="robotTip">Dica: hoje o objetivo não é perfeição. É fazer o jogo abrir e funcionar no navegador.</p>
+        <p id="robotTip">Dica: hoje o objetivo não é perfeição. É fazer o jogo abrir e funcionar no navegador diretamente no site da turma!</p>
         <button class="soft-btn primary" id="newTip">Nova dica</button>
       </div>
 
@@ -92,13 +92,13 @@
         <p class="eyebrow">Aula de 1h20</p>
         <h2>Passo a passo para criar e testar</h2>
         <ol class="steps">
-          <li><strong>Escolha o prompt do jogo.</strong><br>Use Memória, Sudoku, Quiz, Palavras Cruzadas ou Bolhas.</li>
-          <li><strong>Cole no ChatGPT/Gemini.</strong><br>Peça um único arquivo HTML completo.</li>
-          <li><strong>Copie todo o código gerado.</strong><br>Comece em <code>&lt;!doctype html&gt;</code> e vá até <code>&lt;/html&gt;</code>.</li>
-          <li><strong>Abra o Bloco de Notas.</strong><br>Cole o código e salve como <code>index.html</code>.</li>
-          <li><strong>Abra no navegador.</strong><br>Dê dois cliques no arquivo e teste todos os botões.</li>
-          <li><strong>Personalize.</strong><br>Troque título, cores, perguntas, emojis, palavras ou velocidade.</li>
-          <li><strong>Teste com outro grupo.</strong><br>Pergunte: uma pessoa idosa entenderia como jogar?</li>
+          <li><strong>Escolha o prompt do jogo.</strong><br>Use as opções de Memória, Sudoku, Quiz, Palavras Cruzadas ou Bolhas disponíveis abaixo.</li>
+          <li><strong>Cole no ChatGPT/Gemini.</strong><br>Solicite que a inteligência artificial forneça um único arquivo HTML completo.</li>
+          <li><strong>Copie todo o código gerado.</strong><br>Use o botão de cópia automática da IA, garantindo coletar todo o texto de <code>&lt;!doctype html&gt;</code> até <code>&lt;/html&gt;</code>.</li>
+          <li><strong>Abra a página do seu grupo no Google Sites.</strong><br>Acesse o editor do painel do site da turma, clique na aba lateral <em>Páginas</em> e selecione a página do seu grupo (ex: Prompt 2).</li>
+          <li><strong>Incorpore o código do seu jogo.</strong><br>Na aba lateral <em>Inserir</em>, clique na opção <strong>Incorporar (&lt; / &gt;)</strong>, mude para a aba superior <strong>Incorporar código</strong>, cole o HTML completo que a IA gerou e clique em Avançar/Inserir.</li>
+          <li><strong>Ajuste o tamanho e publique.</strong><br>Clique nas bolinhas azuis nas bordas do bloco do jogo e arraste para os lados e para baixo até que o jogo fique amplo e sem cortes. Conclua clicando no botão azul <strong>Publicar</strong> no topo direito.</li>
+          <li><strong>Teste com outro grupo.</strong><br>Abra o link do site já publicado e avalie se os botões funcionam e se uma pessoa idosa compreenderia a mecânica com facilidade.</li>
         </ol>
       </div>
     </section>
@@ -112,7 +112,7 @@
         <article class="prompt-card">
           <h3>1. Tela inicial do jogo</h3>
           <p>Para criar a primeira tela com capa, botão e instruções.</p>
-          <textarea readonly>Crie um único arquivo HTML completo para a tela inicial de um jogo educativo para pessoa idosa.
+          <textarea id="prompt1" readonly>Crie um único arquivo HTML completo para a tela inicial de um jogo educativo para pessoa idosa.
 
 Nome do jogo: [COLOQUE O NOME]
 
@@ -129,13 +129,13 @@ Requisitos:
 - HTML e CSS no mesmo arquivo
 
 Entregue apenas o código HTML completo.</textarea>
-          <button class="copy soft-btn secondary">Copiar</button>
+          <button class="copy soft-btn secondary" onclick="copyText('prompt1', this)">Copiar</button>
         </article>
 
         <article class="prompt-card">
           <h3>2. Jogo funcional</h3>
           <p>Para gerar o primeiro jogo funcionando no navegador.</p>
-          <textarea readonly>Atue como um Desenvolvedor Front-End Sênior especializado em jogos educacionais para pessoa idosa.
+          <textarea id="prompt2" readonly>Atue como um Desenvolvedor Front-End Sênior especializado em jogos educacionais para pessoa idosa.
 
 Crie um único arquivo HTML completo com HTML, CSS e JavaScript integrados.
 
@@ -158,13 +158,13 @@ Requisitos:
 - Código comentado para estudantes iniciantes de Medicina
 
 Entregue apenas um único arquivo HTML completo e funcional.</textarea>
-          <button class="copy soft-btn secondary">Copiar</button>
+          <button class="copy soft-btn secondary" onclick="copyText('prompt2', this)">Copiar</button>
         </article>
 
         <article class="prompt-card">
           <h3>3. Acessibilidade</h3>
           <p>Para adaptar melhor à pessoa idosa.</p>
-          <textarea readonly>Melhore este HTML para uso por pessoa idosa.
+          <textarea id="prompt3" readonly>Melhore este HTML para uso por pessoa idosa.
 
 Adicione:
 - Fonte maior
@@ -181,13 +181,13 @@ Adicione:
 - Layout confortável para celular
 
 Mantenha tudo em um único arquivo HTML com CSS e JavaScript integrados.</textarea>
-          <button class="copy soft-btn secondary">Copiar</button>
+          <button class="copy soft-btn secondary" onclick="copyText('prompt3', this)">Copiar</button>
         </article>
 
         <article class="prompt-card">
           <h3>4. Funções extras</h3>
           <p>Para aumentar uma função no HTML.</p>
-          <textarea readonly>Adicione novas funções ao meu jogo em HTML.
+          <textarea id="prompt4" readonly>Adicione novas funções ao meu jogo em HTML.
 
 Inclua:
 - Pontuação
@@ -201,7 +201,7 @@ Inclua:
 - Mensagem motivacional personalizada
 
 Mantenha o código simples, comentado e em um único arquivo HTML.</textarea>
-          <button class="copy soft-btn secondary">Copiar</button>
+          <button class="copy soft-btn secondary" onclick="copyText('prompt4', this)">Copiar</button>
         </article>
       </div>
     </section>
