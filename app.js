@@ -1,31 +1,50 @@
+// --- LÓGICA INTERATIVA DO BOTÃO DE DICAS (ROBOT) ---
 const tips = [
-  'Hoje o objetivo não é perfeição. É fazer o jogo abrir e funcionar no navegador.',
-  'Salve o arquivo exatamente como index.html. Se salvar como .txt, o navegador não vai rodar como página.',
-  'Teste no celular: uma pessoa idosa precisa conseguir ler sem aproximar demais a tela.',
-  'Botão bom para pessoa idosa é grande, claro e com texto direto: Iniciar, Ajuda, Jogar Novamente.',
-  'Se o código der erro, peça para a IA: corrija este HTML mantendo tudo em um único arquivo.',
-  'Depois que funcionar, personalize: troque cores, perguntas, emojis, palavras e mensagens.',
-  'A pergunta principal do teste é: a pessoa idosa entende o que deve fazer sem explicação longa?'
+  "Dica: hoje o objetivo não é perfeição. É fazer o jogo abrir e funcionar no navegador diretamente no site da turma!",
+  "Priorize fontes grandes e contrastantes. Lembra da acuidade visual na terceira idade?",
+  "Evite layouts complexos. Menos cliques geram melhor engajamento cognitivo para o público 60+.",
+  "O feedback visual imediato (cores verdes/vermelhas bem nítidas) ajuda no processamento de respostas.",
+  "Use o botão de cópia dos prompts para agilizar o processo no celular ou tablet."
 ];
-const tip = document.getElementById('robotTip');
-document.getElementById('newTip')?.addEventListener('click', () => {
-  tip.textContent = 'Dica: ' + tips[Math.floor(Math.random() * tips.length)];
-});
 
-document.querySelectorAll('.copy').forEach((btn) => {
-  btn.addEventListener('click', async () => {
-    const text = btn.parentElement.querySelector('textarea').value;
-    try {
-      await navigator.clipboard.writeText(text);
-      const old = btn.textContent;
-      btn.textContent = 'Copiado!';
-      setTimeout(() => btn.textContent = old, 1400);
-    } catch (e) {
-      alert('Selecione o texto do prompt e copie manualmente.');
+const newTipBtn = document.getElementById('newTip');
+if (newTipBtn) {
+  newTipBtn.addEventListener('click', function() {
+    const robotTipEl = document.getElementById('robotTip');
+    const currentTip = robotTipEl.innerText;
+    let newTip = tips[Math.floor(Math.random() * tips.length)];
+    while(newTip === currentTip) {
+      newTip = tips[Math.floor(Math.random() * tips.length)];
     }
+    robotTipEl.innerText = newTip;
   });
-});
+}
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
+// --- FUNÇÃO DO BOTÃO COPIAR PROMPTS (COMPATÍVEL COM APPLE/IFRAME) ---
+function copyText(textareaId, button) {
+  const textarea = document.getElementById(textareaId);
+  
+  // Seleção de texto compatível com iOS
+  textarea.select();
+  textarea.setSelectionRange(0, 99999); 
+  
+  try {
+    // Tenta usar a API moderna
+    navigator.clipboard.writeText(textarea.value);
+  } catch (err) {
+    // Fallback para navegadores mais antigos ou restrições de iframe no Safari
+    document.execCommand('copy');
+  }
+  
+  // Feedback visual do botão
+  const originalText = button.innerText;
+  button.innerText = "Copiado! ✓";
+  button.style.background = "var(--accent)";
+  button.style.color = "white";
+  
+  setTimeout(() => {
+    button.innerText = originalText;
+    button.style.background = "rgba(255, 255, 255, 0.08)";
+    button.style.color = "var(--text-main)";
+  }, 2000);
 }
