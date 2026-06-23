@@ -33,7 +33,187 @@
         <h1>Da capa do jogo ao primeiro HTML funcionando</h1>
         <p class="lead">Nesta etapa, cada grupo transforma a imagem de capa criada na Semana 2 em uma primeira versão jogável no navegador, com foco em acessibilidade, neuroanatomia e cuidado com a pessoa idosa.</p>
         <div class="hero-actions">
-          <a href="#passos" class="soft-btn primary">Começar passo a passo</a>
+          <a href="https://sites.google.com/uem.br/cursopwa-app/in%C3%ADcio" target="_blank" class="soft-btn primary">Jogar no Google Sites</a>
+          <a href="#prompts" class="soft-btn secondary">Ver prompts HTML</a>
+        </div>
+      </div>
+      <div class="phone-3d" aria-label="Prévia visual do aplicativo">
+        <div class="phone-top"></div>
+        <div class="screen">
+          <div class="orb">🎮</div>
+          <h2>Semana 3</h2>
+          <p>HTML do jogo</p>
+          <button onclick="window.open('https://sites.google.com/uem.br/cursopwa-app/in%C3%ADcio', '_blank')">Iniciar</button>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" id="trilha">
+      <div class="section-title">
+        <p class="eyebrow">Trilha do projeto</p>
+        <h2>9 semanas até a entrega do jogo</h2>
+      </div>
+      <div class="timeline">
+        <article class="week-card done">
+          <span class="status">✅ concluída</span>
+          <h3>Semana 1</h3>
+          <p>Escolha do tema: Sudoku, Memória, Palavras Cruzadas, Quiz ou Bolhas.</p>
+        </article>
+        <article class="week-card done">
+          <span class="status">✅ concluída</span>
+          <h3>Semana 2</h3>
+          <p>Criação da imagem de capa do jogo e identidade visual inicial.</p>
+        </article>
+        <article class="week-card active" id="semana3">
+          <span class="status">🚀 agora</span>
+          <h3>Semana 3</h3>
+          <p>Gerar, salvar, abrir e testar o primeiro arquivo HTML do jogo.</p>
+        </article>
+        <article class="week-card locked"><span>🔒</span><h3>Semana 4</h3><p>Acessibilidade e UX para pessoa idosa.</p></article>
+        <article class="week-card locked"><span>🔒</span><h3>Semana 5</h3><p>Funções extras em JavaScript.</p></article>
+        <article class="week-card locked"><span>🔒</span><h3>Semana 6</h3><p>Transformação em PWA instalável.</p></article>
+        <article class="week-card locked"><span>🔒</span><h3>Semana 7</h3><p>Testes de usabilidade.</p></article>
+        <article class="week-card locked"><span>🔒</span><h3>Semana 8</h3><p>Ajustes finais e preparação.</p></article>
+        <article class="week-card final"><span>🏁</span><h3>Semana 9</h3><p>Entrega final do jogo para apresentação/aplicação.</p></article>
+      </div>
+    </section>
+
+    <section class="section split" id="passos">
+      <div class="glass-card robot-card">
+        <div class="robot">🤖</div>
+        <h2>Chatrôbo da Semana 3</h2>
+        <p id="robotTip">Dica: hoje o objetivo não é perfeição. É fazer o jogo abrir e funcionar no navegador diretamente no site da turma!</p>
+        <button class="soft-btn primary" id="newTip">Nova dica</button>
+      </div>
+
+      <div class="steps-panel glass-card">
+        <p class="eyebrow">Aula de 1h20</p>
+        <h2>Passo a passo para criar e testar</h2>
+        <ol class="steps">
+          <li><strong>Escolha o prompt do jogo.</strong><br>Use as opções de Memória, Sudoku, Quiz, Palavras Cruzadas ou Bolhas disponíveis abaixo.</li>
+          <li><strong>Cole no ChatGPT/Gemini.</strong><br>Solicite que a inteligência artificial forneça um único arquivo HTML completo.</li>
+          <li><strong>Copie todo o código gerado.</strong><br>Use o botão de cópia automática da IA, garantindo coletar todo o texto de <code>&lt;!doctype html&gt;</code> até <code>&lt;/html&gt;</code>.</li>
+          <li><strong>Abra a página do seu grupo no Google Sites.</strong><br>Acesse o editor do painel do site da turma, clique na aba lateral <em>Páginas</em> e selecione a página do seu grupo (ex: Prompt 2).</li>
+          <li><strong>Incorpore o código do seu jogo.</strong><br>Na aba lateral <em>Inserir</em>, clique na opção <strong>Incorporar (&lt; / &gt;)</strong>, mude para a aba superior <strong>Incorporar código</strong>, cole o HTML completo que a IA gerou e clique em Avançar/Inserir.</li>
+          <li><strong>Ajuste o tamanho e publique.</strong><br>Clique nas bolinhas azuis nas bordas do bloco do jogo e arraste para os lados e para baixo até que o jogo fique amplo e sem cortes. Conclua clicando no botão azul <strong>Publicar</strong> no topo direito.</li>
+          <li><strong>Teste com outro grupo.</strong><br>Abra o link do site já publicado e avalie se os botões funcionam e se uma pessoa idosa compreenderia a mecânica com facilidade.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="prompts">
+      <div class="section-title">
+        <p class="eyebrow">Copiar e colar</p>
+        <h2>Prompts prontos para gerar HTML</h2>
+      </div>
+      <div class="prompt-grid">
+        <article class="prompt-card">
+          <h3>1. Tela inicial do jogo</h3>
+          <p>Para criar a primeira tela com capa, botão e instruções.</p>
+          <textarea id="prompt1" readonly>Crie um único arquivo HTML completo para a tela inicial de um jogo educativo para pessoa idosa.
+
+Nome do jogo: [COLOQUE O NOME]
+
+Requisitos:
+- Título grande
+- Área para imagem de capa ou emoji central
+- Botão Iniciar Jogo
+- Botão Como Jogar
+- Fundo moderno
+- Fonte mínima de 22px
+- Alto contraste
+- Botões grandes e arredondados
+- Layout responsivo para iPhone, Android e computador
+- HTML e CSS no mesmo arquivo
+
+Entregue apenas o código HTML completo.</textarea>
+          <button class="copy soft-btn secondary" onclick="copyText('prompt1', this)">Copiar</button>
+        </article>
+
+        <article class="prompt-card">
+          <h3>2. Jogo funcional</h3>
+          <p>Para gerar o primeiro jogo funcionando no navegador.</p>
+          <textarea id="prompt2" readonly>Atue como um Desenvolvedor Front-End Sênior especializado em jogos educacionais para pessoa idosa.
+
+Crie um único arquivo HTML completo com HTML, CSS e JavaScript integrados.
+
+Nome do jogo: [COLOQUE O NOME]
+Tipo de jogo: [MEMÓRIA / QUIZ / SUDOKU / PALAVRAS CRUZADAS / BOLHAS]
+
+Requisitos:
+- Jogo funcionando no navegador
+- Responsivo para iPhone, Android e computador
+- Fonte mínima de 22px
+- Alto contraste
+- Botões grandes e arredondados
+- Tela inicial
+- Botão Iniciar
+- Botão Como Jogar
+- Pontuação ou contador de tentativas
+- Feedback de acerto e erro
+- Botão Jogar Novamente
+- Mensagem final de parabéns
+- Código comentado para estudantes iniciantes de Medicina
+
+Entregue apenas um único arquivo HTML completo e funcional.</textarea>
+          <button class="copy soft-btn secondary" onclick="copyText('prompt2', this)">Copiar</button>
+        </article>
+
+        <article class="prompt-card">
+          <h3>3. Acessibilidade</h3>
+          <p>Para adaptar melhor à pessoa idosa.</p>
+          <textarea id="prompt3" readonly>Melhore este HTML para uso por pessoa idosa.
+
+Adicione:
+- Fonte maior
+- Botões maiores
+- Alto contraste
+- Pouco texto por tela
+- Linguagem simples
+- Feedback visual claro
+- Mensagem motivacional
+- Botão de ajuda
+- Botão Voltar ao início
+- Botão Aumentar fonte
+- Botão Modo alto contraste
+- Layout confortável para celular
+
+Mantenha tudo em um único arquivo HTML com CSS e JavaScript integrados.</textarea>
+          <button class="copy soft-btn secondary" onclick="copyText('prompt3', this)">Copiar</button>
+        </article>
+
+        <article class="prompt-card">
+          <h3>4. Funções extras</h3>
+          <p>Para aumentar uma função no HTML.</p>
+          <textarea id="prompt4" readonly>Adicione novas funções ao meu jogo em HTML.
+
+Inclua:
+- Pontuação
+- Cronômetro opcional
+- Níveis Fácil, Médio e Difícil
+- Botão de dica
+- Botão reiniciar
+- Sons simples de acerto e erro
+- Melhor pontuação salva no navegador
+- Tela final com desempenho
+- Mensagem motivacional personalizada
+
+Mantenha o código simples, comentado e em um único arquivo HTML.</textarea>
+          <button class="copy soft-btn secondary" onclick="copyText('prompt4', this)">Copiar</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>NeuroGames 60+ • Curricularização da Extensão • Medicina</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
           <a href="#prompts" class="soft-btn secondary">Ver prompts HTML</a>
         </div>
       </div>
