@@ -1,55 +1,31 @@
-const weeks = [
-  ['Semana 1','Escolha do tema e tipo de jogo','done','✅'],
-  ['Semana 2','Canva: protótipo visual com prompts','active','🔓'],
-  ['Semana 3','Banco neuroanatômico + assets','locked','🔒'],
-  ['Semana 4','HTML: estrutura do jogo','locked','🔒'],
-  ['Semana 5','CSS: visual acessível','locked','🔒'],
-  ['Semana 6','JavaScript: interatividade','locked','🔒'],
-  ['Semana 7','Montagem das pastas do app','locked','🔒'],
-  ['Semana 8','GitHub Pages','locked','🔒'],
-  ['Semana 9','PWA final + instalação','locked','🔒']
+const tips = [
+  'Hoje o objetivo não é perfeição. É fazer o jogo abrir e funcionar no navegador.',
+  'Salve o arquivo exatamente como index.html. Se salvar como .txt, o navegador não vai rodar como página.',
+  'Teste no celular: uma pessoa idosa precisa conseguir ler sem aproximar demais a tela.',
+  'Botão bom para pessoa idosa é grande, claro e com texto direto: Iniciar, Ajuda, Jogar Novamente.',
+  'Se o código der erro, peça para a IA: corrija este HTML mantendo tudo em um único arquivo.',
+  'Depois que funcionar, personalize: troque cores, perguntas, emojis, palavras e mensagens.',
+  'A pergunta principal do teste é: a pessoa idosa entende o que deve fazer sem explicação longa?'
 ];
-const groups = {
-  terca:[['I','Cartas / memória','🎴'],['II','Quiz','❓'],['III','Sudoku','🔢'],['IV','Palavras cruzadas','📝'],['V','Bolhas','🫧']],
-  quarta:[['I','Cartas / memória','🎴'],['II','Palavras cruzadas','📝'],['III','Bolhas','🫧'],['IV','Quiz','❓']]
-};
-const promptsByGame = {
-  cartas:`Crie 12 pares para um jogo da memória sobre Neuroanatomia para idosos da UNATI. Cada par deve ter: estrutura anatômica, função em linguagem simples e uma frase de explicação curta. Use temas como hipocampo, cerebelo, medula espinal, neurônio, nervo, córtex, tálamo, tronco encefálico, sinapse e lobo frontal.`,
-  quiz:`Crie 15 perguntas de múltipla escolha sobre Neuroanatomia para idosos da UNATI. Cada pergunta deve ter 4 alternativas, resposta correta e uma explicação simples. Use linguagem acessível, sem termos excessivamente técnicos.`,
-  sudoku:`Crie um NeuroSudoku visual 4x4 para idosos usando quatro símbolos de Neuroanatomia: cérebro, medula espinal, neurônio e nervo. Explique as regras em linguagem simples e crie 3 fases com dificuldade crescente.`,
-  cruzadas:`Crie 12 palavras e 12 pistas simples para uma palavra cruzada de Neuroanatomia voltada para idosos da UNATI. Use palavras como cérebro, cerebelo, medula, neurônio, nervo, sinapse, córtex, tálamo, memória e reflexo.`,
-  bolhas:`Crie 12 fases para um jogo de bolhas sobre Neuroanatomia. Cada fase deve ter uma pergunta, 4 opções curtas que irão aparecer em bolhas, a resposta correta e uma explicação educativa simples para idosos.`
-};
-const missions = [
- {title:'Abrir o Canva e criar o arquivo', sub:'Criar o projeto base que será reaproveitado no PWA.', xp:50, body:`<div class="step-grid"><div class="card-light"><h3>Passo a passo</h3><ol class="ordered"><li>Abra o Canva no celular ou computador.</li><li>Entre com e-mail.</li><li>Clique em <b>Criar um design</b>.</li><li>Escolha <b>Apresentação 16:9</b>.</li><li>Renomeie: <b>Turma - Grupo - Nome do jogo</b>.</li></ol></div><div class="card-light"><h3>Se não tiver Canva Pro</h3><p>Use o Canva gratuito. Se o recurso de IA não aparecer, um colega do grupo pode gerar a imagem ou o texto. Se ninguém tiver, use ChatGPT para gerar o texto e elementos gratuitos do Canva para montar a tela.</p></div></div>`, prompt:`Estou criando um protótipo no Canva para um jogo educativo de Neuroanatomia para idosos da UNATI. Ajude-me a definir um projeto visual no formato apresentação 16:9, com aparência de aplicativo, letras grandes, botões grandes, alto contraste e linguagem simples.`, checks:['Abri o Canva.','Criei uma apresentação 16:9.','Renomeei o arquivo com turma, grupo e jogo.','Todos sabem qual jogo será feito.']},
- {title:'Definir nome, objetivo e identidade', sub:'O jogo precisa ter nome, público, objetivo e estilo visual.', xp:70, body:`<div class="step-grid"><div class="card-light"><h3>Na página 1 coloque</h3><ol class="ordered"><li>Nome do jogo.</li><li>Público: idosos da UNATI.</li><li>Objetivo educativo.</li><li>Uma frase curta de impacto.</li></ol></div><div class="card-light"><h3>Dica de acessibilidade</h3><p>Use letras grandes, poucos textos e contraste alto. O jogo deve ser fácil de ler no celular.</p></div></div>`, prompt:`Crie 8 sugestões de nomes para um jogo de [TIPO DO JOGO] sobre Neuroanatomia voltado para idosos da UNATI. Depois crie um objetivo educativo curto e uma frase de apresentação acolhedora. O texto deve ser simples, humano e fácil de entender.`, checks:['O jogo tem nome.','O público-alvo está escrito.','O objetivo está claro.','A linguagem está adequada para idosos.']},
- {title:'Criar a tela inicial', sub:'Essa tela será referência para o futuro index.html.', xp:80, body:`<div class="step-grid"><div class="card-light"><h3>A tela inicial deve ter</h3><ol class="ordered"><li>Nome do jogo em destaque.</li><li>Imagem ou ilustração neuroanatômica.</li><li>Botão grande: INICIAR.</li><li>Frase: Aprenda Neuroanatomia brincando.</li></ol></div><div class="card-light"><h3>Isso vira código depois</h3><p>O Canva mostrará onde ficam título, botão, imagem e fundo. Na Semana 4 essa tela será traduzida para HTML.</p></div></div>`, prompt:`Crie uma tela inicial para um jogo de Neuroanatomia chamado [NOME DO JOGO]. A tela deve parecer um aplicativo moderno, com imagem de cérebro ou neurônios, botão grande escrito INICIAR, letras grandes, alto contraste e visual adequado para idosos. Descreva também a paleta de cores.`, checks:['Tela inicial criada.','Botão INICIAR visível.','Imagem neuroanatômica incluída.','Letras grandes e boa leitura.']},
- {title:'Criar a tela “Como jogar”', sub:'O jogador precisa entender em no máximo 5 passos.', xp:70, body:`<div class="card-light"><h3>Regra de ouro</h3><p>Se uma pessoa idosa não entender a regra em menos de um minuto, a tela precisa ser simplificada.</p></div>`, prompt:`Crie uma tela “Como jogar” para um jogo de [TIPO DO JOGO] sobre Neuroanatomia para idosos. Use no máximo 5 passos, frases curtas, linguagem gentil e emojis discretos. Inclua orientação para tocar/clicar, receber feedback e continuar aprendendo.`, checks:['Tela “Como jogar” criada.','Tem no máximo 5 passos.','As frases são curtas.','A regra está fácil para idosos.']},
- {title:'Criar a primeira tela real do jogo', sub:'Agora cada grupo monta uma amostra jogável no Canva.', xp:100, body:`<div class="resource-row"><button class="mini-btn" onclick="openGame('cartas')">🎴 Cartas</button><button class="mini-btn" onclick="openGame('quiz')">❓ Quiz</button><button class="mini-btn" onclick="openGame('sudoku')">🔢 Sudoku</button><button class="mini-btn" onclick="openGame('cruzadas')">📝 Cruzadas</button><button class="mini-btn" onclick="openGame('bolhas')">🫧 Bolhas</button></div><div class="card-light" style="margin-top:14px"><h3>O que precisa aparecer</h3><p>Uma pergunta, desafio ou fase real do jogo. Essa tela será o modelo para o JavaScript da Semana 6.</p></div>`, prompt:`Escolha o prompt correto para seu jogo:\n\nCARTAS: ${promptsByGame.cartas}\n\nQUIZ: ${promptsByGame.quiz}\n\nSUDOKU: ${promptsByGame.sudoku}\n\nPALAVRAS CRUZADAS: ${promptsByGame.cruzadas}\n\nBOLHAS: ${promptsByGame.bolhas}`, checks:['Criei a primeira tela real do jogo.','Existe uma resposta correta definida.','O conteúdo é de Neuroanatomia.','O visual está adequado para celular.']},
- {title:'Criar telas de acerto e erro', sub:'Feedback gentil, educativo e motivador.', xp:70, body:`<div class="step-grid"><div class="card-light"><h3>Acerto</h3><p>“Parabéns! Você acertou.” + explicação curta.</p></div><div class="card-light"><h3>Erro</h3><p>“Quase lá! Tente novamente.” + dica simples. Nunca constranger o jogador.</p></div></div>`, prompt:`Crie mensagens de acerto e erro para um jogo educativo de Neuroanatomia para idosos. A mensagem de acerto deve parabenizar e explicar o conteúdo. A mensagem de erro deve ser gentil, motivadora e dar uma dica. Use linguagem acolhedora.`, checks:['Tela de acerto criada.','Tela de erro criada.','Há explicação educativa.','O tom é acolhedor.']},
- {title:'Listar assets do futuro PWA', sub:'Imagens, sons e dados que entrarão nas pastas.', xp:90, body:`<div class="step-grid"><div class="card-light"><h3>Estrutura futura</h3><pre>assets/img\nassets/audio\ndata\nindex.html\nstyles.css\napp.js\nmanifest.webmanifest</pre></div><div class="card-light"><h3>Hoje vocês listam</h3><p>Quais imagens, sons, botões, ícones, perguntas e respostas serão necessários.</p></div></div>`, prompt:`Liste os assets necessários para um PWA de jogo educativo de Neuroanatomia chamado [NOME DO JOGO]. Separe em: imagens, sons, dados, botões e telas. Dê nomes de arquivos organizados, como logo.png, acerto.mp3, perguntas.json, cerebro.png e tela-inicial.png.`, checks:['Listei imagens.','Listei sons opcionais.','Listei perguntas/respostas/dados.','Entendi como isso entra nas pastas do PWA.']},
- {title:'Exportar e preparar para a próxima semana', sub:'Salvar o material para virar código.', xp:100, body:`<div class="card-light"><h3>Entrega de hoje</h3><ol class="ordered"><li>Baixar o Canva em PDF ou PNG.</li><li>Salvar o link editável do Canva.</li><li>Guardar lista de assets.</li><li>Guardar prompts usados.</li><li>Trazer na próxima aula para organizar a pasta do projeto.</li></ol></div>`, prompt:`Crie um checklist final de entrega para meu grupo após uma oficina Canva. A entrega deve conter: link do Canva, telas exportadas, lista de assets, banco inicial de perguntas ou desafios, prompts usados e explicação de como esse material será usado para montar um PWA.`, checks:['Exportei ou salvei o link do Canva.','Tenho lista de assets.','Tenho banco inicial do jogo.','Meu grupo sabe o que usará na Semana 3.']}
-];
-let state = JSON.parse(localStorage.getItem('neuro_state')||'{"unlocked":1,"checks":{},"xp":0}');
-function save(){localStorage.setItem('neuro_state',JSON.stringify(state));}
-function renderWeeks(){document.getElementById('weeksGrid').innerHTML=weeks.map((w,i)=>`<article class="week-card ${w[2]}"><span class="status">${w[3]}</span><div class="week-num">${i+1}</div><div class="week-title">${w[0]}</div><p>${w[1]}</p></article>`).join('');}
-function renderGroups(t='terca'){document.getElementById('groupList').innerHTML=groups[t].map(g=>`<button class="game-chip" onclick="openGroup('${g[1]}','${g[2]}')"><strong>${g[2]} Grupo ${g[0]}</strong><span>${g[1]}</span></button>`).join('');}
-function checked(mi,ci){return !!state.checks[`${mi}-${ci}`];}
-function complete(mi){return missions[mi].checks.every((_,ci)=>checked(mi,ci));}
-function renderMissions(){const box=document.getElementById('missions');box.innerHTML=missions.map((m,i)=>{const locked=i>=state.unlocked, done=complete(i);return `<article class="mission ${locked?'locked':''} ${done?'done':''}"><button class="mission-head" ${locked?'disabled':''} onclick="toggleMission(${i})"><span class="mission-num">${done?'✓':locked?'🔒':i+1}</span><span><p class="mission-title">${m.title}</p><p class="mission-sub">${m.sub} • +${m.xp} XP</p></span></button><div class="mission-body ${i===0&&!locked?'':'hidden'}" id="mission-${i}"><h3>O que fazer agora</h3>${m.body}<div class="prompt-box"><strong>Prompt para copiar</strong><div class="prompt-text" id="prompt-${i}">${m.prompt}</div><button class="copy-btn" onclick="copyPrompt(${i})">📋 Copiar prompt</button></div><div class="checklist">${m.checks.map((c,ci)=>`<label class="check"><input type="checkbox" ${checked(i,ci)?'checked':''} onchange="setCheck(${i},${ci},this.checked)"><span>${c}</span></label>`).join('')}</div><button class="advance-btn" onclick="advance(${i})" ${done?'':'disabled'}>${i===missions.length-1?'Concluir Semana 2':'Liberar próxima missão'}</button></div></article>`}).join('');updateUI();}
-function toggleMission(i){const el=document.getElementById('mission-'+i);if(el)el.classList.toggle('hidden');}
-function setCheck(i,c,v){state.checks[`${i}-${c}`]=v;if(complete(i) && !state[`xp${i}`]){state.xp+=missions[i].xp;state[`xp${i}`]=true;toast(`+${missions[i].xp} XP`);}save();renderMissions();}
-function advance(i){if(!complete(i))return;if(state.unlocked<i+2)state.unlocked=i+2;save();renderMissions();setTimeout(()=>document.getElementById('mission-'+(i+1))?.classList.remove('hidden'),100);}
-function updateUI(){document.getElementById('xpValue').textContent=state.xp;const done=missions.filter((_,i)=>complete(i)).length;document.getElementById('missionProgress').textContent=`${done}/8`;}
-async function copyPrompt(i){await navigator.clipboard.writeText(missions[i].prompt);toast('Prompt copiado!');}
-function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1800);}
-function openModal(html){document.getElementById('modalContent').innerHTML=html;document.getElementById('modal').classList.remove('hidden');}
-function openGroup(name,emoji){openModal(`<div class="modal-art">${emoji}</div><h2>${name}</h2><p>Este é um dos jogos escolhidos pela turma. Na Semana 2, o grupo deve criar no Canva: tela inicial, como jogar, primeira fase, acerto, erro e lista de assets.</p><p><strong>Meta:</strong> sair da aula com um protótipo visual que será usado para montar o app PWA nas próximas semanas.</p>`)}
-function openGame(type){const labels={cartas:['🎴','Cartas / memória'],quiz:['❓','Quiz'],sudoku:['🔢','NeuroSudoku'],cruzadas:['📝','Palavras cruzadas'],bolhas:['🫧','Jogo de bolhas']};openModal(`<div class="modal-art">${labels[type][0]}</div><h2>${labels[type][1]}</h2><p>Use este prompt para gerar o conteúdo inicial e depois monte a tela no Canva.</p><div class="prompt-text">${promptsByGame[type]}</div><button class="copy-btn" onclick="navigator.clipboard.writeText(promptsByGame['${type}']);toast('Prompt copiado!')">📋 Copiar prompt deste jogo</button>`)}
-document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderGroups(btn.dataset.turma)}));
-document.getElementById('modalClose').onclick=()=>document.getElementById('modal').classList.add('hidden');
-document.getElementById('brainCard').onclick=()=>openModal(`<div class="modal-art">🧠</div><h2>Como o Canva vira PWA?</h2><p>O Canva de hoje é o mapa visual do aplicativo. A tela inicial vira o <strong>index.html</strong>. As cores viram o <strong>styles.css</strong>. Os botões e respostas viram o <strong>app.js</strong>. As imagens e sons vão para <strong>assets/img</strong> e <strong>assets/audio</strong>. As perguntas ficam em <strong>data/perguntas.json</strong>.</p>`);
-document.getElementById('resetProgress').onclick=()=>{if(confirm('Resetar progresso da Semana 2?')){localStorage.removeItem('neuro_state');location.reload();}};
-let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').classList.remove('hidden');});document.getElementById('installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();deferredPrompt=null;}};
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'));}
-renderWeeks();renderGroups();renderMissions();
+const tip = document.getElementById('robotTip');
+document.getElementById('newTip')?.addEventListener('click', () => {
+  tip.textContent = 'Dica: ' + tips[Math.floor(Math.random() * tips.length)];
+});
+
+document.querySelectorAll('.copy').forEach((btn) => {
+  btn.addEventListener('click', async () => {
+    const text = btn.parentElement.querySelector('textarea').value;
+    try {
+      await navigator.clipboard.writeText(text);
+      const old = btn.textContent;
+      btn.textContent = 'Copiado!';
+      setTimeout(() => btn.textContent = old, 1400);
+    } catch (e) {
+      alert('Selecione o texto do prompt e copie manualmente.');
+    }
+  });
+});
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
+}
