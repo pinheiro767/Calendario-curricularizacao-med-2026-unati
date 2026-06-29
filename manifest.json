@@ -1,14 +1,22 @@
 {
-  "name": "Semana 4 GitHub PWA",
+  "name": "Semana 4 - Prompts e Acessibilidade",
   "short_name": "Semana 4",
-  "description": "Checklist imersivo da Semana 4: do Google Sites para o GitHub.",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#eef7ff",
-  "theme_color": "#4f46e5",
-  "orientation": "portrait-primary",
+  "background_color": "#f8fafc",
+  "theme_color": "#7c3aed",
+  "orientation": "portrait",
   "icons": [
-    {"src":"assets/icons/icon-192.svg","sizes":"192x192","type":"image/svg+xml","purpose":"any maskable"},
-    {"src":"assets/icons/icon-512.svg","sizes":"512x512","type":"image/svg+xml","purpose":"any maskable"}
+    {
+      "src": "icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
   ]
 }
