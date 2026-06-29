@@ -3,830 +3,187 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#10164f" />
-  <meta name="description" content="PWA da Curricularização da Extensão em Medicina: NeuroGames 60+" />
-  <title>NeuroGames 60+ | Medicina e Extensão</title>
-  
-  <style>
-    /* --- CONFIGURAÇÕES GERAIS E PALETA IMERSIVA --- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    :root {
-      --bg-gradient: linear-gradient(135deg, #0b0d19 0%, #111428 50%, #181c36 100%);
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --primary: #4f46e5;
-      --primary-hover: #6366f1;
-      --accent: #10b981;
-      --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    }
-
-    body {
-      background: var(--bg-gradient);
-      color: var(--text-main);
-      min-height: 100vh;
-      overflow-x: hidden;
-      padding-bottom: 80px;
-    }
-
-    /* --- BOLHAS COGNITIVAS AO FUNDO --- */
-    .bubble-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .bubble-bg span {
-      position: absolute;
-      bottom: -120px;
-      background: rgba(99, 102, 241, 0.12);
-      border-radius: 50%;
-      animation: floatUp 14s infinite linear;
-    }
-
-    .bubble-bg span:nth-child(1) { left: 8%; width: 90px; height: 90px; animation-duration: 9s; }
-    .bubble-bg span:nth-child(2) { left: 22%; width: 45px; height: 45px; animation-duration: 13s; animation-delay: 1.5s; }
-    .bubble-bg span:nth-child(3) { left: 45%; width: 110px; height: 110px; animation-duration: 16s; }
-    .bubble-bg span:nth-child(4) { left: 70%; width: 55px; height: 55px; animation-duration: 11s; animation-delay: 3s; }
-    .bubble-bg span:nth-child(5) { left: 85%; width: 80px; height: 80px; animation-duration: 15s; }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 0; }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
-      100% { transform: translateY(-125vh) scale(1.1); opacity: 0; }
-    }
-
-    /* --- DESIGN GLASSMORPHISM --- */
-    .glass-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-    }
-
-    /* --- TOPO & NAVEGAÇÃO --- */
-    .app-header {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 20px;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 28px;
-      margin-bottom: 48px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .brand-icon { font-size: 2.2rem; }
-    .brand strong { display: block; font-size: 1.2rem; letter-spacing: 0.3px; }
-    .brand small { color: var(--text-muted); font-size: 0.85rem; }
-
-    .nav-btn {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: background 0.3s;
-      border: 1px solid var(--glass-border);
-    }
-
-    .nav-btn:hover { background: rgba(255, 255, 255, 0.18); }
-
-    /* --- HERO CONTAINER --- */
-    .hero {
-      display: grid;
-      grid-template-columns: 1.20fr 0.80fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      color: var(--accent);
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 1.8px;
-      margin-bottom: 14px;
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      line-height: 1.25;
-      margin-bottom: 22px;
-      font-weight: 800;
-      background: linear-gradient(to right, #ffffff, #c7d2fe);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .lead {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 36px;
-    }
-
-    /* --- BOTÕES MACIOS (SOFT INTERACTION) --- */
-    .hero-actions {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .soft-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 32px;
-      border-radius: 16px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      font-size: 1.05rem;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .soft-btn:active { transform: scale(0.96); }
-
-    .soft-btn.primary {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
-    }
-
-    .soft-btn.primary:hover {
-      background: var(--primary-hover);
-      box-shadow: 0 15px 30px -5px rgba(79, 70, 229, 0.6);
-      transform: translateY(-2px);
-    }
-
-    .soft-btn.secondary {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-main);
-      border: 1px solid var(--glass-border);
-    }
-
-    .soft-btn.secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateY(-2px);
-    }
-
-    /* --- SMARTPHONE MOCKUP 3D --- */
-    .phone-3d {
-      background: #070913;
-      border: 4px solid #2e2e33;
-      border-radius: 40px;
-      width: 290px;
-      height: 550px;
-      margin: 0 auto;
-      position: relative;
-      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.8);
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .phone-top {
-      width: 110px;
-      height: 22px;
-      background: #2e2e33;
-      margin: 0 auto 12px auto;
-      border-radius: 12px;
-    }
-
-    .screen {
-      flex: 1;
-      background: linear-gradient(180deg, #16143c 0%, #0a0e1a 100%);
-      border-radius: 26px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 24px;
-    }
-
-    .orb {
-      font-size: 3.8rem;
-      margin-bottom: 24px;
-      animation: smoothPulse 2.5s infinite ease-in-out;
-    }
-
-    @keyframes smoothPulse {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(99,102,241,0)); }
-      50% { transform: scale(1.06); filter: drop-shadow(0 0 15px rgba(99,102,241,0.4)); }
-    }
-
-    .screen h2 { font-size: 1.6rem; margin-bottom: 8px; font-weight: 700; }
-    .screen p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 28px; }
-    
-    .screen .phone-btn {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 14px 38px;
-      border-radius: 25px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
-      transition: all 0.2s;
-    }
-    .screen .phone-btn:active { transform: scale(0.95); }
-
-    /* --- CONTEÚDO PRINCIPAL --- */
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .section { padding: 50px 0; }
-    .section-title { text-align: center; margin-bottom: 44px; }
-    .section-title h2 { font-size: 2.2rem; margin-top: 6px; font-weight: 800; }
-
-    /* --- TRILHA / TIMELINE DE PROJETO --- */
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .week-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      border-radius: 18px;
-      padding: 26px;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .week-card:hover { transform: translateY(-4px); }
-    .week-card.done { border-color: rgba(16, 185, 129, 0.25); background: rgba(16, 185, 129, 0.02); }
-    .week-card.active {
-      border-color: rgba(79, 70, 229, 0.5);
-      background: rgba(79, 70, 229, 0.06);
-      box-shadow: 0 0 25px rgba(79, 70, 229, 0.15);
-    }
-    .week-card.locked { opacity: 0.45; }
-    .week-card.locked span, .week-card.final span { font-size: 1.4rem; display: block; margin-bottom: 12px; }
-
-    .status {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 5px 10px;
-      border-radius: 8px;
-      margin-bottom: 16px;
-    }
-    .done .status { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-    .active .status { background: rgba(79, 70, 229, 0.25); color: #cbd5e1; }
-
-    .week-card h3 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 700; }
-    .week-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.55; }
-
-    /* --- ETAPAS DO GOOGLE SITES (ACCORDION INTERATIVO CADEADO) --- */
-    .steps-container {
-      max-width: 850px;
-      margin: 0 auto;
-    }
-
-    .step-item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      margin-bottom: 12px;
-      border-radius: 14px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.01);
-      transition: background 0.3s;
-    }
-
-    .step-header {
-      width: 100%;
-      background: none;
-      border: none;
-      color: var(--text-main);
-      padding: 22px 26px;
-      text-align: left;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background 0.2s;
-    }
-
-    .step-header:hover {
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .step-number {
-      background: var(--primary);
-      color: white;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      margin-right: 14px;
-      font-weight: 700;
-    }
-
-    .step-arrow {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      transition: transform 0.3s ease;
-    }
-
-    .step-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      background: rgba(0, 0, 0, 0.15);
-    }
-
-    .step-body {
-      padding: 20px 26px 24px 68px;
-      color: var(--text-muted);
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    /* Classes controladas por JS */
-    .step-item.open .step-arrow { transform: rotate(180deg); color: white; }
-    .step-item.open .step-content { max-height: 200px; }
-    .step-item.open { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255,255,255,0.05); }
-
-    /* --- GRID DE PROMPTS --- */
-    .prompt-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-      gap: 28px;
-    }
-
-    .prompt-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--glass-border);
-      border-radius: 18px;
-      padding: 26px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .prompt-card h3 { font-size: 1.3rem; margin-bottom: 6px; color: #c7d2fe; font-weight: 700;}
-    .prompt-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 18px; }
-
-    .prompt-card textarea {
-      width: 100%;
-      height: 170px;
-      background: #070912;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      color: #cbd5e1;
-      padding: 14px;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.88rem;
-      resize: none;
-      margin-bottom: 18px;
-      outline: none;
-    }
-    .prompt-card textarea:focus { border-color: var(--primary); }
-
-    /* --- CHATBOT FLUTUANTE REAL (WIDGET NO CANTO DA TELA) --- */
-    .floating-bot {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      z-index: 999;
-      width: 320px;
-      background: rgba(15, 18, 38, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 20px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      transform: translateY(0);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .floating-bot:hover {
-      transform: translateY(-5px);
-      border-color: rgba(99, 102, 241, 0.3);
-    }
-
-    .bot-avatar {
-      font-size: 2.3rem;
-      background: rgba(255,255,255,0.06);
-      padding: 8px;
-      border-radius: 14px;
-      line-height: 1;
-    }
-
-    .bot-details { flex: 1; }
-    .bot-details h4 { font-size: 1rem; margin-bottom: 4px; font-weight: 700; color: #fff; }
-    .bot-details p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.4; font-style: italic; margin-bottom: 12px; min-height: 58px; }
-    
-    .bot-details .bot-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 10px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .bot-details .bot-btn:hover { background: var(--primary-hover); }
-
-    /* --- RESPONSIVIDADE --- */
-    @media (max-width: 968px) {
-      .hero { grid-template-columns: 1fr; text-align: center; gap: 40px;}
-      .hero h1 { font-size: 2.3rem; }
-      .hero-actions { justify-content: center; }
-      .prompt-grid { grid-template-columns: 1fr; }
-      .floating-bot { width: calc(100% - 50px); left: 25px; bottom: 20px; }
-    }
-
-    @media (max-width: 480px) {
-      .step-body { padding: 15px 15px 20px 20px; }
-      .step-header { padding: 18px 16px; font-size: 1rem; }
-    }
-  </style>
+  <meta name="theme-color" content="#10204f" />
+  <meta name="description" content="Semana 4: do Google Sites para o GitHub — app PWA imersivo para alunos de Medicina." />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/icons/icon-192.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Semana 4 | GitHub PWA</title>
 </head>
 <body>
-
-  <div class="bubble-bg" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span>
+  <div class="bubbles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
   </div>
 
-  <header class="app-header">
-    <nav class="nav glass-card">
-      <div class="brand">
-        <div class="brand-icon">🧠</div>
-        <div>
-          <strong>NeuroGames 60+</strong>
-          <small>Medicina • Extensão • PWA</small>
-        </div>
-      </div>
-      <a class="nav-btn" href="#semana3">Semana 3</a>
-    </nav>
 
-    <section class="hero">
-      <div class="hero-text">
-        <p class="eyebrow">Curricularização da Extensão — 1º ano de Medicina</p>
-        <h1>Da capa do jogo ao primeiro HTML funcionando</h1>
-        <p class="lead">Nesta etapa, cada grupo transforma a imagem de capa criada na Semana 2 em uma primeira versão jogável no navegador, com foco em acessibilidade, neuroanatomia e cuidado com a pessoa idosa.</p>
-        <div class="hero-actions">
-          <a href="https://sites.google.com/uem.br/cursopwa-app/in%C3%ADcio" target="_blank" class="soft-btn primary">Jogar no Google Sites</a>
-          <a href="#prompts" class="soft-btn secondary">Ver prompts HTML</a>
-        </div>
+  <section id="lessonLock" class="lock-overlay" aria-live="polite">
+    <div class="lock-card glass">
+      <div class="lock-icon" id="lockIcon">🔒</div>
+      <p class="tag">Aula bloqueada</p>
+      <h1>Semana 4 será liberada em breve</h1>
+      <p class="lead">Esta missão do GitHub ficará disponível automaticamente daqui a 30 horas. Enquanto isso, revise o Google Sites e os 4 protótipos da Semana 3.</p>
+      <div class="countdown" id="countdown">30:00:00</div>
+      <p class="lock-note">Quando o tempo acabar, as cartas coloridas serão desbloqueadas e os alunos poderão ganhar as peças até chegar ao troféu final.</p>
+      <button id="soundUnlockBtn" class="secondary-btn" type="button">🔊 Ativar som do desbloqueio</button>
+    </div>
+  </section>
+
+  <header class="topbar glass">
+    <div class="brand">
+      <div class="logo">🧠</div>
+      <div>
+        <strong>NeuroGames 60+</strong>
+        <small>Semana 4 • GitHub • PWA</small>
       </div>
-      <div class="phone-3d" aria-label="Prévia visual do aplicativo">
-        <div class="phone-top"></div>
-        <div class="screen">
-          <div class="orb">🎮</div>
-          <h2>Semana 3</h2>
-          <p>HTML do jogo</p>
-          <button class="phone-btn" onclick="window.open('https://sites.google.com/uem.br/cursopwa-app/in%C3%ADcio', '_blank')">Iniciar</button>
-        </div>
-      </div>
-    </section>
+    </div>
+    <button id="themeBtn" class="pill-btn" type="button" aria-label="Alternar contraste claro e escuro">☀️ / 🌙</button>
   </header>
 
-  <main>
-    <section class="section" id="trilha">
-      <div class="section-title">
-        <p class="eyebrow">Trilha do projeto</p>
-        <h2>9 semanas até a entrega do jogo</h2>
+  <main class="app-shell">
+    <section class="hero glass">
+      <div class="hero-copy">
+        <p class="tag">Curricularização da Extensão • Medicina</p>
+        <h1>Do Google Sites para o GitHub</h1>
+        <p class="lead">Nesta semana, o protótipo deixa de ser apenas um teste e passa a virar um projeto real publicado online.</p>
+        <div class="hero-actions">
+          <a href="#cartas" class="primary-btn">Começar missão</a>
+          <button id="soundBtn" class="secondary-btn" type="button">🔊 Ativar sons</button>
+        </div>
       </div>
-      <div class="timeline">
-        <article class="week-card done">
-          <span class="status">✅ concluída</span>
-          <h3>Semana 1</h3>
-          <p>Escolha do tema: Sudoku, Memória, Palavras Cruzadas, Quiz ou Bolhas.</p>
-        </article>
-        <article class="week-card done">
-          <span class="status">✅ concluída</span>
-          <h3>Semana 2</h3>
-          <p>Criação da imagem de capa do jogo e identidade visual inicial.</p>
-        </article>
-        <article class="week-card active" id="semana3">
-          <span class="status">🚀 agora</span>
-          <h3>Semana 3</h3>
-          <p>Gerar, salvar, abrir e testar o primeiro arquivo HTML do jogo.</p>
-        </article>
-        <article class="week-card locked"><span>🔒</span><h3>Semana 4</h3><p>Acessibilidade e UX para pessoa idosa.</p></article>
-        <article class="week-card locked"><span>🔒</span><h3>Semana 5</h3><p>Funções extras in JavaScript.</p></article>
-        <article class="week-card locked"><span>🔒</span><h3>Semana 6</h3><p>Transformação em PWA instalável.</p></article>
-        <article class="week-card locked"><span>🔒</span><h3>Semana 7</h3><p>Testes de usabilidade.</p></article>
-        <article class="week-card locked"><span>🔒</span><h3>Semana 8</h3><p>Ajustes finais e preparação.</p></article>
-        <article class="week-card final"><span>🏁</span><h3>Semana 9</h3><p>Entrega final do jogo para apresentação/aplicação.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="passos">
-      <div class="section-title">
-        <p class="eyebrow">Aula de 1h20</p>
-        <h2>Passo a passo para criar e testar no google site</h2>
-      </div>
-      
-      <div class="steps-container">
-        <div class="step-item">
-          <button class="step-header" onclick="toggleStep(this)">
-            <span><span class="step-number">1</span>Escolha o prompt do jogo🚨</span>
-            <span class="step-arrow">▼</span>
-          </button>
-          <div class="step-content">
-            <div class="step-body">Use as opções de Memória, Sudoku, Quiz, Palavras Cruzadas ou Bolhas disponíveis mais abaixo nesta página.</div>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <button class="step-header" onclick="toggleStep(this)">
-            <span><span class="step-number">2</span>Cole no ChatGPT ou Gemini</span>
-            <span class="step-arrow">▼</span>
-          </button>
-          <div class="step-content">
-            <div class="step-body">Solicite que a inteligência artificial forneça um único arquivo HTML completo com CSS e JavaScript inclusos.</div>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <button class="step-header" onclick="toggleStep(this)">
-            <span><span class="step-number">3</span>Copie todo o código gerado</span>
-            <span class="step-arrow">▼</span>
-          </button>
-          <div class="step-content">
-            <div class="step-body">Use o botão de cópia automática da IA, garantindo coletar todo o bloco de código de <code>&lt;!doctype html&gt;</code> até <code>&lt;/html&gt;</code>.</div>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <button class="step-header" onclick="toggleStep(this)">
-            <span><span class="step-number">4</span>Abra o Google Sites e crie um novo➕️</span>
-            <span class="step-arrow">▼</span>
-          </button>
-          <div class="step-content">
-            <div class="step-body">Acesse o editor do site google que você criou, navegue até a aba lateral <strong>Páginas</strong> e clique na página do seu grupo (ex: Prompt 2).</div>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <button class="step-header" onclick="toggleStep(this)">
-            <span><span class="step-number">5</span>Incorpore o código do jogo</span>
-            <span class="step-arrow">▼</span>
-          </button>
-          <div class="step-content">
-            <div class="step-body">Na aba lateral de ferramentas, clique em <strong>Inserir</strong> e depois em <strong>Incorporar (&lt; / &gt;)</strong>. Selecione a aba superior <strong>Incorporar código</strong>, cole o HTML da IA e confirme.</div>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <button class="step-header" onclick="toggleStep(this)">
-            <span><span class="step-number">6</span>Ajuste as dimensões e publique</span>
-            <span class="step-arrow">▼</span>
-          </button>
-          <div class="step-content">
-            <div class="step-body">Arraste as bolinhas azuis nas bordas do bloco esticando-o até que o jogo fique amplo e totalmente visível na tela. Finalize clicando no botão azul <strong>Publicar</strong> no topo direito do painel.</div>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <button class="step-header" onclick="toggleStep(this)">
-            <span><span class="step-number">7</span>Avalie a usabilidade em sala</span>
-            <span class="step-arrow">▼</span>
-          </button>
-          <div class="step-content">
-            <div class="step-body">Abra o link publicado com outro grupo de trabalho e façam o teste: uma pessoa idosa conseguiria compreender e jogar sem ajuda?</div>
+      <div class="trophy-stage" aria-label="Progresso até o troféu final">
+        <div class="phone3d">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="trophy" id="mainTrophy">🏆</div>
+            <p id="trophyText">Conquiste as 8 peças</p>
+            <div class="piece-board" id="pieceBoard"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="prompts">
-      <div class="section-title">
-        <p class="eyebrow">Copiar e colar</p>
-        <h2>Prompts prontos para gerar HTML</h2>
+    <section class="progress-panel glass" aria-label="Progresso da Semana 4">
+      <div>
+        <strong id="progressLabel">0 de 8 etapas concluídas</strong>
+        <p>Complete cada carta para ganhar uma peça. No final, o troféu é liberado.</p>
       </div>
-      <div class="prompt-grid">
-        <article class="prompt-card">
-          <h3>1. Tela inicial do jogo</h3>
-          <p>Para criar a primeira tela com capa, botão e instruções.</p>
-          <textarea id="prompt1" readonly>Crie um único arquivo HTML completo para a tela inicial de um jogo educativo para pessoa idosa.
+      <div class="progress-track"><div id="progressFill"></div></div>
+    </section>
 
-Nome do jogo: [COLOQUE O NOME]
+    <section id="cartas" class="cards-grid">
+      <article class="mission-card color-a" data-step="0">
+        <div class="card-top"><span class="badge">1</span><span class="piece">🧩</span></div>
+        <h2>Entender a etapa</h2>
+        <p>Google Sites foi teste. GitHub será o repositório oficial do jogo.</p>
+        <ul>
+          <li>Google Sites = vitrine temporária</li>
+          <li>GitHub = pasta online do projeto</li>
+          <li>GitHub Pages = link do jogo</li>
+        </ul>
+        <button class="complete-btn" type="button">Ganhar peça</button>
+      </article>
 
-Requisitos:
-- Título grande
-- Área para imagem de capa ou emoji central
-- Botão Iniciar Jogo
-- Botão Como Jogar
-- Fundo moderno
-- Fonte mínima de 22px
-- Alto contraste
-- Botões grandes e arredondados
-- Layout responsivo para iPhone, Android e computador
-- HTML e CSS no mesmo arquivo
+      <article class="mission-card color-b" data-step="1">
+        <div class="card-top"><span class="badge">2</span><span class="piece">👤</span></div>
+        <h2>Criar conta no GitHub</h2>
+        <p>Acesse github.com, crie usuário, senha e confirme o e-mail.</p>
+        <ul>
+          <li>Clicar em Sign up</li>
+          <li>Anotar usuário do grupo</li>
+          <li>Entrar na conta</li>
+        </ul>
+        <button class="complete-btn" type="button">Ganhar peça</button>
+      </article>
 
-Entregue apenas o código HTML completo.</textarea>
-          <button class="soft-btn secondary" onclick="copyPrompt('prompt1', this)">Copiar Prompt</button>
-        </article>
+      <article class="mission-card color-c" data-step="2">
+        <div class="card-top"><span class="badge">3</span><span class="piece">📁</span></div>
+        <h2>Criar repositório</h2>
+        <p>Crie a pasta oficial do jogo no GitHub.</p>
+        <ul>
+          <li>New repository</li>
+          <li>Nome sem acentos</li>
+          <li>Marcar Public</li>
+        </ul>
+        <button class="complete-btn" type="button">Ganhar peça</button>
+      </article>
 
-        <article class="prompt-card">
-          <h3>2. Jogo funcional</h3>
-          <p>Para gerar o primeiro jogo funcionando no navegador.</p>
-          <textarea id="prompt2" readonly>Atue como um Desenževolvedor Front-End Sênior especializado em jogos educacionais para pessoa idosa.
+      <article class="mission-card color-d" data-step="3">
+        <div class="card-top"><span class="badge">4</span><span class="piece">📄</span></div>
+        <h2>Criar index.html</h2>
+        <p>O arquivo principal precisa se chamar exatamente index.html.</p>
+        <ul>
+          <li>Add file</li>
+          <li>Create new file</li>
+          <li>Nome: index.html</li>
+        </ul>
+        <button class="complete-btn" type="button">Ganhar peça</button>
+      </article>
 
-Crie um único arquivo HTML completo com HTML, CSS e JavaScript integrados.
+      <article class="mission-card color-e" data-step="4">
+        <div class="card-top"><span class="badge">5</span><span class="piece">💻</span></div>
+        <h2>Colar o protótipo</h2>
+        <p>Use o melhor código HTML criado na Semana 3.</p>
+        <ul>
+          <li>Copiar o HTML completo</li>
+          <li>Colar no index.html</li>
+          <li>Clicar em Commit changes</li>
+        </ul>
+        <button class="complete-btn" type="button">Ganhar peça</button>
+      </article>
 
-Nome do jogo: [COLOQUE O NOME]
-Tipo de jogo: [MEMÓRIA / QUIZ / SUDOKU / PALAVRAS CRUZADAS / BOLHAS]
+      <article class="mission-card color-f" data-step="5">
+        <div class="card-top"><span class="badge">6</span><span class="piece">🌐</span></div>
+        <h2>Publicar no Pages</h2>
+        <p>Ative o GitHub Pages para gerar o link do jogo.</p>
+        <ul>
+          <li>Settings</li>
+          <li>Pages</li>
+          <li>Branch main → Save</li>
+        </ul>
+        <button class="complete-btn" type="button">Ganhar peça</button>
+      </article>
 
-Requisitos:
-- Jogo funcionando no navegador
-- Responsivo para iPhone, Android e computador
-- Fonte mínima de 22px
-- Alto contraste
-- Botões grandes e arredondados
-- Tela inicial
-- Botão Iniciar
-- Botão Como Jogar
-- Pontuação ou contador de tentativas
-- Feedback de acerto e erro
-- Botão Jogar Novamente
-- Mensagem final de parabéns
-- Código comentado para estudantes iniciantes de Medicina
+      <article class="mission-card color-g" data-step="6">
+        <div class="card-top"><span class="badge">7</span><span class="piece">📱</span></div>
+        <h2>Testar no celular</h2>
+        <p>Abra o link no iPhone, Android ou computador.</p>
+        <ul>
+          <li>Botões funcionam?</li>
+          <li>Fonte está grande?</li>
+          <li>Pessoa idosa entenderia?</li>
+        </ul>
+        <button class="complete-btn" type="button">Ganhar peça</button>
+      </article>
 
-Entregue apenas um único arquivo HTML completo e funcional.</textarea>
-          <button class="soft-btn secondary" onclick="copyPrompt('prompt2', this)">Copiar Prompt</button>
-        </article>
+      <article class="mission-card color-h" data-step="7">
+        <div class="card-top"><span class="badge">8</span><span class="piece">🔗</span></div>
+        <h2>Voltar ao Google Sites</h2>
+        <p>O Google Sites continua como portfólio do grupo.</p>
+        <ul>
+          <li>Adicionar botão “Jogar no GitHub”</li>
+          <li>Colar o link do Pages</li>
+          <li>Enviar para a professora</li>
+        </ul>
+        <button class="complete-btn" type="button">Ganhar peça</button>
+      </article>
+    </section>
 
-        <article class="prompt-card">
-          <h3>3. Acessibilidade</h3>
-          <p>Para adaptar melhor à pessoa idosa.</p>
-          <textarea id="prompt3" readonly>Melhore este HTML para uso por pessoa idosa.
-
-Adicione:
-- Fonte maior
-- Botões maiores
-- Alto contraste
-- Pouco texto por tela
-- Linguagem simples
-- Feedback visual claro
-- Mensagem motivacional
-- Botão de ajuda
-- Botão Voltar ao início
-- Botão Aumentar fonte
-- Botão Modo alto contraste
-- Layout confortável para celular
-
-Mantenha tudo em um único arquivo HTML com CSS e JavaScript integrados.</textarea>
-          <button class="soft-btn secondary" onclick="copyPrompt('prompt3', this)">Copiar Prompt</button>
-        </article>
-
-        <article class="prompt-card">
-          <h3>4. Funções extras</h3>
-          <p>Para aumentar uma função no HTML.</p>
-          <textarea id="prompt4" readonly>Adicione novas funções ao meu jogo em HTML.
-
-Inclua:
-- Pontuação
-- Cronômetro opcional
-- Níveis Fácil, Médio e Difícil
-- Botão de dica
-- Botão reiniciar
-- Sons simples de acerto e erro
-- Melhor pontuação salva no navegador
-- Tela final com desempenho
-- Mensagem motivacional personalizada
-
-Mantenha o código simples, comentado e em um único arquivo HTML.</textarea>
-          <button class="soft-btn secondary" onclick="copyPrompt('prompt4', this)">Copiar Prompt</button>
-        </article>
-      </div>
+    <section class="final-box glass" id="finalBox">
+      <div class="big-trophy">🏆</div>
+      <h2>Troféu liberado!</h2>
+      <p>Entrega da Semana 4: link do Google Sites, link do GitHub, link do GitHub Pages, print no celular, nome do jogo e integrantes.</p>
+      <button id="victoryBtn" class="primary-btn" type="button">Tocar som de vitória</button>
+      <button id="resetBtn" class="secondary-btn" type="button">Reiniciar missão</button>
     </section>
   </main>
 
-  <div class="floating-bot">
-    <div class="bot-avatar">🤖</div>
-    <div class="bot-details">
-      <h4>Chatrôbo da Semana 3</h4>
-      <p id="robotTip">Dica: hoje o objetivo não é perfeição acadêmica. É fazer o jogo rodar direto nas páginas do Google Sites!</p>
-      <button class="bot-btn" id="newTip">Nova dica</button>
-    </div>
-  </div>
+  <button class="chatbot" id="chatBtn" type="button" aria-label="Abrir dica do Chatrôbo">🤖</button>
+  <aside class="chatbox glass" id="chatBox">
+    <strong>Chatrôbo da Semana 4</strong>
+    <p id="tipText">Comece criando a conta no GitHub. Hoje a meta é sair com um link funcionando.</p>
+    <button id="newTip" class="pill-btn" type="button">Nova dica</button>
+  </aside>
 
-  <footer class="footer">
-    <p>NeuroGames 60+ • Curricularização da Extensão • Medicina</p>
-  </footer>
-
-  <script>
-    // --- COMPORTAMENTO DO ACCORDION (ABRIR ETAPAS) ---
-    function toggleStep(header) {
-      const item = header.parentElement;
-      const isOpen = item.classList.contains('open');
-      
-      // Fecha todos os outros antes de abrir o atual
-      document.querySelectorAll('.step-item').forEach(el => {
-        el.classList.remove('open');
-      });
-
-      if (!isOpen) {
-        item.classList.add('open');
-      }
-    }
-
-    // --- SORTEIO DE DICAS DO CHATBOT FLUTUANTE ---
-    const tips = [
-      "Dica: hoje o objetivo não é perfeição acadêmica. É fazer o jogo rodar direto nas páginas do Google Sites!",
-      "Priorize fontes grandes e contrastantes. Lembra da acuidade visual na terceira idade?",
-      "Evite layouts complexos. Menos cliques geram melhor engajamento cognitivo para o público 60+.",
-      "O feedback visual imediato (cores verdes/vermelhas bem nítidas) ajuda no processamento de respostas.",
-      "Dispositivos Apple têm restrições com arquivos locais, por isso o Google Sites salvará nossa aula hoje!"
-    ];
-
-    document.getElementById('newTip').addEventListener('click', function() {
-      const robotTipEl = document.getElementById('robotTip');
-      const currentTip = robotTipEl.innerText;
-      let newTip = tips[Math.floor(Math.random() * tips.length)];
-      while(newTip === currentTip) {
-        newTip = tips[Math.floor(Math.random() * tips.length)];
-      }
-      robotTipEl.innerText = newTip;
-    });
-
-    // --- SISTEMA DE CÓPIA SEGURO (MÓVEL/APPLE) ---
-    function copyPrompt(id, button) {
-      const textarea = document.getElementById(id);
-      textarea.focus();
-      textarea.select();
-      textarea.setSelectionRange(0, 99999);
-      
-      try {
-        navigator.clipboard.writeText(textarea.value).then(() => {
-          triggerFeedback(button);
-        }).catch(() => {
-          fallbackCopy(textarea, button);
-        });
-      } catch (err) {
-        fallbackCopy(textarea, button);
-      }
-    }
-
-    function fallbackCopy(textarea, button) {
-      if (document.execCommand('copy')) {
-        triggerFeedback(button);
-      }
-    }
-
-    function triggerFeedback(button) {
-      const oldText = button.innerText;
-      button.innerText = "Copiado! ✓";
-      button.style.background = "var(--accent)";
-      button.style.color = "white";
-      setTimeout(() => {
-        button.innerText = oldText;
-        button.style.background = "rgba(255, 255, 255, 0.06)";
-        button.style.color = "var(--text-main)";
-      }, 2000);
-    }
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
-
