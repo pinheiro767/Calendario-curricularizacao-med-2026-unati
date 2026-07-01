@@ -8,6 +8,7 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon-192.svg">
   <title>Semana 4 | Prompts de Acessibilidade</title>
+
   <style>
     :root{
       --bg1:#f8fafc;--bg2:#dbeafe;--text:#111827;--muted:#475569;
@@ -15,62 +16,430 @@
       --p:#7c3aed;--c:#06b6d4;--pink:#ec4899;--green:#22c55e;--amber:#f59e0b;
       --shadow:0 26px 70px rgba(15,23,42,.20);--font:18px;
     }
-    body.dark{--bg1:#080617;--bg2:#27114d;--text:#f8fafc;--muted:#d1d5db;--card:rgba(17,24,39,.76);--line:rgba(255,255,255,.14);--shadow:0 26px 80px rgba(0,0,0,.48)}
-    *{box-sizing:border-box} html{scroll-behavior:smooth}
-    body{margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;font-size:var(--font);color:var(--text);background:linear-gradient(135deg,var(--bg1),var(--bg2));overflow-x:hidden}
+
+    body.dark{
+      --bg1:#080617;--bg2:#27114d;--text:#f8fafc;--muted:#d1d5db;
+      --card:rgba(17,24,39,.76);--line:rgba(255,255,255,.14);
+      --shadow:0 26px 80px rgba(0,0,0,.48)
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+      font-size:var(--font);
+      color:var(--text);
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+      overflow-x:hidden;
+    }
+
     .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-    .orb{position:absolute;border-radius:999px;opacity:.42;background:radial-gradient(circle at 30% 25%,#fff,var(--c) 28%,var(--p) 74%);animation:float 12s ease-in-out infinite;filter:blur(1px)}
-    .o1{width:160px;height:160px;left:4%;top:8%}.o2{width:90px;height:90px;right:9%;top:17%;animation-delay:1s}.o3{width:230px;height:230px;right:4%;top:58%;animation-delay:2s}.o4{width:120px;height:120px;left:9%;bottom:7%;animation-delay:3s}.o5{width:85px;height:85px;left:55%;bottom:15%;animation-delay:4s}
-    @keyframes float{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(28px,-42px,0) scale(1.08)}}
+    .orb{
+      position:absolute;
+      border-radius:999px;
+      opacity:.42;
+      background:radial-gradient(circle at 30% 25%,#fff,var(--c) 28%,var(--p) 74%);
+      animation:float 12s ease-in-out infinite;
+      filter:blur(1px)
+    }
+
+    .o1{width:160px;height:160px;left:4%;top:8%}
+    .o2{width:90px;height:90px;right:9%;top:17%;animation-delay:1s}
+    .o3{width:230px;height:230px;right:4%;top:58%;animation-delay:2s}
+    .o4{width:120px;height:120px;left:9%;bottom:7%;animation-delay:3s}
+    .o5{width:85px;height:85px;left:55%;bottom:15%;animation-delay:4s}
+
+    @keyframes float{
+      0%,100%{transform:translate3d(0,0,0) scale(1)}
+      50%{transform:translate3d(28px,-42px,0) scale(1.08)}
+    }
+
     .wrap{position:relative;z-index:1;max-width:1200px;margin:auto;padding:18px 16px 120px}
-    .hero{margin:12px 0 18px;padding:22px;border:1px solid var(--line);border-radius:34px;background:var(--card);backdrop-filter:blur(18px);box-shadow:var(--shadow);display:grid;grid-template-columns:1.35fr .8fr;gap:20px;align-items:center;overflow:hidden}
-    .badge{display:inline-flex;gap:8px;align-items:center;padding:8px 14px;border-radius:999px;background:linear-gradient(135deg,var(--p),var(--c));color:#fff;font-weight:900}
-    h1{font-size:clamp(2.1rem,5vw,4.8rem);letter-spacing:-.06em;line-height:.95;margin:16px 0 12px}
-    h2{font-size:1.55rem;margin:0 0 10px} h3{font-size:1.14rem;margin:0 0 8px}
+
+    .hero{
+      margin:12px 0 18px;
+      padding:22px;
+      border:1px solid var(--line);
+      border-radius:34px;
+      background:var(--card);
+      backdrop-filter:blur(18px);
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1.35fr .8fr;
+      gap:20px;
+      align-items:center;
+      overflow:hidden
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 14px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--p),var(--c));
+      color:#fff;
+      font-weight:900
+    }
+
+    h1{
+      font-size:clamp(2.1rem,5vw,4.8rem);
+      letter-spacing:-.06em;
+      line-height:.95;
+      margin:16px 0 12px
+    }
+
+    h2{font-size:1.55rem;margin:0 0 10px}
+    h3{font-size:1.14rem;margin:0 0 8px}
     p{line-height:1.45;color:var(--muted)}
-    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    button,.btn{border:0;border-radius:18px;padding:12px 14px;font-weight:900;font-size:1rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.18s transform,.18s filter}
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px
+    }
+
+    button,.btn{
+      border:0;
+      border-radius:18px;
+      padding:12px 14px;
+      font-weight:900;
+      font-size:1rem;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transition:.18s transform,.18s filter
+    }
+
     button:hover,.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
-    .primary{background:linear-gradient(135deg,var(--p),var(--c));color:#fff}.secondary{background:rgba(255,255,255,.30);color:var(--text);border:1px solid var(--line)}
-    .phone{min-height:330px;border-radius:42px;padding:15px;color:white;background:linear-gradient(145deg,#111827,#5b21b6);border:8px solid rgba(255,255,255,.24);box-shadow:0 34px 80px rgba(0,0,0,.32);transform:perspective(900px) rotateY(-11deg) rotateX(5deg);position:relative;overflow:hidden}
-    .phone:before{content:"";position:absolute;inset:-50%;background:conic-gradient(#22d3ee,#a78bfa,#f472b6,#22d3ee);opacity:.18;animation:spin 9s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-    .screen{position:relative;z-index:1;height:100%;border-radius:28px;background:rgba(255,255,255,.10);display:flex;flex-direction:column;justify-content:center;text-align:center;padding:18px}.big{font-size:4.4rem;animation:bob 2.2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
-    .progress{height:16px;border-radius:999px;background:rgba(255,255,255,.25);overflow:hidden;margin:14px 0 4px}.bar{height:100%;width:0%;background:linear-gradient(90deg,var(--p),var(--c),var(--green));transition:.35s}
-    .panel,.card{border:1px solid var(--line);border-radius:26px;background:var(--card);backdrop-filter:blur(18px);box-shadow:var(--shadow);padding:18px}.panel{margin-top:18px}
+    .primary{background:linear-gradient(135deg,var(--p),var(--c));color:#fff}
+    .secondary{background:rgba(255,255,255,.30);color:var(--text);border:1px solid var(--line)}
+
+    .phone{
+      min-height:330px;
+      border-radius:42px;
+      padding:15px;
+      color:white;
+      background:linear-gradient(145deg,#111827,#5b21b6);
+      border:8px solid rgba(255,255,255,.24);
+      box-shadow:0 34px 80px rgba(0,0,0,.32);
+      transform:perspective(900px) rotateY(-11deg) rotateX(5deg);
+      position:relative;
+      overflow:hidden
+    }
+
+    .phone:before{
+      content:"";
+      position:absolute;
+      inset:-50%;
+      background:conic-gradient(#22d3ee,#a78bfa,#f472b6,#22d3ee);
+      opacity:.18;
+      animation:spin 9s linear infinite
+    }
+
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .screen{
+      position:relative;
+      z-index:1;
+      height:100%;
+      border-radius:28px;
+      background:rgba(255,255,255,.10);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      text-align:center;
+      padding:18px
+    }
+
+    .big{font-size:4.4rem;animation:bob 2.2s ease-in-out infinite}
+    @keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
+
+    .progress{
+      height:16px;
+      border-radius:999px;
+      background:rgba(255,255,255,.25);
+      overflow:hidden;
+      margin:14px 0 4px
+    }
+
+    .bar{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,var(--p),var(--c),var(--green));
+      transition:.35s
+    }
+
+    .panel,.card{
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:var(--card);
+      backdrop-filter:blur(18px);
+      box-shadow:var(--shadow);
+      padding:18px
+    }
+
+    .panel{margin-top:18px}
     .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
-    .card{min-height:390px;transition:.2s;transform:perspective(1000px) rotateX(0)}.card:hover{transform:perspective(1000px) rotateX(2deg) translateY(-4px)}.card.done{outline:3px solid rgba(34,197,94,.55)}
-    .top{display:flex;align-items:center;justify-content:space-between;gap:12px}.n{width:44px;height:44px;border-radius:16px;display:grid;place-items:center;color:white;font-weight:1000;background:linear-gradient(135deg,var(--p),var(--pink))}
-    .piece{font-size:2.25rem;opacity:.35;filter:drop-shadow(0 8px 8px rgba(0,0,0,.22));transition:.25s}.done .piece{opacity:1;transform:scale(1.2) rotate(-8deg)}
-    .prompt{background:rgba(6,182,212,.10);border:1px solid var(--line);border-radius:18px;padding:14px;margin:12px 0;position:relative}
-    .prompt pre{white-space:pre-wrap;line-height:1.35;font-size:.92rem;color:var(--text);margin:0;padding-right:86px;max-height:270px;overflow:auto}
-    .copy{position:absolute;right:10px;top:10px;padding:8px 10px;border-radius:12px;font-size:.84rem}
-    label.check{display:flex;gap:10px;align-items:flex-start;background:rgba(124,58,237,.10);border-radius:17px;padding:12px;margin-top:12px}
-    input[type=checkbox]{width:25px;height:25px;accent-color:var(--p);flex:0 0 auto}
+
+    .card{
+      min-height:390px;
+      transition:.2s;
+      transform:perspective(1000px) rotateX(0)
+    }
+
+    .card:hover{transform:perspective(1000px) rotateX(2deg) translateY(-4px)}
+    .card.done{outline:3px solid rgba(34,197,94,.55)}
+
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .n{
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      color:white;
+      font-weight:1000;
+      background:linear-gradient(135deg,var(--p),var(--pink))
+    }
+
+    .piece{
+      font-size:2.25rem;
+      opacity:.35;
+      filter:drop-shadow(0 8px 8px rgba(0,0,0,.22));
+      transition:.25s
+    }
+
+    .done .piece{opacity:1;transform:scale(1.2) rotate(-8deg)}
+
+    .prompt{
+      background:rgba(6,182,212,.10);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px;
+      margin:12px 0;
+      position:relative
+    }
+
+    .prompt pre{
+      white-space:pre-wrap;
+      line-height:1.35;
+      font-size:.92rem;
+      color:var(--text);
+      margin:0;
+      padding-right:86px;
+      max-height:270px;
+      overflow:auto
+    }
+
+    .copy{
+      position:absolute;
+      right:10px;
+      top:10px;
+      padding:8px 10px;
+      border-radius:12px;
+      font-size:.84rem
+    }
+
+    label.check{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      background:rgba(124,58,237,.10);
+      border-radius:17px;
+      padding:12px;
+      margin-top:12px
+    }
+
+    input[type=checkbox]{
+      width:25px;
+      height:25px;
+      accent-color:var(--p);
+      flex:0 0 auto
+    }
+
     .form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    input,textarea,select{width:100%;border:1px solid var(--line);border-radius:16px;padding:12px;font:inherit;color:#111827;background:rgba(255,255,255,.82);outline:none} body.dark input,body.dark textarea,body.dark select{background:rgba(255,255,255,.10);color:#fff}
+
+    input,textarea,select{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      font:inherit;
+      color:#111827;
+      background:rgba(255,255,255,.82);
+      outline:none
+    }
+
+    body.dark input,body.dark textarea,body.dark select{
+      background:rgba(255,255,255,.10);
+      color:#fff
+    }
+
     textarea{min-height:95px;resize:vertical}
-    .photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:12px}.photo{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card)}.photo img{width:100%;height:155px;object-fit:cover;display:block}.photo small{display:block;padding:8px;color:var(--muted)}
-    .trophy{display:none;text-align:center;border-radius:30px;margin-top:18px;padding:26px;background:linear-gradient(135deg,#f59e0b,#fde68a,#fb7185);color:#111827;box-shadow:var(--shadow)}.trophy.show{display:block;animation:pop .7s ease both}@keyframes pop{0%{opacity:0;transform:scale(.65)}70%{transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
-    .chat{position:fixed;right:18px;bottom:18px;z-index:20}.chatbox{display:none;width:min(380px,calc(100vw - 36px));max-height:70vh;overflow:auto;border:1px solid var(--line);border-radius:26px;background:var(--card);backdrop-filter:blur(18px);box-shadow:var(--shadow);padding:14px;margin-bottom:12px}.chatbox.open{display:block}.msg{background:rgba(124,58,237,.12);border-radius:17px;padding:10px 12px;margin:8px 0}.fab{width:66px;height:66px;border-radius:999px;font-size:1.9rem;box-shadow:var(--shadow)}
-    .report{display:none}.small{font-size:.88rem;color:var(--muted)}
-    @media(max-width:880px){.hero,.grid,.form{grid-template-columns:1fr}.phone{transform:none;min-height:250px}.wrap{padding:12px 12px 98px}.card{min-height:0}}
-    @media print{.bg,.chat,.actions,.copy,#installBtn,.no-print{display:none!important}body{background:#fff!important;color:#111827!important;font-size:12pt}.wrap{max-width:none;padding:0}.hero,.card,.panel{box-shadow:none!important;background:#fff!important;border:1px solid #ddd!important;break-inside:avoid;page-break-inside:avoid}.grid{display:block}.card{margin:10px 0}.phone{display:none}.prompt pre{max-height:none;overflow:visible}input,textarea{border:1px solid #aaa!important;color:#111827!important;background:#fff!important}.photos{grid-template-columns:1fr 1fr}.photo img{height:auto;max-height:none;object-fit:contain}.report{display:block;white-space:pre-wrap;line-height:1.45}}
+
+    .photos{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+      gap:12px;
+      margin-top:12px
+    }
+
+    .photo{
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
+      background:var(--card)
+    }
+
+    .photo img{
+      width:100%;
+      height:155px;
+      object-fit:cover;
+      display:block
+    }
+
+    .photo small{
+      display:block;
+      padding:8px;
+      color:var(--muted)
+    }
+
+    .trophy{
+      display:none;
+      text-align:center;
+      border-radius:30px;
+      margin-top:18px;
+      padding:26px;
+      background:linear-gradient(135deg,#f59e0b,#fde68a,#fb7185);
+      color:#111827;
+      box-shadow:var(--shadow)
+    }
+
+    .trophy.show{display:block;animation:pop .7s ease both}
+
+    @keyframes pop{
+      0%{opacity:0;transform:scale(.65)}
+      70%{transform:scale(1.04)}
+      100%{opacity:1;transform:scale(1)}
+    }
+
+    .chat{position:fixed;right:18px;bottom:18px;z-index:20}
+
+    .chatbox{
+      display:none;
+      width:min(380px,calc(100vw - 36px));
+      max-height:70vh;
+      overflow:auto;
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:var(--card);
+      backdrop-filter:blur(18px);
+      box-shadow:var(--shadow);
+      padding:14px;
+      margin-bottom:12px
+    }
+
+    .chatbox.open{display:block}
+
+    .msg{
+      background:rgba(124,58,237,.12);
+      border-radius:17px;
+      padding:10px 12px;
+      margin:8px 0
+    }
+
+    .fab{
+      width:66px;
+      height:66px;
+      border-radius:999px;
+      font-size:1.9rem;
+      box-shadow:var(--shadow)
+    }
+
+    .report{display:none}
+    .small{font-size:.88rem;color:var(--muted)}
+
+    @media(max-width:880px){
+      .hero,.grid,.form{grid-template-columns:1fr}
+      .phone{transform:none;min-height:250px}
+      .wrap{padding:12px 12px 98px}
+      .card{min-height:0}
+    }
+
+    @media print{
+      .bg,.chat,.actions,.copy,#installBtn,.no-print{display:none!important}
+      body{background:#fff!important;color:#111827!important;font-size:12pt}
+      .wrap{max-width:none;padding:0}
+      .hero,.card,.panel{
+        box-shadow:none!important;
+        background:#fff!important;
+        border:1px solid #ddd!important;
+        break-inside:avoid;
+        page-break-inside:avoid
+      }
+      .grid{display:block}
+      .card{margin:10px 0}
+      .phone{display:none}
+      .prompt pre{max-height:none;overflow:visible}
+      input,textarea{
+        border:1px solid #aaa!important;
+        color:#111827!important;
+        background:#fff!important
+      }
+      .photos{grid-template-columns:1fr 1fr}
+      .photo img{height:auto;max-height:none;object-fit:contain}
+      .report{display:block;white-space:pre-wrap;line-height:1.45}
+    }
   </style>
 </head>
+
 <body>
-<div class="bg" aria-hidden="true"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div><div class="orb o5"></div></div>
+<div class="bg" aria-hidden="true">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <div class="orb o4"></div>
+  <div class="orb o5"></div>
+</div>
+
 <main class="wrap">
 <header class="hero">
   <section>
     <span class="badge">🧠 Semana 4 • IA + Acessibilidade</span>
     <h1>5 prompts para evoluir o jogo</h1>
     <p>O aluno copia o Prompt 1, gera um jogo simples, depois usa os Prompts 2, 3, 4 e 5 para melhorar o mesmo HTML. Ao final, testa a acessibilidade, anexa prints e gera relatório científico em PDF.</p>
-    <div class="progress"><div id="bar" class="bar"></div></div><p id="progressText">0% concluído</p>
+
+    <div class="progress">
+      <div id="bar" class="bar"></div>
+    </div>
+
+    <p id="progressText">0% concluído</p>
+
     <div class="actions">
-      <button class="primary" id="soundBtn">🔊 Ativar som</button><button class="secondary" onclick="toggleTheme()">🌗 Claro/Escuro</button><button class="secondary" onclick="fontSize(1)">A+ Fonte</button><button class="secondary" onclick="fontSize(-1)">A- Fonte</button><button class="primary" onclick="buildReport()">📄 Gerar relatório/PDF</button><button id="installBtn" class="secondary" style="display:none">📱 Instalar app</button>
+      <button class="primary" id="soundBtn">🔊 Ativar som</button>
+      <button class="secondary" onclick="toggleTheme()">🌗 Claro/Escuro</button>
+      <button class="secondary" onclick="fontSize(1)">A+ Fonte</button>
+      <button class="secondary" onclick="fontSize(-1)">A- Fonte</button>
+      <button class="primary" onclick="preencherRespostasModelo(); buildReport()">📄 Gerar relatório/PDF</button>
+      <button id="installBtn" class="secondary" style="display:none">📱 Instalar app</button>
     </div>
   </section>
-  <aside class="phone"><div class="screen"><div class="big">🤖🧩✨️🏆</div><h2>Missão progressiva</h2><p style="color:#e5e7eb">Cada prompt melhora o jogo. Cada etapa concluída libera uma peça do troféu.</p></div></aside>
+
+  <aside class="phone">
+    <div class="screen">
+      <div class="big">🤖🧩✨️🏆</div>
+      <h2>Missão progressiva</h2>
+      <p style="color:#e5e7eb">Cada prompt melhora o jogo. Cada etapa concluída libera uma peça do troféu.</p>
+    </div>
+  </aside>
 </header>
 
 <section class="panel">
@@ -84,7 +453,15 @@
 </section>
 
 <section class="grid" id="cards">
-  <article class="card"><div class="top"><div class="n">1</div><div class="piece">🧩🎲</div></div><h3>Prompt 1 — jogo básico</h3><p>Crie a primeira versão funcional. Ainda não precisa ser perfeita.</p><div class="prompt"><button class="copy" onclick="copyPrompt(this)">Copiar</button><pre>Atue como desenvolvedor Front-End especializado em jogos educativos.
+
+  <article class="card">
+    <div class="top"><div class="n">1</div><div class="piece">🧩🎲</div></div>
+    <h3>Prompt 1 — jogo básico</h3>
+    <p>Crie a primeira versão funcional. Ainda não precisa ser perfeita.</p>
+
+    <div class="prompt">
+      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
+      <pre>Atue como desenvolvedor Front-End especializado em jogos educativos.
 
 Crie um único arquivo HTML completo, com HTML, CSS e JavaScript integrados.
 
@@ -106,9 +483,20 @@ Requisitos da versão 1:
 
 Não implemente ainda recursos avançados de acessibilidade.
 
-Entregue apenas um único arquivo HTML completo e funcional.</pre></div><label class="check"><input type="checkbox"> Gerei a versão 1 e tirei print do jogo básico.</label></article>
+Entregue apenas um único arquivo HTML completo e funcional.</pre>
+    </div>
 
-  <article class="card"><div class="top"><div class="n">2</div><div class="piece">🤔🧩</div></div><h3>Prompt 2 — jogo mais bonito</h3><p>Melhore layout, visual e organização, mas ainda sem acessibilidade completa.</p><div class="prompt"><button class="copy" onclick="copyPrompt(this)">Copiar</button><pre>Pegue o HTML anterior e gere uma versão 2 mais bonita e organizada.
+    <label class="check"><input type="checkbox"> Gerei a versão 1 e tirei print do jogo básico.</label>
+  </article>
+
+  <article class="card">
+    <div class="top"><div class="n">2</div><div class="piece">🤔🧩</div></div>
+    <h3>Prompt 2 — jogo mais bonito</h3>
+    <p>Melhore layout, visual e organização, mas ainda sem acessibilidade completa.</p>
+
+    <div class="prompt">
+      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
+      <pre>Pegue o HTML anterior e gere uma versão 2 mais bonita e organizada.
 
 Melhore:
 - layout visual;
@@ -124,9 +512,20 @@ Mantenha o jogo funcionando.
 
 Ainda não transforme em versão final de acessibilidade. Faça apenas uma melhoria visual e de usabilidade inicial.
 
-Entregue apenas o HTML completo atualizado.</pre></div><label class="check"><input type="checkbox"> Gerei a versão 2 e comparei com a versão 1.</label></article>
+Entregue apenas o HTML completo atualizado.</pre>
+    </div>
 
-  <article class="card"><div class="top"><div class="n">3</div><div class="piece">🚨🧩</div></div><h3>Prompt 3 — acessibilidade inicial</h3><p>Agora começam as adaptações para pessoa idosa.</p><div class="prompt"><button class="copy" onclick="copyPrompt(this)">Copiar</button><pre>Pegue o HTML anterior e gere a versão 3 com acessibilidade inicial para pessoa idosa.
+    <label class="check"><input type="checkbox"> Gerei a versão 2 e comparei com a versão 1.</label>
+  </article>
+
+  <article class="card">
+    <div class="top"><div class="n">3</div><div class="piece">🚨🧩</div></div>
+    <h3>Prompt 3 — acessibilidade inicial</h3>
+    <p>Agora começam as adaptações para pessoa idosa.</p>
+
+    <div class="prompt">
+      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
+      <pre>Pegue o HTML anterior e gere a versão 3 com acessibilidade inicial para pessoa idosa.
 
 Adicione:
 - fonte mínima de 24px;
@@ -143,9 +542,20 @@ Adicione:
 
 Explique rapidamente no próprio código, por comentários, o que foi alterado.
 
-Entregue apenas o HTML completo atualizado.</pre></div><label class="check"><input type="checkbox"> Gerei a versão 3 com acessibilidade inicial.</label></article>
+Entregue apenas o HTML completo atualizado.</pre>
+    </div>
 
-  <article class="card"><div class="top"><div class="n">4</div><div class="piece">🚀🧩</div></div><h3>Prompt 4 — acessibilidade avançada</h3><p>Adapte para baixa visão, tremor, dificuldade motora, pessoa surda e iniciantes.</p><div class="prompt"><button class="copy" onclick="copyPrompt(this)">Copiar</button><pre>Pegue o HTML anterior e gere a versão 4 com acessibilidade avançada.
+    <label class="check"><input type="checkbox"> Gerei a versão 3 com acessibilidade inicial.</label>
+  </article>
+
+  <article class="card">
+    <div class="top"><div class="n">4</div><div class="piece">🚀🧩</div></div>
+    <h3>Prompt 4 — acessibilidade avançada</h3>
+    <p>Adapte para baixa visão, tremor, dificuldade motora, pessoa surda e iniciantes.</p>
+
+    <div class="prompt">
+      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
+      <pre>Pegue o HTML anterior e gere a versão 4 com acessibilidade avançada.
 
 Atue como especialista em:
 - Gerontologia;
@@ -169,9 +579,20 @@ Adicione:
 - legendas ou mensagens visuais para todos os sons;
 - espaço indicado para futuro vídeo em Libras.
 
-Entregue apenas o HTML completo atualizado.</pre></div><label class="check"><input type="checkbox"> Gerei a versão 4 com acessibilidade avançada.</label></article>
+Entregue apenas o HTML completo atualizado.</pre>
+    </div>
 
-  <article class="card"><div class="top"><div class="n">5</div><div class="piece">⌛️🧩</div></div><h3>Prompt 5 — versão final</h3><p>Agora o jogo deve ficar completo para apresentar à UNATI.</p><div class="prompt"><button class="copy" onclick="copyPrompt(this)">Copiar</button><pre>Pegue o HTML anterior e gere a versão 5 final do jogo.
+    <label class="check"><input type="checkbox"> Gerei a versão 4 com acessibilidade avançada.</label>
+  </article>
+
+  <article class="card">
+    <div class="top"><div class="n">5</div><div class="piece">⌛️🧩</div></div>
+    <h3>Prompt 5 — versão final</h3>
+    <p>Agora o jogo deve ficar completo para apresentar à UNATI.</p>
+
+    <div class="prompt">
+      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
+      <pre>Pegue o HTML anterior e gere a versão 5 final do jogo.
 
 Atue simultaneamente como:
 - desenvolvedor Front-End Sênior;
@@ -207,9 +628,20 @@ Inclua:
 - tela final de parabéns;
 - compatibilidade com Android, iPhone, iPad e computador.
 
-Entregue apenas um único arquivo HTML completo, funcional e pronto para teste.</pre></div><label class="check"><input type="checkbox"> Gerei a versão 5 final e testei no celular.</label></article>
+Entregue apenas um único arquivo HTML completo, funcional e pronto para teste.</pre>
+    </div>
 
-  <article class="card"><div class="top"><div class="n">6</div><div class="piece">🏆</div></div><h3>Teste final de acessibilidade</h3><p>Depois da versão 5, responda os critérios de teste e anexe prints.</p><div class="prompt"><button class="copy" onclick="copyPrompt(this)">Copiar</button><pre>Atue como avaliador de acessibilidade da UNATI.
+    <label class="check"><input type="checkbox"> Gerei a versão 5 final e testei no celular.</label>
+  </article>
+
+  <article class="card">
+    <div class="top"><div class="n">6</div><div class="piece">🏆</div></div>
+    <h3>Teste final de acessibilidade</h3>
+    <p>Depois da versão 5, responda os critérios de teste e anexe prints.</p>
+
+    <div class="prompt">
+      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
+      <pre>Atue como avaliador de acessibilidade da UNATI.
 
 Analise meu jogo final e responda:
 1. Uma pessoa idosa consegue entender o que fazer?
@@ -223,10 +655,19 @@ Analise meu jogo final e responda:
 9. O jogo evita excesso de informação?
 10. Quais 5 melhorias ainda seriam necessárias?
 
-Dê uma nota de 0 a 10 para acessibilidade e justifique.</pre></div><label class="check"><input type="checkbox"> Fiz o teste final de acessibilidade e anotei os resultados.</label></article>
+Dê uma nota de 0 a 10 para acessibilidade e justifique.</pre>
+    </div>
+
+    <label class="check"><input type="checkbox"> Fiz o teste final de acessibilidade e anotei os resultados.</label>
+  </article>
+
 </section>
 
-<div id="trophy" class="trophy"><div style="font-size:5rem">🏁🏆</div><h2>Troféu conquistado!</h2><p style="color:#111827">Todas as etapas foram concluídas. Agora gere o relatório PDF com prints e análise científica.</p></div>
+<div id="trophy" class="trophy">
+  <div style="font-size:5rem">🏁🏆</div>
+  <h2>Troféu conquistado!</h2>
+  <p style="color:#111827">Todas as etapas foram concluídas. Agora gere o relatório PDF com prints e análise científica.</p>
+</div>
 
 <section class="panel">
   <h2>Fotos/prints do Google Sites e das versões do jogo</h2>
@@ -237,20 +678,83 @@ Dê uma nota de 0 a 10 para acessibilidade e justifique.</pre></div><label class
 
 <section class="panel">
   <h2>Informações para o relatório científico</h2>
+
   <div class="form">
-    <label>O que mudou da versão 1 para a versão 5?<textarea id="evolution" placeholder="Descreva a evolução do jogo."></textarea></label>
-    <label>Quais recursos de acessibilidade foram incluídos?<textarea id="accessibility" placeholder="Fonte, contraste, botões, Libras, feedback visual..."></textarea></label>
-    <label>Resultado do teste de acessibilidade<textarea id="testResult" placeholder="O que funcionou e o que ainda precisa melhorar?"></textarea></label>
-    <label>Relação com a pessoa idosa e Neuroanatomia<textarea id="impact" placeholder="Memória, atenção, linguagem, raciocínio, coordenação..."></textarea></label>
+    <label>O que mudou da versão 1 para a versão 5?
+      <textarea id="evolution" placeholder="Descreva a evolução do jogo."></textarea>
+    </label>
+
+    <label>Quais recursos de acessibilidade foram incluídos?
+      <textarea id="accessibility" placeholder="Fonte, contraste, botões, Libras, feedback visual..."></textarea>
+    </label>
+
+    <label>Resultado do teste de acessibilidade
+      <textarea id="testResult" placeholder="O que funcionou e o que ainda precisa melhorar?"></textarea>
+    </label>
+
+    <label>Relação com a pessoa idosa e Neuroanatomia
+      <textarea id="impact" placeholder="Memória, atenção, linguagem, raciocínio, coordenação..."></textarea>
+    </label>
   </div>
-  <div class="actions"><button class="primary" onclick="makeScientificText()">🤖 IA flutuante: montar relatório</button><button class="secondary" onclick="copyReportPrompt()">Copiar prompt do relatório</button></div>
+
+  <div class="actions">
+    <button class="primary" onclick="preencherRespostasModelo(); makeScientificText()">🤖 IA flutuante: montar relatório</button>
+    <button class="secondary" onclick="copyReportPrompt()">Copiar prompt do relatório</button>
+  </div>
+
   <textarea id="scientificText" style="margin-top:12px;min-height:230px" placeholder="O relatório científico aparecerá aqui."></textarea>
 </section>
 
-<section class="panel"><h2>Relatório pronto para PDF</h2><p class="small">Clique em “Gerar relatório/PDF”. No celular ou computador, escolha salvar como PDF. As imagens são impressas sem corte.</p><div id="report" class="report"></div></section>
+<section class="panel">
+  <h2>Relatório pronto para PDF</h2>
+  <p class="small">Clique em “Gerar relatório/PDF”. No celular ou computador, escolha salvar como PDF. As imagens são impressas sem corte.</p>
+  <div id="report" class="report"></div>
+</section>
 </main>
 
-<div class="chat"><div id="chatbox" class="chatbox"><h3>🤖 IA flutuante da Semana 4</h3><div id="chatlog"><div class="msg">Eu ajudo a copiar prompts, organizar prints e montar o relatório científico.</div></div><button class="secondary" onclick="bot('prompts')">Como usar os prompts?</button><button class="secondary" onclick="bot('prints')">Quais prints anexar?</button><button class="secondary" onclick="bot('relatorio')">Como montar relatório?</button><button class="secondary" onclick="bot('pdf')">Como salvar PDF?</button></div><button class="fab primary" onclick="toggleChat()">🤖</button></div>
+<div class="chat">
+  <div id="chatbox" class="chatbox">
+    <h3>🤖 IA flutuante da Semana 4</h3>
+
+    <div id="chatlog">
+      <div class="msg">Eu ajudo a copiar prompts, organizar prints e montar o relatório científico.</div>
+    </div>
+
+    <button class="secondary" onclick="bot('prompts')">Como usar os prompts?</button>
+    <button class="secondary" onclick="bot('prints')">Quais prints anexar?</button>
+    <button class="secondary" onclick="bot('relatorio')">Como montar relatório?</button>
+    <button class="secondary" onclick="bot('pdf')">Como salvar PDF?</button>
+  </div>
+
+  <button class="fab primary" onclick="toggleChat()">🤖</button>
+</div>
+
+<script>
+const respostasModelo = {
+  evolution: `A versão 1 apresentou apenas a estrutura básica do jogo, com tela inicial, botão iniciar, funcionamento simples, pontuação e reinício. Ao longo das versões, o jogo foi melhorado visualmente, tornando-se mais organizado, colorido, responsivo e com aparência de aplicativo. Na versão final, foram incluídos recursos de acessibilidade, como fonte ampliada, botões grandes, contraste adequado, modo claro e escuro, instruções simples, tutorial, ajuda, feedback visual e sonoro opcional, prevenção de cliques acidentais e melhor adaptação para pessoas idosas.`,
+
+  accessibility: `Foram incluídos recursos de acessibilidade para facilitar o uso por pessoas idosas, como fonte mínima ampliada, botões grandes e arredondados, aumento e diminuição da fonte, modo claro e escuro, alto contraste, instruções curtas, ícones explicativos, mensagens claras de acerto e erro, feedback visual forte, som opcional, legendas ou mensagens visuais para quem não utiliza áudio, espaço para Libras, tutorial passo a passo, botão de ajuda, botão voltar ao início e prevenção de cliques acidentais.`,
+
+  testResult: `O teste de acessibilidade demonstrou que o jogo se tornou mais adequado para o público idoso. A fonte está maior, os botões são mais fáceis de tocar, o contraste melhora a leitura e as instruções ficaram mais simples. O jogo também pode ser utilizado sem depender exclusivamente do som, pois apresenta feedback visual. Ainda podem ser melhorados alguns aspectos, como inclusão real de vídeo em Libras, testes com usuários idosos, ajustes finos de contraste, simplificação de algumas telas e ampliação das mensagens de orientação. Nota sugerida: 9,0/10.`,
+
+  impact: `O jogo contribui para a estimulação cognitiva da pessoa idosa, trabalhando funções como memória, atenção, raciocínio, linguagem, percepção visual e coordenação motora. A relação com a Neuroanatomia ocorre porque essas funções dependem da atividade integrada do sistema nervoso, especialmente de áreas relacionadas à memória, processamento sensorial, tomada de decisão e controle motor. Assim, o jogo permite aplicar conhecimentos neuroanatômicos em uma atividade educativa, acessível e voltada à promoção da saúde cognitiva.`
+};
+
+function completarSeVazio(id){
+  const campo = document.getElementById(id);
+  if(campo && campo.value.trim() === ""){
+    campo.value = respostasModelo[id];
+  }
+}
+
+function preencherRespostasModelo(){
+  completarSeVazio("evolution");
+  completarSeVazio("accessibility");
+  completarSeVazio("testResult");
+  completarSeVazio("impact");
+}
+</script>
 
 <script src="app.js"></script>
-</body></html>
+</body>
+</html>
