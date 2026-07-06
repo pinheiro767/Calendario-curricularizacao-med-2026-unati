@@ -3,7 +3,7 @@
   "short_name": "NeuroPWA",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#eef5ff",
+  "background_color": "#eaf3ff",
   "theme_color": "#2459ff",
   "orientation": "portrait",
   "icons": [
