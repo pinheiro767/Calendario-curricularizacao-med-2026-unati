@@ -5,476 +5,714 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#2459ff">
 <link rel="manifest" href="manifest.json">
-<title>NeuroPWA UNATI/UEM • Semana 5</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<link rel="icon" href="assets/icons/icon-192.png">
+
+<title>NeuroPWA UNATI/UEM</title>
+
 <style>
 :root{
-  --bg:#eef5ff; --surface:#ffffff; --surface2:#f7fbff; --text:#102033; --muted:#516174;
-  --primary:#2459ff; --primary2:#00a8c8; --accent:#7c3aed; --ok:#0f8a4b; --warn:#d97706; --danger:#bf1d32;
-  --border:rgba(36,89,255,.18); --shadow:0 24px 80px rgba(22,43,91,.18); --radius:28px; --font:22px;
+  --bg:#eef5ff;
+  --card:#ffffff;
+  --text:#102033;
+  --muted:#4b5c70;
+  --primary:#2459ff;
+  --primary2:#00a8c8;
+  --accent:#7c3aed;
+  --ok:#128447;
+  --border:rgba(36,89,255,.2);
+  --shadow:0 20px 60px rgba(20,40,90,.2);
+  --radius:28px;
+  --font:22px;
 }
-body.dark{--bg:#06111f;--surface:#0e1b2e;--surface2:#13243b;--text:#f5fbff;--muted:#bdd0e7;--border:rgba(102,227,255,.22);--shadow:0 24px 90px rgba(0,0,0,.42)}
-body.contrast{--bg:#000;--surface:#000;--surface2:#111;--text:#fff;--muted:#fff;--primary:#ffff00;--primary2:#00ffff;--accent:#ff66ff;--border:#fff;--shadow:0 0 0 3px #fff;}
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at top left,rgba(102,227,255,.38),transparent 36%),radial-gradient(circle at top right,rgba(124,58,237,.24),transparent 30%),var(--bg);color:var(--text);font-size:var(--font);line-height:1.55;min-height:100vh} 
-button,input,select,textarea{font:inherit} button{min-height:56px;border:0;border-radius:18px;padding:14px 20px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,var(--primary),var(--primary2));color:white;box-shadow:0 10px 22px rgba(36,89,255,.22);transition:.18s transform,.18s filter} button:hover{transform:translateY(-2px);filter:brightness(1.05)} button.secondary{background:var(--surface2);color:var(--text);border:2px solid var(--border);box-shadow:none} button.ghost{background:transparent;color:var(--text);border:2px solid var(--border);box-shadow:none} button.ok{background:linear-gradient(135deg,var(--ok),#28c76f)} button.warn{background:linear-gradient(135deg,var(--warn),#f59e0b)} button.danger{background:linear-gradient(135deg,var(--danger),#fb7185)}
-.app{display:grid;grid-template-columns:320px 1fr;gap:22px;max-width:1500px;margin:auto;padding:22px}.sidebar{position:sticky;top:16px;height:calc(100vh - 32px);overflow:auto;background:rgba(255,255,255,.62);backdrop-filter:blur(18px);border:2px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}body.dark .sidebar{background:rgba(14,27,46,.75)}
-.brand{display:flex;align-items:center;gap:12px;margin-bottom:12px}.logo{width:62px;height:62px;border-radius:20px;background:linear-gradient(135deg,#66e3ff,#2459ff,#7c3aed);display:grid;place-items:center;font-size:34px;box-shadow:0 12px 28px rgba(36,89,255,.25)}.brand h1{font-size:1.05rem;margin:0}.brand p{margin:0;color:var(--muted);font-size:.72rem}.progress{height:18px;background:var(--surface2);border-radius:999px;overflow:hidden;border:1px solid var(--border)}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--primary2));transition:.3s}.checklist{display:grid;gap:9px;margin-top:14px}.check{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:16px;background:var(--surface2);border:1px solid var(--border);font-size:.78rem}.check input{width:24px;height:24px;accent-color:var(--primary);margin-top:4px}.topbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-bottom:18px}.pill{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--border);background:var(--surface);padding:8px 12px;border-radius:999px;font-size:.8rem;color:var(--muted)}
-.hero{position:relative;overflow:hidden;border:2px solid var(--border);border-radius:34px;min-height:420px;padding:34px;background:linear-gradient(135deg,rgba(36,89,255,.12),rgba(0,168,200,.10)),var(--surface);box-shadow:var(--shadow)}.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(102,227,255,.35),transparent 25%),radial-gradient(circle at 85% 25%,rgba(124,58,237,.20),transparent 28%);pointer-events:none}.hero-content{position:relative;z-index:1;max-width:900px}.hero h2{font-size:clamp(2rem,5vw,4.2rem);line-height:1.05;margin:0 0 14px}.hero p{max-width:900px;color:var(--muted)}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.bubble{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.96),rgba(102,227,255,.28),rgba(124,58,237,.14));box-shadow:inset -10px -14px 30px rgba(36,89,255,.18);animation:float 8s ease-in-out infinite}.b1{width:90px;height:90px;right:10%;top:16%;}.b2{width:54px;height:54px;right:24%;bottom:16%;animation-delay:1.2s}.b3{width:125px;height:125px;right:5%;bottom:8%;animation-delay:2.1s}.b4{width:38px;height:38px;left:42%;top:18%;animation-delay:3s}@keyframes float{50%{transform:translateY(-28px) scale(1.06)}}
-.section{margin:22px 0}.section h3{font-size:1.7rem;margin:.3rem 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.72));border:2px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}body.dark .card{background:linear-gradient(180deg,rgba(19,36,59,.95),rgba(14,27,46,.85))}.card:before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-45px;top:-45px;background:linear-gradient(135deg,rgba(102,227,255,.35),rgba(124,58,237,.18));}.icon{width:72px;height:72px;border-radius:24px;background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;font-size:40px;margin-bottom:12px;box-shadow:0 14px 32px rgba(36,89,255,.22)}.card h4{font-size:1.18rem;margin:0 0 8px}.card p,.small{font-size:.84rem;color:var(--muted)}.card .mini{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.tag{padding:6px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);font-size:.72rem;color:var(--muted)}
-.prompt-card textarea{width:100%;min-height:260px;border:2px solid var(--border);border-radius:20px;padding:16px;background:var(--surface2);color:var(--text);resize:vertical}.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.tab.active{outline:4px solid rgba(36,89,255,.20)}
-.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:grid;gap:6px}.field label{font-weight:800}.field input,.field select,.field textarea{width:100%;border:2px solid var(--border);border-radius:18px;padding:14px;background:var(--surface2);color:var(--text)}.field textarea{min-height:110px}.wide{grid-column:1/-1}.quick-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.quick-buttons button{font-size:.78rem;min-height:44px;padding:8px 12px}
-.upload-box{border:3px dashed var(--border);border-radius:26px;padding:20px;text-align:center;background:var(--surface2)}.thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.thumb{break-inside:avoid;page-break-inside:avoid;border:1px solid var(--border);border-radius:18px;padding:10px;background:var(--surface)}.thumb img{width:100%;border-radius:14px;display:block;max-height:260px;object-fit:contain}.thumb input{width:100%;margin-top:8px;border:1px solid var(--border);padding:10px;border-radius:12px;background:var(--surface2);color:var(--text)}
-.report{background:white;color:#111;border-radius:18px;padding:0;overflow:hidden;border:2px solid var(--border)}.report-page{min-height:980px;padding:44px 48px;border-bottom:1px solid #ddd;page-break-after:always;break-after:page}.report-page:last-child{page-break-after:auto;break-after:auto}.report h1,.report h2,.report h3{color:#102033}.report p,.report li{font-size:18px;line-height:1.55}.report .report-images{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.report figure{margin:0;border:1px solid #ddd;border-radius:12px;padding:10px;break-inside:avoid;page-break-inside:avoid}.report figure img{width:100%;max-height:300px;object-fit:contain;display:block;break-inside:avoid;page-break-inside:avoid}.report figcaption{font-size:14px;margin-top:8px;color:#333}.cover-title{font-size:36px;margin-top:130px;text-align:center}.cover-sub{text-align:center;font-size:20px}.robot{position:fixed;right:22px;bottom:22px;z-index:50}.robot-btn{width:88px;height:88px;border-radius:50%;font-size:44px;display:grid;place-items:center;box-shadow:0 18px 48px rgba(36,89,255,.38)}.chat{position:absolute;right:0;bottom:104px;width:min(430px,calc(100vw - 36px));background:var(--surface);border:2px solid var(--border);border-radius:26px;box-shadow:var(--shadow);overflow:hidden;display:none}.chat.open{display:block}.chat-head{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:14px 16px;background:linear-gradient(135deg,var(--primary),var(--primary2));color:white}.chat-body{padding:14px;max-height:360px;overflow:auto}.msg{padding:10px 12px;border-radius:16px;margin:8px 0;background:var(--surface2);font-size:.82rem}.msg.bot{border:1px solid var(--border)}.chat-options{display:grid;gap:8px}.chat-options button{text-align:left;font-size:.78rem;min-height:48px}.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#102033;color:white;padding:12px 18px;border-radius:999px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.25s;z-index:90}.toast.show{opacity:1;bottom:36px}.hide{display:none!important}
-@media (max-width:1100px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.grid{grid-template-columns:repeat(2,1fr)}}@media (max-width:720px){body{font-size:20px}.app{padding:12px}.hero{padding:22px;min-height:520px}.grid,.form-grid,.thumbs{grid-template-columns:1fr}.topbar{justify-content:stretch}.topbar button,.actions button{width:100%}.report-page{padding:26px 22px;min-height:auto}.report .report-images{grid-template-columns:1fr}.chat{right:-8px}}
-@media print{body{background:#fff!important}.app>*:not(main),.topbar,.hero,.section:not(#relatorioSection),.robot,.toast,.sidebar{display:none!important}.app{display:block;padding:0}.report{border:0}.report-page{width:100%;min-height:100vh;border:0;page-break-after:always;break-after:page}.report figure,.thumb,img{break-inside:avoid;page-break-inside:avoid} @page{size:A4;margin:12mm}}
+
+body.dark{
+  --bg:#07111f;
+  --card:#111d2e;
+  --text:#ffffff;
+  --muted:#d0d8e8;
+  --border:rgba(255,255,255,.18);
+}
+
+body.high{
+  --bg:#000000;
+  --card:#111111;
+  --text:#ffffff;
+  --muted:#ffffff;
+  --primary:#ffd600;
+  --primary2:#00ffff;
+  --accent:#ff66ff;
+  --border:#ffffff;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:var(--font);
+  color:var(--text);
+  background:
+    linear-gradient(rgba(238,245,255,.88), rgba(238,245,255,.88)),
+    url("assets/img/fundo-neuro.png");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+
+body.dark,
+body.high{
+  background:var(--bg);
+}
+
+.bolhas{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  z-index:-1;
+}
+
+.bolha{
+  position:absolute;
+  bottom:-120px;
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:rgba(36,89,255,.15);
+  animation:subir 12s infinite ease-in;
+}
+
+.bolha:nth-child(1){left:8%; animation-delay:0s;}
+.bolha:nth-child(2){left:22%; animation-delay:2s; width:55px; height:55px;}
+.bolha:nth-child(3){left:48%; animation-delay:4s; width:95px; height:95px;}
+.bolha:nth-child(4){left:70%; animation-delay:1s; width:65px; height:65px;}
+.bolha:nth-child(5){left:88%; animation-delay:5s; width:100px; height:100px;}
+
+@keyframes subir{
+  0%{transform:translateY(0) scale(1); opacity:.3;}
+  100%{transform:translateY(-120vh) scale(1.4); opacity:0;}
+}
+
+header{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  text-align:center;
+}
+
+.hero{
+  max-width:980px;
+  background:rgba(255,255,255,.94);
+  border:2px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+
+body.dark .hero,
+body.high .hero{
+  background:var(--card);
+}
+
+.hero img{
+  width:100%;
+  max-width:640px;
+  border-radius:24px;
+  box-shadow:0 16px 40px rgba(0,0,0,.18);
+}
+
+h1{
+  font-size:clamp(2rem, 5vw, 4rem);
+  margin:22px 0 8px;
+}
+
+h2{
+  font-size:1.5rem;
+}
+
+p{
+  line-height:1.55;
+}
+
+button{
+  border:0;
+  border-radius:22px;
+  padding:18px 26px;
+  margin:8px;
+  font-size:1rem;
+  font-weight:700;
+  color:white;
+  background:linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow:0 10px 22px rgba(36,89,255,.25);
+  cursor:pointer;
+  transition:.25s;
+}
+
+button:hover{
+  transform:translateY(-3px);
+}
+
+button:focus{
+  outline:4px solid var(--primary2);
+}
+
+body.high button{
+  color:#000;
+  background:var(--primary);
+}
+
+.barra{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  padding:12px;
+  border-bottom:2px solid var(--border);
+}
+
+body.dark .barra,
+body.high .barra{
+  background:var(--card);
+}
+
+main{
+  padding:28px;
+}
+
+.abas{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-bottom:28px;
+}
+
+.aba{
+  background:var(--card);
+  color:var(--text);
+  border:2px solid var(--border);
+}
+
+.conteudo{
+  display:none;
+  max-width:1200px;
+  margin:auto;
+  background:rgba(255,255,255,.94);
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+
+body.dark .conteudo,
+body.high .conteudo{
+  background:var(--card);
+}
+
+.conteudo.ativo{
+  display:block;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:24px;
+}
+
+.card{
+  background:var(--card);
+  border:2px solid var(--border);
+  border-radius:26px;
+  padding:22px;
+  text-align:center;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:contain;
+  border-radius:18px;
+}
+
+details{
+  background:var(--card);
+  border:2px solid var(--border);
+  border-radius:22px;
+  padding:18px;
+  margin:16px 0;
+}
+
+summary{
+  font-weight:800;
+  cursor:pointer;
+}
+
+.codigo{
+  background:#0f172a;
+  color:#e0f2fe;
+  padding:18px;
+  border-radius:18px;
+  overflow:auto;
+  font-size:.82rem;
+  text-align:left;
+}
+
+.robo{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:105px;
+  max-width:28vw;
+  z-index:100;
+  cursor:pointer;
+  filter:drop-shadow(0 12px 22px rgba(0,0,0,.3));
+  animation:flutuar 3s infinite ease-in-out;
+}
+
+@keyframes flutuar{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+}
+
+.painel-robo{
+  position:fixed;
+  right:18px;
+  bottom:135px;
+  width:min(360px, 88vw);
+  background:var(--card);
+  color:var(--text);
+  border:2px solid var(--border);
+  border-radius:26px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  z-index:101;
+  display:none;
+}
+
+.painel-robo.ativo{
+  display:block;
+}
+
+textarea, input{
+  width:100%;
+  font-size:1rem;
+  padding:16px;
+  border-radius:18px;
+  border:2px solid var(--border);
+  margin:8px 0 16px;
+}
+
+@media(max-width:700px){
+  body{
+    background-attachment:scroll;
+  }
+
+  main{
+    padding:14px;
+  }
+
+  .hero{
+    padding:18px;
+  }
+
+  button{
+    width:100%;
+    margin:8px 0;
+  }
+
+  .barra button,
+  .abas button{
+    width:auto;
+  }
+}
 </style>
 </head>
+
 <body>
-<div class="app">
-  <aside class="sidebar" aria-label="Checklist da aula">
-    <div class="brand"><div class="logo">🧠</div><div><h1>NeuroPWA UNATI</h1><p>Semana 5 • GitHub + assets + PWA</p></div></div>
-    <div class="progress" aria-label="Progresso"><div class="bar" id="bar"></div></div>
-    <p class="small"><b>Checklist lateral:</b> clique conforme o grupo concluir cada etapa.</p>
-    <div class="checklist" id="checklist">
-      <label class="check"><input type="checkbox"><span>Criei conta no GitHub ou acessei minha conta.</span></label>
-      <label class="check"><input type="checkbox"><span>Criei o repositório do jogo no GitHub.</span></label>
-      <label class="check"><input type="checkbox"><span>Escolhi o tipo de jogo: memória, sudoku, cruzadas, quiz ou cartas.</span></label>
-      <label class="check"><input type="checkbox"><span>Defini nome do jogo e tema de Neuroanatomia.</span></label>
-      <label class="check"><input type="checkbox"><span>Copiei o prompt único e gerei o index.html.</span></label>
-      <label class="check"><input type="checkbox"><span>Criei a pasta assets/img e salvei imagens com nomes corretos.</span></label>
-      <label class="check"><input type="checkbox"><span>Criei a pasta assets/icons e salvei icon-192.png e icon-512.png.</span></label>
-      <label class="check"><input type="checkbox"><span>Busquei áudios suaves na internet e salvei em assets/audio.</span></label>
-      <label class="check"><input type="checkbox"><span>Enviei index.html e assets para o GitHub.</span></label>
-      <label class="check"><input type="checkbox"><span>Anexei prints/fotos e gerei o relatório científico em PDF sem cortes.</span></label>
-    </div>
-  </aside>
-  <main>
-    <div class="topbar">
-      <span class="pill">📍 UEM • Medicina • UNATI 60+</span>
-      <div class="actions" style="margin:0">
-        <button class="secondary" onclick="toggleTheme()">🌗 Claro/Escuro</button>
-        <button class="secondary" onclick="toggleContrast()">⚫ Alto contraste</button>
-        <button class="secondary" onclick="fontUp()">A+ Letra</button>
-        <button class="secondary" onclick="toggleSound()" id="soundBtn">🔊 Som ligado</button>
-      </div>
-    </div>
-    <section class="hero">
-      <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div><div class="bubble b4"></div>
-      <div class="hero-content">
-        <h2>Semana 5: GitHub, assets e PWA de Neuroanatomia</h2>
-        <p>O aluno aprende GitHub, copia um prompt único para gerar o index.html, cria imagens e ícones com IA, busca áudios suaves na internet, salva tudo com nomes corretos, sobe no GitHub e gera um relatório científico com prints ilimitados.</p>
-        <div class="actions">
-          <button onclick="go('#jogos')">🎮 Escolher jogo</button>
-          <button onclick="go('#prompts')">📋 Prompt HTML</button>
-          <button onclick="go('#relatorio')">🧾 Fazer relatório</button>
-          <button class="ok" onclick="installApp()">⬇️ Baixar App</button>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="jogos">
-      <h3>1. Escolha um dos 5 jogos</h3>
-      <p class="small">Todos devem ser de <b>Neuroanatomia</b> e pensados para pessoas idosas 60+.</p>
-      <div class="grid" id="gameCards"></div>
-    </section>
-    <section class="section card" id="assets">
-      <h3>2. Crie os assets com nomes obrigatórios</h3>
-      <p class="small">O objetivo é padronizar os arquivos para o HTML encontrar tudo corretamente no GitHub.</p>
-      <div class="grid">
-        <div><div class="icon">🖼️</div><h4>Imagens</h4><p><b>Salvar em assets/img/</b></p><p class="small">capa-neuro.png, fundo-neuro.png, robo-neuro.png, memoria-neuro.png, sudoku-neuro.png, cruzadas-neuro.png, quiz-neuro.png, cartas-neuro.png, trofeu-neuro.png</p></div>
-        <div><div class="icon">🔊</div><h4>Sons</h4><p><b>Salvar em assets/audio/</b></p><p class="small">clique.mp3, sucesso.mp3, erro.mp3, vitoria.mp3, ambiente.mp3. Pesquise sons suaves: “soft click mp3 free”, “gentle success sound free”.</p></div>
-        <div><div class="icon">📱</div><h4>Ícones</h4><p><b>Salvar em assets/icons/</b></p><p class="small">icon-192.png, icon-512.png. Use ícone simples de cérebro, neurônio ou circuito neural, sem excesso de texto.</p></div>
-      </div>
-      <div class="actions"><button onclick="showAssetPrompt()">✨ Ver prompt de imagem/ícones</button><button class="secondary" onclick="copyAssetList()">📁 Copiar lista de nomes</button></div>
-      <textarea id="assetPrompt" class="hide" style="width:100%;min-height:210px;margin-top:12px;border-radius:18px;padding:14px;background:var(--surface2);color:var(--text);border:2px solid var(--border)"></textarea>
-    </section>
-    <section class="section" id="prompts">
-      <h3>3. Prompt único para HTML + prompts de assets</h3>
-      <div class="tabs" id="promptTabs"></div>
-      <div class="card prompt-card">
-        <h4 id="promptTitle">Prompt</h4>
-        <p class="small" id="promptGoal"></p>
-        <textarea id="promptText" readonly></textarea>
-        <div class="actions"><button onclick="copyPrompt()">📋 Copiar prompt</button><button class="secondary" onclick="fillPromptVars()">🧠 Preencher com dados do formulário</button></div>
-      </div>
-    </section>
-    <section class="section card" id="teste">
-      <h3>4. Áudios: como procurar e salvar</h3>
-      <p class="small">Os sons devem ser curtos, suaves e opcionais. O som de erro não deve assustar nem parecer bronca.</p>
-      <div class="grid">
-        <div class="card"><div class="icon">🔊</div><h4>Pesquisar no Google</h4><p class="small">soft click sound mp3 free<br>gentle success sound mp3 free<br>soft error sound mp3 free<br>short victory sound mp3 free<br>calm background music mp3 free</p></div>
-        <div class="card"><div class="icon">🌐</div><h4>Sites sugeridos</h4><p class="small">Pixabay Sound Effects<br>Mixkit Sound Effects<br>Freesound<br>Zapsplat</p></div>
-        <div class="card"><div class="icon">📁</div><h4>Nomes obrigatórios</h4><p class="small">assets/audio/clique.mp3<br>assets/audio/acerto.mp3<br>assets/audio/erro.mp3<br>assets/audio/vitoria.mp3<br>assets/audio/ambiente.mp3</p></div>
-      </div>
-    </section>
-    <section class="section" id="relatorio">
-      <h3>5. Relatório científico do dia</h3>
-      <div class="card">
-        <div class="form-grid">
-          <div class="field"><label>Nome do grupo</label><input id="grupo" placeholder="Ex.: Grupo Sinapse"></div>
-          <div class="field"><label>Integrantes</label><input id="integrantes" placeholder="Nome dos alunos"></div>
-          <div class="field"><label>Nome do jogo</label><input id="nomeJogo" placeholder="Ex.: Memória dos Nervos Cranianos"></div>
-          <div class="field"><label>Tipo de jogo</label><select id="tipoJogo"><option>Jogo da memória</option><option>Sudoku neuroanatômico</option><option>Palavras cruzadas</option><option>Quiz</option><option>Cartas educativas</option></select></div>
-          <div class="field"><label>Tema de Neuroanatomia</label><input id="tema" placeholder="Ex.: nervos cranianos, medula, córtex, cerebelo"></div>
-          <div class="field"><label>Público-alvo</label><input id="publico" value="Pessoas 60+ participantes da UNATI/UEM"></div>
-          <div class="field wide"><label>Objetivo</label><textarea id="objetivo" placeholder="Descreva ou use resposta pronta"></textarea><div class="quick-buttons"><button type="button" onclick="put('objetivo', canned.objetivo)">Usar resposta pronta</button></div></div>
-          <div class="field wide"><label>Metodologia</label><textarea id="metodologia"></textarea><div class="quick-buttons"><button type="button" onclick="put('metodologia', canned.metodologia)">Usar metodologia pronta</button></div></div>
-          <div class="field wide"><label>Uso da IA, GitHub e assets</label><textarea id="ia"></textarea><div class="quick-buttons"><button type="button" onclick="put('ia', canned.ia)">Usar texto pronto</button></div></div>
-          <div class="field wide"><label>Organização dos assets e áudios</label><textarea id="acessibilidade"></textarea><div class="quick-buttons"><button type="button" onclick="put('acessibilidade', canned.acessibilidade)">Usar texto pronto</button></div></div>
-          <div class="field wide"><label>Resultados observados</label><textarea id="resultados"></textarea><div class="quick-buttons"><button type="button" onclick="put('resultados', canned.resultados)">Usar resultados prontos</button></div></div>
-          <div class="field wide"><label>Conclusão</label><textarea id="conclusao"></textarea><div class="quick-buttons"><button type="button" onclick="put('conclusao', canned.conclusao)">Usar conclusão pronta</button></div></div>
-        </div>
-        <div class="upload-box" style="margin-top:18px">
-          <h4>Adicionar prints/fotos sem limite</h4>
-          <p class="small">Inclua prints do GitHub, da pasta assets, do jogo funcionando, dos prompts usados, das imagens geradas e do teste no navegador/celular.</p>
-          <input id="fileInput" type="file" accept="image/*" multiple onchange="handleFiles(event)">
-        </div>
-        <div class="thumbs" id="thumbs"></div>
-        <div class="actions">
-          <button class="ok" onclick="generateReport()">🧠 Gerar relatório científico</button>
-          <button class="warn" onclick="printReport()">🖨️ Imprimir/PDF sem cortes</button>
-          <button onclick="downloadPDF()">📄 Gerar PDF automático</button>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="relatorioSection">
-      <div id="report" class="report hide"></div>
-    </section>
-  </main>
+
+<div class="bolhas">
+  <div class="bolha"></div>
+  <div class="bolha"></div>
+  <div class="bolha"></div>
+  <div class="bolha"></div>
+  <div class="bolha"></div>
 </div>
-<div class="robot">
-  <div class="chat" id="chat">
-    <div class="chat-head"><b>🤖 NeuroBot</b><button class="ghost" style="color:white;border-color:white;min-height:42px" onclick="toggleChat()">×</button></div>
-    <div class="chat-body" id="chatBody">
-      <div class="msg bot">Olá! Eu ajudo o grupo a usar GitHub, gerar o HTML, criar assets, procurar áudios e preencher o relatório científico.</div>
-      <div class="chat-options">
-        <button class="secondary" onclick="bot('O relatório deve ter objetivo, metodologia, uso da IA, criação de assets, busca de áudios, uso do GitHub, resultados, conclusão e evidências com prints. Use linguagem acadêmica simples.')">Como fazer o relatório?</button>
-        <button class="secondary" onclick="bot('Escolha um conteúdo curto de Neuroanatomia: nervos cranianos, lobos cerebrais, medula espinal, cerebelo, vias sensitivas ou neurônios. Depois escolha o formato: memória, sudoku, cruzadas, quiz ou cartas.')">Como escolher o tema?</button>
-        <button class="secondary" onclick="bot('Na Semana 5, salve tudo com nomes padronizados: capa-neuro.png, fundo-neuro.png, robo-neuro.png, trofeu-neuro.png, icon-192.png, icon-512.png e áudios em mp3.')">Como nomear os assets?</button>
-        <button class="secondary" onclick="bot('Anexe prints do repositório GitHub, da pasta assets, dos prompts no GPT/Gemini, das imagens geradas, dos sons baixados e do jogo aberto no navegador.')">Quais imagens anexar?</button>
-      </div>
-    </div>
+
+<audio id="somClique" src="assets/audio/clique.mp3"></audio>
+<audio id="somSucesso" src="assets/audio/sucesso.mp3"></audio>
+<audio id="somErro" src="assets/audio/erro.mp3"></audio>
+<audio id="somVitoria" src="assets/audio/vitoria.mp3"></audio>
+<audio id="somAmbiente" src="assets/audio/ambiente.mp3" loop></audio>
+
+<header id="inicio">
+  <div class="hero">
+    <img src="assets/img/capa-neuro.png" alt="Capa do aplicativo NeuroPWA UNATI UEM">
+    <h1>NeuroPWA UNATI/UEM</h1>
+    <p>
+      Oficina interativa para criação de jogos acessíveis em Neuroanatomia,
+      com imagens, sons, robô assistente, acessibilidade e instalação como PWA.
+    </p>
+    <button onclick="iniciar()">Iniciar Oficina</button>
+    <button onclick="tocarAmbiente()">Ativar Som Ambiente</button>
   </div>
-  <button class="robot-btn" onclick="toggleChat()" aria-label="Abrir robô de ajuda">🤖</button>
-</div>
-<div class="toast" id="toast">Copiado!</div>
-<script>
-const games=[
- {id:'memoria',icon:'🧠',name:'Jogo da memória',theme:'Nervos cranianos, lobos cerebrais, neurotransmissores ou estruturas encefálicas.',asset:'memoria-neuro.png'},
- {id:'sudoku',icon:'🔢',name:'Sudoku neuroanatômico',theme:'Associação de números, cores e regiões do sistema nervoso.',asset:'sudoku-neuro.png'},
- {id:'cruzadas',icon:'✍️',name:'Palavras cruzadas',theme:'Termos de Neuroanatomia com pistas simples e educativas.',asset:'cruzadas-neuro.png'},
- {id:'quiz',icon:'❓',name:'Quiz',theme:'Perguntas curtas sobre cérebro, medula, neurônios e sentidos.',asset:'quiz-neuro.png'},
- {id:'cartas',icon:'🃏',name:'Cartas educativas',theme:'Cartas com pergunta, resposta e curiosidade sobre Neuroanatomia.',asset:'cartas-neuro.png'}
-];
-let selectedGame='Jogo da memória'; let soundOn=true; let deferredPrompt=null; let uploaded=[];
-const prompts=[
- {short:'HTML único',title:'Prompt único — Gerar o index.html completo',goal:'Copie, complete os campos entre colchetes e cole no GPT, Gemini, Claude ou Copilot para gerar o jogo em um único arquivo HTML.',text:`Atue como desenvolvedor Front-End especializado em PWA, jogos educativos, acessibilidade digital e público 60+.
+</header>
 
-Crie um único arquivo index.html completo, funcional, responsivo e acessível para um jogo educativo de Neuroanatomia voltado ao público 60+ da UNATI/UEM.
+<section id="app" style="display:none;">
 
-Contexto da atividade:
-- O app será desenvolvido por alunos de Medicina da UEM como atividade de extensão.
-- O público-alvo será formado por pessoas idosas 60+ participantes da UNATI/UEM.
-- O objetivo é criar um jogo simples, educativo, acessível, acolhedor e fácil de usar.
+  <nav class="barra">
+    <button onclick="mostrarAba('guia')">Guia</button>
+    <button onclick="mostrarAba('pastas')">Pastas</button>
+    <button onclick="mostrarAba('jogos')">Jogos</button>
+    <button onclick="mostrarAba('prompt')">Prompt dos Alunos</button>
+    <button onclick="mostrarAba('relatorio')">Relatório</button>
+    <button onclick="aumentarFonte()">A+</button>
+    <button onclick="diminuirFonte()">A-</button>
+    <button onclick="modoEscuro()">Modo Escuro</button>
+    <button onclick="altoContraste()">Alto Contraste</button>
+  </nav>
 
-Dados do grupo:
-Nome do jogo: [NOME_DO_JOGO]
-Tipo de jogo: [TIPO_DE_JOGO: jogo da memória / sudoku / palavras cruzadas / quiz / cartas educativas]
-Tema de Neuroanatomia: [TEMA_DE_NEUROANATOMIA]
-Público-alvo: pessoas 60+ da UNATI/UEM
+  <main>
 
-O jogo deve conter:
-1. Tela inicial com título, subtítulo e botão grande “Começar”.
-2. Instruções simples, curtas e em linguagem acessível.
-3. Jogo funcionando conforme o tipo escolhido.
-4. Pontuação, tentativas ou progresso.
-5. Botão “Ajuda”.
-6. Botão “Reiniciar”.
-7. Botão “Voltar ao início”.
-8. Tela final com mensagem motivadora.
-9. Robô flutuante de ajuda com respostas prontas.
-10. Checklist lateral de desenvolvimento.
-11. Botões grandes, fonte mínima 22px e boa distância entre elementos.
-12. Modo claro, modo escuro e alto contraste.
-13. Botão aumentar fonte e diminuir fonte.
-14. Sons opcionais com botão ligar/desligar som.
-15. Feedback visual de acerto, erro e conclusão.
-16. Layout responsivo para celular, tablet e computador.
-17. Botão “Baixar App” com orientação para instalar como PWA.
-18. Área para relatório científico do desenvolvimento.
-19. Upload ilimitado de prints/fotos.
-20. Campo de legenda para cada imagem enviada.
-21. Botão “Gerar Relatório Científico”.
-22. Botão “Imprimir/PDF sem cortes”, preservando as imagens.
+    <section id="guia" class="conteudo ativo">
+      <h2>1. O que os alunos precisam entender</h2>
+      <p>
+        O HTML não guarda as imagens dentro dele. Ele se conecta aos arquivos
+        usando o caminho da pasta.
+      </p>
 
-Use estes arquivos, quando existirem:
+      <details open>
+        <summary>Exemplo de imagem no HTML</summary>
+        <div class="codigo">
+&lt;img src="assets/img/capa-neuro.png" alt="Capa do jogo"&gt;
+        </div>
+      </details>
+
+      <details>
+        <summary>Exemplo de áudio no HTML</summary>
+        <div class="codigo">
+&lt;audio id="somClique" src="assets/audio/clique.mp3"&gt;&lt;/audio&gt;
+        </div>
+      </details>
+
+      <details>
+        <summary>Exemplo de ícone do aplicativo</summary>
+        <div class="codigo">
+&lt;link rel="icon" href="assets/icons/icon-192.png"&gt;
+        </div>
+      </details>
+    </section>
+
+    <section id="pastas" class="conteudo">
+      <h2>2. Estrutura correta do PWA</h2>
+      <p>Os alunos devem criar as pastas exatamente assim:</p>
+
+      <div class="codigo">
+NeuroPWA/
+├── index.html
+├── manifest.json
+├── sw.js
+└── assets/
+    ├── img/
+    │   ├── capa-neuro.png
+    │   ├── fundo-neuro.png
+    │   ├── robo-neuro.png
+    │   ├── memoria-neuro.png
+    │   ├── sudoku-neuro.png
+    │   ├── cruzadas-neuro.png
+    │   ├── quiz-neuro.png
+    │   ├── cartas-neuro.png
+    │   └── trofeu-neuro.png
+    ├── audio/
+    │   ├── clique.mp3
+    │   ├── sucesso.mp3
+    │   ├── erro.mp3
+    │   ├── vitoria.mp3
+    │   └── ambiente.mp3
+    └── icons/
+        ├── icon-192.png
+        └── icon-512.png
+      </div>
+    </section>
+
+    <section id="jogos" class="conteudo">
+      <h2>3. Jogos da Oficina</h2>
+
+      <div class="grid">
+
+        <article class="card">
+          <img src="assets/img/memoria-neuro.png" alt="Jogo da memória">
+          <h3>Memória Neuro</h3>
+          <p>Jogo com pares de imagens e nomes.</p>
+          <button onclick="abrirJogo('Memória Neuro')">Abrir</button>
+        </article>
+
+        <article class="card">
+          <img src="assets/img/sudoku-neuro.png" alt="Sudoku Neuro">
+          <h3>Sudoku Neuro</h3>
+          <p>Organização de símbolos e conceitos.</p>
+          <button onclick="abrirJogo('Sudoku Neuro')">Abrir</button>
+        </article>
+
+        <article class="card">
+          <img src="assets/img/cruzadas-neuro.png" alt="Palavras cruzadas">
+          <h3>Palavras Cruzadas</h3>
+          <p>Termos simples de Neuroanatomia.</p>
+          <button onclick="abrirJogo('Palavras Cruzadas')">Abrir</button>
+        </article>
+
+        <article class="card">
+          <img src="assets/img/quiz-neuro.png" alt="Quiz Neuro">
+          <h3>Quiz Neuro</h3>
+          <p>Perguntas acessíveis e educativas.</p>
+          <button onclick="abrirJogo('Quiz Neuro')">Abrir</button>
+        </article>
+
+        <article class="card">
+          <img src="assets/img/cartas-neuro.png" alt="Cartas Neuro">
+          <h3>Cartas Neuro</h3>
+          <p>Cartas com pistas e desafios.</p>
+          <button onclick="abrirJogo('Cartas Neuro')">Abrir</button>
+        </article>
+
+        <article class="card">
+          <img src="assets/img/trofeu-neuro.png" alt="Troféu">
+          <h3>Conclusão</h3>
+          <p>Finalização, evidências e relatório.</p>
+          <button onclick="finalizar()">Finalizar</button>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="prompt" class="conteudo">
+      <h2>4. Prompt completo para os alunos copiarem</h2>
+
+      <p>Este é o prompt que o aluno poderá copiar e colar no ChatGPT ou Gemini:</p>
+
+      <div class="codigo">
+Crie um único arquivo HTML completo, com HTML, CSS e JavaScript integrados.
+
+Estou desenvolvendo um jogo educativo acessível para idosos 60+, dentro de uma oficina de Neuroanatomia da UNATI/UEM.
+
+O jogo deve ser um PWA, preparado para funcionar em celular Android, iPhone, iPad e computador.
+
+IMPORTANTE:
+O HTML deve chamar imagens, sons e ícones a partir da seguinte estrutura de pastas:
+
 assets/img/capa-neuro.png
 assets/img/fundo-neuro.png
 assets/img/robo-neuro.png
-assets/img/trofeu-neuro.png
 assets/img/memoria-neuro.png
 assets/img/sudoku-neuro.png
 assets/img/cruzadas-neuro.png
 assets/img/quiz-neuro.png
 assets/img/cartas-neuro.png
+assets/img/trofeu-neuro.png
+
 assets/audio/clique.mp3
-assets/audio/acerto.mp3
+assets/audio/sucesso.mp3
 assets/audio/erro.mp3
 assets/audio/vitoria.mp3
 assets/audio/ambiente.mp3
+
 assets/icons/icon-192.png
 assets/icons/icon-512.png
 
-Regras importantes:
-- Não usar banco de dados.
-- Não usar backend.
-- Tudo deve funcionar no navegador.
-- Não usar imagens explícitas.
-- Não infantilizar a pessoa idosa.
-- Não usar cronômetro obrigatório.
-- Não depender de áudio para compreender o jogo.
-- Comentar o código para alunos iniciantes.
+Use no HTML caminhos como:
+&lt;img src="assets/img/capa-neuro.png"&gt;
+&lt;audio src="assets/audio/clique.mp3"&gt;&lt;/audio&gt;
+&lt;link rel="icon" href="assets/icons/icon-192.png"&gt;
 
-Entregue apenas o código completo do index.html.`},
- {short:'Capa',title:'Prompt de imagem — capa do jogo',goal:'Gerar a imagem principal da tela inicial.',text:`Crie uma imagem de capa para um jogo educativo de Neuroanatomia voltado ao público 60+ da UNATI/UEM.
+Requisitos do jogo:
+- tela inicial com imagem de capa;
+- fundo imersivo usando assets/img/fundo-neuro.png;
+- bolhas flutuantes suaves no fundo;
+- robô assistente flutuante usando assets/img/robo-neuro.png;
+- botões grandes, macios e arredondados;
+- modo alto contraste;
+- modo escuro;
+- controle para aumentar e diminuir fonte;
+- linguagem simples para idosos;
+- instruções ocultas em abas ou detalhes expansíveis;
+- som de clique;
+- som de acerto;
+- som de erro;
+- som de vitória;
+- música ambiente opcional;
+- layout responsivo para iPhone, iPad, Android e computador;
+- botão reiniciar;
+- pontuação;
+- mensagem final;
+- acessibilidade com textos alternativos nas imagens;
+- sem imagens explícitas;
+- design bonito, moderno, 3D suave e acolhedor.
 
-Nome do jogo: [NOME_DO_JOGO]
-Tipo de jogo: [TIPO_DE_JOGO]
-Tema: [TEMA_DE_NEUROANATOMIA]
+Tema do jogo:
+[ESCREVA AQUI O TEMA DO SEU JOGO]
 
-Estilo visual:
-- animação 3D moderna;
-- acolhedora;
-- tecnológica;
-- científica;
-- alto contraste;
-- visual limpo;
-- adequada para pessoa idosa.
+Tipo de jogo:
+[Memória / Sudoku / Palavras Cruzadas / Quiz / Cartas / Bolhas]
 
-A imagem deve transmitir:
-- memória;
-- atenção;
-- envelhecimento ativo;
-- inclusão digital;
-- aprendizagem;
-- neuroanatomia.
+Entregue apenas um arquivo HTML completo e funcional.
+      </div>
+    </section>
 
-Elementos sugeridos:
-- cérebro;
-- neurônios;
-- sinapses;
-- luz suave;
-- interface digital amigável.
+    <section id="relatorio" class="conteudo">
+      <h2>5. Relatório da atividade</h2>
 
-Não usar imagens infantilizadas.
-Não usar excesso de texto.
-Não usar letras pequenas.
-Formato 16:9.
-Alta nitidez.
+      <label>Nome do grupo:</label>
+      <input id="grupo" placeholder="Digite o nome do grupo">
 
-Salvar como: assets/img/capa-neuro.png`},
- {short:'Fundo',title:'Prompt de imagem — fundo do app',goal:'Gerar fundo limpo, legível e profissional.',text:`Crie um fundo para aplicativo PWA educativo de Neuroanatomia.
+      <label>Nome do jogo:</label>
+      <input id="jogo" placeholder="Digite o nome do jogo">
 
-O fundo deve ser:
-- limpo;
-- moderno;
-- legível;
-- com elementos sutis de cérebro, neurônios e sinapses;
-- com aparência 3D suave;
-- com alto contraste;
-- adequado para leitura por pessoas 60+.
+      <label>Quais imagens foram usadas?</label>
+      <textarea id="imagens" rows="4" placeholder="Ex: capa-neuro.png, robo-neuro.png, memoria-neuro.png"></textarea>
 
-Importante:
-- não poluir visualmente;
-- deixar espaço para textos grandes e botões;
-- não usar letras pequenas;
-- não colocar informações demais.
+      <label>Quais sons foram usados?</label>
+      <textarea id="sons" rows="4" placeholder="Ex: clique.mp3, sucesso.mp3, erro.mp3"></textarea>
 
-Formato horizontal 16:9.
-Alta nitidez.
+      <label>Quais recursos de acessibilidade foram incluídos?</label>
+      <textarea id="acessibilidade" rows="5" placeholder="Ex: fonte grande, alto contraste, botões grandes, linguagem simples..."></textarea>
 
-Salvar como: assets/img/fundo-neuro.png`},
- {short:'Robô',title:'Prompt de imagem — robô flutuante',goal:'Criar o assistente visual do app.',text:`Crie um robô assistente 3D amigável para um aplicativo educativo de Neuroanatomia voltado ao público 60+.
+      <button onclick="gerarRelatorio()">Gerar resumo</button>
 
-O robô deve parecer:
-- acolhedor;
-- inteligente;
-- simpático;
-- profissional;
-- confiável;
-- adequado a uma atividade universitária.
+      <div id="saidaRelatorio"></div>
+    </section>
 
-Função do robô:
-- ajudar o usuário;
-- explicar dúvidas;
-- orientar o preenchimento do relatório;
-- acompanhar a navegação no app.
+  </main>
+</section>
 
-Não infantilizar.
-Não usar expressão exagerada.
-Fundo transparente, se possível.
-Alta nitidez.
+<div class="painel-robo" id="painelRobo">
+  <h3>🤖 Assistente Neuro</h3>
+  <p>
+    Lembre-se: o HTML precisa apontar para os arquivos.
+    Use sempre caminhos como:
+  </p>
+  <div class="codigo">assets/img/nome-da-imagem.png</div>
+  <p>
+    Se a imagem não aparecer, confira se o nome da pasta e do arquivo está exatamente igual.
+  </p>
+</div>
 
-Salvar como: assets/img/robo-neuro.png`},
- {short:'Ícones',title:'Prompt de imagem — ícones do app',goal:'Criar ícones para instalação do PWA no celular.',text:`Crie um ícone quadrado para aplicativo PWA de Neuroanatomia.
+<img 
+  src="assets/img/robo-neuro.png" 
+  alt="Robô assistente flutuante" 
+  class="robo" 
+  onclick="abrirRobo()"
+>
 
-Estilo:
-- 3D moderno;
-- alto contraste;
-- visual limpo;
-- profissional;
-- fácil de reconhecer em tela pequena de celular.
+<script>
+let fonteAtual = 22;
 
-Símbolo principal:
-- cérebro, neurônio, sinapse ou circuito neural.
+function som(id){
+  const audio = document.getElementById(id);
+  if(audio){
+    audio.currentTime = 0;
+    audio.play().catch(()=>{});
+  }
+}
 
-Não usar texto pequeno.
-Não usar excesso de detalhes.
-Não infantilizar.
+function iniciar(){
+  som("somClique");
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("app").style.display = "block";
+}
 
-Gerar em dois tamanhos:
-192x192 salvar como assets/icons/icon-192.png
-512x512 salvar como assets/icons/icon-512.png`},
- {short:'Botões',title:'Prompt de imagem — botões visuais',goal:'Criar botões grandes e acessíveis.',text:`Crie botões visuais para um jogo educativo acessível à pessoa idosa.
+function tocarAmbiente(){
+  som("somClique");
+  const ambiente = document.getElementById("somAmbiente");
+  ambiente.volume = 0.22;
+  ambiente.play().catch(()=>{});
+}
 
-Botões necessários:
-- Começar;
-- Ajuda;
-- Voltar;
-- Próxima;
-- Reiniciar;
-- Concluir;
-- Gerar relatório;
-- Imprimir/PDF.
+function mostrarAba(id){
+  som("somClique");
+  document.querySelectorAll(".conteudo").forEach(sec => {
+    sec.classList.remove("ativo");
+  });
+  document.getElementById(id).classList.add("ativo");
+}
 
-Estilo:
-- 3D macio;
-- alto contraste;
-- texto grande;
-- bordas arredondadas;
-- aparência amigável;
-- visual profissional.
+function aumentarFonte(){
+  fonteAtual += 2;
+  document.documentElement.style.setProperty("--font", fonteAtual + "px");
+  som("somClique");
+}
 
-Os botões devem ser fáceis de identificar por pessoas 60+.
-Não usar letras pequenas.
-Não usar contraste fraco.`},
- {short:'Jogo',title:'Prompt de imagem — cards do jogo escolhido',goal:'Criar imagens específicas para memória, sudoku, cruzadas, quiz ou cartas.',text:`Crie imagens/cards visuais para um jogo de Neuroanatomia voltado ao público 60+ da UNATI/UEM.
+function diminuirFonte(){
+  if(fonteAtual > 18){
+    fonteAtual -= 2;
+    document.documentElement.style.setProperty("--font", fonteAtual + "px");
+  }
+  som("somClique");
+}
 
-Tipo de jogo: [TIPO_DE_JOGO]
-Tema específico: [TEMA_DE_NEUROANATOMIA]
+function modoEscuro(){
+  document.body.classList.toggle("dark");
+  document.body.classList.remove("high");
+  som("somClique");
+}
 
-Use elementos relacionados a:
-- cérebro;
-- neurônios;
-- sinapses;
-- medula espinal;
-- cerebelo;
-- nervos cranianos;
-- lobos cerebrais.
+function altoContraste(){
+  document.body.classList.toggle("high");
+  document.body.classList.remove("dark");
+  som("somClique");
+}
 
-Estilo:
-- 3D simples;
-- alto contraste;
-- ícones grandes;
-- visual limpo;
-- fácil de reconhecer;
-- adequado para idosos.
+function abrirJogo(nome){
+  som("somSucesso");
+  alert("Você abriu o jogo: " + nome + ". Aqui o aluno poderá inserir a lógica do jogo.");
+}
 
-Não usar textos pequenos.
-Não usar imagens muito detalhadas.
-Não infantilizar.
+function finalizar(){
+  som("somVitoria");
+  alert("Parabéns! Oficina concluída.");
+}
 
-Salvar conforme o jogo:
-Memória: assets/img/memoria-neuro.png
-Sudoku: assets/img/sudoku-neuro.png
-Palavras cruzadas: assets/img/cruzadas-neuro.png
-Quiz: assets/img/quiz-neuro.png
-Cartas: assets/img/cartas-neuro.png`},
- {short:'Áudios',title:'Como procurar áudios na internet',goal:'Orientar busca, escolha e nomes corretos dos sons.',text:`Procure sons gratuitos, curtos e suaves para um jogo educativo voltado a pessoas 60+.
+function abrirRobo(){
+  som("somClique");
+  document.getElementById("painelRobo").classList.toggle("ativo");
+}
 
-Pesquise no Google ou nos sites Pixabay Sound Effects, Mixkit Sound Effects, Freesound ou Zapsplat.
+function gerarRelatorio(){
+  som("somSucesso");
 
-Termos de busca:
-1. soft click sound mp3 free
-2. gentle success sound mp3 free
-3. soft error sound mp3 free
-4. short victory sound mp3 free
-5. calm background music mp3 free
+  const grupo = document.getElementById("grupo").value;
+  const jogo = document.getElementById("jogo").value;
+  const imagens = document.getElementById("imagens").value;
+  const sons = document.getElementById("sons").value;
+  const acessibilidade = document.getElementById("acessibilidade").value;
 
-Critérios:
-- som de clique: curto e discreto;
-- som de acerto: positivo e confortável;
-- som de erro: leve, sem susto e sem bronca;
-- som de vitória: alegre, curto e motivador;
-- som ambiente: calmo e opcional.
+  document.getElementById("saidaRelatorio").innerHTML = `
+    <details open>
+      <summary>Resumo gerado</summary>
+      <p><strong>Grupo:</strong> ${grupo}</p>
+      <p><strong>Jogo:</strong> ${jogo}</p>
+      <p><strong>Imagens usadas:</strong> ${imagens}</p>
+      <p><strong>Sons usados:</strong> ${sons}</p>
+      <p><strong>Acessibilidade:</strong> ${acessibilidade}</p>
+    </details>
+  `;
+}
 
-Salvar exatamente com estes nomes:
-assets/audio/clique.mp3
-assets/audio/acerto.mp3
-assets/audio/erro.mp3
-assets/audio/vitoria.mp3
-assets/audio/ambiente.mp3
-
-Antes de usar, verificar se o site permite download gratuito e uso educacional.`}
-]
-const canned={
- objetivo:'Desenvolver e testar um jogo educativo em formato PWA, com temática de Neuroanatomia, voltado ao público 60+ da UNATI/UEM, priorizando acessibilidade, clareza, autonomia de uso e aprendizagem interativa.',
- metodologia:'A atividade foi realizada por meio de uma oficina prática baseada em GitHub, Inteligência Artificial generativa e organização de assets. O grupo criou um repositório, gerou um arquivo index.html, produziu imagens e ícones com IA, pesquisou áudios gratuitos na internet e organizou os arquivos em pastas padronizadas.',
- ia:'A IA foi utilizada para gerar o código HTML do jogo e para criar prompts descritivos de imagens, ícones, botões e elementos visuais. O grupo também utilizou buscadores e bancos de áudio gratuitos para selecionar efeitos sonoros suaves e adequados ao público 60+.',
- acessibilidade:'Os assets foram organizados em pastas específicas: assets/img, assets/icons e assets/audio. As imagens e sons foram nomeados de forma padronizada para que o HTML pudesse localizar corretamente os arquivos no projeto publicado no GitHub Pages.',
- resultados:'Como resultado, o grupo organizou um projeto PWA com arquivo index.html, imagens, ícones, sons e evidências visuais do processo. As capturas de tela demonstram o uso do GitHub, a criação dos assets, a busca dos áudios e o teste inicial do jogo no navegador.',
- conclusao:'Conclui-se que a integração entre GitHub, IA generativa, produção de assets e organização de arquivos favoreceu a construção de um projeto digital mais profissional, adequado à extensão universitária e ao ensino de Neuroanatomia para o público 60+.'
-};
-function renderGames(){gameCards.innerHTML=games.map(g=>`<article class="card"><div class="icon">${g.icon}</div><h4>${g.name}</h4><p>${g.theme}</p><div class="mini"><span class="tag">Neuroanatomia</span><span class="tag">60+</span><span class="tag">asset: ${g.asset}</span></div><button style="margin-top:12px" onclick="selectGame('${g.name}','${g.asset}')">Escolher</button></article>`).join('')}
-function selectGame(name,asset){selectedGame=name; document.getElementById('tipoJogo').value=name; toast('Jogo escolhido: '+name); beep();}
-function renderPrompts(){promptTabs.innerHTML=prompts.map((p,i)=>`<button class="tab secondary ${i===0?'active':''}" onclick="showPrompt(${i})">${p.short||('Prompt '+(i+1))}</button>`).join(''); showPrompt(0)}
-function showPrompt(i){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.tab')[i].classList.add('active'); promptTitle.textContent=prompts[i].title; promptGoal.textContent=prompts[i].goal; promptText.value=personalize(prompts[i].text); beep();}
-function personalize(t){return t.replaceAll('[TIPO_DE_JOGO: memória / sudoku / palavras cruzadas / quiz / cartas educativas]', document.getElementById('tipoJogo')?.value || selectedGame).replaceAll('[NOME_DO_JOGO]', document.getElementById('nomeJogo')?.value || 'Meu Jogo de Neuroanatomia').replaceAll('[TEMA_DE_NEUROANATOMIA]', document.getElementById('tema')?.value || 'Nervos cranianos').replaceAll('[ARQUIVO_DO_JOGO]', games.find(g=>g.name===selectedGame)?.asset || 'memoria-neuro.png')}
-function fillPromptVars(){promptText.value=personalize(promptText.value); toast('Prompt atualizado com seus dados.'); beep();}
-async function copyPrompt(){await navigator.clipboard.writeText(promptText.value); toast('Prompt copiado!'); beep();}
-function showAssetPrompt(){const txt=`Crie uma imagem profissional para um PWA educativo de Neuroanatomia voltado ao público 60+ da UNATI/UEM.
-
-Estilo: 3D suave, científico, acolhedor, moderno, alto contraste, visual limpo, sem excesso de informação, sem infantilizar a pessoa idosa.
-
-Crie variações para estes arquivos e indique qual nome salvar:
-1. capa-neuro.png — capa principal do app.
-2. fundo-neuro.png — fundo claro e legível.
-3. robo-neuro.png — robô assistente flutuante simpático.
-4. memoria-neuro.png — ícone/cartão para jogo da memória.
-5. sudoku-neuro.png — ícone/cartão para sudoku neuroanatômico.
-6. cruzadas-neuro.png — ícone/cartão para palavras cruzadas.
-7. quiz-neuro.png — ícone/cartão para quiz.
-8. cartas-neuro.png — ícone/cartão para cartas educativas.
-9. trofeu-neuro.png — tela de conclusão.
-
-Importante: não usar textos pequenos dentro da imagem. Priorizar cérebro, neurônios, sinapses, medula espinal, nervos cranianos e elementos científicos abstratos.`; assetPrompt.value=txt; assetPrompt.classList.remove('hide'); toast('Prompt de assets aberto.');}
-async function copyAssetList(){await navigator.clipboard.writeText('assets/img/capa-neuro.png\nassets/img/fundo-neuro.png\nassets/img/robo-neuro.png\nassets/img/memoria-neuro.png\nassets/img/sudoku-neuro.png\nassets/img/cruzadas-neuro.png\nassets/img/quiz-neuro.png\nassets/img/cartas-neuro.png\nassets/img/trofeu-neuro.png\nassets/audio/clique.mp3\nassets/audio/sucesso.mp3\nassets/audio/erro.mp3\nassets/audio/vitoria.mp3\nassets/audio/ambiente.mp3\nassets/icons/icon-192.png\nassets/icons/icon-512.png'); toast('Lista copiada!'); beep();}
-function put(id,text){document.getElementById(id).value=text; beep();}
-function handleFiles(e){[...e.target.files].forEach(file=>{const reader=new FileReader(); reader.onload=ev=>{uploaded.push({src:ev.target.result,caption:''}); renderThumbs();}; reader.readAsDataURL(file);}); toast('Imagens adicionadas.'); beep();}
-function renderThumbs(){thumbs.innerHTML=uploaded.map((u,i)=>`<div class="thumb"><img src="${u.src}" alt="Print ${i+1}"><input placeholder="Legenda da imagem ${i+1}" value="${u.caption||''}" oninput="uploaded[${i}].caption=this.value"><button class="danger" style="margin-top:8px;width:100%" onclick="uploaded.splice(${i},1);renderThumbs()">Remover</button></div>`).join('')}
-function val(id){return document.getElementById(id).value.trim() || 'Não informado'}
-function generateReport(){const now=new Date().toLocaleDateString('pt-BR'); const imgs=uploaded.map((u,i)=>`<figure><img src="${u.src}"><figcaption>Figura ${i+1}. ${u.caption||'Evidência visual do processo de desenvolvimento do PWA.'}</figcaption></figure>`).join('') || '<p>Nenhuma imagem foi anexada.</p>'; report.innerHTML=`
-<div class="report-page"><h1 class="cover-title">Relatório científico do desenvolvimento do PWA</h1><p class="cover-sub"><b>${val('nomeJogo')}</b></p><p class="cover-sub">${val('grupo')} • ${val('integrantes')}</p><p class="cover-sub">Universidade Estadual de Maringá • UNATI/UEM • ${now}</p></div>
-<div class="report-page"><h2>1. Identificação da atividade</h2><p><b>Tipo de jogo:</b> ${val('tipoJogo')}</p><p><b>Tema de Neuroanatomia:</b> ${val('tema')}</p><p><b>Público-alvo:</b> ${val('publico')}</p><h2>2. Objetivo</h2><p>${val('objetivo')}</p><h2>3. Justificativa</h2><p>A proposta articula Neuroanatomia, tecnologia educacional e extensão universitária, com foco na criação de recursos digitais acessíveis para pessoas idosas. O desenvolvimento progressivo do jogo permitiu analisar não apenas o funcionamento técnico, mas também a clareza, a legibilidade e a autonomia do usuário 60+.</p></div>
-<div class="report-page"><h2>4. Metodologia</h2><p>${val('metodologia')}</p><h2>5. Uso da Inteligência Artificial</h2><p>${val('ia')}</p><h2>6. Etapas da Semana 5</h2><ol><li>Criação do repositório no GitHub.</li><li>Geração do index.html com prompt único.</li><li>Criação das imagens e ícones com IA.</li><li>Busca e organização dos áudios gratuitos.</li><li>Upload dos arquivos e teste do PWA no navegador.</li></ol></div>
-<div class="report-page"><h2>7. Organização dos assets e adequação ao público 60+</h2><p>${val('acessibilidade')}</p><h2>8. Resultados observados</h2><p>${val('resultados')}</p><h2>9. Conclusão</h2><p>${val('conclusao')}</p></div>
-<div class="report-page"><h2>10. Evidências fotográficas e prints</h2><div class="report-images">${imgs}</div></div>`; report.classList.remove('hide'); go('#relatorioSection'); toast('Relatório gerado. Confira antes de imprimir.'); beep();}
-function printReport(){if(report.classList.contains('hide')) generateReport(); setTimeout(()=>window.print(),300);}
-function downloadPDF(){if(report.classList.contains('hide')) generateReport(); const opt={margin:[8,8,8,8],filename:(val('nomeJogo')||'relatorio')+'-neuro-unati.pdf',image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true,scrollY:0},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy'],avoid:['figure','img','.report-images']}}; html2pdf().set(opt).from(report).save(); beep();}
-function toggleTheme(){document.body.classList.toggle('dark'); beep()}
-function toggleContrast(){document.body.classList.toggle('contrast'); beep()}
-function fontUp(){const root=getComputedStyle(document.documentElement); let n=parseInt(root.getPropertyValue('--font'))||22; n=n>=30?22:n+2; document.documentElement.style.setProperty('--font',n+'px'); toast('Fonte: '+n+'px'); beep()}
-function toggleSound(){soundOn=!soundOn; soundBtn.textContent=soundOn?'🔊 Som ligado':'🔇 Som desligado'; if(soundOn) beep()}
-function beep(){if(!soundOn) return; try{const ctx=new (window.AudioContext||window.webkitAudioContext)(); const o=ctx.createOscillator(); const g=ctx.createGain(); o.type='sine'; o.frequency.value=520; g.gain.value=.035; o.connect(g); g.connect(ctx.destination); o.start(); setTimeout(()=>{o.stop();ctx.close()},90)}catch(e){}}
-function toast(t){const el=document.getElementById('toast'); el.textContent=t; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),1700)}
-function go(sel){document.querySelector(sel).scrollIntoView({behavior:'smooth',block:'start'}); beep()}
-function updateProgress(){const boxes=[...document.querySelectorAll('#checklist input')]; const done=boxes.filter(b=>b.checked).length; bar.style.width=(done/boxes.length*100)+'%'; localStorage.setItem('neuroChecklist',JSON.stringify(boxes.map(b=>b.checked)))}
-function restoreProgress(){const saved=JSON.parse(localStorage.getItem('neuroChecklist')||'[]'); document.querySelectorAll('#checklist input').forEach((b,i)=>{b.checked=!!saved[i]; b.addEventListener('change',updateProgress)}); updateProgress()}
-function toggleChat(){chat.classList.toggle('open'); beep()}
-function bot(t){chatBody.insertAdjacentHTML('beforeend',`<div class="msg bot">${t}</div>`); chatBody.scrollTop=chatBody.scrollHeight; beep()}
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault(); deferredPrompt=e});
-async function installApp(){if(deferredPrompt){deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null;} else {toast('No celular: menu do navegador > Adicionar à tela inicial.');} beep()}
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
-renderGames(); renderPrompts(); restoreProgress();
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("sw.js");
+}
 </script>
+
 </body>
 </html>
