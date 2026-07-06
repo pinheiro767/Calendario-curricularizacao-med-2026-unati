@@ -1,760 +1,408 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#7c3aed">
-  <meta name="description" content="PWA Semana 4: evolução de prompts, acessibilidade, anexos e relatório PDF.">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="icons/icon-192.svg">
-  <title>Semana 4 | Prompts de Acessibilidade</title>
-
-  <style>
-    :root{
-      --bg1:#f8fafc;--bg2:#dbeafe;--text:#111827;--muted:#475569;
-      --card:rgba(255,255,255,.82);--line:rgba(15,23,42,.12);
-      --p:#7c3aed;--c:#06b6d4;--pink:#ec4899;--green:#22c55e;--amber:#f59e0b;
-      --shadow:0 26px 70px rgba(15,23,42,.20);--font:18px;
-    }
-
-    body.dark{
-      --bg1:#080617;--bg2:#27114d;--text:#f8fafc;--muted:#d1d5db;
-      --card:rgba(17,24,39,.76);--line:rgba(255,255,255,.14);
-      --shadow:0 26px 80px rgba(0,0,0,.48)
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-
-    body{
-      margin:0;
-      min-height:100vh;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;
-      font-size:var(--font);
-      color:var(--text);
-      background:linear-gradient(135deg,var(--bg1),var(--bg2));
-      overflow-x:hidden;
-    }
-
-    .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-    .orb{
-      position:absolute;
-      border-radius:999px;
-      opacity:.42;
-      background:radial-gradient(circle at 30% 25%,#fff,var(--c) 28%,var(--p) 74%);
-      animation:float 12s ease-in-out infinite;
-      filter:blur(1px)
-    }
-
-    .o1{width:160px;height:160px;left:4%;top:8%}
-    .o2{width:90px;height:90px;right:9%;top:17%;animation-delay:1s}
-    .o3{width:230px;height:230px;right:4%;top:58%;animation-delay:2s}
-    .o4{width:120px;height:120px;left:9%;bottom:7%;animation-delay:3s}
-    .o5{width:85px;height:85px;left:55%;bottom:15%;animation-delay:4s}
-
-    @keyframes float{
-      0%,100%{transform:translate3d(0,0,0) scale(1)}
-      50%{transform:translate3d(28px,-42px,0) scale(1.08)}
-    }
-
-    .wrap{position:relative;z-index:1;max-width:1200px;margin:auto;padding:18px 16px 120px}
-
-    .hero{
-      margin:12px 0 18px;
-      padding:22px;
-      border:1px solid var(--line);
-      border-radius:34px;
-      background:var(--card);
-      backdrop-filter:blur(18px);
-      box-shadow:var(--shadow);
-      display:grid;
-      grid-template-columns:1.35fr .8fr;
-      gap:20px;
-      align-items:center;
-      overflow:hidden
-    }
-
-    .badge{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding:8px 14px;
-      border-radius:999px;
-      background:linear-gradient(135deg,var(--p),var(--c));
-      color:#fff;
-      font-weight:900
-    }
-
-    h1{
-      font-size:clamp(2.1rem,5vw,4.8rem);
-      letter-spacing:-.06em;
-      line-height:.95;
-      margin:16px 0 12px
-    }
-
-    h2{font-size:1.55rem;margin:0 0 10px}
-    h3{font-size:1.14rem;margin:0 0 8px}
-    p{line-height:1.45;color:var(--muted)}
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:14px
-    }
-
-    button,.btn{
-      border:0;
-      border-radius:18px;
-      padding:12px 14px;
-      font-weight:900;
-      font-size:1rem;
-      cursor:pointer;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      transition:.18s transform,.18s filter
-    }
-
-    button:hover,.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
-    .primary{background:linear-gradient(135deg,var(--p),var(--c));color:#fff}
-    .secondary{background:rgba(255,255,255,.30);color:var(--text);border:1px solid var(--line)}
-
-    .phone{
-      min-height:330px;
-      border-radius:42px;
-      padding:15px;
-      color:white;
-      background:linear-gradient(145deg,#111827,#5b21b6);
-      border:8px solid rgba(255,255,255,.24);
-      box-shadow:0 34px 80px rgba(0,0,0,.32);
-      transform:perspective(900px) rotateY(-11deg) rotateX(5deg);
-      position:relative;
-      overflow:hidden
-    }
-
-    .phone:before{
-      content:"";
-      position:absolute;
-      inset:-50%;
-      background:conic-gradient(#22d3ee,#a78bfa,#f472b6,#22d3ee);
-      opacity:.18;
-      animation:spin 9s linear infinite
-    }
-
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    .screen{
-      position:relative;
-      z-index:1;
-      height:100%;
-      border-radius:28px;
-      background:rgba(255,255,255,.10);
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      text-align:center;
-      padding:18px
-    }
-
-    .big{font-size:4.4rem;animation:bob 2.2s ease-in-out infinite}
-    @keyframes bob{50%{transform:translateY(-8px) rotate(-3deg)}}
-
-    .progress{
-      height:16px;
-      border-radius:999px;
-      background:rgba(255,255,255,.25);
-      overflow:hidden;
-      margin:14px 0 4px
-    }
-
-    .bar{
-      height:100%;
-      width:0%;
-      background:linear-gradient(90deg,var(--p),var(--c),var(--green));
-      transition:.35s
-    }
-
-    .panel,.card{
-      border:1px solid var(--line);
-      border-radius:26px;
-      background:var(--card);
-      backdrop-filter:blur(18px);
-      box-shadow:var(--shadow);
-      padding:18px
-    }
-
-    .panel{margin-top:18px}
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
-
-    .card{
-      min-height:390px;
-      transition:.2s;
-      transform:perspective(1000px) rotateX(0)
-    }
-
-    .card:hover{transform:perspective(1000px) rotateX(2deg) translateY(-4px)}
-    .card.done{outline:3px solid rgba(34,197,94,.55)}
-
-    .top{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .n{
-      width:44px;
-      height:44px;
-      border-radius:16px;
-      display:grid;
-      place-items:center;
-      color:white;
-      font-weight:1000;
-      background:linear-gradient(135deg,var(--p),var(--pink))
-    }
-
-    .piece{
-      font-size:2.25rem;
-      opacity:.35;
-      filter:drop-shadow(0 8px 8px rgba(0,0,0,.22));
-      transition:.25s
-    }
-
-    .done .piece{opacity:1;transform:scale(1.2) rotate(-8deg)}
-
-    .prompt{
-      background:rgba(6,182,212,.10);
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px;
-      margin:12px 0;
-      position:relative
-    }
-
-    .prompt pre{
-      white-space:pre-wrap;
-      line-height:1.35;
-      font-size:.92rem;
-      color:var(--text);
-      margin:0;
-      padding-right:86px;
-      max-height:270px;
-      overflow:auto
-    }
-
-    .copy{
-      position:absolute;
-      right:10px;
-      top:10px;
-      padding:8px 10px;
-      border-radius:12px;
-      font-size:.84rem
-    }
-
-    label.check{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      background:rgba(124,58,237,.10);
-      border-radius:17px;
-      padding:12px;
-      margin-top:12px
-    }
-
-    input[type=checkbox]{
-      width:25px;
-      height:25px;
-      accent-color:var(--p);
-      flex:0 0 auto
-    }
-
-    .form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-
-    input,textarea,select{
-      width:100%;
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:12px;
-      font:inherit;
-      color:#111827;
-      background:rgba(255,255,255,.82);
-      outline:none
-    }
-
-    body.dark input,body.dark textarea,body.dark select{
-      background:rgba(255,255,255,.10);
-      color:#fff
-    }
-
-    textarea{min-height:95px;resize:vertical}
-
-    .photos{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-      gap:12px;
-      margin-top:12px
-    }
-
-    .photo{
-      border:1px solid var(--line);
-      border-radius:18px;
-      overflow:hidden;
-      background:var(--card)
-    }
-
-    .photo img{
-      width:100%;
-      height:155px;
-      object-fit:cover;
-      display:block
-    }
-
-    .photo small{
-      display:block;
-      padding:8px;
-      color:var(--muted)
-    }
-
-    .trophy{
-      display:none;
-      text-align:center;
-      border-radius:30px;
-      margin-top:18px;
-      padding:26px;
-      background:linear-gradient(135deg,#f59e0b,#fde68a,#fb7185);
-      color:#111827;
-      box-shadow:var(--shadow)
-    }
-
-    .trophy.show{display:block;animation:pop .7s ease both}
-
-    @keyframes pop{
-      0%{opacity:0;transform:scale(.65)}
-      70%{transform:scale(1.04)}
-      100%{opacity:1;transform:scale(1)}
-    }
-
-    .chat{position:fixed;right:18px;bottom:18px;z-index:20}
-
-    .chatbox{
-      display:none;
-      width:min(380px,calc(100vw - 36px));
-      max-height:70vh;
-      overflow:auto;
-      border:1px solid var(--line);
-      border-radius:26px;
-      background:var(--card);
-      backdrop-filter:blur(18px);
-      box-shadow:var(--shadow);
-      padding:14px;
-      margin-bottom:12px
-    }
-
-    .chatbox.open{display:block}
-
-    .msg{
-      background:rgba(124,58,237,.12);
-      border-radius:17px;
-      padding:10px 12px;
-      margin:8px 0
-    }
-
-    .fab{
-      width:66px;
-      height:66px;
-      border-radius:999px;
-      font-size:1.9rem;
-      box-shadow:var(--shadow)
-    }
-
-    .report{display:none}
-    .small{font-size:.88rem;color:var(--muted)}
-
-    @media(max-width:880px){
-      .hero,.grid,.form{grid-template-columns:1fr}
-      .phone{transform:none;min-height:250px}
-      .wrap{padding:12px 12px 98px}
-      .card{min-height:0}
-    }
-
-    @media print{
-      .bg,.chat,.actions,.copy,#installBtn,.no-print{display:none!important}
-      body{background:#fff!important;color:#111827!important;font-size:12pt}
-      .wrap{max-width:none;padding:0}
-      .hero,.card,.panel{
-        box-shadow:none!important;
-        background:#fff!important;
-        border:1px solid #ddd!important;
-        break-inside:avoid;
-        page-break-inside:avoid
-      }
-      .grid{display:block}
-      .card{margin:10px 0}
-      .phone{display:none}
-      .prompt pre{max-height:none;overflow:visible}
-      input,textarea{
-        border:1px solid #aaa!important;
-        color:#111827!important;
-        background:#fff!important
-      }
-      .photos{grid-template-columns:1fr 1fr}
-      .photo img{height:auto;max-height:none;object-fit:contain}
-      .report{display:block;white-space:pre-wrap;line-height:1.45}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2459ff">
+<link rel="manifest" href="manifest.json">
+<title>NeuroPWA UNATI/UEM • Oficina IA</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+:root{
+  --bg:#eef5ff; --surface:#ffffff; --surface2:#f7fbff; --text:#102033; --muted:#516174;
+  --primary:#2459ff; --primary2:#00a8c8; --accent:#7c3aed; --ok:#0f8a4b; --warn:#d97706; --danger:#bf1d32;
+  --border:rgba(36,89,255,.18); --shadow:0 24px 80px rgba(22,43,91,.18); --radius:28px; --font:22px;
+}
+body.dark{--bg:#06111f;--surface:#0e1b2e;--surface2:#13243b;--text:#f5fbff;--muted:#bdd0e7;--border:rgba(102,227,255,.22);--shadow:0 24px 90px rgba(0,0,0,.42)}
+body.contrast{--bg:#000;--surface:#000;--surface2:#111;--text:#fff;--muted:#fff;--primary:#ffff00;--primary2:#00ffff;--accent:#ff66ff;--border:#fff;--shadow:0 0 0 3px #fff;}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at top left,rgba(102,227,255,.38),transparent 36%),radial-gradient(circle at top right,rgba(124,58,237,.24),transparent 30%),var(--bg);color:var(--text);font-size:var(--font);line-height:1.55;min-height:100vh} 
+button,input,select,textarea{font:inherit} button{min-height:56px;border:0;border-radius:18px;padding:14px 20px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,var(--primary),var(--primary2));color:white;box-shadow:0 10px 22px rgba(36,89,255,.22);transition:.18s transform,.18s filter} button:hover{transform:translateY(-2px);filter:brightness(1.05)} button.secondary{background:var(--surface2);color:var(--text);border:2px solid var(--border);box-shadow:none} button.ghost{background:transparent;color:var(--text);border:2px solid var(--border);box-shadow:none} button.ok{background:linear-gradient(135deg,var(--ok),#28c76f)} button.warn{background:linear-gradient(135deg,var(--warn),#f59e0b)} button.danger{background:linear-gradient(135deg,var(--danger),#fb7185)}
+.app{display:grid;grid-template-columns:320px 1fr;gap:22px;max-width:1500px;margin:auto;padding:22px}.sidebar{position:sticky;top:16px;height:calc(100vh - 32px);overflow:auto;background:rgba(255,255,255,.62);backdrop-filter:blur(18px);border:2px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}body.dark .sidebar{background:rgba(14,27,46,.75)}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:12px}.logo{width:62px;height:62px;border-radius:20px;background:linear-gradient(135deg,#66e3ff,#2459ff,#7c3aed);display:grid;place-items:center;font-size:34px;box-shadow:0 12px 28px rgba(36,89,255,.25)}.brand h1{font-size:1.05rem;margin:0}.brand p{margin:0;color:var(--muted);font-size:.72rem}.progress{height:18px;background:var(--surface2);border-radius:999px;overflow:hidden;border:1px solid var(--border)}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--primary2));transition:.3s}.checklist{display:grid;gap:9px;margin-top:14px}.check{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:16px;background:var(--surface2);border:1px solid var(--border);font-size:.78rem}.check input{width:24px;height:24px;accent-color:var(--primary);margin-top:4px}.topbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-bottom:18px}.pill{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--border);background:var(--surface);padding:8px 12px;border-radius:999px;font-size:.8rem;color:var(--muted)}
+.hero{position:relative;overflow:hidden;border:2px solid var(--border);border-radius:34px;min-height:420px;padding:34px;background:linear-gradient(135deg,rgba(36,89,255,.12),rgba(0,168,200,.10)),var(--surface);box-shadow:var(--shadow)}.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(102,227,255,.35),transparent 25%),radial-gradient(circle at 85% 25%,rgba(124,58,237,.20),transparent 28%);pointer-events:none}.hero-content{position:relative;z-index:1;max-width:900px}.hero h2{font-size:clamp(2rem,5vw,4.2rem);line-height:1.05;margin:0 0 14px}.hero p{max-width:900px;color:var(--muted)}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.bubble{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.96),rgba(102,227,255,.28),rgba(124,58,237,.14));box-shadow:inset -10px -14px 30px rgba(36,89,255,.18);animation:float 8s ease-in-out infinite}.b1{width:90px;height:90px;right:10%;top:16%;}.b2{width:54px;height:54px;right:24%;bottom:16%;animation-delay:1.2s}.b3{width:125px;height:125px;right:5%;bottom:8%;animation-delay:2.1s}.b4{width:38px;height:38px;left:42%;top:18%;animation-delay:3s}@keyframes float{50%{transform:translateY(-28px) scale(1.06)}}
+.section{margin:22px 0}.section h3{font-size:1.7rem;margin:.3rem 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.72));border:2px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}body.dark .card{background:linear-gradient(180deg,rgba(19,36,59,.95),rgba(14,27,46,.85))}.card:before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-45px;top:-45px;background:linear-gradient(135deg,rgba(102,227,255,.35),rgba(124,58,237,.18));}.icon{width:72px;height:72px;border-radius:24px;background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;font-size:40px;margin-bottom:12px;box-shadow:0 14px 32px rgba(36,89,255,.22)}.card h4{font-size:1.18rem;margin:0 0 8px}.card p,.small{font-size:.84rem;color:var(--muted)}.card .mini{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.tag{padding:6px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);font-size:.72rem;color:var(--muted)}
+.prompt-card textarea{width:100%;min-height:260px;border:2px solid var(--border);border-radius:20px;padding:16px;background:var(--surface2);color:var(--text);resize:vertical}.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.tab.active{outline:4px solid rgba(36,89,255,.20)}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:grid;gap:6px}.field label{font-weight:800}.field input,.field select,.field textarea{width:100%;border:2px solid var(--border);border-radius:18px;padding:14px;background:var(--surface2);color:var(--text)}.field textarea{min-height:110px}.wide{grid-column:1/-1}.quick-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.quick-buttons button{font-size:.78rem;min-height:44px;padding:8px 12px}
+.upload-box{border:3px dashed var(--border);border-radius:26px;padding:20px;text-align:center;background:var(--surface2)}.thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.thumb{break-inside:avoid;page-break-inside:avoid;border:1px solid var(--border);border-radius:18px;padding:10px;background:var(--surface)}.thumb img{width:100%;border-radius:14px;display:block;max-height:260px;object-fit:contain}.thumb input{width:100%;margin-top:8px;border:1px solid var(--border);padding:10px;border-radius:12px;background:var(--surface2);color:var(--text)}
+.report{background:white;color:#111;border-radius:18px;padding:0;overflow:hidden;border:2px solid var(--border)}.report-page{min-height:980px;padding:44px 48px;border-bottom:1px solid #ddd;page-break-after:always;break-after:page}.report-page:last-child{page-break-after:auto;break-after:auto}.report h1,.report h2,.report h3{color:#102033}.report p,.report li{font-size:18px;line-height:1.55}.report .report-images{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.report figure{margin:0;border:1px solid #ddd;border-radius:12px;padding:10px;break-inside:avoid;page-break-inside:avoid}.report figure img{width:100%;max-height:300px;object-fit:contain;display:block;break-inside:avoid;page-break-inside:avoid}.report figcaption{font-size:14px;margin-top:8px;color:#333}.cover-title{font-size:36px;margin-top:130px;text-align:center}.cover-sub{text-align:center;font-size:20px}.robot{position:fixed;right:22px;bottom:22px;z-index:50}.robot-btn{width:88px;height:88px;border-radius:50%;font-size:44px;display:grid;place-items:center;box-shadow:0 18px 48px rgba(36,89,255,.38)}.chat{position:absolute;right:0;bottom:104px;width:min(430px,calc(100vw - 36px));background:var(--surface);border:2px solid var(--border);border-radius:26px;box-shadow:var(--shadow);overflow:hidden;display:none}.chat.open{display:block}.chat-head{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:14px 16px;background:linear-gradient(135deg,var(--primary),var(--primary2));color:white}.chat-body{padding:14px;max-height:360px;overflow:auto}.msg{padding:10px 12px;border-radius:16px;margin:8px 0;background:var(--surface2);font-size:.82rem}.msg.bot{border:1px solid var(--border)}.chat-options{display:grid;gap:8px}.chat-options button{text-align:left;font-size:.78rem;min-height:48px}.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#102033;color:white;padding:12px 18px;border-radius:999px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.25s;z-index:90}.toast.show{opacity:1;bottom:36px}.hide{display:none!important}
+@media (max-width:1100px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.grid{grid-template-columns:repeat(2,1fr)}}@media (max-width:720px){body{font-size:20px}.app{padding:12px}.hero{padding:22px;min-height:520px}.grid,.form-grid,.thumbs{grid-template-columns:1fr}.topbar{justify-content:stretch}.topbar button,.actions button{width:100%}.report-page{padding:26px 22px;min-height:auto}.report .report-images{grid-template-columns:1fr}.chat{right:-8px}}
+@media print{body{background:#fff!important}.app>*:not(main),.topbar,.hero,.section:not(#relatorioSection),.robot,.toast,.sidebar{display:none!important}.app{display:block;padding:0}.report{border:0}.report-page{width:100%;min-height:100vh;border:0;page-break-after:always;break-after:page}.report figure,.thumb,img{break-inside:avoid;page-break-inside:avoid} @page{size:A4;margin:12mm}}
+</style>
 </head>
-
 <body>
-<div class="bg" aria-hidden="true">
-  <div class="orb o1"></div>
-  <div class="orb o2"></div>
-  <div class="orb o3"></div>
-  <div class="orb o4"></div>
-  <div class="orb o5"></div>
-</div>
-
-<main class="wrap">
-<header class="hero">
-  <section>
-    <span class="badge">🧠 Semana 4 • IA + Acessibilidade</span>
-    <h1>5 prompts para evoluir o jogo</h1>
-    <p>O aluno copia o Prompt 1, gera um jogo simples, depois usa os Prompts 2, 3, 4 e 5 para melhorar o mesmo HTML. Ao final, testa a acessibilidade, anexa prints e gera relatório científico em PDF.</p>
-
-    <div class="progress">
-      <div id="bar" class="bar"></div>
-    </div>
-
-    <p id="progressText">0% concluído</p>
-
-    <div class="actions">
-      <button class="primary" id="soundBtn">🔊 Ativar som</button>
-      <button class="secondary" onclick="toggleTheme()">🌗 Claro/Escuro</button>
-      <button class="secondary" onclick="fontSize(1)">A+ Fonte</button>
-      <button class="secondary" onclick="fontSize(-1)">A- Fonte</button>
-      <button class="primary" onclick="preencherRespostasModelo(); buildReport()">📄 Gerar relatório/PDF</button>
-      <button id="installBtn" class="secondary" style="display:none">📱 Instalar app</button>
-    </div>
-  </section>
-
-  <aside class="phone">
-    <div class="screen">
-      <div class="big">🤖🧩✨️🏆</div>
-      <h2>Missão progressiva</h2>
-      <p style="color:#e5e7eb">Cada prompt melhora o jogo. Cada etapa concluída libera uma peça do troféu.</p>
+<div class="app">
+  <aside class="sidebar" aria-label="Checklist da aula">
+    <div class="brand"><div class="logo">🧠</div><div><h1>NeuroPWA UNATI</h1><p>Oficina IA • jogos acessíveis 60+</p></div></div>
+    <div class="progress" aria-label="Progresso"><div class="bar" id="bar"></div></div>
+    <p class="small"><b>Checklist lateral:</b> clique conforme o grupo concluir cada etapa.</p>
+    <div class="checklist" id="checklist">
+      <label class="check"><input type="checkbox"><span>Escolhi o tipo de jogo: memória, sudoku, cruzadas, quiz ou cartas.</span></label>
+      <label class="check"><input type="checkbox"><span>Defini o tema de Neuroanatomia e o público 60+ da UNATI/UEM.</span></label>
+      <label class="check"><input type="checkbox"><span>Copiei o Prompt 1 e gerei o primeiro HTML.</span></label>
+      <label class="check"><input type="checkbox"><span>Copiei os Prompts 2 a 5 e salvei as versões.</span></label>
+      <label class="check"><input type="checkbox"><span>Criei imagens/ícones com nomes específicos na pasta assets/img.</span></label>
+      <label class="check"><input type="checkbox"><span>Busquei sons suaves e salvei em assets/audio.</span></label>
+      <label class="check"><input type="checkbox"><span>Testei acessibilidade: visão, toque, memória, surdez e celular.</span></label>
+      <label class="check"><input type="checkbox"><span>Anexei prints das telas e versões no relatório.</span></label>
+      <label class="check"><input type="checkbox"><span>Gerei o relatório científico em PDF/impressão sem cortes.</span></label>
     </div>
   </aside>
-</header>
-
-<section class="panel">
-  <h2>Dados do grupo</h2>
-  <div class="form">
-    <label>Nome do jogo<input id="gameName" placeholder="Ex.: Bolhas Neuro"></label>
-    <label>Tipo de jogo<input id="gameType" placeholder="Quiz, Memória, Sudoku, Bolhas, Palavras Cruzadas"></label>
-    <label>Grupo / integrantes<input id="groupName" placeholder="Nome dos integrantes"></label>
-    <label>Link do Google Sites<input id="siteLink" placeholder="Cole o link do Google Sites"></label>
+  <main>
+    <div class="topbar">
+      <span class="pill">📍 UEM • Medicina • UNATI 60+</span>
+      <div class="actions" style="margin:0">
+        <button class="secondary" onclick="toggleTheme()">🌗 Claro/Escuro</button>
+        <button class="secondary" onclick="toggleContrast()">⚫ Alto contraste</button>
+        <button class="secondary" onclick="fontUp()">A+ Letra</button>
+        <button class="secondary" onclick="toggleSound()" id="soundBtn">🔊 Som ligado</button>
+      </div>
+    </div>
+    <section class="hero">
+      <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div><div class="bubble b4"></div>
+      <div class="hero-content">
+        <h2>Crie um jogo de Neuroanatomia acessível para a UNATI</h2>
+        <p>O aluno copia prompts progressivos, gera 5 versões do jogo no GPT/Gemini, cria assets visuais, testa acessibilidade 60+, anexa prints ilimitados e gera um relatório científico final com imagens.</p>
+        <div class="actions">
+          <button onclick="go('#jogos')">🎮 Escolher jogo</button>
+          <button onclick="go('#prompts')">📋 Abrir prompts</button>
+          <button onclick="go('#relatorio')">🧾 Fazer relatório</button>
+          <button class="ok" onclick="installApp()">⬇️ Baixar App</button>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="jogos">
+      <h3>1. Escolha um dos 5 jogos</h3>
+      <p class="small">Todos devem ser de <b>Neuroanatomia</b> e pensados para pessoas idosas 60+.</p>
+      <div class="grid" id="gameCards"></div>
+    </section>
+    <section class="section card" id="assets">
+      <h3>2. Crie os assets com nomes obrigatórios</h3>
+      <p class="small">O objetivo é padronizar os arquivos para o HTML encontrar tudo corretamente no GitHub.</p>
+      <div class="grid">
+        <div><div class="icon">🖼️</div><h4>Imagens</h4><p><b>Salvar em assets/img/</b></p><p class="small">capa-neuro.png, fundo-neuro.png, robo-neuro.png, memoria-neuro.png, sudoku-neuro.png, cruzadas-neuro.png, quiz-neuro.png, cartas-neuro.png, trofeu-neuro.png</p></div>
+        <div><div class="icon">🔊</div><h4>Sons</h4><p><b>Salvar em assets/audio/</b></p><p class="small">clique.mp3, sucesso.mp3, erro.mp3, vitoria.mp3, ambiente.mp3. Pesquise sons suaves: “soft click mp3 free”, “gentle success sound free”.</p></div>
+        <div><div class="icon">📱</div><h4>Ícones</h4><p><b>Salvar em assets/icons/</b></p><p class="small">icon-192.png, icon-512.png. Use ícone simples de cérebro, neurônio ou circuito neural, sem excesso de texto.</p></div>
+      </div>
+      <div class="actions"><button onclick="showAssetPrompt()">✨ Ver prompt de imagem/ícones</button><button class="secondary" onclick="copyAssetList()">📁 Copiar lista de nomes</button></div>
+      <textarea id="assetPrompt" class="hide" style="width:100%;min-height:210px;margin-top:12px;border-radius:18px;padding:14px;background:var(--surface2);color:var(--text);border:2px solid var(--border)"></textarea>
+    </section>
+    <section class="section" id="prompts">
+      <h3>3. Prompts progressivos para copiar e colar</h3>
+      <div class="tabs" id="promptTabs"></div>
+      <div class="card prompt-card">
+        <h4 id="promptTitle">Prompt</h4>
+        <p class="small" id="promptGoal"></p>
+        <textarea id="promptText" readonly></textarea>
+        <div class="actions"><button onclick="copyPrompt()">📋 Copiar prompt</button><button class="secondary" onclick="fillPromptVars()">🧠 Preencher com dados do formulário</button></div>
+      </div>
+    </section>
+    <section class="section card" id="teste">
+      <h3>4. Teste de acessibilidade 60+</h3>
+      <p class="small">Depois da versão 5, o grupo testa o jogo como se fosse apresentado a um participante da UNATI.</p>
+      <div class="grid">
+        <label class="check"><input type="checkbox"><span>👁️ Baixa visão: consigo ler sem aproximar a tela.</span></label>
+        <label class="check"><input type="checkbox"><span>☝️ Toque: consigo apertar botões com apenas um dedo.</span></label>
+        <label class="check"><input type="checkbox"><span>🧩 Cognição: há uma tarefa por vez e instruções simples.</span></label>
+        <label class="check"><input type="checkbox"><span>🔇 Pessoa surda: o jogo funciona sem áudio.</span></label>
+        <label class="check"><input type="checkbox"><span>📱 Celular: funciona bem em smartphone e tablet.</span></label>
+        <label class="check"><input type="checkbox"><span>🏆 UNATI: eu apresentaria este jogo para um idoso real.</span></label>
+      </div>
+    </section>
+    <section class="section" id="relatorio">
+      <h3>5. Relatório científico do dia</h3>
+      <div class="card">
+        <div class="form-grid">
+          <div class="field"><label>Nome do grupo</label><input id="grupo" placeholder="Ex.: Grupo Sinapse"></div>
+          <div class="field"><label>Integrantes</label><input id="integrantes" placeholder="Nome dos alunos"></div>
+          <div class="field"><label>Nome do jogo</label><input id="nomeJogo" placeholder="Ex.: Memória dos Nervos Cranianos"></div>
+          <div class="field"><label>Tipo de jogo</label><select id="tipoJogo"><option>Jogo da memória</option><option>Sudoku neuroanatômico</option><option>Palavras cruzadas</option><option>Quiz</option><option>Cartas educativas</option></select></div>
+          <div class="field"><label>Tema de Neuroanatomia</label><input id="tema" placeholder="Ex.: nervos cranianos, medula, córtex, cerebelo"></div>
+          <div class="field"><label>Público-alvo</label><input id="publico" value="Pessoas 60+ participantes da UNATI/UEM"></div>
+          <div class="field wide"><label>Objetivo</label><textarea id="objetivo" placeholder="Descreva ou use resposta pronta"></textarea><div class="quick-buttons"><button type="button" onclick="put('objetivo', canned.objetivo)">Usar resposta pronta</button></div></div>
+          <div class="field wide"><label>Metodologia</label><textarea id="metodologia"></textarea><div class="quick-buttons"><button type="button" onclick="put('metodologia', canned.metodologia)">Usar metodologia pronta</button></div></div>
+          <div class="field wide"><label>Uso da IA e prompts</label><textarea id="ia"></textarea><div class="quick-buttons"><button type="button" onclick="put('ia', canned.ia)">Usar texto pronto</button></div></div>
+          <div class="field wide"><label>Melhorias de acessibilidade</label><textarea id="acessibilidade"></textarea><div class="quick-buttons"><button type="button" onclick="put('acessibilidade', canned.acessibilidade)">Usar texto pronto</button></div></div>
+          <div class="field wide"><label>Resultados observados</label><textarea id="resultados"></textarea><div class="quick-buttons"><button type="button" onclick="put('resultados', canned.resultados)">Usar resultados prontos</button></div></div>
+          <div class="field wide"><label>Conclusão</label><textarea id="conclusao"></textarea><div class="quick-buttons"><button type="button" onclick="put('conclusao', canned.conclusao)">Usar conclusão pronta</button></div></div>
+        </div>
+        <div class="upload-box" style="margin-top:18px">
+          <h4>Adicionar prints/fotos sem limite</h4>
+          <p class="small">Inclua prints da versão 1, versão 5, teste no celular, assets, GitHub e relatório.</p>
+          <input id="fileInput" type="file" accept="image/*" multiple onchange="handleFiles(event)">
+        </div>
+        <div class="thumbs" id="thumbs"></div>
+        <div class="actions">
+          <button class="ok" onclick="generateReport()">🧠 Gerar relatório científico</button>
+          <button class="warn" onclick="printReport()">🖨️ Imprimir/PDF sem cortes</button>
+          <button onclick="downloadPDF()">📄 Gerar PDF automático</button>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="relatorioSection">
+      <div id="report" class="report hide"></div>
+    </section>
+  </main>
+</div>
+<div class="robot">
+  <div class="chat" id="chat">
+    <div class="chat-head"><b>🤖 NeuroBot</b><button class="ghost" style="color:white;border-color:white;min-height:42px" onclick="toggleChat()">×</button></div>
+    <div class="chat-body" id="chatBody">
+      <div class="msg bot">Olá! Eu ajudo o grupo a criar prompts, escolher jogo, testar acessibilidade e preencher o relatório científico.</div>
+      <div class="chat-options">
+        <button class="secondary" onclick="bot('O relatório deve ter objetivo, metodologia, uso da IA, melhorias de acessibilidade, resultados, conclusão e evidências com prints. Use linguagem acadêmica simples.')">Como fazer o relatório?</button>
+        <button class="secondary" onclick="bot('Escolha um conteúdo curto de Neuroanatomia: nervos cranianos, lobos cerebrais, medula espinal, cerebelo, vias sensitivas ou neurônios. Depois escolha o formato: memória, sudoku, cruzadas, quiz ou cartas.')">Como escolher o tema?</button>
+        <button class="secondary" onclick="bot('Para UNATI 60+, use fonte grande, contraste, botões amplos, instruções curtas, feedback visual, som opcional e navegação sem pressa.')">O que testar em acessibilidade?</button>
+        <button class="secondary" onclick="bot('Anexe prints da versão inicial, versão final, assets, tela de acessibilidade, teste no celular e GitHub Pages.')">Quais imagens anexar?</button>
+      </div>
+    </div>
   </div>
-</section>
+  <button class="robot-btn" onclick="toggleChat()" aria-label="Abrir robô de ajuda">🤖</button>
+</div>
+<div class="toast" id="toast">Copiado!</div>
+<script>
+const games=[
+ {id:'memoria',icon:'🧠',name:'Jogo da memória',theme:'Nervos cranianos, lobos cerebrais, neurotransmissores ou estruturas encefálicas.',asset:'memoria-neuro.png'},
+ {id:'sudoku',icon:'🔢',name:'Sudoku neuroanatômico',theme:'Associação de números, cores e regiões do sistema nervoso.',asset:'sudoku-neuro.png'},
+ {id:'cruzadas',icon:'✍️',name:'Palavras cruzadas',theme:'Termos de Neuroanatomia com pistas simples e educativas.',asset:'cruzadas-neuro.png'},
+ {id:'quiz',icon:'❓',name:'Quiz',theme:'Perguntas curtas sobre cérebro, medula, neurônios e sentidos.',asset:'quiz-neuro.png'},
+ {id:'cartas',icon:'🃏',name:'Cartas educativas',theme:'Cartas com pergunta, resposta e curiosidade sobre Neuroanatomia.',asset:'cartas-neuro.png'}
+];
+let selectedGame='Jogo da memória'; let soundOn=true; let deferredPrompt=null; let uploaded=[];
+const prompts=[
+ {title:'Prompt 1 — Primeiro protótipo funcional',goal:'Criar um jogo simples que abre, inicia, reinicia, pontua e termina. Ainda não precisa ser acessível.',text:`Atue como desenvolvedor Front-End especializado em jogos educativos para estudantes de Medicina.
 
-<section class="grid" id="cards">
+Crie um único arquivo HTML completo, com HTML, CSS e JavaScript internos.
 
-  <article class="card">
-    <div class="top"><div class="n">1</div><div class="piece">🧩🎲</div></div>
-    <h3>Prompt 1 — jogo básico</h3>
-    <p>Crie a primeira versão funcional. Ainda não precisa ser perfeita.</p>
+Contexto: este jogo será desenvolvido por alunos de Medicina da UEM para uma atividade de extensão com o público 60+ da UNATI/UEM.
 
-    <div class="prompt">
-      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
-      <pre>Atue como desenvolvedor Front-End especializado em jogos educativos.
-
-Crie um único arquivo HTML completo, com HTML, CSS e JavaScript integrados.
-
-Sou aluno do 1º ano de Medicina e estou desenvolvendo um jogo para a Curricularização da Extensão, voltado à estimulação cognitiva da pessoa idosa.
-
-Nome do jogo: [COLOQUE O NOME]
-Tipo de jogo: [QUIZ / MEMÓRIA / SUDOKU / PALAVRAS CRUZADAS / BOLHAS]
-Função cognitiva principal: [MEMÓRIA / ATENÇÃO / LINGUAGEM / RACIOCÍNIO / REFLEXO]
+Tema obrigatório: Neuroanatomia.
+Tema específico do grupo: [TEMA_DE_NEUROANATOMIA]
+Tipo de jogo: [TIPO_DE_JOGO: memória / sudoku / palavras cruzadas / quiz / cartas educativas]
+Nome do jogo: [NOME_DO_JOGO]
 
 Requisitos da versão 1:
-- tela inicial;
-- botão iniciar;
-- jogo funcionando;
-- botão reiniciar;
-- contador de pontos ou tentativas;
-- mensagem final;
-- design simples;
-- responsivo para celular.
+1. Tela inicial com nome do jogo.
+2. Botão grande “Iniciar”.
+3. Regras simples.
+4. Área do jogo funcionando.
+5. Contador de pontos ou tentativas.
+6. Botão “Reiniciar”.
+7. Mensagem final de conclusão.
+8. Layout responsivo para celular.
+9. Linguagem educativa, respeitosa e sem imagens explícitas.
 
-Não implemente ainda recursos avançados de acessibilidade.
+Nesta primeira versão, não implemente ainda acessibilidade completa. O objetivo é apenas fazer o jogo funcionar.
 
-Entregue apenas um único arquivo HTML completo e funcional.</pre>
-    </div>
+Entregue apenas o código HTML completo.`},
+ {title:'Prompt 2 — Visual e experiência inicial',goal:'Melhorar layout, organização, cartões e aparência, mas ainda deixando algumas lacunas para evolução.',text:`Pegue o HTML anterior e gere uma versão 2 melhorada.
 
-    <label class="check"><input type="checkbox"> Gerei a versão 1 e tirei print do jogo básico.</label>
-  </article>
+Atue como designer UX/UI e desenvolvedor Front-End.
 
-  <article class="card">
-    <div class="top"><div class="n">2</div><div class="piece">🤔🧩</div></div>
-    <h3>Prompt 2 — jogo mais bonito</h3>
-    <p>Melhore layout, visual e organização, mas ainda sem acessibilidade completa.</p>
-
-    <div class="prompt">
-      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
-      <pre>Pegue o HTML anterior e gere uma versão 2 mais bonita e organizada.
-
-Melhore:
-- layout visual;
-- cores;
-- espaçamento;
-- botões;
-- organização das telas;
-- responsividade para Android, iPhone e tablet;
-- animações suaves;
-- aparência de aplicativo.
-
-Mantenha o jogo funcionando.
-
-Ainda não transforme em versão final de acessibilidade. Faça apenas uma melhoria visual e de usabilidade inicial.
-
-Entregue apenas o HTML completo atualizado.</pre>
-    </div>
-
-    <label class="check"><input type="checkbox"> Gerei a versão 2 e comparei com a versão 1.</label>
-  </article>
-
-  <article class="card">
-    <div class="top"><div class="n">3</div><div class="piece">🚨🧩</div></div>
-    <h3>Prompt 3 — acessibilidade inicial</h3>
-    <p>Agora começam as adaptações para pessoa idosa.</p>
-
-    <div class="prompt">
-      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
-      <pre>Pegue o HTML anterior e gere a versão 3 com acessibilidade inicial para pessoa idosa.
+Melhore o jogo de Neuroanatomia para o público 60+ da UNATI/UEM.
 
 Adicione:
-- fonte mínima de 24px;
-- botão aumentar fonte;
-- botão diminuir fonte;
-- botões grandes;
-- alto contraste;
-- modo claro;
-- modo escuro;
-- instruções mais curtas;
-- ícones explicativos;
-- mensagens de acerto e erro mais claras;
-- botão “Como jogar”.
+1. Layout mais bonito e organizado.
+2. Cartões visuais mais imersivos.
+3. Fundo moderno, limpo e agradável.
+4. Botões maiores.
+5. Ícones visuais relacionados à Neuroanatomia.
+6. Animações suaves.
+7. Compatibilidade com celular, tablet, Android e iPhone.
+8. Tela final mais motivadora.
 
-Explique rapidamente no próprio código, por comentários, o que foi alterado.
+Use linguagem simples, mas ainda não implemente todos os recursos de acessibilidade avançada.
 
-Entregue apenas o HTML completo atualizado.</pre>
-    </div>
+Ao final, explique rapidamente o que melhorou em relação à versão 1.
 
-    <label class="check"><input type="checkbox"> Gerei a versão 3 com acessibilidade inicial.</label>
-  </article>
+Entregue o HTML completo atualizado.`},
+ {title:'Prompt 3 — Acessibilidade básica 60+',goal:'Incluir fonte grande, contraste, modo claro/escuro e instruções mais simples.',text:`Pegue o HTML anterior e gere uma versão 3 com acessibilidade básica.
 
-  <article class="card">
-    <div class="top"><div class="n">4</div><div class="piece">🚀🧩</div></div>
-    <h3>Prompt 4 — acessibilidade avançada</h3>
-    <p>Adapte para baixa visão, tremor, dificuldade motora, pessoa surda e iniciantes.</p>
+Atue como especialista em acessibilidade digital para pessoas idosas.
 
-    <div class="prompt">
-      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
-      <pre>Pegue o HTML anterior e gere a versão 4 com acessibilidade avançada.
+O jogo será usado por participantes 60+ da UNATI/UEM.
 
-Atue como especialista em:
-- Gerontologia;
-- Acessibilidade Digital;
-- Neuropsicologia;
-- UX para pessoa idosa.
+Adicione obrigatoriamente:
+1. Fonte mínima de 22px.
+2. Botão “Aumentar letra”.
+3. Botão “Diminuir letra”.
+4. Modo claro.
+5. Modo escuro.
+6. Alto contraste.
+7. Botões grandes e bem espaçados.
+8. Instruções curtas.
+9. Uma tarefa por tela sempre que possível.
+10. Ícones explicativos.
+11. Feedback visual quando o usuário acerta ou erra.
 
-Adicione:
-- tutorial passo a passo;
-- botão Ajuda;
-- botão Voltar ao início;
-- área de toque ampliada;
-- prevenção de clique acidental;
-- confirmação antes de reiniciar;
-- feedback visual forte para acerto e erro;
-- mensagens motivacionais;
-- tempo maior para respostas, se houver cronômetro;
-- recursos para baixa visão;
-- recursos para tremor e dificuldade motora;
-- acessibilidade para pessoa surda, sem depender apenas de som;
-- legendas ou mensagens visuais para todos os sons;
-- espaço indicado para futuro vídeo em Libras.
+Explique quais melhorias de acessibilidade foram realizadas e por que ajudam o público 60+.
 
-Entregue apenas o HTML completo atualizado.</pre>
-    </div>
-
-    <label class="check"><input type="checkbox"> Gerei a versão 4 com acessibilidade avançada.</label>
-  </article>
-
-  <article class="card">
-    <div class="top"><div class="n">5</div><div class="piece">⌛️🧩</div></div>
-    <h3>Prompt 5 — versão final</h3>
-    <p>Agora o jogo deve ficar completo para apresentar à UNATI.</p>
-
-    <div class="prompt">
-      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
-      <pre>Pegue o HTML anterior e gere a versão 5 final do jogo.
+Entregue o HTML completo atualizado.`},
+ {title:'Prompt 4 — Acessibilidade avançada',goal:'Pensar em baixa visão, tremores, cognição, pessoa surda e iniciante em tecnologia.',text:`Pegue o HTML anterior e gere uma versão 4 com acessibilidade avançada.
 
 Atue simultaneamente como:
-- desenvolvedor Front-End Sênior;
-- especialista em PWA;
+- gerontólogo;
+- neuropsicólogo;
+- terapeuta ocupacional;
+- especialista em acessibilidade digital;
+- desenvolvedor Front-End.
+
+Adapte o jogo de Neuroanatomia para pessoas idosas da UNATI/UEM, considerando baixa visão, tremores, dificuldade de memória, pessoa surda e usuários iniciantes em tecnologia.
+
+Adicione:
+1. Tutorial passo a passo.
+2. Botão “Ajuda”.
+3. Confirmação antes de reiniciar ou sair.
+4. Áreas de toque ampliadas.
+5. Feedback visual forte, sem depender de som.
+6. Sons opcionais, nunca obrigatórios.
+7. Mensagens motivacionais curtas.
+8. Evitar excesso de informação na tela.
+9. Evitar cronômetro obrigatório.
+10. Espaço para legenda ou Libras quando houver conteúdo sonoro.
+11. Navegação clara: início, jogar, ajuda, finalizar.
+12. Teste rápido de acessibilidade dentro do próprio app.
+
+Explique o que foi alterado para baixa visão, tremores, cognição e pessoa surda.
+
+Entregue o HTML completo atualizado.`},
+ {title:'Prompt 5 — Versão final PWA profissional',goal:'Transformar em versão final pronta para UNATI, com PWA, áudio opcional, assets e relatório de teste.',text:`Pegue o HTML anterior e gere a versão 5 final, profissional e pronta para apresentação à UNATI/UEM.
+
+Atue simultaneamente como:
+- desenvolvedor PWA;
+- especialista em UX/UI;
 - especialista em acessibilidade;
 - professor de Medicina;
-- especialista em Gerontologia;
-- participante da UNATI avaliando o jogo.
+- participante 60+ da UNATI;
+- avaliador de extensão universitária.
 
-Transforme o jogo em uma versão final, profissional e acessível.
+Transforme o jogo de Neuroanatomia em um PWA educativo acessível.
 
-Inclua:
-- layout moderno estilo aplicativo;
-- visual colorido e acolhedor;
-- elementos 3D leves;
-- bolhas ou animações suaves no fundo;
-- modo claro e escuro;
-- botão aumentar/diminuir fonte;
-- botão ligar/desligar som;
-- feedback visual e sonoro opcional;
-- instruções simples;
-- tutorial;
-- botão ajuda;
-- botão voltar ao início;
-- botões grandes e arredondados;
-- alto contraste;
-- acessibilidade para baixa visão;
-- acessibilidade para pessoa surda;
-- espaço para Libras;
-- prevenção de cliques acidentais;
-- estatísticas do jogador;
-- melhor pontuação salva no navegador;
-- tela final de parabéns;
-- compatibilidade com Android, iPhone, iPad e computador.
+Use os assets com estes nomes, se existirem:
+assets/img/capa-neuro.png
+assets/img/fundo-neuro.png
+assets/img/robo-neuro.png
+assets/img/[ARQUIVO_DO_JOGO]
+assets/img/trofeu-neuro.png
+assets/audio/clique.mp3
+assets/audio/sucesso.mp3
+assets/audio/erro.mp3
+assets/audio/vitoria.mp3
+assets/audio/ambiente.mp3
+assets/icons/icon-192.png
+assets/icons/icon-512.png
 
-Entregue apenas um único arquivo HTML completo, funcional e pronto para teste.</pre>
-    </div>
+A versão final deve conter:
+1. Tela inicial imersiva.
+2. Cartões 3D profissionais.
+3. Ícones grandes e visuais.
+4. Bolhas flutuantes suaves.
+5. Modo claro e modo escuro.
+6. Alto contraste.
+7. Aumentar e diminuir fonte.
+8. Som opcional com botão ligar/desligar.
+9. Feedback visual independente de áudio.
+10. Tutorial para pessoa idosa iniciante.
+11. Botão ajuda.
+12. Botão voltar ao início.
+13. Estatísticas do jogador.
+14. Melhor pontuação salva em localStorage.
+15. Tela final com parabéns.
+16. Área de teste de acessibilidade.
+17. Compatibilidade Android, iPhone e tablet.
+18. Registro de service worker para PWA.
+19. Comentários no código indicando onde trocar imagens, sons e textos.
 
-    <label class="check"><input type="checkbox"> Gerei a versão 5 final e testei no celular.</label>
-  </article>
+Inclua também uma pequena seção no próprio jogo chamada “Relato do desenvolvimento”, onde o grupo possa registrar qual prompt usou e quais melhorias foram feitas.
 
-  <article class="card">
-    <div class="top"><div class="n">6</div><div class="piece">🏆</div></div>
-    <h3>Teste final de acessibilidade</h3>
-    <p>Depois da versão 5, responda os critérios de teste e anexe prints.</p>
+Entregue apenas um único arquivo HTML completo e funcional.`},
+ {title:'Prompt de auditoria final',goal:'Avaliar o jogo como banca e gerar melhorias obrigatórias antes da apresentação.',text:`Você é uma banca formada por:
+1. gerontólogo;
+2. neurologista;
+3. especialista em acessibilidade digital;
+4. professor de Medicina;
+5. participante 60+ da UNATI/UEM.
 
-    <div class="prompt">
-      <button class="copy" onclick="copyPrompt(this)">Copiar</button>
-      <pre>Atue como avaliador de acessibilidade da UNATI.
+Avalie o HTML do meu jogo de Neuroanatomia.
 
-Analise meu jogo final e responda:
-1. Uma pessoa idosa consegue entender o que fazer?
-2. A fonte está grande?
-3. O contraste está adequado?
-4. Os botões são fáceis de tocar?
-5. O jogo funciona sem áudio para pessoa surda?
-6. Há feedback visual suficiente?
-7. A navegação é simples?
-8. O jogo funciona em celular?
-9. O jogo evita excesso de informação?
-10. Quais 5 melhorias ainda seriam necessárias?
+Dê nota de 0 a 10 para:
+- acessibilidade visual;
+- acessibilidade motora;
+- acessibilidade cognitiva;
+- uso sem áudio;
+- clareza das instruções;
+- adequação ao público 60+;
+- qualidade visual;
+- funcionamento no celular;
+- potencial educativo em Neuroanatomia.
 
-Dê uma nota de 0 a 10 para acessibilidade e justifique.</pre>
-    </div>
+Depois apresente:
+1. pontos fortes;
+2. problemas encontrados;
+3. melhorias obrigatórias;
+4. melhorias desejáveis;
+5. versão revisada do HTML completo.
 
-    <label class="check"><input type="checkbox"> Fiz o teste final de acessibilidade e anotei os resultados.</label>
-  </article>
-
-</section>
-
-<div id="trophy" class="trophy">
-  <div style="font-size:5rem">🏁🏆</div>
-  <h2>Troféu conquistado!</h2>
-  <p style="color:#111827">Todas as etapas foram concluídas. Agora gere o relatório PDF com prints e análise científica.</p>
-</div>
-
-<section class="panel">
-  <h2>Fotos/prints do Google Sites e das versões do jogo</h2>
-  <p>Inclua quantas fotos quiser: versão 1, versão 2, versão 3, versão 4, versão 5 e teste final.</p>
-  <input type="file" id="photosInput" accept="image/*" multiple>
-  <div id="photos" class="photos"></div>
-</section>
-
-<section class="panel">
-  <h2>Informações para o relatório científico</h2>
-
-  <div class="form">
-    <label>O que mudou da versão 1 para a versão 5?
-      <textarea id="evolution" placeholder="Descreva a evolução do jogo."></textarea>
-    </label>
-
-    <label>Quais recursos de acessibilidade foram incluídos?
-      <textarea id="accessibility" placeholder="Fonte, contraste, botões, Libras, feedback visual..."></textarea>
-    </label>
-
-    <label>Resultado do teste de acessibilidade
-      <textarea id="testResult" placeholder="O que funcionou e o que ainda precisa melhorar?"></textarea>
-    </label>
-
-    <label>Relação com a pessoa idosa e Neuroanatomia
-      <textarea id="impact" placeholder="Memória, atenção, linguagem, raciocínio, coordenação..."></textarea>
-    </label>
-  </div>
-
-  <div class="actions">
-    <button class="primary" onclick="preencherRespostasModelo(); makeScientificText()">🤖 IA flutuante: montar relatório</button>
-    <button class="secondary" onclick="copyReportPrompt()">Copiar prompt do relatório</button>
-  </div>
-
-  <textarea id="scientificText" style="margin-top:12px;min-height:230px" placeholder="O relatório científico aparecerá aqui."></textarea>
-</section>
-
-<section class="panel">
-  <h2>Relatório pronto para PDF</h2>
-  <p class="small">Clique em “Gerar relatório/PDF”. No celular ou computador, escolha salvar como PDF. As imagens são impressas sem corte.</p>
-  <div id="report" class="report"></div>
-</section>
-</main>
-
-<div class="chat">
-  <div id="chatbox" class="chatbox">
-    <h3>🤖 IA flutuante da Semana 4</h3>
-
-    <div id="chatlog">
-      <div class="msg">Eu ajudo a copiar prompts, organizar prints e montar o relatório científico.</div>
-    </div>
-
-    <button class="secondary" onclick="bot('prompts')">Como usar os prompts?</button>
-    <button class="secondary" onclick="bot('prints')">Quais prints anexar?</button>
-    <button class="secondary" onclick="bot('relatorio')">Como montar relatório?</button>
-    <button class="secondary" onclick="bot('pdf')">Como salvar PDF?</button>
-  </div>
-
-  <button class="fab primary" onclick="toggleChat()">🤖</button>
-</div>
-
-<script>
-const respostasModelo = {
-  evolution: `A versão 1 apresentou apenas a estrutura básica do jogo, com tela inicial, botão iniciar, funcionamento simples, pontuação e reinício. Ao longo das versões, o jogo foi melhorado visualmente, tornando-se mais organizado, colorido, responsivo e com aparência de aplicativo. Na versão final, foram incluídos recursos de acessibilidade, como fonte ampliada, botões grandes, contraste adequado, modo claro e escuro, instruções simples, tutorial, ajuda, feedback visual e sonoro opcional, prevenção de cliques acidentais e melhor adaptação para pessoas idosas.`,
-
-  accessibility: `Foram incluídos recursos de acessibilidade para facilitar o uso por pessoas idosas, como fonte mínima ampliada, botões grandes e arredondados, aumento e diminuição da fonte, modo claro e escuro, alto contraste, instruções curtas, ícones explicativos, mensagens claras de acerto e erro, feedback visual forte, som opcional, legendas ou mensagens visuais para quem não utiliza áudio, espaço para Libras, tutorial passo a passo, botão de ajuda, botão voltar ao início e prevenção de cliques acidentais.`,
-
-  testResult: `O teste de acessibilidade demonstrou que o jogo se tornou mais adequado para o público idoso. A fonte está maior, os botões são mais fáceis de tocar, o contraste melhora a leitura e as instruções ficaram mais simples. O jogo também pode ser utilizado sem depender exclusivamente do som, pois apresenta feedback visual. Ainda podem ser melhorados alguns aspectos, como inclusão real de vídeo em Libras, testes com usuários idosos, ajustes finos de contraste, simplificação de algumas telas e ampliação das mensagens de orientação. Nota sugerida: 9,0/10.`,
-
-  impact: `O jogo contribui para a estimulação cognitiva da pessoa idosa, trabalhando funções como memória, atenção, raciocínio, linguagem, percepção visual e coordenação motora. A relação com a Neuroanatomia ocorre porque essas funções dependem da atividade integrada do sistema nervoso, especialmente de áreas relacionadas à memória, processamento sensorial, tomada de decisão e controle motor. Assim, o jogo permite aplicar conhecimentos neuroanatômicos em uma atividade educativa, acessível e voltada à promoção da saúde cognitiva.`
+A nota mínima desejada é 8 em todos os critérios.`}
+];
+const canned={
+ objetivo:'Desenvolver e testar um jogo educativo em formato PWA, com temática de Neuroanatomia, voltado ao público 60+ da UNATI/UEM, priorizando acessibilidade, clareza, autonomia de uso e aprendizagem interativa.',
+ metodologia:'A atividade foi realizada por meio de uma oficina prática baseada em Inteligência Artificial generativa. O grupo elaborou prompts progressivos, gerou versões sucessivas do jogo, produziu assets visuais e sonoros, testou a usabilidade em diferentes telas e aplicou critérios de acessibilidade voltados à pessoa idosa.',
+ ia:'A IA foi utilizada como ferramenta de apoio para criação e melhoria progressiva do jogo. Os prompts foram organizados em etapas: protótipo funcional, melhoria visual, acessibilidade básica, acessibilidade avançada e versão final. Cada etapa permitiu comparar limitações e avanços do produto digital.',
+ acessibilidade:'Foram priorizados fonte ampliada, botões grandes, contraste visual, modo claro e escuro, alto contraste, instruções curtas, navegação simples, feedback visual independente de áudio, sons opcionais e organização da informação em pequenas etapas para favorecer baixa visão, tremores, atenção e memória.',
+ resultados:'Como resultado, o grupo produziu uma versão funcional e mais acessível do jogo, com interface responsiva, recursos de apoio ao público 60+ e evidências do processo de desenvolvimento. As capturas de tela demonstram a evolução entre as versões e os testes realizados.',
+ conclusao:'Conclui-se que o uso de IA generativa associado a critérios de acessibilidade favoreceu a criação de um recurso educativo mais inclusivo, adequado à extensão universitária e ao diálogo entre Medicina, Neuroanatomia, tecnologia e envelhecimento ativo.'
 };
+function renderGames(){gameCards.innerHTML=games.map(g=>`<article class="card"><div class="icon">${g.icon}</div><h4>${g.name}</h4><p>${g.theme}</p><div class="mini"><span class="tag">Neuroanatomia</span><span class="tag">60+</span><span class="tag">asset: ${g.asset}</span></div><button style="margin-top:12px" onclick="selectGame('${g.name}','${g.asset}')">Escolher</button></article>`).join('')}
+function selectGame(name,asset){selectedGame=name; document.getElementById('tipoJogo').value=name; toast('Jogo escolhido: '+name); beep();}
+function renderPrompts(){promptTabs.innerHTML=prompts.map((p,i)=>`<button class="tab secondary ${i===0?'active':''}" onclick="showPrompt(${i})">${i<5?'Versão '+(i+1):'Auditoria'}</button>`).join(''); showPrompt(0)}
+function showPrompt(i){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.tab')[i].classList.add('active'); promptTitle.textContent=prompts[i].title; promptGoal.textContent=prompts[i].goal; promptText.value=personalize(prompts[i].text); beep();}
+function personalize(t){return t.replaceAll('[TIPO_DE_JOGO: memória / sudoku / palavras cruzadas / quiz / cartas educativas]', document.getElementById('tipoJogo')?.value || selectedGame).replaceAll('[NOME_DO_JOGO]', document.getElementById('nomeJogo')?.value || 'Meu Jogo de Neuroanatomia').replaceAll('[TEMA_DE_NEUROANATOMIA]', document.getElementById('tema')?.value || 'Nervos cranianos').replaceAll('[ARQUIVO_DO_JOGO]', games.find(g=>g.name===selectedGame)?.asset || 'memoria-neuro.png')}
+function fillPromptVars(){promptText.value=personalize(promptText.value); toast('Prompt atualizado com seus dados.'); beep();}
+async function copyPrompt(){await navigator.clipboard.writeText(promptText.value); toast('Prompt copiado!'); beep();}
+function showAssetPrompt(){const txt=`Crie uma imagem profissional para um PWA educativo de Neuroanatomia voltado ao público 60+ da UNATI/UEM.
 
-function completarSeVazio(id){
-  const campo = document.getElementById(id);
-  if(campo && campo.value.trim() === ""){
-    campo.value = respostasModelo[id];
-  }
-}
+Estilo: 3D suave, científico, acolhedor, moderno, alto contraste, visual limpo, sem excesso de informação, sem infantilizar a pessoa idosa.
 
-function preencherRespostasModelo(){
-  completarSeVazio("evolution");
-  completarSeVazio("accessibility");
-  completarSeVazio("testResult");
-  completarSeVazio("impact");
-}
+Crie variações para estes arquivos e indique qual nome salvar:
+1. capa-neuro.png — capa principal do app.
+2. fundo-neuro.png — fundo claro e legível.
+3. robo-neuro.png — robô assistente flutuante simpático.
+4. memoria-neuro.png — ícone/cartão para jogo da memória.
+5. sudoku-neuro.png — ícone/cartão para sudoku neuroanatômico.
+6. cruzadas-neuro.png — ícone/cartão para palavras cruzadas.
+7. quiz-neuro.png — ícone/cartão para quiz.
+8. cartas-neuro.png — ícone/cartão para cartas educativas.
+9. trofeu-neuro.png — tela de conclusão.
+
+Importante: não usar textos pequenos dentro da imagem. Priorizar cérebro, neurônios, sinapses, medula espinal, nervos cranianos e elementos científicos abstratos.`; assetPrompt.value=txt; assetPrompt.classList.remove('hide'); toast('Prompt de assets aberto.');}
+async function copyAssetList(){await navigator.clipboard.writeText('assets/img/capa-neuro.png\nassets/img/fundo-neuro.png\nassets/img/robo-neuro.png\nassets/img/memoria-neuro.png\nassets/img/sudoku-neuro.png\nassets/img/cruzadas-neuro.png\nassets/img/quiz-neuro.png\nassets/img/cartas-neuro.png\nassets/img/trofeu-neuro.png\nassets/audio/clique.mp3\nassets/audio/sucesso.mp3\nassets/audio/erro.mp3\nassets/audio/vitoria.mp3\nassets/audio/ambiente.mp3\nassets/icons/icon-192.png\nassets/icons/icon-512.png'); toast('Lista copiada!'); beep();}
+function put(id,text){document.getElementById(id).value=text; beep();}
+function handleFiles(e){[...e.target.files].forEach(file=>{const reader=new FileReader(); reader.onload=ev=>{uploaded.push({src:ev.target.result,caption:''}); renderThumbs();}; reader.readAsDataURL(file);}); toast('Imagens adicionadas.'); beep();}
+function renderThumbs(){thumbs.innerHTML=uploaded.map((u,i)=>`<div class="thumb"><img src="${u.src}" alt="Print ${i+1}"><input placeholder="Legenda da imagem ${i+1}" value="${u.caption||''}" oninput="uploaded[${i}].caption=this.value"><button class="danger" style="margin-top:8px;width:100%" onclick="uploaded.splice(${i},1);renderThumbs()">Remover</button></div>`).join('')}
+function val(id){return document.getElementById(id).value.trim() || 'Não informado'}
+function generateReport(){const now=new Date().toLocaleDateString('pt-BR'); const imgs=uploaded.map((u,i)=>`<figure><img src="${u.src}"><figcaption>Figura ${i+1}. ${u.caption||'Evidência visual do processo de desenvolvimento do PWA.'}</figcaption></figure>`).join('') || '<p>Nenhuma imagem foi anexada.</p>'; report.innerHTML=`
+<div class="report-page"><h1 class="cover-title">Relatório científico do desenvolvimento do PWA</h1><p class="cover-sub"><b>${val('nomeJogo')}</b></p><p class="cover-sub">${val('grupo')} • ${val('integrantes')}</p><p class="cover-sub">Universidade Estadual de Maringá • UNATI/UEM • ${now}</p></div>
+<div class="report-page"><h2>1. Identificação da atividade</h2><p><b>Tipo de jogo:</b> ${val('tipoJogo')}</p><p><b>Tema de Neuroanatomia:</b> ${val('tema')}</p><p><b>Público-alvo:</b> ${val('publico')}</p><h2>2. Objetivo</h2><p>${val('objetivo')}</p><h2>3. Justificativa</h2><p>A proposta articula Neuroanatomia, tecnologia educacional e extensão universitária, com foco na criação de recursos digitais acessíveis para pessoas idosas. O desenvolvimento progressivo do jogo permitiu analisar não apenas o funcionamento técnico, mas também a clareza, a legibilidade e a autonomia do usuário 60+.</p></div>
+<div class="report-page"><h2>4. Metodologia</h2><p>${val('metodologia')}</p><h2>5. Uso da Inteligência Artificial</h2><p>${val('ia')}</p><h2>6. Evolução por prompts</h2><ol><li>Protótipo funcional.</li><li>Melhoria visual.</li><li>Acessibilidade básica.</li><li>Acessibilidade avançada.</li><li>Versão final PWA profissional.</li></ol></div>
+<div class="report-page"><h2>7. Acessibilidade e adequação ao público 60+</h2><p>${val('acessibilidade')}</p><h2>8. Resultados observados</h2><p>${val('resultados')}</p><h2>9. Conclusão</h2><p>${val('conclusao')}</p></div>
+<div class="report-page"><h2>10. Evidências fotográficas e prints</h2><div class="report-images">${imgs}</div></div>`; report.classList.remove('hide'); go('#relatorioSection'); toast('Relatório gerado. Confira antes de imprimir.'); beep();}
+function printReport(){if(report.classList.contains('hide')) generateReport(); setTimeout(()=>window.print(),300);}
+function downloadPDF(){if(report.classList.contains('hide')) generateReport(); const opt={margin:[8,8,8,8],filename:(val('nomeJogo')||'relatorio')+'-neuro-unati.pdf',image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true,scrollY:0},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy'],avoid:['figure','img','.report-images']}}; html2pdf().set(opt).from(report).save(); beep();}
+function toggleTheme(){document.body.classList.toggle('dark'); beep()}
+function toggleContrast(){document.body.classList.toggle('contrast'); beep()}
+function fontUp(){const root=getComputedStyle(document.documentElement); let n=parseInt(root.getPropertyValue('--font'))||22; n=n>=30?22:n+2; document.documentElement.style.setProperty('--font',n+'px'); toast('Fonte: '+n+'px'); beep()}
+function toggleSound(){soundOn=!soundOn; soundBtn.textContent=soundOn?'🔊 Som ligado':'🔇 Som desligado'; if(soundOn) beep()}
+function beep(){if(!soundOn) return; try{const ctx=new (window.AudioContext||window.webkitAudioContext)(); const o=ctx.createOscillator(); const g=ctx.createGain(); o.type='sine'; o.frequency.value=520; g.gain.value=.035; o.connect(g); g.connect(ctx.destination); o.start(); setTimeout(()=>{o.stop();ctx.close()},90)}catch(e){}}
+function toast(t){const el=document.getElementById('toast'); el.textContent=t; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),1700)}
+function go(sel){document.querySelector(sel).scrollIntoView({behavior:'smooth',block:'start'}); beep()}
+function updateProgress(){const boxes=[...document.querySelectorAll('#checklist input')]; const done=boxes.filter(b=>b.checked).length; bar.style.width=(done/boxes.length*100)+'%'; localStorage.setItem('neuroChecklist',JSON.stringify(boxes.map(b=>b.checked)))}
+function restoreProgress(){const saved=JSON.parse(localStorage.getItem('neuroChecklist')||'[]'); document.querySelectorAll('#checklist input').forEach((b,i)=>{b.checked=!!saved[i]; b.addEventListener('change',updateProgress)}); updateProgress()}
+function toggleChat(){chat.classList.toggle('open'); beep()}
+function bot(t){chatBody.insertAdjacentHTML('beforeend',`<div class="msg bot">${t}</div>`); chatBody.scrollTop=chatBody.scrollHeight; beep()}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault(); deferredPrompt=e});
+async function installApp(){if(deferredPrompt){deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null;} else {toast('No celular: menu do navegador > Adicionar à tela inicial.');} beep()}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
+renderGames(); renderPrompts(); restoreProgress();
 </script>
-
-<script src="app.js"></script>
 </body>
 </html>
