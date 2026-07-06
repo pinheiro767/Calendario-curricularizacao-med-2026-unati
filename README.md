@@ -1,14 +1,20 @@
-# NeuroPWA UNATI/UEM — Oficina IA + Acessibilidade
+# NeuroPWA UNATI/UEM • Oficina IA
 
-PWA pronto para GitHub Pages. O aluno usa prompts progressivos para criar jogos de Neuroanatomia acessíveis ao público 60+ da UNATI/UEM, registra evidências, faz upload ilimitado de prints e gera relatório científico em PDF/impressão sem cortes.
+PWA para oficina com alunos de Medicina: criação de jogos de Neuroanatomia acessíveis para o público 60+ da UNATI/UEM.
 
-## Como publicar
-1. Criar repositório no GitHub.
-2. Enviar todos os arquivos mantendo as pastas.
-3. Settings > Pages > Deploy from branch > main > /root.
-4. Abrir o link do GitHub Pages.
+## Estrutura
 
-## Assets sugeridos
+- `index.html`
+- `manifest.json`
+- `service-worker.js`
+- `assets/img/`
+- `assets/audio/`
+- `assets/icons/`
+
+## Assets esperados
+
+### Imagens
+
 - `assets/img/capa-neuro.png`
 - `assets/img/fundo-neuro.png`
 - `assets/img/robo-neuro.png`
@@ -17,6 +23,25 @@ PWA pronto para GitHub Pages. O aluno usa prompts progressivos para criar jogos 
 - `assets/img/cruzadas-neuro.png`
 - `assets/img/quiz-neuro.png`
 - `assets/img/cartas-neuro.png`
+- `assets/img/trofeu-neuro.png`
+
+### Sons
+
 - `assets/audio/clique.mp3`
 - `assets/audio/sucesso.mp3`
+- `assets/audio/erro.mp3`
+- `assets/audio/vitoria.mp3`
 - `assets/audio/ambiente.mp3`
+
+### Ícones
+
+- `assets/icons/icon-192.png`
+- `assets/icons/icon-512.png`
+
+## Publicação no GitHub Pages
+
+1. Criar repositório.
+2. Enviar todos os arquivos.
+3. Acessar Settings > Pages.
+4. Selecionar branch `main` e pasta `/root`.
+5. Abrir o link gerado pelo GitHub Pages.
