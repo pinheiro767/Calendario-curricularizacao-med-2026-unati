@@ -1,14 +1,21 @@
 {
   "name": "NeuroPWA UNATI UEM",
-  "short_name": "NeuroUNATI",
-  "description": "Oficina de criação de jogos acessíveis de Neuroanatomia para público 60+ da UNATI/UEM.",
+  "short_name": "NeuroPWA",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#07111f",
+  "background_color": "#eef5ff",
   "theme_color": "#2459ff",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
   "icons": [
-    {"src":"assets/icons/icon-192.svg","sizes":"192x192","type":"image/svg+xml","purpose":"any maskable"},
-    {"src":"assets/icons/icon-512.svg","sizes":"512x512","type":"image/svg+xml","purpose":"any maskable"}
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ]
 }
