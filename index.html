@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#2459ff">
 <link rel="manifest" href="manifest.json">
-<title>NeuroPWA UNATI/UEM • Oficina IA</title>
+<title>NeuroPWA UNATI/UEM • Semana 5</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
 :root{
@@ -32,19 +32,20 @@ button,input,select,textarea{font:inherit} button{min-height:56px;border:0;borde
 <body>
 <div class="app">
   <aside class="sidebar" aria-label="Checklist da aula">
-    <div class="brand"><div class="logo">🧠</div><div><h1>NeuroPWA UNATI</h1><p>Oficina IA • jogos acessíveis 60+</p></div></div>
+    <div class="brand"><div class="logo">🧠</div><div><h1>NeuroPWA UNATI</h1><p>Semana 5 • GitHub + assets + PWA</p></div></div>
     <div class="progress" aria-label="Progresso"><div class="bar" id="bar"></div></div>
     <p class="small"><b>Checklist lateral:</b> clique conforme o grupo concluir cada etapa.</p>
     <div class="checklist" id="checklist">
+      <label class="check"><input type="checkbox"><span>Criei conta no GitHub ou acessei minha conta.</span></label>
+      <label class="check"><input type="checkbox"><span>Criei o repositório do jogo no GitHub.</span></label>
       <label class="check"><input type="checkbox"><span>Escolhi o tipo de jogo: memória, sudoku, cruzadas, quiz ou cartas.</span></label>
-      <label class="check"><input type="checkbox"><span>Defini o tema de Neuroanatomia e o público 60+ da UNATI/UEM.</span></label>
-      <label class="check"><input type="checkbox"><span>Copiei o Prompt 1 e gerei o primeiro HTML.</span></label>
-      <label class="check"><input type="checkbox"><span>Copiei os Prompts 2 a 5 e salvei as versões.</span></label>
-      <label class="check"><input type="checkbox"><span>Criei imagens/ícones com nomes específicos na pasta assets/img.</span></label>
-      <label class="check"><input type="checkbox"><span>Busquei sons suaves e salvei em assets/audio.</span></label>
-      <label class="check"><input type="checkbox"><span>Testei acessibilidade: visão, toque, memória, surdez e celular.</span></label>
-      <label class="check"><input type="checkbox"><span>Anexei prints das telas e versões no relatório.</span></label>
-      <label class="check"><input type="checkbox"><span>Gerei o relatório científico em PDF/impressão sem cortes.</span></label>
+      <label class="check"><input type="checkbox"><span>Defini nome do jogo e tema de Neuroanatomia.</span></label>
+      <label class="check"><input type="checkbox"><span>Copiei o prompt único e gerei o index.html.</span></label>
+      <label class="check"><input type="checkbox"><span>Criei a pasta assets/img e salvei imagens com nomes corretos.</span></label>
+      <label class="check"><input type="checkbox"><span>Criei a pasta assets/icons e salvei icon-192.png e icon-512.png.</span></label>
+      <label class="check"><input type="checkbox"><span>Busquei áudios suaves na internet e salvei em assets/audio.</span></label>
+      <label class="check"><input type="checkbox"><span>Enviei index.html e assets para o GitHub.</span></label>
+      <label class="check"><input type="checkbox"><span>Anexei prints/fotos e gerei o relatório científico em PDF sem cortes.</span></label>
     </div>
   </aside>
   <main>
@@ -60,11 +61,11 @@ button,input,select,textarea{font:inherit} button{min-height:56px;border:0;borde
     <section class="hero">
       <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div><div class="bubble b4"></div>
       <div class="hero-content">
-        <h2>Crie um jogo de Neuroanatomia acessível para a UNATI</h2>
-        <p>O aluno copia prompts progressivos, gera 5 versões do jogo no GPT/Gemini, cria assets visuais, testa acessibilidade 60+, anexa prints ilimitados e gera um relatório científico final com imagens.</p>
+        <h2>Semana 5: GitHub, assets e PWA de Neuroanatomia</h2>
+        <p>O aluno aprende GitHub, copia um prompt único para gerar o index.html, cria imagens e ícones com IA, busca áudios suaves na internet, salva tudo com nomes corretos, sobe no GitHub e gera um relatório científico com prints ilimitados.</p>
         <div class="actions">
           <button onclick="go('#jogos')">🎮 Escolher jogo</button>
-          <button onclick="go('#prompts')">📋 Abrir prompts</button>
+          <button onclick="go('#prompts')">📋 Prompt HTML</button>
           <button onclick="go('#relatorio')">🧾 Fazer relatório</button>
           <button class="ok" onclick="installApp()">⬇️ Baixar App</button>
         </div>
@@ -87,7 +88,7 @@ button,input,select,textarea{font:inherit} button{min-height:56px;border:0;borde
       <textarea id="assetPrompt" class="hide" style="width:100%;min-height:210px;margin-top:12px;border-radius:18px;padding:14px;background:var(--surface2);color:var(--text);border:2px solid var(--border)"></textarea>
     </section>
     <section class="section" id="prompts">
-      <h3>3. Prompts progressivos para copiar e colar</h3>
+      <h3>3. Prompt único para HTML + prompts de assets</h3>
       <div class="tabs" id="promptTabs"></div>
       <div class="card prompt-card">
         <h4 id="promptTitle">Prompt</h4>
@@ -97,15 +98,12 @@ button,input,select,textarea{font:inherit} button{min-height:56px;border:0;borde
       </div>
     </section>
     <section class="section card" id="teste">
-      <h3>4. Teste de acessibilidade 60+</h3>
-      <p class="small">Depois da versão 5, o grupo testa o jogo como se fosse apresentado a um participante da UNATI.</p>
+      <h3>4. Áudios: como procurar e salvar</h3>
+      <p class="small">Os sons devem ser curtos, suaves e opcionais. O som de erro não deve assustar nem parecer bronca.</p>
       <div class="grid">
-        <label class="check"><input type="checkbox"><span>👁️ Baixa visão: consigo ler sem aproximar a tela.</span></label>
-        <label class="check"><input type="checkbox"><span>☝️ Toque: consigo apertar botões com apenas um dedo.</span></label>
-        <label class="check"><input type="checkbox"><span>🧩 Cognição: há uma tarefa por vez e instruções simples.</span></label>
-        <label class="check"><input type="checkbox"><span>🔇 Pessoa surda: o jogo funciona sem áudio.</span></label>
-        <label class="check"><input type="checkbox"><span>📱 Celular: funciona bem em smartphone e tablet.</span></label>
-        <label class="check"><input type="checkbox"><span>🏆 UNATI: eu apresentaria este jogo para um idoso real.</span></label>
+        <div class="card"><div class="icon">🔊</div><h4>Pesquisar no Google</h4><p class="small">soft click sound mp3 free<br>gentle success sound mp3 free<br>soft error sound mp3 free<br>short victory sound mp3 free<br>calm background music mp3 free</p></div>
+        <div class="card"><div class="icon">🌐</div><h4>Sites sugeridos</h4><p class="small">Pixabay Sound Effects<br>Mixkit Sound Effects<br>Freesound<br>Zapsplat</p></div>
+        <div class="card"><div class="icon">📁</div><h4>Nomes obrigatórios</h4><p class="small">assets/audio/clique.mp3<br>assets/audio/acerto.mp3<br>assets/audio/erro.mp3<br>assets/audio/vitoria.mp3<br>assets/audio/ambiente.mp3</p></div>
       </div>
     </section>
     <section class="section" id="relatorio">
@@ -120,14 +118,14 @@ button,input,select,textarea{font:inherit} button{min-height:56px;border:0;borde
           <div class="field"><label>Público-alvo</label><input id="publico" value="Pessoas 60+ participantes da UNATI/UEM"></div>
           <div class="field wide"><label>Objetivo</label><textarea id="objetivo" placeholder="Descreva ou use resposta pronta"></textarea><div class="quick-buttons"><button type="button" onclick="put('objetivo', canned.objetivo)">Usar resposta pronta</button></div></div>
           <div class="field wide"><label>Metodologia</label><textarea id="metodologia"></textarea><div class="quick-buttons"><button type="button" onclick="put('metodologia', canned.metodologia)">Usar metodologia pronta</button></div></div>
-          <div class="field wide"><label>Uso da IA e prompts</label><textarea id="ia"></textarea><div class="quick-buttons"><button type="button" onclick="put('ia', canned.ia)">Usar texto pronto</button></div></div>
-          <div class="field wide"><label>Melhorias de acessibilidade</label><textarea id="acessibilidade"></textarea><div class="quick-buttons"><button type="button" onclick="put('acessibilidade', canned.acessibilidade)">Usar texto pronto</button></div></div>
+          <div class="field wide"><label>Uso da IA, GitHub e assets</label><textarea id="ia"></textarea><div class="quick-buttons"><button type="button" onclick="put('ia', canned.ia)">Usar texto pronto</button></div></div>
+          <div class="field wide"><label>Organização dos assets e áudios</label><textarea id="acessibilidade"></textarea><div class="quick-buttons"><button type="button" onclick="put('acessibilidade', canned.acessibilidade)">Usar texto pronto</button></div></div>
           <div class="field wide"><label>Resultados observados</label><textarea id="resultados"></textarea><div class="quick-buttons"><button type="button" onclick="put('resultados', canned.resultados)">Usar resultados prontos</button></div></div>
           <div class="field wide"><label>Conclusão</label><textarea id="conclusao"></textarea><div class="quick-buttons"><button type="button" onclick="put('conclusao', canned.conclusao)">Usar conclusão pronta</button></div></div>
         </div>
         <div class="upload-box" style="margin-top:18px">
           <h4>Adicionar prints/fotos sem limite</h4>
-          <p class="small">Inclua prints da versão 1, versão 5, teste no celular, assets, GitHub e relatório.</p>
+          <p class="small">Inclua prints do GitHub, da pasta assets, do jogo funcionando, dos prompts usados, das imagens geradas e do teste no navegador/celular.</p>
           <input id="fileInput" type="file" accept="image/*" multiple onchange="handleFiles(event)">
         </div>
         <div class="thumbs" id="thumbs"></div>
@@ -147,12 +145,12 @@ button,input,select,textarea{font:inherit} button{min-height:56px;border:0;borde
   <div class="chat" id="chat">
     <div class="chat-head"><b>🤖 NeuroBot</b><button class="ghost" style="color:white;border-color:white;min-height:42px" onclick="toggleChat()">×</button></div>
     <div class="chat-body" id="chatBody">
-      <div class="msg bot">Olá! Eu ajudo o grupo a criar prompts, escolher jogo, testar acessibilidade e preencher o relatório científico.</div>
+      <div class="msg bot">Olá! Eu ajudo o grupo a usar GitHub, gerar o HTML, criar assets, procurar áudios e preencher o relatório científico.</div>
       <div class="chat-options">
-        <button class="secondary" onclick="bot('O relatório deve ter objetivo, metodologia, uso da IA, melhorias de acessibilidade, resultados, conclusão e evidências com prints. Use linguagem acadêmica simples.')">Como fazer o relatório?</button>
+        <button class="secondary" onclick="bot('O relatório deve ter objetivo, metodologia, uso da IA, criação de assets, busca de áudios, uso do GitHub, resultados, conclusão e evidências com prints. Use linguagem acadêmica simples.')">Como fazer o relatório?</button>
         <button class="secondary" onclick="bot('Escolha um conteúdo curto de Neuroanatomia: nervos cranianos, lobos cerebrais, medula espinal, cerebelo, vias sensitivas ou neurônios. Depois escolha o formato: memória, sudoku, cruzadas, quiz ou cartas.')">Como escolher o tema?</button>
-        <button class="secondary" onclick="bot('Para UNATI 60+, use fonte grande, contraste, botões amplos, instruções curtas, feedback visual, som opcional e navegação sem pressa.')">O que testar em acessibilidade?</button>
-        <button class="secondary" onclick="bot('Anexe prints da versão inicial, versão final, assets, tela de acessibilidade, teste no celular e GitHub Pages.')">Quais imagens anexar?</button>
+        <button class="secondary" onclick="bot('Na Semana 5, salve tudo com nomes padronizados: capa-neuro.png, fundo-neuro.png, robo-neuro.png, trofeu-neuro.png, icon-192.png, icon-512.png e áudios em mp3.')">Como nomear os assets?</button>
+        <button class="secondary" onclick="bot('Anexe prints do repositório GitHub, da pasta assets, dos prompts no GPT/Gemini, das imagens geradas, dos sons baixados e do jogo aberto no navegador.')">Quais imagens anexar?</button>
       </div>
     </div>
   </div>
@@ -169,192 +167,266 @@ const games=[
 ];
 let selectedGame='Jogo da memória'; let soundOn=true; let deferredPrompt=null; let uploaded=[];
 const prompts=[
- {title:'Prompt 1 — Primeiro protótipo funcional',goal:'Criar um jogo simples que abre, inicia, reinicia, pontua e termina. Ainda não precisa ser acessível.',text:`Atue como desenvolvedor Front-End especializado em jogos educativos para estudantes de Medicina.
+ {short:'HTML único',title:'Prompt único — Gerar o index.html completo',goal:'Copie, complete os campos entre colchetes e cole no GPT, Gemini, Claude ou Copilot para gerar o jogo em um único arquivo HTML.',text:`Atue como desenvolvedor Front-End especializado em PWA, jogos educativos, acessibilidade digital e público 60+.
 
-Crie um único arquivo HTML completo, com HTML, CSS e JavaScript internos.
+Crie um único arquivo index.html completo, funcional, responsivo e acessível para um jogo educativo de Neuroanatomia voltado ao público 60+ da UNATI/UEM.
 
-Contexto: este jogo será desenvolvido por alunos de Medicina da UEM para uma atividade de extensão com o público 60+ da UNATI/UEM.
+Contexto da atividade:
+- O app será desenvolvido por alunos de Medicina da UEM como atividade de extensão.
+- O público-alvo será formado por pessoas idosas 60+ participantes da UNATI/UEM.
+- O objetivo é criar um jogo simples, educativo, acessível, acolhedor e fácil de usar.
 
-Tema obrigatório: Neuroanatomia.
-Tema específico do grupo: [TEMA_DE_NEUROANATOMIA]
-Tipo de jogo: [TIPO_DE_JOGO: memória / sudoku / palavras cruzadas / quiz / cartas educativas]
+Dados do grupo:
 Nome do jogo: [NOME_DO_JOGO]
+Tipo de jogo: [TIPO_DE_JOGO: jogo da memória / sudoku / palavras cruzadas / quiz / cartas educativas]
+Tema de Neuroanatomia: [TEMA_DE_NEUROANATOMIA]
+Público-alvo: pessoas 60+ da UNATI/UEM
 
-Requisitos da versão 1:
-1. Tela inicial com nome do jogo.
-2. Botão grande “Iniciar”.
-3. Regras simples.
-4. Área do jogo funcionando.
-5. Contador de pontos ou tentativas.
+O jogo deve conter:
+1. Tela inicial com título, subtítulo e botão grande “Começar”.
+2. Instruções simples, curtas e em linguagem acessível.
+3. Jogo funcionando conforme o tipo escolhido.
+4. Pontuação, tentativas ou progresso.
+5. Botão “Ajuda”.
 6. Botão “Reiniciar”.
-7. Mensagem final de conclusão.
-8. Layout responsivo para celular.
-9. Linguagem educativa, respeitosa e sem imagens explícitas.
+7. Botão “Voltar ao início”.
+8. Tela final com mensagem motivadora.
+9. Robô flutuante de ajuda com respostas prontas.
+10. Checklist lateral de desenvolvimento.
+11. Botões grandes, fonte mínima 22px e boa distância entre elementos.
+12. Modo claro, modo escuro e alto contraste.
+13. Botão aumentar fonte e diminuir fonte.
+14. Sons opcionais com botão ligar/desligar som.
+15. Feedback visual de acerto, erro e conclusão.
+16. Layout responsivo para celular, tablet e computador.
+17. Botão “Baixar App” com orientação para instalar como PWA.
+18. Área para relatório científico do desenvolvimento.
+19. Upload ilimitado de prints/fotos.
+20. Campo de legenda para cada imagem enviada.
+21. Botão “Gerar Relatório Científico”.
+22. Botão “Imprimir/PDF sem cortes”, preservando as imagens.
 
-Nesta primeira versão, não implemente ainda acessibilidade completa. O objetivo é apenas fazer o jogo funcionar.
-
-Entregue apenas o código HTML completo.`},
- {title:'Prompt 2 — Visual e experiência inicial',goal:'Melhorar layout, organização, cartões e aparência, mas ainda deixando algumas lacunas para evolução.',text:`Pegue o HTML anterior e gere uma versão 2 melhorada.
-
-Atue como designer UX/UI e desenvolvedor Front-End.
-
-Melhore o jogo de Neuroanatomia para o público 60+ da UNATI/UEM.
-
-Adicione:
-1. Layout mais bonito e organizado.
-2. Cartões visuais mais imersivos.
-3. Fundo moderno, limpo e agradável.
-4. Botões maiores.
-5. Ícones visuais relacionados à Neuroanatomia.
-6. Animações suaves.
-7. Compatibilidade com celular, tablet, Android e iPhone.
-8. Tela final mais motivadora.
-
-Use linguagem simples, mas ainda não implemente todos os recursos de acessibilidade avançada.
-
-Ao final, explique rapidamente o que melhorou em relação à versão 1.
-
-Entregue o HTML completo atualizado.`},
- {title:'Prompt 3 — Acessibilidade básica 60+',goal:'Incluir fonte grande, contraste, modo claro/escuro e instruções mais simples.',text:`Pegue o HTML anterior e gere uma versão 3 com acessibilidade básica.
-
-Atue como especialista em acessibilidade digital para pessoas idosas.
-
-O jogo será usado por participantes 60+ da UNATI/UEM.
-
-Adicione obrigatoriamente:
-1. Fonte mínima de 22px.
-2. Botão “Aumentar letra”.
-3. Botão “Diminuir letra”.
-4. Modo claro.
-5. Modo escuro.
-6. Alto contraste.
-7. Botões grandes e bem espaçados.
-8. Instruções curtas.
-9. Uma tarefa por tela sempre que possível.
-10. Ícones explicativos.
-11. Feedback visual quando o usuário acerta ou erra.
-
-Explique quais melhorias de acessibilidade foram realizadas e por que ajudam o público 60+.
-
-Entregue o HTML completo atualizado.`},
- {title:'Prompt 4 — Acessibilidade avançada',goal:'Pensar em baixa visão, tremores, cognição, pessoa surda e iniciante em tecnologia.',text:`Pegue o HTML anterior e gere uma versão 4 com acessibilidade avançada.
-
-Atue simultaneamente como:
-- gerontólogo;
-- neuropsicólogo;
-- terapeuta ocupacional;
-- especialista em acessibilidade digital;
-- desenvolvedor Front-End.
-
-Adapte o jogo de Neuroanatomia para pessoas idosas da UNATI/UEM, considerando baixa visão, tremores, dificuldade de memória, pessoa surda e usuários iniciantes em tecnologia.
-
-Adicione:
-1. Tutorial passo a passo.
-2. Botão “Ajuda”.
-3. Confirmação antes de reiniciar ou sair.
-4. Áreas de toque ampliadas.
-5. Feedback visual forte, sem depender de som.
-6. Sons opcionais, nunca obrigatórios.
-7. Mensagens motivacionais curtas.
-8. Evitar excesso de informação na tela.
-9. Evitar cronômetro obrigatório.
-10. Espaço para legenda ou Libras quando houver conteúdo sonoro.
-11. Navegação clara: início, jogar, ajuda, finalizar.
-12. Teste rápido de acessibilidade dentro do próprio app.
-
-Explique o que foi alterado para baixa visão, tremores, cognição e pessoa surda.
-
-Entregue o HTML completo atualizado.`},
- {title:'Prompt 5 — Versão final PWA profissional',goal:'Transformar em versão final pronta para UNATI, com PWA, áudio opcional, assets e relatório de teste.',text:`Pegue o HTML anterior e gere a versão 5 final, profissional e pronta para apresentação à UNATI/UEM.
-
-Atue simultaneamente como:
-- desenvolvedor PWA;
-- especialista em UX/UI;
-- especialista em acessibilidade;
-- professor de Medicina;
-- participante 60+ da UNATI;
-- avaliador de extensão universitária.
-
-Transforme o jogo de Neuroanatomia em um PWA educativo acessível.
-
-Use os assets com estes nomes, se existirem:
+Use estes arquivos, quando existirem:
 assets/img/capa-neuro.png
 assets/img/fundo-neuro.png
 assets/img/robo-neuro.png
-assets/img/[ARQUIVO_DO_JOGO]
 assets/img/trofeu-neuro.png
+assets/img/memoria-neuro.png
+assets/img/sudoku-neuro.png
+assets/img/cruzadas-neuro.png
+assets/img/quiz-neuro.png
+assets/img/cartas-neuro.png
 assets/audio/clique.mp3
-assets/audio/sucesso.mp3
+assets/audio/acerto.mp3
 assets/audio/erro.mp3
 assets/audio/vitoria.mp3
 assets/audio/ambiente.mp3
 assets/icons/icon-192.png
 assets/icons/icon-512.png
 
-A versão final deve conter:
-1. Tela inicial imersiva.
-2. Cartões 3D profissionais.
-3. Ícones grandes e visuais.
-4. Bolhas flutuantes suaves.
-5. Modo claro e modo escuro.
-6. Alto contraste.
-7. Aumentar e diminuir fonte.
-8. Som opcional com botão ligar/desligar.
-9. Feedback visual independente de áudio.
-10. Tutorial para pessoa idosa iniciante.
-11. Botão ajuda.
-12. Botão voltar ao início.
-13. Estatísticas do jogador.
-14. Melhor pontuação salva em localStorage.
-15. Tela final com parabéns.
-16. Área de teste de acessibilidade.
-17. Compatibilidade Android, iPhone e tablet.
-18. Registro de service worker para PWA.
-19. Comentários no código indicando onde trocar imagens, sons e textos.
+Regras importantes:
+- Não usar banco de dados.
+- Não usar backend.
+- Tudo deve funcionar no navegador.
+- Não usar imagens explícitas.
+- Não infantilizar a pessoa idosa.
+- Não usar cronômetro obrigatório.
+- Não depender de áudio para compreender o jogo.
+- Comentar o código para alunos iniciantes.
 
-Inclua também uma pequena seção no próprio jogo chamada “Relato do desenvolvimento”, onde o grupo possa registrar qual prompt usou e quais melhorias foram feitas.
+Entregue apenas o código completo do index.html.`},
+ {short:'Capa',title:'Prompt de imagem — capa do jogo',goal:'Gerar a imagem principal da tela inicial.',text:`Crie uma imagem de capa para um jogo educativo de Neuroanatomia voltado ao público 60+ da UNATI/UEM.
 
-Entregue apenas um único arquivo HTML completo e funcional.`},
- {title:'Prompt de auditoria final',goal:'Avaliar o jogo como banca e gerar melhorias obrigatórias antes da apresentação.',text:`Você é uma banca formada por:
-1. gerontólogo;
-2. neurologista;
-3. especialista em acessibilidade digital;
-4. professor de Medicina;
-5. participante 60+ da UNATI/UEM.
+Nome do jogo: [NOME_DO_JOGO]
+Tipo de jogo: [TIPO_DE_JOGO]
+Tema: [TEMA_DE_NEUROANATOMIA]
 
-Avalie o HTML do meu jogo de Neuroanatomia.
+Estilo visual:
+- animação 3D moderna;
+- acolhedora;
+- tecnológica;
+- científica;
+- alto contraste;
+- visual limpo;
+- adequada para pessoa idosa.
 
-Dê nota de 0 a 10 para:
-- acessibilidade visual;
-- acessibilidade motora;
-- acessibilidade cognitiva;
-- uso sem áudio;
-- clareza das instruções;
-- adequação ao público 60+;
-- qualidade visual;
-- funcionamento no celular;
-- potencial educativo em Neuroanatomia.
+A imagem deve transmitir:
+- memória;
+- atenção;
+- envelhecimento ativo;
+- inclusão digital;
+- aprendizagem;
+- neuroanatomia.
 
-Depois apresente:
-1. pontos fortes;
-2. problemas encontrados;
-3. melhorias obrigatórias;
-4. melhorias desejáveis;
-5. versão revisada do HTML completo.
+Elementos sugeridos:
+- cérebro;
+- neurônios;
+- sinapses;
+- luz suave;
+- interface digital amigável.
 
-A nota mínima desejada é 8 em todos os critérios.`}
-];
+Não usar imagens infantilizadas.
+Não usar excesso de texto.
+Não usar letras pequenas.
+Formato 16:9.
+Alta nitidez.
+
+Salvar como: assets/img/capa-neuro.png`},
+ {short:'Fundo',title:'Prompt de imagem — fundo do app',goal:'Gerar fundo limpo, legível e profissional.',text:`Crie um fundo para aplicativo PWA educativo de Neuroanatomia.
+
+O fundo deve ser:
+- limpo;
+- moderno;
+- legível;
+- com elementos sutis de cérebro, neurônios e sinapses;
+- com aparência 3D suave;
+- com alto contraste;
+- adequado para leitura por pessoas 60+.
+
+Importante:
+- não poluir visualmente;
+- deixar espaço para textos grandes e botões;
+- não usar letras pequenas;
+- não colocar informações demais.
+
+Formato horizontal 16:9.
+Alta nitidez.
+
+Salvar como: assets/img/fundo-neuro.png`},
+ {short:'Robô',title:'Prompt de imagem — robô flutuante',goal:'Criar o assistente visual do app.',text:`Crie um robô assistente 3D amigável para um aplicativo educativo de Neuroanatomia voltado ao público 60+.
+
+O robô deve parecer:
+- acolhedor;
+- inteligente;
+- simpático;
+- profissional;
+- confiável;
+- adequado a uma atividade universitária.
+
+Função do robô:
+- ajudar o usuário;
+- explicar dúvidas;
+- orientar o preenchimento do relatório;
+- acompanhar a navegação no app.
+
+Não infantilizar.
+Não usar expressão exagerada.
+Fundo transparente, se possível.
+Alta nitidez.
+
+Salvar como: assets/img/robo-neuro.png`},
+ {short:'Ícones',title:'Prompt de imagem — ícones do app',goal:'Criar ícones para instalação do PWA no celular.',text:`Crie um ícone quadrado para aplicativo PWA de Neuroanatomia.
+
+Estilo:
+- 3D moderno;
+- alto contraste;
+- visual limpo;
+- profissional;
+- fácil de reconhecer em tela pequena de celular.
+
+Símbolo principal:
+- cérebro, neurônio, sinapse ou circuito neural.
+
+Não usar texto pequeno.
+Não usar excesso de detalhes.
+Não infantilizar.
+
+Gerar em dois tamanhos:
+192x192 salvar como assets/icons/icon-192.png
+512x512 salvar como assets/icons/icon-512.png`},
+ {short:'Botões',title:'Prompt de imagem — botões visuais',goal:'Criar botões grandes e acessíveis.',text:`Crie botões visuais para um jogo educativo acessível à pessoa idosa.
+
+Botões necessários:
+- Começar;
+- Ajuda;
+- Voltar;
+- Próxima;
+- Reiniciar;
+- Concluir;
+- Gerar relatório;
+- Imprimir/PDF.
+
+Estilo:
+- 3D macio;
+- alto contraste;
+- texto grande;
+- bordas arredondadas;
+- aparência amigável;
+- visual profissional.
+
+Os botões devem ser fáceis de identificar por pessoas 60+.
+Não usar letras pequenas.
+Não usar contraste fraco.`},
+ {short:'Jogo',title:'Prompt de imagem — cards do jogo escolhido',goal:'Criar imagens específicas para memória, sudoku, cruzadas, quiz ou cartas.',text:`Crie imagens/cards visuais para um jogo de Neuroanatomia voltado ao público 60+ da UNATI/UEM.
+
+Tipo de jogo: [TIPO_DE_JOGO]
+Tema específico: [TEMA_DE_NEUROANATOMIA]
+
+Use elementos relacionados a:
+- cérebro;
+- neurônios;
+- sinapses;
+- medula espinal;
+- cerebelo;
+- nervos cranianos;
+- lobos cerebrais.
+
+Estilo:
+- 3D simples;
+- alto contraste;
+- ícones grandes;
+- visual limpo;
+- fácil de reconhecer;
+- adequado para idosos.
+
+Não usar textos pequenos.
+Não usar imagens muito detalhadas.
+Não infantilizar.
+
+Salvar conforme o jogo:
+Memória: assets/img/memoria-neuro.png
+Sudoku: assets/img/sudoku-neuro.png
+Palavras cruzadas: assets/img/cruzadas-neuro.png
+Quiz: assets/img/quiz-neuro.png
+Cartas: assets/img/cartas-neuro.png`},
+ {short:'Áudios',title:'Como procurar áudios na internet',goal:'Orientar busca, escolha e nomes corretos dos sons.',text:`Procure sons gratuitos, curtos e suaves para um jogo educativo voltado a pessoas 60+.
+
+Pesquise no Google ou nos sites Pixabay Sound Effects, Mixkit Sound Effects, Freesound ou Zapsplat.
+
+Termos de busca:
+1. soft click sound mp3 free
+2. gentle success sound mp3 free
+3. soft error sound mp3 free
+4. short victory sound mp3 free
+5. calm background music mp3 free
+
+Critérios:
+- som de clique: curto e discreto;
+- som de acerto: positivo e confortável;
+- som de erro: leve, sem susto e sem bronca;
+- som de vitória: alegre, curto e motivador;
+- som ambiente: calmo e opcional.
+
+Salvar exatamente com estes nomes:
+assets/audio/clique.mp3
+assets/audio/acerto.mp3
+assets/audio/erro.mp3
+assets/audio/vitoria.mp3
+assets/audio/ambiente.mp3
+
+Antes de usar, verificar se o site permite download gratuito e uso educacional.`}
+]
 const canned={
  objetivo:'Desenvolver e testar um jogo educativo em formato PWA, com temática de Neuroanatomia, voltado ao público 60+ da UNATI/UEM, priorizando acessibilidade, clareza, autonomia de uso e aprendizagem interativa.',
- metodologia:'A atividade foi realizada por meio de uma oficina prática baseada em Inteligência Artificial generativa. O grupo elaborou prompts progressivos, gerou versões sucessivas do jogo, produziu assets visuais e sonoros, testou a usabilidade em diferentes telas e aplicou critérios de acessibilidade voltados à pessoa idosa.',
- ia:'A IA foi utilizada como ferramenta de apoio para criação e melhoria progressiva do jogo. Os prompts foram organizados em etapas: protótipo funcional, melhoria visual, acessibilidade básica, acessibilidade avançada e versão final. Cada etapa permitiu comparar limitações e avanços do produto digital.',
- acessibilidade:'Foram priorizados fonte ampliada, botões grandes, contraste visual, modo claro e escuro, alto contraste, instruções curtas, navegação simples, feedback visual independente de áudio, sons opcionais e organização da informação em pequenas etapas para favorecer baixa visão, tremores, atenção e memória.',
- resultados:'Como resultado, o grupo produziu uma versão funcional e mais acessível do jogo, com interface responsiva, recursos de apoio ao público 60+ e evidências do processo de desenvolvimento. As capturas de tela demonstram a evolução entre as versões e os testes realizados.',
- conclusao:'Conclui-se que o uso de IA generativa associado a critérios de acessibilidade favoreceu a criação de um recurso educativo mais inclusivo, adequado à extensão universitária e ao diálogo entre Medicina, Neuroanatomia, tecnologia e envelhecimento ativo.'
+ metodologia:'A atividade foi realizada por meio de uma oficina prática baseada em GitHub, Inteligência Artificial generativa e organização de assets. O grupo criou um repositório, gerou um arquivo index.html, produziu imagens e ícones com IA, pesquisou áudios gratuitos na internet e organizou os arquivos em pastas padronizadas.',
+ ia:'A IA foi utilizada para gerar o código HTML do jogo e para criar prompts descritivos de imagens, ícones, botões e elementos visuais. O grupo também utilizou buscadores e bancos de áudio gratuitos para selecionar efeitos sonoros suaves e adequados ao público 60+.',
+ acessibilidade:'Os assets foram organizados em pastas específicas: assets/img, assets/icons e assets/audio. As imagens e sons foram nomeados de forma padronizada para que o HTML pudesse localizar corretamente os arquivos no projeto publicado no GitHub Pages.',
+ resultados:'Como resultado, o grupo organizou um projeto PWA com arquivo index.html, imagens, ícones, sons e evidências visuais do processo. As capturas de tela demonstram o uso do GitHub, a criação dos assets, a busca dos áudios e o teste inicial do jogo no navegador.',
+ conclusao:'Conclui-se que a integração entre GitHub, IA generativa, produção de assets e organização de arquivos favoreceu a construção de um projeto digital mais profissional, adequado à extensão universitária e ao ensino de Neuroanatomia para o público 60+.'
 };
 function renderGames(){gameCards.innerHTML=games.map(g=>`<article class="card"><div class="icon">${g.icon}</div><h4>${g.name}</h4><p>${g.theme}</p><div class="mini"><span class="tag">Neuroanatomia</span><span class="tag">60+</span><span class="tag">asset: ${g.asset}</span></div><button style="margin-top:12px" onclick="selectGame('${g.name}','${g.asset}')">Escolher</button></article>`).join('')}
 function selectGame(name,asset){selectedGame=name; document.getElementById('tipoJogo').value=name; toast('Jogo escolhido: '+name); beep();}
-function renderPrompts(){promptTabs.innerHTML=prompts.map((p,i)=>`<button class="tab secondary ${i===0?'active':''}" onclick="showPrompt(${i})">${i<5?'Versão '+(i+1):'Auditoria'}</button>`).join(''); showPrompt(0)}
+function renderPrompts(){promptTabs.innerHTML=prompts.map((p,i)=>`<button class="tab secondary ${i===0?'active':''}" onclick="showPrompt(${i})">${p.short||('Prompt '+(i+1))}</button>`).join(''); showPrompt(0)}
 function showPrompt(i){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.tab')[i].classList.add('active'); promptTitle.textContent=prompts[i].title; promptGoal.textContent=prompts[i].goal; promptText.value=personalize(prompts[i].text); beep();}
 function personalize(t){return t.replaceAll('[TIPO_DE_JOGO: memória / sudoku / palavras cruzadas / quiz / cartas educativas]', document.getElementById('tipoJogo')?.value || selectedGame).replaceAll('[NOME_DO_JOGO]', document.getElementById('nomeJogo')?.value || 'Meu Jogo de Neuroanatomia').replaceAll('[TEMA_DE_NEUROANATOMIA]', document.getElementById('tema')?.value || 'Nervos cranianos').replaceAll('[ARQUIVO_DO_JOGO]', games.find(g=>g.name===selectedGame)?.asset || 'memoria-neuro.png')}
 function fillPromptVars(){promptText.value=personalize(promptText.value); toast('Prompt atualizado com seus dados.'); beep();}
@@ -383,8 +455,8 @@ function val(id){return document.getElementById(id).value.trim() || 'Não inform
 function generateReport(){const now=new Date().toLocaleDateString('pt-BR'); const imgs=uploaded.map((u,i)=>`<figure><img src="${u.src}"><figcaption>Figura ${i+1}. ${u.caption||'Evidência visual do processo de desenvolvimento do PWA.'}</figcaption></figure>`).join('') || '<p>Nenhuma imagem foi anexada.</p>'; report.innerHTML=`
 <div class="report-page"><h1 class="cover-title">Relatório científico do desenvolvimento do PWA</h1><p class="cover-sub"><b>${val('nomeJogo')}</b></p><p class="cover-sub">${val('grupo')} • ${val('integrantes')}</p><p class="cover-sub">Universidade Estadual de Maringá • UNATI/UEM • ${now}</p></div>
 <div class="report-page"><h2>1. Identificação da atividade</h2><p><b>Tipo de jogo:</b> ${val('tipoJogo')}</p><p><b>Tema de Neuroanatomia:</b> ${val('tema')}</p><p><b>Público-alvo:</b> ${val('publico')}</p><h2>2. Objetivo</h2><p>${val('objetivo')}</p><h2>3. Justificativa</h2><p>A proposta articula Neuroanatomia, tecnologia educacional e extensão universitária, com foco na criação de recursos digitais acessíveis para pessoas idosas. O desenvolvimento progressivo do jogo permitiu analisar não apenas o funcionamento técnico, mas também a clareza, a legibilidade e a autonomia do usuário 60+.</p></div>
-<div class="report-page"><h2>4. Metodologia</h2><p>${val('metodologia')}</p><h2>5. Uso da Inteligência Artificial</h2><p>${val('ia')}</p><h2>6. Evolução por prompts</h2><ol><li>Protótipo funcional.</li><li>Melhoria visual.</li><li>Acessibilidade básica.</li><li>Acessibilidade avançada.</li><li>Versão final PWA profissional.</li></ol></div>
-<div class="report-page"><h2>7. Acessibilidade e adequação ao público 60+</h2><p>${val('acessibilidade')}</p><h2>8. Resultados observados</h2><p>${val('resultados')}</p><h2>9. Conclusão</h2><p>${val('conclusao')}</p></div>
+<div class="report-page"><h2>4. Metodologia</h2><p>${val('metodologia')}</p><h2>5. Uso da Inteligência Artificial</h2><p>${val('ia')}</p><h2>6. Etapas da Semana 5</h2><ol><li>Criação do repositório no GitHub.</li><li>Geração do index.html com prompt único.</li><li>Criação das imagens e ícones com IA.</li><li>Busca e organização dos áudios gratuitos.</li><li>Upload dos arquivos e teste do PWA no navegador.</li></ol></div>
+<div class="report-page"><h2>7. Organização dos assets e adequação ao público 60+</h2><p>${val('acessibilidade')}</p><h2>8. Resultados observados</h2><p>${val('resultados')}</p><h2>9. Conclusão</h2><p>${val('conclusao')}</p></div>
 <div class="report-page"><h2>10. Evidências fotográficas e prints</h2><div class="report-images">${imgs}</div></div>`; report.classList.remove('hide'); go('#relatorioSection'); toast('Relatório gerado. Confira antes de imprimir.'); beep();}
 function printReport(){if(report.classList.contains('hide')) generateReport(); setTimeout(()=>window.print(),300);}
 function downloadPDF(){if(report.classList.contains('hide')) generateReport(); const opt={margin:[8,8,8,8],filename:(val('nomeJogo')||'relatorio')+'-neuro-unati.pdf',image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true,scrollY:0},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy'],avoid:['figure','img','.report-images']}}; html2pdf().set(opt).from(report).save(); beep();}
