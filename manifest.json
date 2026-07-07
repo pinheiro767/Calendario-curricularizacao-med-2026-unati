@@ -1,7 +1,7 @@
 {
   "name": "Semana 5 PWA Games 60+",
   "short_name": "Semana 5",
-  "description": "Aplicativo PWA educativo, acessível e responsivo para curricularização da extensão com games para o público 60+.",
+  "description": "Aplicativo PWA educativo, acessível e responsivo para criação de games extensionistas para o público 60+.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -9,17 +9,7 @@
   "background_color": "#ffffff",
   "theme_color": "#6c5ce7",
   "icons": [
-    {
-      "src": "assets/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "assets/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    {"src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
   ]
 }
