@@ -3,90 +3,487 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#6c5ce7" />
-  <title>Semana 5 — PWA Games 60+</title>
+  <meta name="theme-color" content="#6d5dfc" />
+  <meta name="description" content="Semana 5 — PWA Games 60+ com acessibilidade, GitHub, prompts, sons e relatório científico." />
+  <title>Semana 5 — Neuro PWA Games 60+</title>
   <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/icons/icon-192.png" />
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
   <style>
-    :root{
-      --azul:#42a5f5;--ciano:#5ee7ff;--roxo:#7c4dff;--dourado:#ffe082;--branco:#fff;
-      --texto:#172033;--card:rgba(255,255,255,.92);--fonte:18px;--borda:28px;
+    :root {
+      --bg1: #5fdcff;
+      --bg2: #6d5dfc;
+      --bg3: #b96cff;
+      --gold: #ffe8a3;
+      --white: #ffffff;
+      --ink: #172033;
+      --muted: #49516d;
+      --panel: rgba(255, 255, 255, .88);
+      --panel-strong: rgba(255, 255, 255, .96);
+      --focus: #fff200;
+      --radius: 30px;
+      --shadow: 0 24px 70px rgba(32, 24, 96, .30);
+      --font-size: 18px;
     }
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:var(--fonte);color:var(--texto);background-image:url("assets/img/fundo-neuro.png");background-size:cover;background-position:center;background-attachment:fixed;min-height:100vh;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;background:linear-gradient(135deg,rgba(66,165,245,.85),rgba(124,77,255,.8),rgba(94,231,255,.65));z-index:-3}.bolhas span{position:fixed;bottom:-120px;width:60px;height:60px;background:rgba(255,255,255,.32);border-radius:50%;animation:subir 14s infinite ease-in;z-index:-2}.bolhas span:nth-child(1){left:6%;animation-delay:0s}.bolhas span:nth-child(2){left:22%;width:90px;height:90px;animation-delay:2s}.bolhas span:nth-child(3){left:46%;animation-delay:4s}.bolhas span:nth-child(4){left:70%;width:100px;height:100px;animation-delay:1s}.bolhas span:nth-child(5){left:88%;animation-delay:3s}@keyframes subir{from{transform:translateY(0) scale(1);opacity:.85}to{transform:translateY(-125vh) scale(1.4);opacity:0}}header{padding:30px 18px;text-align:center;color:#fff}header h1{font-size:clamp(2rem,5vw,4.2rem);margin:0 0 10px;text-shadow:0 5px 15px rgba(0,0,0,.25)}header p{max-width:950px;margin:auto;font-size:1.18rem}.menu{max-width:1250px;margin:0 auto 20px;padding:12px;display:flex;gap:10px;overflow-x:auto;background:rgba(255,255,255,.25);border-radius:999px;backdrop-filter:blur(12px)}button{border:0;cursor:pointer;padding:15px 22px;border-radius:999px;font-size:1rem;font-weight:800;color:#18203a;background:linear-gradient(135deg,#fff,var(--dourado));box-shadow:0 8px 20px rgba(0,0,0,.18);min-height:54px;transition:.2s;white-space:nowrap}button:hover,button:focus{transform:translateY(-3px);outline:4px solid rgba(255,255,255,.75)}main{max-width:1250px;margin:auto;padding:20px}.aba{display:none;background:var(--card);border-radius:34px;padding:30px;box-shadow:0 24px 55px rgba(37,34,89,.28);backdrop-filter:blur(12px);margin-bottom:110px}.aba.ativa{display:block;animation:aparecer .35s ease}@keyframes aparecer{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}h2,h3{color:#4b36b8}img{max-width:100%;border-radius:28px}.hero{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}.card{background:rgba(255,255,255,.94);padding:20px;border-radius:30px;box-shadow:0 22px 38px rgba(68,58,180,.25);transition:.25s;border:1px solid rgba(255,255,255,.65)}.card:hover{transform:rotateX(3deg) rotateY(-3deg) translateY(-6px)}pre,.codigo{background:#172033;color:#eaf7ff;padding:18px;border-radius:22px;overflow-x:auto;line-height:1.5;font-size:.95rem}li{margin:10px 0}input,textarea,select{width:100%;padding:14px;border:2px solid #b9c4ff;border-radius:18px;font-size:1rem;margin:8px 0 16px;background:#fff}textarea{min-height:120px}label{font-weight:800;color:#30366f}.controles{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}.check-item{display:block;background:rgba(255,255,255,.78);padding:14px;border-radius:18px;margin:10px 0}.neuro{position:fixed;right:18px;bottom:18px;z-index:30;text-align:center}.neuro img{width:92px;height:92px;object-fit:contain;border-radius:50%;background:#fff;border:5px solid #fff;box-shadow:0 18px 40px rgba(0,0,0,.25);animation:flutuar 2.8s infinite ease-in-out;cursor:pointer}@keyframes flutuar{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}.painel-neuro{display:none;position:fixed;right:18px;bottom:130px;max-width:370px;background:#fff;padding:20px;border-radius:28px;box-shadow:0 18px 45px rgba(0,0,0,.28);z-index:31}.painel-neuro.ativo{display:block}.relatorio-preview{background:#fff;color:#111;padding:30px;border-radius:20px;margin-top:24px}.relatorio-preview img{max-height:680px;object-fit:contain;margin:12px 0;page-break-inside:avoid}.modo-escuro{--texto:#f5f7ff;--card:rgba(20,24,50,.94)}.modo-escuro .card{background:rgba(35,38,76,.95);color:#fff}.alto-contraste{background:#000!important;color:#fff!important}.alto-contraste .aba,.alto-contraste .card,.alto-contraste .painel-neuro{background:#000!important;color:#fff!important;border:3px solid #ff0}.etiqueta{display:inline-block;background:linear-gradient(135deg,#fff,var(--ciano));padding:8px 14px;border-radius:999px;font-weight:800;margin:5px}.aviso{background:#fff8d8;border-left:8px solid var(--dourado);padding:16px;border-radius:18px;margin:16px 0}@media(max-width:780px){.hero{grid-template-columns:1fr}.aba{padding:20px}.neuro img{width:78px;height:78px}.menu{border-radius:24px}}
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: var(--font-size);
+      color: var(--ink);
+      background-image: linear-gradient(135deg, rgba(95,220,255,.82), rgba(109,93,252,.82), rgba(185,108,255,.72)), url("assets/img/fundo-neuro.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255,255,255,.42), transparent 12%),
+        radial-gradient(circle at 80% 20%, rgba(255,232,163,.32), transparent 15%),
+        radial-gradient(circle at 50% 90%, rgba(255,255,255,.28), transparent 18%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .bubbles span {
+      position: fixed;
+      bottom: -120px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.34);
+      box-shadow: inset 0 0 18px rgba(255,255,255,.75);
+      animation: floatBubble 14s infinite ease-in;
+      z-index: -1;
+    }
+    .bubbles span:nth-child(1){left:6%; animation-delay:0s;}
+    .bubbles span:nth-child(2){left:22%; width:90px;height:90px; animation-delay:2s;}
+    .bubbles span:nth-child(3){left:43%; width:60px;height:60px; animation-delay:4s;}
+    .bubbles span:nth-child(4){left:67%; width:110px;height:110px; animation-delay:1s;}
+    .bubbles span:nth-child(5){left:86%; animation-delay:3s;}
+    .bubbles span:nth-child(6){left:55%; width:75px;height:75px; animation-delay:6s;}
+
+    @keyframes floatBubble {
+      0% { transform: translateY(0) scale(.9); opacity:.65; }
+      100% { transform: translateY(-125vh) scale(1.35); opacity:0; }
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 10px;
+      background: #000;
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 14px;
+      z-index: 1000;
+    }
+    .skip-link:focus { left: 10px; }
+
+    header {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 14px;
+      color: white;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.42);
+      backdrop-filter: blur(12px);
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 14px 0 8px;
+      font-size: clamp(2.1rem, 6vw, 5rem);
+      line-height: 1;
+      text-shadow: 0 8px 24px rgba(0,0,0,.28);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      line-height: 1.5;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      max-width: 1180px;
+      margin: 14px auto 0;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      background: rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 28px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 12px 36px rgba(0,0,0,.16);
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 3px;
+    }
+
+    button, .button-like {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      padding: 14px 20px;
+      min-height: 54px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fff, var(--gold));
+      color: #19213c;
+      font-weight: 900;
+      font-size: 1rem;
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+      transition: transform .18s ease, box-shadow .18s ease;
+      white-space: nowrap;
+    }
+
+    button:hover { transform: translateY(-2px); box-shadow: 0 16px 28px rgba(0,0,0,.22); }
+    button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+      outline: 5px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .tiny { padding: 11px 14px; min-height: 46px; }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 22px 18px 130px;
+    }
+
+    .screen {
+      display: none;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.62);
+      border-radius: 38px;
+      padding: clamp(20px, 3vw, 36px);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      animation: pop .3s ease;
+    }
+    .screen.active { display: block; }
+
+    @keyframes pop { from { opacity:0; transform: translateY(16px) scale(.99);} to { opacity:1; transform:none;} }
+
+    h2 { margin-top: 0; color: #3f2fac; font-size: clamp(1.7rem, 3vw, 2.6rem); }
+    h3 { color: #4f3fcc; }
+    p, li { line-height: 1.62; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .hero-img, .card img {
+      width: 100%;
+      border-radius: 32px;
+      box-shadow: 0 22px 50px rgba(54,44,130,.24);
+      background: rgba(255,255,255,.5);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+      border-radius: 32px;
+      background: var(--panel-strong);
+      box-shadow: 0 20px 42px rgba(58,47,153,.22);
+      border: 1px solid rgba(255,255,255,.7);
+      transform-style: preserve-3d;
+      transition: transform .22s ease;
+    }
+    .card:hover { transform: rotateX(3deg) rotateY(-3deg) translateY(-6px); }
+    .card::before {
+      content:"";
+      position:absolute;
+      top:-60px; right:-60px;
+      width:140px; height:140px;
+      border-radius:50%;
+      background: rgba(95,220,255,.26);
+      pointer-events:none;
+    }
+
+    .step-number {
+      display: inline-grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--bg2), var(--bg3));
+      color: white;
+      font-weight: 900;
+      box-shadow: 0 10px 24px rgba(109,93,252,.35);
+    }
+
+    pre, .codebox {
+      background: #121936;
+      color: #ecf8ff;
+      border-radius: 22px;
+      padding: 18px;
+      overflow-x: auto;
+      line-height: 1.55;
+      font-size: .95rem;
+      white-space: pre-wrap;
+    }
+
+    .note {
+      border-left: 8px solid var(--gold);
+      background: rgba(255,248,216,.75);
+      padding: 16px 18px;
+      border-radius: 18px;
+      margin: 18px 0;
+    }
+
+    label { display:block; font-weight: 900; color:#27305b; margin-top: 14px; }
+    input, textarea, select {
+      width: 100%;
+      padding: 15px;
+      border-radius: 18px;
+      border: 2px solid #bbc5ff;
+      font: inherit;
+      background: rgba(255,255,255,.95);
+      color: #10172f;
+      margin-top: 8px;
+    }
+    textarea { min-height: 118px; resize: vertical; }
+
+    .check-item {
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.74);
+      font-weight: 700;
+    }
+    .check-item input { width: 24px; height:24px; margin: 3px 0 0; }
+
+    .robot {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 70;
+      display: grid;
+      place-items: center;
+      gap: 6px;
+    }
+    .robot button {
+      padding: 0;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.96);
+      border: 5px solid #fff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: hoverRobot 2.8s infinite ease-in-out;
+    }
+    .robot img { width: 100%; height:100%; object-fit: contain; }
+    @keyframes hoverRobot { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+    .robot-panel {
+      display: none;
+      position: fixed;
+      right: 18px;
+      bottom: 130px;
+      width: min(390px, calc(100vw - 28px));
+      z-index: 75;
+      padding: 22px;
+      border-radius: 30px;
+      background: var(--panel-strong);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.8);
+    }
+    .robot-panel.active { display:block; }
+
+    .report {
+      background:#fff;
+      color:#111;
+      padding: 34px;
+      border-radius: 22px;
+      margin-top: 22px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.12);
+    }
+    .report h1 { color:#111; text-shadow:none; font-size: 2rem; line-height:1.2; }
+    .report h2 { color:#1f2f78; font-size:1.35rem; border-bottom:1px solid #d8ddff; padding-bottom:6px; }
+    .report img { max-width:100%; max-height: 650px; object-fit: contain; page-break-inside: avoid; margin: 12px 0; border-radius: 12px; }
+
+    .dark-mode {
+      --ink: #f7f8ff;
+      --muted: #dfe5ff;
+      --panel: rgba(19, 24, 54, .92);
+      --panel-strong: rgba(25, 30, 67, .96);
+    }
+    .dark-mode label, .dark-mode h2, .dark-mode h3 { color:#e6e9ff; }
+    .dark-mode .note { background: rgba(32, 39, 83, .86); color:#fff; }
+    .dark-mode .check-item { background: rgba(255,255,255,.10); }
+
+    .high-contrast {
+      background: #000 !important;
+      color: #fff !important;
+      --panel: #000;
+      --panel-strong: #000;
+      --ink: #fff;
+      --muted: #fff;
+      --gold: #ffff00;
+      --focus: #00ffff;
+    }
+    .high-contrast .screen, .high-contrast .card, .high-contrast .robot-panel, .high-contrast .topbar {
+      border: 3px solid #ffff00 !important;
+      box-shadow: none !important;
+      background:#000 !important;
+      color:#fff !important;
+    }
+    .high-contrast button { background:#ffff00 !important; color:#000 !important; box-shadow:none; }
+    .high-contrast input, .high-contrast textarea, .high-contrast select { background:#000; color:#fff; border:3px solid #fff; }
+
+    @media (max-width: 860px) {
+      .topbar { grid-template-columns: 1fr; }
+      .toolbar { justify-content:flex-start; }
+      .hero { grid-template-columns: 1fr; }
+      .robot button { width: 78px; height:78px; }
+      .robot-panel { bottom: 112px; }
+    }
+
+    @media print {
+      body { background:#fff; }
+      header, .topbar, .robot, .robot-panel, .bubbles, .no-print { display:none !important; }
+      main { padding:0; }
+      .screen { display:block; box-shadow:none; background:#fff; padding:0; }
+    }
   </style>
 </head>
 <body>
-  <div class="bolhas" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  <a href="#conteudo" class="skip-link">Pular para o conteúdo principal</a>
 
-  <audio id="somClique" src="assets/audio/clique.mp3"></audio>
-  <audio id="somSucesso" src="assets/audio/sucesso.mp3"></audio>
-  <audio id="somErro" src="assets/audio/erro.mp3"></audio>
-  <audio id="somVitoria" src="assets/audio/vitoria.mp3"></audio>
-  <audio id="somAmbiente" src="assets/audio/ambiente.mp3" loop></audio>
+  <div class="bubbles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <audio id="somClique" src="assets/audio/clique.mp3" preload="auto"></audio>
+  <audio id="somSucesso" src="assets/audio/sucesso.mp3" preload="auto"></audio>
+  <audio id="somErro" src="assets/audio/erro.mp3" preload="auto"></audio>
+  <audio id="somVitoria" src="assets/audio/vitoria.mp3" preload="auto"></audio>
+  <audio id="somAmbiente" src="assets/audio/ambiente.mp3" loop preload="auto"></audio>
 
   <header>
-    <h1>Semana 5 — Mão na Massa</h1>
-    <p>Guia imersivo para criar, organizar, publicar e relatar um game educativo em App PWA para o público 60+</p>
+    <div class="badge">🌟 Semana 5 • Mão na Massa • PWA Games 60+</div>
+    <h1>Neuro PWA Games</h1>
+    <p>Uma trilha guiada para criar conta no GitHub, organizar pastas, gerar o HTML do jogo escolhido, buscar sons, publicar como PWA e produzir relatório científico.</p>
   </header>
 
-  <nav class="menu" aria-label="Menu principal">
-    <button onclick="abrirAba('inicio')">Início</button>
-    <button onclick="abrirAba('jornada')">Jornada</button>
-    <button onclick="abrirAba('github')">GitHub</button>
-    <button onclick="abrirAba('pastas')">Pastas</button>
-    <button onclick="abrirAba('imagens')">Imagens</button>
-    <button onclick="abrirAba('games')">Escolher jogo</button>
-    <button onclick="abrirAba('prompt')">Prompt HTML</button>
-    <button onclick="abrirAba('sons')">Sons</button>
-    <button onclick="abrirAba('pwa')">PWA</button>
-    <button onclick="abrirAba('publicar')">Publicar</button>
-    <button onclick="abrirAba('acessibilidade')">Acessibilidade</button>
-    <button onclick="abrirAba('checklist')">Checklist</button>
-    <button onclick="abrirAba('relatorio')">Relatório</button>
-  </nav>
+  <div class="topbar no-print">
+    <nav aria-label="Abas do aplicativo">
+      <button onclick="openTab('inicio')">Início</button>
+      <button onclick="openTab('jornada')">Jornada</button>
+      <button onclick="openTab('github')">GitHub</button>
+      <button onclick="openTab('pastas')">Pastas</button>
+      <button onclick="openTab('imagens')">Imagens</button>
+      <button onclick="openTab('jogos')">Jogo</button>
+      <button onclick="openTab('sons')">Sons</button>
+      <button onclick="openTab('pwa')">PWA</button>
+      <button onclick="openTab('acessibilidade')">Acessibilidade</button>
+      <button onclick="openTab('checklist')">Checklist</button>
+      <button onclick="openTab('relatorio')">Relatório</button>
+    </nav>
+    <div class="toolbar" aria-label="Controles rápidos">
+      <button class="tiny" onclick="increaseFont()">A+</button>
+      <button class="tiny" onclick="decreaseFont()">A-</button>
+      <button class="tiny" onclick="toggleDark()">Modo escuro</button>
+      <button class="tiny" onclick="toggleContrast()">Alto contraste</button>
+      <button class="tiny" id="installBtn" onclick="installApp()" hidden>Baixar app</button>
+    </div>
+  </div>
 
-  <main>
-    <section id="inicio" class="aba ativa">
+  <main id="conteudo">
+    <section id="inicio" class="screen active">
       <div class="hero">
-        <img src="assets/img/capa-neuro.png" alt="Capa da Semana 5">
+        <img class="hero-img" src="assets/img/capa-neuro.png" alt="Capa da Semana 5 com visual educativo e acolhedor" />
         <div>
-          <h2>Transforme sua ideia em um app real</h2>
-          <p>Nesta semana, o grupo vai organizar imagens, sons, HTML, GitHub, GitHub Pages, PWA, acessibilidade e relatório científico.</p>
-          <p>Use as abas como uma trilha. Cada card explica o que fazer, onde colocar os arquivos e qual prompt usar.</p>
-          <button onclick="abrirAba('jornada')">Começar a Jornada</button>
-          <button onclick="tocarAmbiente()">Ativar som ambiente</button>
+          <h2>Comece por aqui</h2>
+          <p>Este aplicativo foi feito para guiar o aluno passo a passo. A proposta é que o grupo saia da ideia inicial e comece a montar um aplicativo real.</p>
+          <div class="note"><strong>Meta da Semana 5:</strong> criar estrutura de pastas, escolher um jogo, gerar HTML, organizar assets, publicar no GitHub Pages, testar no celular e gerar relatório científico em PDF.</div>
+          <div class="toolbar">
+            <button onclick="openTab('jornada')">Ver jornada completa</button>
+            <button onclick="playAmbient()">Ativar som ambiente</button>
+            <button onclick="stopAmbient()">Parar som</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="jornada" class="aba">
-      <h2>Jornada do Aluno</h2>
-      <p>Siga os cards nesta ordem. A proposta é aprender fazendo.</p>
-      <div class="cards">
-        <div class="card"><h3>Card 1 — Criar GitHub</h3><p>Crie sua conta gratuita para publicar o jogo.</p><button onclick="abrirAba('github')">Ver passo a passo</button></div>
-        <div class="card"><h3>Card 2 — Criar pastas</h3><p>Monte a estrutura correta do projeto no computador.</p><button onclick="abrirAba('pastas')">Ver pastas</button></div>
-        <div class="card"><h3>Card 3 — Colocar imagens</h3><p>Crie imagens para capa, fundo, cards, robô e troféu.</p><button onclick="abrirAba('imagens')">Ver imagens</button></div>
-        <div class="card"><h3>Card 4 — Escolher jogo</h3><p>Escolha memória, sudoku, cruzadas, quiz ou cartas.</p><button onclick="abrirAba('games')">Escolher</button></div>
-        <div class="card"><h3>Card 5 — Gerar HTML</h3><p>Copie o prompt do jogo escolhido e peça para a IA gerar o HTML.</p><button onclick="abrirAba('prompt')">Ver prompt</button></div>
-        <div class="card"><h3>Card 6 — Buscar sons</h3><p>Baixe sons curtos e renomeie corretamente.</p><button onclick="abrirAba('sons')">Ver sons</button></div>
-        <div class="card"><h3>Card 7 — Transformar em PWA</h3><p>Use manifest, ícones e service worker.</p><button onclick="abrirAba('pwa')">Ver PWA</button></div>
-        <div class="card"><h3>Card 8 — Publicar</h3><p>Suba tudo para o GitHub Pages.</p><button onclick="abrirAba('publicar')">Publicar</button></div>
-        <div class="card"><h3>Card 9 — Relatório</h3><p>Registre prints, dificuldades, soluções e conclusão.</p><button onclick="abrirAba('relatorio')">Relatório</button></div>
+    <section id="jornada" class="screen">
+      <h2>Jornada do aluno — passo a passo</h2>
+      <p>Siga os cards em ordem. Cada card representa uma etapa real do projeto.</p>
+      <div class="grid">
+        <article class="card"><span class="step-number">1</span><h3>Criar conta no GitHub</h3><p>O aluno cria uma conta gratuita para hospedar o jogo.</p><button onclick="openTab('github')">Abrir passo a passo</button></article>
+        <article class="card"><span class="step-number">2</span><h3>Criar as pastas</h3><p>O aluno monta a estrutura correta: HTML, manifest, service worker e assets.</p><button onclick="openTab('pastas')">Ver estrutura</button></article>
+        <article class="card"><span class="step-number">3</span><h3>Colocar imagens</h3><p>O aluno cria ou baixa imagens com os nomes exatos e coloca em assets/img.</p><button onclick="openTab('imagens')">Ver imagens</button></article>
+        <article class="card"><span class="step-number">4</span><h3>Escolher o jogo</h3><p>O grupo escolhe memória, sudoku, cruzadas, quiz ou cartas educativas.</p><button onclick="openTab('jogos')">Escolher jogo</button></article>
+        <article class="card"><span class="step-number">5</span><h3>Gerar o HTML</h3><p>O app gera um prompt específico para o jogo escolhido.</p><button onclick="openTab('jogos')">Gerar prompt</button></article>
+        <article class="card"><span class="step-number">6</span><h3>Buscar sons</h3><p>O aluno busca sons curtos, suaves e opcionais para o público 60+.</p><button onclick="openTab('sons')">Ver sites</button></article>
+        <article class="card"><span class="step-number">7</span><h3>Transformar em PWA</h3><p>Usar manifest.json, sw.js e ícones para instalar no celular.</p><button onclick="openTab('pwa')">Ver PWA</button></article>
+        <article class="card"><span class="step-number">8</span><h3>Testar e relatar</h3><p>Testar no celular, tirar prints e gerar PDF científico.</p><button onclick="openTab('relatorio')">Abrir relatório</button></article>
       </div>
     </section>
 
-    <section id="github" class="aba">
-      <h2>1. Criar Conta no GitHub</h2>
-      <div class="aviso"><strong>GitHub</strong> é o local onde o grupo vai guardar e publicar o jogo.</div>
-      <h3>Criar conta</h3>
-      <ol><li>Acesse <strong>github.com</strong>.</li><li>Clique em <strong>Sign up</strong>.</li><li>Digite seu e-mail.</li><li>Crie uma senha.</li><li>Escolha um nome de usuário simples.</li><li>Confirme o e-mail.</li><li>Entre na sua conta.</li></ol>
-      <h3>Criar repositório</h3>
-      <ol><li>Clique no botão <strong>+</strong>.</li><li>Clique em <strong>New repository</strong>.</li><li>Nomeie como <strong>Aula5-PWA</strong> ou nome do grupo.</li><li>Marque <strong>Public</strong>.</li><li>Clique em <strong>Create repository</strong>.</li></ol>
+    <section id="github" class="screen">
+      <h2>Card 1 — Criar conta no GitHub</h2>
+      <div class="grid">
+        <div class="card"><h3>A. Criar a conta</h3><ol><li>Acesse <strong>github.com</strong>.</li><li>Clique em <strong>Sign up</strong>.</li><li>Digite seu e-mail.</li><li>Crie uma senha segura.</li><li>Escolha um nome de usuário simples.</li><li>Confirme o e-mail.</li><li>Faça login.</li></ol></div>
+        <div class="card"><h3>B. Criar o repositório</h3><ol><li>Clique no botão <strong>+</strong>.</li><li>Clique em <strong>New repository</strong>.</li><li>Nome sugerido: <strong>Aula5-PWA</strong>.</li><li>Marque <strong>Public</strong>.</li><li>Clique em <strong>Create repository</strong>.</li></ol></div>
+        <div class="card"><h3>C. Enviar arquivos</h3><ol><li>Clique em <strong>Add file</strong>.</li><li>Clique em <strong>Upload files</strong>.</li><li>Arraste <strong>index.html</strong>, <strong>manifest.json</strong>, <strong>sw.js</strong> e a pasta <strong>assets</strong>.</li><li>Clique em <strong>Commit changes</strong>.</li></ol></div>
+        <div class="card"><h3>D. Ativar GitHub Pages</h3><ol><li>Clique em <strong>Settings</strong>.</li><li>Clique em <strong>Pages</strong>.</li><li>Em Branch, escolha <strong>main</strong>.</li><li>Em Folder, escolha <strong>/root</strong>.</li><li>Clique em <strong>Save</strong>.</li><li>Abra o link publicado no celular.</li></ol></div>
+      </div>
     </section>
 
-    <section id="pastas" class="aba">
-      <h2>2. Criar as Pastas do Jogo</h2>
-      <p>Antes de enviar ao GitHub, organize exatamente assim:</p>
+    <section id="pastas" class="screen">
+      <h2>Card 2 — Criar as pastas do jogo</h2>
+      <p>O HTML não guarda imagens, sons ou ícones dentro dele. Ele aponta para os arquivos. Por isso, o nome e o caminho precisam estar corretos.</p>
       <pre>Aula5-PWA/
 ├── index.html
 ├── manifest.json
@@ -111,123 +508,425 @@
     └── icons/
         ├── icon-192.png
         └── icon-512.png</pre>
-      <h3>Atenção</h3>
-      <ul><li>O HTML não guarda imagem dentro dele; ele aponta para a imagem.</li><li>Se a imagem não aparecer, confira o caminho e o nome.</li><li>No GitHub, maiúsculas e minúsculas fazem diferença.</li><li><strong>capa-neuro.png</strong> é diferente de <strong>Capa-Neuro.png</strong>.</li></ul>
+      <div class="note"><strong>Atenção:</strong> no GitHub, <code>robo-neuro.png</code> é diferente de <code>Robo-Neuro.png</code>. Letras maiúsculas e minúsculas fazem diferença.</div>
     </section>
 
-    <section id="imagens" class="aba">
-      <h2>3. Imagens que o Grupo Deve Criar</h2>
-      <p>Substitua os arquivos vazios por imagens reais com o mesmo nome.</p>
-      <div class="cards">
-        <div class="card"><img src="assets/img/fundo-neuro.png" alt="Fundo geral do app"><h3>fundo-neuro.png</h3><p>Fundo geral do app. Tamanho recomendado: 1920x1080.</p></div>
-        <div class="card"><img src="assets/img/robo-neuro.png" alt="Robô Neuro Guia"><h3>robo-neuro.png</h3><p>Robô flutuante. Ideal: PNG transparente.</p></div>
-        <div class="card"><img src="assets/img/capa-neuro.png" alt="Capa principal"><h3>capa-neuro.png</h3><p>Capa da tela inicial. 1024x1024.</p></div>
-        <div class="card"><img src="assets/img/memoria-neuro.png" alt="Jogo da memória"><h3>memoria-neuro.png</h3><p>Card do jogo da memória.</p></div>
-        <div class="card"><img src="assets/img/sudoku-neuro.png" alt="Sudoku"><h3>sudoku-neuro.png</h3><p>Card do sudoku.</p></div>
-        <div class="card"><img src="assets/img/cruzadas-neuro.png" alt="Palavras cruzadas"><h3>cruzadas-neuro.png</h3><p>Card das palavras cruzadas.</p></div>
-        <div class="card"><img src="assets/img/quiz-neuro.png" alt="Quiz"><h3>quiz-neuro.png</h3><p>Card do quiz.</p></div>
-        <div class="card"><img src="assets/img/cartas-neuro.png" alt="Cartas educativas"><h3>cartas-neuro.png</h3><p>Card das cartas educativas.</p></div>
-        <div class="card"><img src="assets/img/trofeu-neuro.png" alt="Troféu de conclusão"><h3>trofeu-neuro.png</h3><p>Tela de conclusão.</p></div>
+    <section id="imagens" class="screen">
+      <h2>Card 3 — O que colocar em imagens</h2>
+      <p>Substitua os arquivos vazios por imagens reais com os mesmos nomes. As imagens dos cards podem ter 1024x1024. O fundo pode ter 1920x1080. O robô deve ser PNG transparente.</p>
+      <div class="grid">
+        <article class="card"><img src="assets/img/fundo-neuro.png" alt="Fundo geral do aplicativo"><h3>fundo-neuro.png</h3><p>Fundo geral imersivo do app. Tamanho sugerido: 1920x1080.</p></article>
+        <article class="card"><img src="assets/img/robo-neuro.png" alt="Robô Neuro Guia"><h3>robo-neuro.png</h3><p>Robô flutuante assistente. Ideal: PNG com fundo transparente.</p></article>
+        <article class="card"><img src="assets/img/capa-neuro.png" alt="Capa principal"><h3>capa-neuro.png</h3><p>Capa inicial da Semana 5. Tamanho sugerido: 1024x1024.</p></article>
+        <article class="card"><img src="assets/img/memoria-neuro.png" alt="Jogo da memória"><h3>memoria-neuro.png</h3><p>Imagem do card para jogo da memória.</p></article>
+        <article class="card"><img src="assets/img/sudoku-neuro.png" alt="Sudoku"><h3>sudoku-neuro.png</h3><p>Imagem do card para sudoku.</p></article>
+        <article class="card"><img src="assets/img/cruzadas-neuro.png" alt="Palavras cruzadas"><h3>cruzadas-neuro.png</h3><p>Imagem do card para palavras cruzadas.</p></article>
+        <article class="card"><img src="assets/img/quiz-neuro.png" alt="Quiz"><h3>quiz-neuro.png</h3><p>Imagem do card para quiz.</p></article>
+        <article class="card"><img src="assets/img/cartas-neuro.png" alt="Cartas educativas"><h3>cartas-neuro.png</h3><p>Imagem do card para cartas educativas.</p></article>
+        <article class="card"><img src="assets/img/trofeu-neuro.png" alt="Troféu de conclusão"><h3>trofeu-neuro.png</h3><p>Troféu ou imagem de conclusão.</p></article>
       </div>
-      <h3>Prompt para criar imagem</h3>
-      <pre>Crie uma imagem quadrada 1024x1024 em estilo anime fofo e educativo, com tema de neuroanatomia, visual acolhedor para pessoas 60+, cores azul tecnológico, ciano, roxo, branco e dourado suave, botões grandes, aparência moderna e acessível.</pre>
+      <h3>Prompt para gerar imagens</h3>
+      <div class="codebox">Crie uma imagem em estilo anime fofo, educativo, moderno e acolhedor para pessoas 60+, usando cores azul, ciano, roxo, branco e dourado suave. A imagem deve ter aparência limpa, acessível, com boa iluminação, sem excesso de texto e com sensação de tecnologia amigável.</div>
     </section>
 
-    <section id="games" class="aba">
-      <h2>4. Escolha o Jogo do Grupo</h2>
-      <p>Cada botão gera um prompt específico para criar o HTML do jogo.</p>
-      <div class="cards">
-        <div class="card"><img src="assets/img/memoria-neuro.png" alt="Jogo da Memória"><h3>Jogo da Memória</h3><p>10 imagens diferentes, 20 cartas no total.</p><button onclick="escolherJogo('memoria')">Gerar prompt de memória</button></div>
-        <div class="card"><img src="assets/img/sudoku-neuro.png" alt="Sudoku"><h3>Sudoku</h3><p>Grade simples, números grandes, sem tempo obrigatório.</p><button onclick="escolherJogo('sudoku')">Gerar prompt de sudoku</button></div>
-        <div class="card"><img src="assets/img/cruzadas-neuro.png" alt="Palavras Cruzadas"><h3>Palavras Cruzadas</h3><p>Dicas curtas, letras grandes e conteúdo educativo.</p><button onclick="escolherJogo('cruzadas')">Gerar prompt de cruzadas</button></div>
-        <div class="card"><img src="assets/img/quiz-neuro.png" alt="Quiz"><h3>Quiz</h3><p>5 a 10 perguntas, alternativas grandes e pontuação.</p><button onclick="escolherJogo('quiz')">Gerar prompt de quiz</button></div>
-        <div class="card"><img src="assets/img/cartas-neuro.png" alt="Cartas Educativas"><h3>Cartas Educativas</h3><p>Cartas com imagem, pista e conceito.</p><button onclick="escolherJogo('cartas')">Gerar prompt de cartas</button></div>
+    <section id="jogos" class="screen">
+      <h2>Cards 4 e 5 — Escolher o jogo e gerar o HTML</h2>
+      <p>Escolha o tipo de jogo do grupo. O Neuro Guia vai gerar um prompt específico para pedir à IA um <strong>index.html completo</strong>.</p>
+      <div class="grid">
+        <article class="card"><img src="assets/img/memoria-neuro.png" alt="Jogo da memória"><h3>Memória</h3><p>10 imagens diferentes, cada uma com par. Total: 20 cartas.</p><button onclick="chooseGame('memoria')">Gerar prompt</button></article>
+        <article class="card"><img src="assets/img/sudoku-neuro.png" alt="Sudoku"><h3>Sudoku</h3><p>Números grandes, sem tempo obrigatório, dicas e verificação.</p><button onclick="chooseGame('sudoku')">Gerar prompt</button></article>
+        <article class="card"><img src="assets/img/cruzadas-neuro.png" alt="Palavras cruzadas"><h3>Palavras Cruzadas</h3><p>5 a 8 palavras, dicas curtas e letras grandes.</p><button onclick="chooseGame('cruzadas')">Gerar prompt</button></article>
+        <article class="card"><img src="assets/img/quiz-neuro.png" alt="Quiz"><h3>Quiz</h3><p>5 a 10 perguntas, alternativas grandes e explicação simples.</p><button onclick="chooseGame('quiz')">Gerar prompt</button></article>
+        <article class="card"><img src="assets/img/cartas-neuro.png" alt="Cartas educativas"><h3>Cartas</h3><p>Cartas com imagem, pista, conceito e revelação de resposta.</p><button onclick="chooseGame('cartas')">Gerar prompt</button></article>
       </div>
+      <label for="gamePrompt">Prompt personalizado do jogo escolhido</label>
+      <textarea id="gamePrompt" readonly>Escolha um jogo acima para gerar o prompt completo.</textarea>
+      <div class="toolbar"><button onclick="copyGamePrompt()">Copiar prompt</button><button onclick="fillReportFromGame()">Usar no relatório</button></div>
     </section>
 
-    <section id="prompt" class="aba">
-      <h2>5. Prompt para Gerar o HTML do Jogo</h2>
-      <p>Depois de escolher o jogo, copie o prompt abaixo e peça para a IA criar o HTML completo.</p>
-      <textarea id="promptJogo" readonly>Escolha um jogo na aba “Escolher jogo” para gerar um prompt personalizado.</textarea>
-      <button onclick="copiarPrompt()">Copiar prompt</button>
-      <div class="aviso">Depois que a IA gerar o código, cole no arquivo <strong>index.html</strong> do jogo do grupo ou adapte este PWA.</div>
-    </section>
-
-    <section id="sons" class="aba">
-      <h2>6. Onde Buscar Sons para o Jogo</h2>
-      <p>Use sons curtos, suaves e agradáveis. O áudio deve ajudar, não atrapalhar.</p>
-      <div class="cards">
-        <div class="card"><h3>Pixabay Sound Effects</h3><p>Bom para baixar sons gratuitos de clique, sucesso e vitória.</p></div>
-        <div class="card"><h3>Freesound</h3><p>Grande biblioteca. Confira a licença antes de usar.</p></div>
-        <div class="card"><h3>Mixkit</h3><p>Sons curtos para interface, botões e jogos.</p></div>
-        <div class="card"><h3>Zapsplat</h3><p>Muitos efeitos sonoros. Pode exigir cadastro gratuito.</p></div>
-        <div class="card"><h3>Gravação no celular</h3><p>O grupo pode gravar sons próprios e converter para MP3.</p></div>
+    <section id="sons" class="screen">
+      <h2>Card 6 — Onde encontrar áudio para o jogo</h2>
+      <p>Use sons curtos e suaves. O áudio deve ajudar, não incomodar. Sempre permita desligar som ambiente.</p>
+      <div class="grid">
+        <article class="card"><h3>Pixabay Sound Effects</h3><p>Bom para efeitos gratuitos como clique, vitória, alerta e música leve.</p></article>
+        <article class="card"><h3>Mixkit</h3><p>Ótimo para sons curtos de interface, jogos e pequenos efeitos.</p></article>
+        <article class="card"><h3>Freesound</h3><p>Biblioteca enorme. Confira a licença antes de usar.</p></article>
+        <article class="card"><h3>Zapsplat</h3><p>Tem muitos efeitos. Pode exigir cadastro gratuito.</p></article>
+        <article class="card"><h3>Gravação no celular</h3><p>O grupo pode criar vozes, palmas, feedbacks e sons próprios.</p></article>
       </div>
       <h3>Nomes obrigatórios</h3>
-      <pre>clique.mp3
-sucesso.mp3
-erro.mp3
-vitoria.mp3
-ambiente.mp3</pre>
-      <button onclick="tocarAmbiente()">Ativar som ambiente</button><button onclick="pararAmbiente()">Parar som</button>
+      <pre>clique.mp3     → botão pressionado
+sucesso.mp3    → acerto ou etapa concluída
+erro.mp3       → tentativa incorreta
+vitoria.mp3    → finalização do jogo
+ambiente.mp3   → música de fundo opcional</pre>
+      <div class="toolbar"><button onclick="playAmbient()">Testar som ambiente</button><button onclick="stopAmbient()">Parar som</button></div>
     </section>
 
-    <section id="pwa" class="aba">
-      <h2>7. Transformar em PWA</h2>
-      <p>Este projeto já vem com <strong>manifest.json</strong>, <strong>sw.js</strong> e registro do service worker.</p>
-      <ul><li>O <strong>manifest.json</strong> permite instalar o app.</li><li>O <strong>sw.js</strong> cria cache para funcionar melhor.</li><li>Os ícones ficam em <strong>assets/icons</strong>.</li></ul>
-      <pre>if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
-}</pre>
+    <section id="pwa" class="screen">
+      <h2>Card 7 — Transformar em PWA e baixar app</h2>
+      <p>Um PWA é um site que pode ser instalado no celular como aplicativo.</p>
+      <div class="grid">
+        <div class="card"><h3>Arquivos necessários</h3><ul><li>index.html</li><li>manifest.json</li><li>sw.js</li><li>assets/icons/icon-192.png</li><li>assets/icons/icon-512.png</li></ul></div>
+        <div class="card"><h3>Como instalar</h3><ol><li>Publique no GitHub Pages.</li><li>Abra o link no Chrome ou Edge.</li><li>Clique em instalar, adicionar à tela inicial ou use o botão <strong>Baixar app</strong>.</li></ol><button id="installBtn2" onclick="installApp()">Baixar app</button></div>
+        <div class="card"><h3>Service Worker</h3><p>Este app já registra o service worker para funcionar como PWA.</p><pre>navigator.serviceWorker.register("sw.js")</pre></div>
+      </div>
     </section>
 
-    <section id="publicar" class="aba">
-      <h2>8. Publicar no GitHub Pages</h2>
-      <ol><li>Entre no repositório.</li><li>Clique em <strong>Add file</strong>.</li><li>Clique em <strong>Upload files</strong>.</li><li>Arraste <strong>index.html</strong>, <strong>manifest.json</strong>, <strong>sw.js</strong> e a pasta <strong>assets</strong>.</li><li>Clique em <strong>Commit changes</strong>.</li><li>Vá em <strong>Settings</strong>.</li><li>Clique em <strong>Pages</strong>.</li><li>Em Branch, selecione <strong>main</strong>.</li><li>Em Folder, selecione <strong>/root</strong>.</li><li>Clique em <strong>Save</strong>.</li><li>Abra o link no celular e teste.</li></ol>
+    <section id="acessibilidade" class="screen">
+      <h2>Acessibilidade 60+ e Libras</h2>
+      <p>Este app possui fonte ajustável, modo escuro, alto contraste, botões grandes, textos alternativos e integração com VLibras para apoio em Língua Brasileira de Sinais.</p>
+      <div class="toolbar">
+        <button onclick="increaseFont()">Aumentar fonte A+</button>
+        <button onclick="decreaseFont()">Diminuir fonte A-</button>
+        <button onclick="toggleDark()">Modo escuro</button>
+        <button onclick="toggleContrast()">Alto contraste</button>
+        <button onclick="playAmbient()">Som ambiente</button>
+        <button onclick="stopAmbient()">Parar som</button>
+      </div>
+      <div class="grid">
+        <article class="card"><h3>Para idosos 60+</h3><ul><li>Fonte grande</li><li>Botões grandes</li><li>Contraste forte</li><li>Pouco texto por tela</li><li>Sem tempo obrigatório</li><li>Feedback positivo</li></ul></article>
+        <article class="card"><h3>Língua de sinais</h3><p>O VLibras aparece na lateral da página. Ao publicar online, ele permite tradução de conteúdos para Libras.</p></article>
+        <article class="card"><h3>Boas práticas</h3><ul><li>Usar frases curtas</li><li>Evitar poluição visual</li><li>Não depender apenas do som</li><li>Usar alt em imagens</li><li>Permitir voltar e reiniciar</li></ul></article>
+      </div>
     </section>
 
-    <section id="acessibilidade" class="aba">
-      <h2>9. Acessibilidade 60+</h2>
-      <div class="controles"><button onclick="aumentarFonte()">A+</button><button onclick="diminuirFonte()">A-</button><button onclick="modoEscuro()">Modo escuro</button><button onclick="altoContraste()">Alto contraste</button><button onclick="tocarAmbiente()">Som ambiente</button><button onclick="pararAmbiente()">Parar som</button></div>
-      <ul><li>Fonte grande.</li><li>Botões grandes.</li><li>Contraste bom.</li><li>Linguagem simples.</li><li>Instruções curtas.</li><li>Áudio opcional.</li><li>Sem tempo obrigatório.</li><li>Feedback positivo.</li><li>Textos alternativos nas imagens.</li></ul>
+    <section id="checklist" class="screen">
+      <h2>Checklist final</h2>
+      <div id="checklistBox"></div>
     </section>
 
-    <section id="checklist" class="aba"><h2>10. Checklist</h2><div id="listaChecklist"></div></section>
-
-    <section id="relatorio" class="aba">
-      <h2>11. Relatório Científico</h2>
-      <label>Nome do grupo</label><input id="grupo"><label>Integrantes</label><textarea id="integrantes"></textarea><label>Nome do jogo</label><input id="nomeJogo"><label>Tipo de jogo</label><input id="tipoJogo"><label>Objetivo geral</label><textarea id="objetivoGeral"></textarea><label>Justificativa extensionista</label><textarea id="justificativa"></textarea><label>Público-alvo</label><input id="publico"><label>Metodologia</label><textarea id="metodologia"></textarea><label>Acessibilidade</label><textarea id="acessibilidadeCampo"></textarea><label>Link do GitHub Pages</label><input id="linkGithub"><label>Prints do GitHub, jogo ou testes</label><input type="file" id="prints" accept="image/*" multiple><label>Dificuldades encontradas</label><textarea id="dificuldades"></textarea><label>Soluções adotadas</label><textarea id="solucoes"></textarea><label>Conclusão</label><textarea id="conclusao"></textarea>
-      <div class="controles"><button onclick="neuroAjuda()">Neuro Guia me ajuda</button><button onclick="gerarRelatorio()">Gerar relatório</button><button onclick="gerarPDF()">Gerar PDF</button><button onclick="limparFormulario()">Limpar formulário</button></div><div id="relatorioFinal" class="relatorio-preview"></div>
+    <section id="relatorio" class="screen">
+      <h2>Relatório científico com ajuda do Neuro Guia</h2>
+      <p>Preencha o que souber. Depois clique em <strong>Neuro Guia me ajuda</strong> para completar os campos vazios com linguagem acadêmica simples.</p>
+      <div class="grid">
+        <div><label>Nome do grupo</label><input id="grupo"></div>
+        <div><label>Nome do jogo</label><input id="nomeJogo"></div>
+        <div><label>Tipo de jogo</label><input id="tipoJogo"></div>
+        <div><label>Link do GitHub Pages</label><input id="linkGithub" placeholder="https://usuario.github.io/repositorio/"></div>
+      </div>
+      <label>Nomes dos integrantes</label><textarea id="integrantes"></textarea>
+      <label>Resumo</label><textarea id="resumo"></textarea>
+      <label>Introdução</label><textarea id="introducao"></textarea>
+      <label>Justificativa extensionista</label><textarea id="justificativa"></textarea>
+      <label>Objetivo geral</label><textarea id="objetivoGeral"></textarea>
+      <label>Objetivos específicos</label><textarea id="objetivosEspecificos"></textarea>
+      <label>Público-alvo</label><textarea id="publico"></textarea>
+      <label>Conteúdo abordado</label><textarea id="conteudo"></textarea>
+      <label>Metodologia de desenvolvimento</label><textarea id="metodologiaDev"></textarea>
+      <label>Metodologia de aplicação com o público 60+</label><textarea id="metodologiaAplicacao"></textarea>
+      <label>Recursos visuais utilizados</label><textarea id="recursosVisuais"></textarea>
+      <label>Recursos sonoros utilizados</label><textarea id="recursosSonoros"></textarea>
+      <label>Recursos de acessibilidade</label><textarea id="recursosAcessibilidade"></textarea>
+      <label>Critérios de avaliação/teste</label><textarea id="criterios"></textarea>
+      <label>Dificuldades encontradas</label><textarea id="dificuldades"></textarea>
+      <label>Soluções adotadas</label><textarea id="solucoes"></textarea>
+      <label>Resultados esperados</label><textarea id="resultados"></textarea>
+      <label>Conclusão</label><textarea id="conclusao"></textarea>
+      <label>Referências</label><textarea id="referencias"></textarea>
+      <label>Upload de prints do GitHub, jogo e testes</label><input type="file" id="prints" accept="image/*" multiple>
+      <div class="toolbar no-print">
+        <button onclick="neuroFillReport()">Neuro Guia me ajuda</button>
+        <button onclick="generateReport()">Gerar relatório</button>
+        <button onclick="downloadPDF()">Baixar PDF</button>
+        <button onclick="clearReport()">Limpar formulário</button>
+      </div>
+      <div id="reportOutput" class="report" aria-live="polite"></div>
     </section>
   </main>
 
-  <div id="painelNeuro" class="painel-neuro"><h3>Neuro Guia</h3><p>Olá! Siga a Jornada do Aluno. Eu posso ajudar você a escolher o jogo, copiar o prompt e preencher o relatório.</p><button onclick="abrirAba('jornada')">Ver jornada</button><button onclick="abrirAba('relatorio')">Ir ao relatório</button></div>
-  <div class="neuro"><img src="assets/img/robo-neuro.png" alt="Neuro Guia" onclick="abrirNeuro()"></div>
+  <div id="robotPanel" class="robot-panel no-print">
+    <h3>🤖 Neuro Guia</h3>
+    <p>Estou aqui para orientar a Semana 5. Posso abrir a jornada, gerar prompts e preencher o relatório científico com exemplos.</p>
+    <div class="toolbar"><button onclick="openTab('jornada')">Ver jornada</button><button onclick="openTab('relatorio')">Relatório</button><button onclick="neuroFillReport()">Preencher relatório</button></div>
+  </div>
+  <div class="robot no-print">
+    <button onclick="toggleRobot()" aria-label="Abrir ajuda do Neuro Guia"><img src="assets/img/robo-neuro.png" alt="Neuro Guia"></button>
+  </div>
+
+  <div vw class="enabled no-print">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>try { new window.VLibras.Widget('https://vlibras.gov.br/app'); } catch(e) {}</script>
 
   <script>
-    const somClique=document.getElementById('somClique'),somSucesso=document.getElementById('somSucesso'),somErro=document.getElementById('somErro'),somVitoria=document.getElementById('somVitoria'),somAmbiente=document.getElementById('somAmbiente');
-    document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>tocarSom(somClique)));
-    function tocarSom(a){try{a.currentTime=0;a.play()}catch(e){}}
-    function abrirAba(id){document.querySelectorAll('.aba').forEach(a=>a.classList.remove('ativa'));document.getElementById(id).classList.add('ativa');window.scrollTo({top:0,behavior:'smooth'})}
-    function tocarAmbiente(){somAmbiente.volume=.35;somAmbiente.play()}function pararAmbiente(){somAmbiente.pause();somAmbiente.currentTime=0}function abrirNeuro(){document.getElementById('painelNeuro').classList.toggle('ativo')}
-    let tamanhoFonte=18;function aumentarFonte(){tamanhoFonte+=2;document.documentElement.style.setProperty('--fonte',tamanhoFonte+'px')}function diminuirFonte(){if(tamanhoFonte>16)tamanhoFonte-=2;document.documentElement.style.setProperty('--fonte',tamanhoFonte+'px')}function modoEscuro(){document.body.classList.toggle('modo-escuro')}function altoContraste(){document.body.classList.toggle('alto-contraste')}
-    function escolherJogo(tipo){const prompts={
-      memoria:`Crie um jogo da memória educativo, acessível e responsivo em HTML, CSS e JavaScript puro, sem backend, sem banco de dados e sem frameworks. Público-alvo: pessoas 60+. Tema: neuroanatomia educativa. Regras: criar 10 imagens diferentes; cada imagem aparece 2 vezes; total de 20 cartas; cartas grandes e arredondadas; botão iniciar; botão reiniciar; pontuação; mensagem final; som de clique; som de sucesso ao formar par; som de erro ao errar; som de vitória ao finalizar. Usar imagens da pasta assets/img e sons da pasta assets/audio. Acessibilidade: fonte grande, botões grandes, alto contraste, modo escuro, textos simples, instruções curtas, sem limite obrigatório de tempo e feedback positivo. Visual: anime fofo, azul, ciano, roxo, branco e dourado suave. Entregue um único index.html completo.`,
-      sudoku:`Crie um jogo de sudoku educativo, acessível e responsivo em HTML, CSS e JavaScript puro. Público-alvo: pessoas 60+. Regras: grade simples, números grandes, espaços vazios para preencher, botão verificar, botão reiniciar, botão dica, sem tempo obrigatório, mensagens positivas e orientação simples quando precisar corrigir. Usar sons assets/audio/clique.mp3, sucesso.mp3, erro.mp3 e vitoria.mp3. Visual anime fofo, acessível, responsivo, com cores azul, ciano, roxo, branco e dourado suave. Entregue um único index.html completo.`,
-      cruzadas:`Crie um jogo de palavras cruzadas educativo, acessível e responsivo em HTML, CSS e JavaScript puro. Público-alvo: pessoas 60+. Tema: neuroanatomia básica. Regras: 5 a 8 palavras, dicas curtas, letras grandes, botão verificar, botão reiniciar, feedback positivo e sem tempo obrigatório. Usar sons da pasta assets/audio e imagens da pasta assets/img. Incluir fonte ampliada, alto contraste, modo escuro e botões grandes. Entregue um único index.html completo.`,
-      quiz:`Crie um quiz educativo, acessível e responsivo em HTML, CSS e JavaScript puro. Público-alvo: pessoas 60+. Tema: neuroanatomia básica. Regras: 5 a 10 perguntas, 3 ou 4 alternativas em botões grandes, feedback de acerto e erro, explicação simples após cada resposta, pontuação, tela final e botão reiniciar. Usar imagens assets/img e sons assets/audio. Incluir fonte grande, alto contraste, modo escuro e linguagem simples. Entregue um único index.html completo.`,
-      cartas:`Crie um jogo de cartas educativas, acessível e responsivo em HTML, CSS e JavaScript puro. Público-alvo: pessoas 60+. Tema: neuroanatomia educativa. Regras: cartas grandes com imagem, pista e conceito; botão revelar resposta; botão próxima carta; botão reiniciar; pontuação simples; mensagem final. Usar imagens assets/img e sons assets/audio. Incluir modo escuro, alto contraste, botões grandes, texto grande e sem pressão de tempo. Entregue um único index.html completo.`};
-      document.getElementById('promptJogo').value=prompts[tipo];document.getElementById('tipoJogo').value=tipo;abrirAba('prompt');tocarSom(somSucesso)}
-    function copiarPrompt(){const c=document.getElementById('promptJogo');c.select();document.execCommand('copy');alert('Prompt copiado!');tocarSom(somSucesso)}
-    const itens=['Criei a conta no GitHub','Criei o repositório','Criei a pasta Aula5-PWA','Coloquei index.html, manifest.json e sw.js','Criei assets/img','Criei assets/audio','Criei assets/icons','Substituí as imagens vazias por imagens reais','Substituí os áudios vazios por sons reais','Coloquei os ícones do PWA','Escolhi o tipo de jogo','Copiei o prompt do jogo','Gerei ou adaptei o HTML','Subi tudo no GitHub','Ativei GitHub Pages','Testei no celular','Testei no tablet','Tirei prints','Preenchi o relatório','Gerei o PDF'];
-    const lista=document.getElementById('listaChecklist');itens.forEach((item,i)=>lista.innerHTML+=`<label class="check-item"><input type="checkbox" id="check${i}"> ${item}</label>`);
-    function preencherSeVazio(id,texto){const c=document.getElementById(id);if(!c.value.trim())c.value=texto}
-    function neuroAjuda(){preencherSeVazio('objetivoGeral','O objetivo geral do jogo é favorecer a aprendizagem por meio de uma experiência lúdica, acessível e interativa, desenvolvida em formato PWA para o público 60+.');preencherSeVazio('justificativa','A atividade se relaciona à curricularização da extensão porque aproxima a universidade da comunidade, permitindo que os alunos desenvolvam materiais digitais acessíveis voltados às necessidades de aprendizagem, inclusão digital e participação social de pessoas idosas.');preencherSeVazio('publico','Pessoas idosas 60+ participantes de ações extensionistas.');preencherSeVazio('metodologia','O jogo foi desenvolvido em HTML, CSS e JavaScript, organizado como aplicativo PWA, com imagens próprias, sons de interação, botões grandes, controle de fonte, alto contraste e navegação simplificada.');preencherSeVazio('acessibilidadeCampo','Foram incluídos fonte ampliada, botões grandes, contraste visual, modo escuro, alto contraste, sons opcionais, linguagem simples, instruções curtas e feedback visual.');preencherSeVazio('conclusao','A construção do jogo permitiu integrar tecnologia, educação, extensão universitária e acessibilidade, favorecendo a criação de uma solução digital simples, inclusiva e aplicável em ações com o público 60+.');tocarSom(somSucesso)}
-    function arquivoParaBase64(file){return new Promise(resolve=>{const r=new FileReader();r.onload=e=>resolve(e.target.result);r.readAsDataURL(file)})}
-    async function gerarRelatorio(){const g=id=>document.getElementById(id).value||'Não informado.';const prints=document.getElementById('prints').files;let htmlPrints='<h2>14. Evidências com prints</h2>';if(!prints.length)htmlPrints+='<p>Nenhum print enviado.</p>';else{for(const file of prints){const b=await arquivoParaBase64(file);htmlPrints+=`<img src="${b}" alt="Print enviado pelo aluno">`}}document.getElementById('relatorioFinal').innerHTML=`<h1>Relatório Científico — Semana 5 PWA Games 60+</h1><h2>1. Identificação</h2><p><strong>Grupo:</strong> ${g('grupo')}</p><p><strong>Integrantes:</strong> ${g('integrantes')}</p><p><strong>Nome do jogo:</strong> ${g('nomeJogo')}</p><p><strong>Tipo de jogo:</strong> ${g('tipoJogo')}</p><h2>2. Introdução</h2><p>Este relatório apresenta o desenvolvimento de um jogo educativo em formato PWA, criado com HTML, CSS e JavaScript, voltado ao público 60+.</p><h2>3. Justificativa extensionista</h2><p>${g('justificativa')}</p><h2>4. Objetivo geral</h2><p>${g('objetivoGeral')}</p><h2>5. Público-alvo</h2><p>${g('publico')}</p><h2>6. Metodologia</h2><p>${g('metodologia')}</p><h2>7. Acessibilidade</h2><p>${g('acessibilidadeCampo')}</p><h2>8. GitHub Pages</h2><p>${g('linkGithub')}</p>${htmlPrints}<h2>15. Dificuldades encontradas</h2><p>${g('dificuldades')}</p><h2>16. Soluções adotadas</h2><p>${g('solucoes')}</p><h2>17. Conclusão</h2><p>${g('conclusao')}</p>`;tocarSom(somVitoria)}
-    async function gerarPDF(){await gerarRelatorio();html2pdf().set({margin:10,filename:'relatorio-semana5-pwa-games-60mais.pdf',image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['avoid-all','css','legacy']}}).from(document.getElementById('relatorioFinal')).save()}
-    function limparFormulario(){document.querySelectorAll('#relatorio input,#relatorio textarea').forEach(c=>c.value='');document.getElementById('relatorioFinal').innerHTML='';tocarSom(somErro)}
-    if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js')}
+    const $ = id => document.getElementById(id);
+    const sounds = {
+      click: $('somClique'), success: $('somSucesso'), error: $('somErro'), victory: $('somVitoria'), ambient: $('somAmbiente')
+    };
+    let deferredPrompt = null;
+    let fontSize = 18;
+    let selectedGame = '';
+
+    document.addEventListener('click', e => { if (e.target.closest('button')) playSound(sounds.click); });
+
+    function playSound(audio) { try { audio.currentTime = 0; audio.play(); } catch(e){} }
+    function playAmbient(){ sounds.ambient.volume = .32; sounds.ambient.play(); }
+    function stopAmbient(){ sounds.ambient.pause(); sounds.ambient.currentTime = 0; }
+
+    function openTab(id){
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      $(id).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+    function toggleRobot(){ $('robotPanel').classList.toggle('active'); }
+    function increaseFont(){ fontSize = Math.min(28, fontSize + 2); document.documentElement.style.setProperty('--font-size', fontSize + 'px'); }
+    function decreaseFont(){ fontSize = Math.max(16, fontSize - 2); document.documentElement.style.setProperty('--font-size', fontSize + 'px'); }
+    function toggleDark(){ document.body.classList.toggle('dark-mode'); }
+    function toggleContrast(){ document.body.classList.toggle('high-contrast'); }
+
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault(); deferredPrompt = e;
+      $('installBtn').hidden = false;
+      $('installBtn2').hidden = false;
+    });
+    async function installApp(){
+      if (!deferredPrompt) { alert('Se o botão nativo não aparecer, abra o app publicado no Chrome/Edge e use “Adicionar à tela inicial” ou “Instalar app”.'); return; }
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+    }
+
+    const prompts = {
+      memoria: `Crie um jogo da memória educativo, acessível e responsivo em HTML, CSS e JavaScript puro, sem backend, sem banco de dados e sem frameworks.
+
+Público-alvo: pessoas 60+.
+Tema: conteúdo educativo escolhido pelo grupo.
+
+Regras obrigatórias:
+- Criar 10 imagens diferentes para o jogo.
+- Cada imagem deve aparecer 2 vezes.
+- O jogo terá 20 cartas no total.
+- As cartas devem ser grandes, arredondadas e fáceis de tocar no celular.
+- Ter botão iniciar, botão reiniciar, contador de tentativas, pontuação e mensagem final.
+- Tocar assets/audio/clique.mp3 ao clicar.
+- Tocar assets/audio/sucesso.mp3 quando formar par.
+- Tocar assets/audio/erro.mp3 quando errar.
+- Tocar assets/audio/vitoria.mp3 ao finalizar.
+- Usar imagens da pasta assets/img.
+
+Acessibilidade:
+- fonte grande;
+- botões grandes;
+- alto contraste;
+- modo escuro;
+- textos simples;
+- instruções curtas;
+- sem limite obrigatório de tempo;
+- feedback positivo;
+- adequado para idosos.
+
+Visual:
+- estilo anime fofo;
+- cores azul, ciano, roxo, branco e dourado suave;
+- cards 3D;
+- fundo imersivo;
+- layout responsivo para celular, tablet e computador.
+
+Entregue o código completo em um único arquivo index.html.`,
+      sudoku: `Crie um jogo de sudoku educativo, acessível e responsivo em HTML, CSS e JavaScript puro, sem backend, sem banco de dados e sem frameworks.
+
+Público-alvo: pessoas 60+.
+
+Regras obrigatórias:
+- Criar uma grade de sudoku simples.
+- Usar números grandes e bem legíveis.
+- O aluno deve preencher espaços vazios.
+- Criar botão Verificar, botão Reiniciar e botão Dica.
+- Não usar tempo obrigatório.
+- Mostrar mensagem positiva quando o aluno acertar.
+- Mostrar orientação simples quando precisar corrigir.
+- Usar sons da pasta assets/audio: clique.mp3, sucesso.mp3, erro.mp3 e vitoria.mp3.
+
+Acessibilidade:
+- fonte grande;
+- contraste forte;
+- botões grandes;
+- instruções curtas;
+- linguagem simples;
+- sem pressão de tempo;
+- modo escuro;
+- alto contraste.
+
+Visual:
+- estilo anime fofo;
+- cores azul, ciano, roxo, branco e dourado suave;
+- visual acolhedor para idosos;
+- layout responsivo.
+
+Entregue o código completo em um único arquivo index.html.`,
+      cruzadas: `Crie um jogo de palavras cruzadas educativo, acessível e responsivo em HTML, CSS e JavaScript puro, sem backend, sem banco de dados e sem frameworks.
+
+Público-alvo: pessoas 60+.
+
+Regras obrigatórias:
+- Criar palavras cruzadas simples com 5 a 8 palavras.
+- Criar dicas curtas e fáceis de entender.
+- Usar letras grandes.
+- Criar botão Verificar e botão Reiniciar.
+- Mostrar feedback positivo.
+- Não usar tempo obrigatório.
+- Usar sons da pasta assets/audio: clique.mp3, sucesso.mp3, erro.mp3 e vitoria.mp3.
+
+Acessibilidade:
+- fonte ampliada;
+- letras grandes;
+- botões grandes;
+- alto contraste;
+- instruções curtas;
+- linguagem simples;
+- feedback visual e sonoro opcional.
+
+Visual:
+- estilo anime fofo;
+- cores azul, ciano, roxo, branco e dourado suave;
+- fundo acolhedor;
+- layout responsivo.
+
+Entregue o código completo em um único arquivo index.html.`,
+      quiz: `Crie um quiz educativo, acessível e responsivo em HTML, CSS e JavaScript puro, sem backend, sem banco de dados e sem frameworks.
+
+Público-alvo: pessoas 60+.
+
+Regras obrigatórias:
+- Criar de 5 a 10 perguntas.
+- Cada pergunta deve ter 3 ou 4 alternativas.
+- As alternativas devem aparecer em botões grandes.
+- Mostrar se o aluno acertou ou errou.
+- Mostrar explicação simples após cada resposta.
+- Criar pontuação, tela final e botão Reiniciar.
+- Usar imagens da pasta assets/img.
+- Usar sons da pasta assets/audio: clique.mp3, sucesso.mp3, erro.mp3 e vitoria.mp3.
+
+Acessibilidade:
+- fonte grande;
+- botões grandes;
+- contraste adequado;
+- linguagem simples;
+- sem tempo obrigatório;
+- feedback positivo;
+- modo escuro;
+- alto contraste.
+
+Visual:
+- estilo anime fofo;
+- moderno;
+- acolhedor;
+- cores azul, ciano, roxo, branco e dourado suave;
+- responsivo para celular, tablet e computador.
+
+Entregue o código completo em um único arquivo index.html.`,
+      cartas: `Crie um jogo de cartas educativas, acessível e responsivo em HTML, CSS e JavaScript puro, sem backend, sem banco de dados e sem frameworks.
+
+Público-alvo: pessoas 60+.
+
+Regras obrigatórias:
+- Criar cartas grandes.
+- Cada carta deve ter imagem, pista e conceito.
+- O aluno deve associar conceito e imagem.
+- Criar botão Revelar resposta, botão Próxima carta e botão Reiniciar.
+- Criar pontuação simples e mensagem final.
+- Usar imagens da pasta assets/img.
+- Usar sons da pasta assets/audio: clique.mp3, sucesso.mp3, erro.mp3 e vitoria.mp3.
+
+Acessibilidade:
+- cartas grandes;
+- texto grande;
+- linguagem simples;
+- contraste forte;
+- modo escuro;
+- alto contraste;
+- sons opcionais;
+- sem pressão de tempo.
+
+Visual:
+- estilo anime fofo;
+- cards 3D;
+- cores azul, ciano, roxo, branco e dourado suave;
+- layout responsivo.
+
+Entregue o código completo em um único arquivo index.html.`
+    };
+
+    const gameNames = { memoria:'Jogo da Memória', sudoku:'Sudoku Educativo', cruzadas:'Palavras Cruzadas', quiz:'Quiz Educativo', cartas:'Cartas Educativas' };
+    function chooseGame(type){ selectedGame = type; $('gamePrompt').value = prompts[type]; $('tipoJogo').value = gameNames[type]; openTab('jogos'); playSound(sounds.success); }
+    function copyGamePrompt(){ $('gamePrompt').select(); document.execCommand('copy'); alert('Prompt copiado!'); playSound(sounds.success); }
+    function fillReportFromGame(){ if(selectedGame){ $('tipoJogo').value = gameNames[selectedGame]; $('nomeJogo').value ||= gameNames[selectedGame] + ' 60+'; neuroFillReport(); openTab('relatorio'); } }
+
+    const checklist = ['Criei conta no GitHub','Criei o repositório público','Criei index.html','Criei manifest.json','Criei sw.js','Criei assets/img','Criei assets/audio','Criei assets/icons','Substituí imagens vazias por imagens reais','Substituí sons vazios por sons reais','Criei icon-192.png e icon-512.png','Escolhi o jogo do grupo','Copiei o prompt do jogo','Gerei o HTML do jogo','Testei imagens e sons','Ativei GitHub Pages','Testei no celular','Testei no tablet','Usei A+, A-, escuro e alto contraste','Testei VLibras','Tirei prints','Gerei o relatório','Baixei o PDF'];
+    checklist.forEach((item,i)=> $('checklistBox').insertAdjacentHTML('beforeend', `<label class="check-item"><input type="checkbox"> ${i+1}. ${item}</label>`));
+
+    function fillIfEmpty(id, text){ if(!$(id).value.trim()) $(id).value = text; }
+    function neuroFillReport(){
+      fillIfEmpty('grupo','Grupo Neuro PWA Games 60+');
+      fillIfEmpty('nomeJogo', selectedGame ? gameNames[selectedGame] + ' 60+' : 'Jogo Educativo PWA 60+');
+      fillIfEmpty('tipoJogo', selectedGame ? gameNames[selectedGame] : 'Jogo educativo acessível em PWA');
+      fillIfEmpty('integrantes','Inserir os nomes completos dos integrantes do grupo.');
+      fillIfEmpty('resumo','Este relatório apresenta o desenvolvimento de um jogo educativo em formato PWA, criado com HTML, CSS e JavaScript, voltado ao público 60+. A proposta integra aprendizagem, tecnologia, acessibilidade e curricularização da extensão, permitindo que estudantes desenvolvam uma solução digital simples, responsiva e aplicável em ações com a comunidade.');
+      fillIfEmpty('introducao','A curricularização da extensão propõe a aproximação entre universidade e sociedade por meio de práticas formativas que respondam a demandas reais da comunidade. Nesse contexto, o desenvolvimento de jogos educativos em formato PWA possibilita a criação de materiais digitais acessíveis, interativos e de fácil distribuição. A Semana 5 marca a passagem da ideia inicial para a organização prática do aplicativo, incluindo estrutura de pastas, assets, GitHub, acessibilidade, publicação e documentação científica.');
+      fillIfEmpty('justificativa','A atividade se justifica por promover inclusão digital, aprendizagem ativa e participação social de pessoas idosas. Ao desenvolver um jogo educativo acessível para o público 60+, os alunos aplicam conhecimentos técnicos e pedagógicos em uma proposta extensionista, aproximando o conteúdo acadêmico de necessidades concretas da comunidade. O projeto também favorece autonomia, criatividade, comunicação científica e responsabilidade social.');
+      fillIfEmpty('objetivoGeral','Desenvolver um jogo educativo acessível, responsivo e instalável em formato PWA, utilizando HTML, CSS e JavaScript, com foco em aprendizagem, inclusão digital e participação do público 60+ em ações de curricularização da extensão.');
+      fillIfEmpty('objetivosEspecificos','Organizar corretamente os arquivos do projeto em pastas; criar ou selecionar imagens, sons e ícones; desenvolver uma interface com botões grandes e linguagem simples; implementar recursos de acessibilidade; publicar o projeto no GitHub Pages; testar o aplicativo em diferentes dispositivos; registrar evidências e elaborar relatório científico.');
+      fillIfEmpty('publico','O público-alvo é composto por pessoas idosas com 60 anos ou mais, especialmente participantes de ações educativas, oficinas de inclusão digital, projetos extensionistas ou atividades de aprendizagem mediadas por tecnologias digitais.');
+      fillIfEmpty('conteudo','O conteúdo trabalhado depende do tema escolhido pelo grupo e pode envolver neuroanatomia básica, memória, atenção, linguagem, raciocínio lógico, vocabulário, conceitos de saúde, cidadania digital ou outros temas educativos adequados ao público 60+.');
+      fillIfEmpty('metodologiaDev','O desenvolvimento foi realizado com HTML, CSS e JavaScript puro, sem backend, sem banco de dados e sem frameworks. O projeto foi organizado como PWA, contendo index.html, manifest.json, sw.js e a pasta assets com imagens, sons e ícones. A interface foi construída com cards, botões grandes, layout responsivo, feedback visual e sonoro, além de recursos como controle de fonte, modo escuro, alto contraste e suporte a Libras por meio do VLibras.');
+      fillIfEmpty('metodologiaAplicacao','A aplicação com o público 60+ deve ocorrer de forma mediada, acolhedora e sem pressão de tempo. Inicialmente, o mediador apresenta o objetivo do jogo e demonstra os botões principais. Em seguida, os participantes utilizam o aplicativo em celular, tablet ou computador, podendo pedir ajuda quando necessário. Ao final, são observadas dificuldades de navegação, compreensão das instruções, legibilidade, uso dos sons e percepção de acessibilidade.');
+      fillIfEmpty('recursosVisuais','Foram utilizados fundo ilustrado, cards visuais, imagens temáticas para os jogos, ícones de PWA, personagem flutuante Neuro Guia, botões arredondados, cores azul, ciano, roxo, branco e dourado suave, além de organização visual responsiva para diferentes tamanhos de tela.');
+      fillIfEmpty('recursosSonoros','Foram previstos sons de clique, sucesso, erro, vitória e som ambiente opcional. Os sons devem ser curtos, suaves e utilizados como apoio à interação, sem tornar o áudio obrigatório para compreensão da atividade.');
+      fillIfEmpty('recursosAcessibilidade','O projeto inclui fonte ampliável, botões grandes, bom contraste, modo escuro, modo alto contraste, textos alternativos nas imagens, navegação por abas, linguagem simples, instruções curtas, ausência de tempo obrigatório, feedback positivo, sons opcionais e integração com VLibras para apoio em Língua Brasileira de Sinais.');
+      fillIfEmpty('criterios','Os testes devem observar se o aplicativo abre corretamente no GitHub Pages, se imagens e sons carregam, se os botões funcionam, se o layout é responsivo, se o PWA pode ser instalado, se a fonte pode ser ampliada, se o alto contraste funciona, se o VLibras aparece e se uma pessoa 60+ consegue compreender as instruções principais.');
+      fillIfEmpty('dificuldades','As principais dificuldades podem envolver organização das pastas, nomes de arquivos com letras maiúsculas e minúsculas, carregamento de imagens, escolha de sons adequados, publicação no GitHub Pages, adaptação do layout para celular e compreensão dos requisitos de acessibilidade.');
+      fillIfEmpty('solucoes','As soluções adotadas envolveram padronização dos nomes dos arquivos, criação de checklist, testes em diferentes dispositivos, uso de linguagem simples, revisão dos caminhos no HTML, aplicação de recursos de acessibilidade e ajustes visuais para melhorar legibilidade e navegação.');
+      fillIfEmpty('resultados','Espera-se que o projeto resulte em um aplicativo educativo funcional, acessível, responsivo e instalável, capaz de apoiar ações extensionistas com o público 60+. Também se espera que os alunos desenvolvam competências em programação básica, organização de projetos digitais, acessibilidade, publicação web e comunicação científica.');
+      fillIfEmpty('conclusao','A construção do jogo permitiu integrar tecnologia, educação, extensão universitária e acessibilidade. O projeto contribui para a formação dos alunos ao transformar conhecimentos técnicos em uma solução digital aplicável à comunidade, valorizando o público 60+ e promovendo experiências de aprendizagem mais inclusivas, lúdicas e participativas.');
+      fillIfEmpty('referencias','BRASIL. Lei nº 13.146, de 6 de julho de 2015. Lei Brasileira de Inclusão da Pessoa com Deficiência.\nW3C. Web Content Accessibility Guidelines — WCAG.\nGitHub Docs. GitHub Pages Documentation.\nDocumentação MDN Web Docs sobre Progressive Web Apps.');
+      playSound(sounds.success);
+    }
+
+    function fileToDataURL(file){ return new Promise(resolve => { const r = new FileReader(); r.onload = e => resolve(e.target.result); r.readAsDataURL(file); }); }
+    async function printsHTML(){
+      const files = $('prints').files; let html = '<h2>14. Evidências com prints</h2>';
+      if(!files.length) return html + '<p>Nenhum print foi anexado até o momento.</p>';
+      for(const file of files){ const src = await fileToDataURL(file); html += `<img src="${src}" alt="Print anexado como evidência do projeto">`; }
+      return html;
+    }
+    async function generateReport(){
+      const g = id => $(id).value.trim() || 'Não informado.';
+      const prints = await printsHTML();
+      $('reportOutput').innerHTML = `<h1>Relatório Científico — Semana 5 PWA Games 60+</h1>
+      <h2>1. Identificação</h2><p><strong>Grupo:</strong> ${g('grupo')}</p><p><strong>Integrantes:</strong> ${g('integrantes')}</p><p><strong>Nome do jogo:</strong> ${g('nomeJogo')}</p><p><strong>Tipo de jogo:</strong> ${g('tipoJogo')}</p>
+      <h2>2. Resumo</h2><p>${g('resumo')}</p>
+      <h2>3. Introdução</h2><p>${g('introducao')}</p>
+      <h2>4. Justificativa extensionista</h2><p>${g('justificativa')}</p>
+      <h2>5. Objetivo geral</h2><p>${g('objetivoGeral')}</p>
+      <h2>6. Objetivos específicos</h2><p>${g('objetivosEspecificos')}</p>
+      <h2>7. Público-alvo</h2><p>${g('publico')}</p>
+      <h2>8. Conteúdo abordado</h2><p>${g('conteudo')}</p>
+      <h2>9. Metodologia de desenvolvimento</h2><p>${g('metodologiaDev')}</p>
+      <h2>10. Metodologia de aplicação</h2><p>${g('metodologiaAplicacao')}</p>
+      <h2>11. Recursos visuais</h2><p>${g('recursosVisuais')}</p>
+      <h2>12. Recursos sonoros</h2><p>${g('recursosSonoros')}</p>
+      <h2>13. Acessibilidade</h2><p>${g('recursosAcessibilidade')}</p>
+      <h2>14. Publicação no GitHub Pages</h2><p>${g('linkGithub')}</p>
+      ${prints}
+      <h2>15. Critérios de avaliação/teste</h2><p>${g('criterios')}</p>
+      <h2>16. Dificuldades encontradas</h2><p>${g('dificuldades')}</p>
+      <h2>17. Soluções adotadas</h2><p>${g('solucoes')}</p>
+      <h2>18. Resultados esperados</h2><p>${g('resultados')}</p>
+      <h2>19. Conclusão</h2><p>${g('conclusao')}</p>
+      <h2>20. Referências</h2><p>${g('referencias').replace(/\n/g,'<br>')}</p>`;
+      playSound(sounds.victory);
+    }
+    async function downloadPDF(){
+      await generateReport();
+      const opt = { margin: 10, filename: 'relatorio-semana5-pwa-games-60mais.pdf', image: { type:'jpeg', quality:.98 }, html2canvas: { scale:2, useCORS:true }, jsPDF: { unit:'mm', format:'a4', orientation:'portrait' }, pagebreak: { mode:['avoid-all','css','legacy'] } };
+      html2pdf().set(opt).from($('reportOutput')).save();
+    }
+    function clearReport(){ document.querySelectorAll('#relatorio input, #relatorio textarea').forEach(el => el.value = ''); $('reportOutput').innerHTML=''; playSound(sounds.error); }
+
+    if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js').catch(()=>{}); }
   </script>
 </body>
 </html>
