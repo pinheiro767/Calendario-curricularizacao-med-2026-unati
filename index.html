@@ -4,24 +4,111 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#6c5ce7" />
-  <title>Semana 5 — PWA Games 60+</title>
+  <title>Neuro Games Studio 60+ | Semana 5</title>
   <link rel="manifest" href="manifest.json" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <style>
-    :root{--bg:#eef7ff;--txt:#172033;--card:rgba(255,255,255,.88);--primary:#6c5ce7;--cyan:#5ee7ff;--gold:#ffe082;--shadow:0 24px 70px rgba(25,30,90,.26);--fs:18px;--radius:30px}
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:var(--fs);color:var(--txt);background:#5ba7f2;background-image:linear-gradient(130deg,rgba(33,150,243,.72),rgba(108,92,231,.82),rgba(94,231,255,.5)),url('assets/img/fundo-neuro.png');background-size:cover;background-position:center;background-attachment:fixed;min-height:100vh} body::before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 15% 10%,rgba(255,255,255,.45),transparent 20%),radial-gradient(circle at 80% 30%,rgba(255,224,130,.35),transparent 22%);z-index:-1}.skip{position:absolute;left:-999px}.skip:focus{left:20px;top:20px;background:#000;color:#fff;padding:12px;z-index:999}.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.24);backdrop-filter:blur(15px);border-bottom:1px solid rgba(255,255,255,.35)}header{max-width:1250px;margin:auto;padding:22px 18px;color:#fff;text-align:center}h1{font-size:clamp(2rem,5vw,4.5rem);margin:.2rem 0;text-shadow:0 6px 18px rgba(0,0,0,.28)}header p{max-width:980px;margin:auto;font-size:1.15rem}.controls,nav{max-width:1250px;margin:auto;padding:10px 14px;display:flex;gap:10px;overflow-x:auto}button,.btn{border:0;border-radius:999px;padding:14px 20px;font-weight:800;font-size:1rem;min-height:54px;cursor:pointer;background:linear-gradient(135deg,#fff,var(--gold));color:#172033;box-shadow:0 9px 24px rgba(0,0,0,.2);transition:.2s;white-space:nowrap}button:hover,button:focus{transform:translateY(-3px);outline:4px solid rgba(255,255,255,.85)}main{max-width:1250px;margin:auto;padding:22px}.aba{display:none;background:var(--card);border:1px solid rgba(255,255,255,.55);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px;backdrop-filter:blur(14px);margin-bottom:120px}.aba.ativa{display:block;animation:show .35s ease}@keyframes show{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}h2,h3{color:#4431a8}.hero{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}.hero img,.card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:28px;background:linear-gradient(135deg,#dff8ff,#fff5c7)}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}.card{background:rgba(255,255,255,.9);border-radius:28px;padding:20px;box-shadow:0 20px 45px rgba(68,58,180,.22);border:1px solid rgba(255,255,255,.75);transform-style:preserve-3d}.card:hover{transform:rotateX(3deg) rotateY(-3deg) translateY(-5px)}pre,.code{background:#111a38;color:#eaf7ff;border-radius:20px;padding:18px;overflow:auto;line-height:1.55}li{margin:9px 0}label{font-weight:800;color:#28306b}input,textarea,select{width:100%;border:2px solid #aebcff;border-radius:18px;padding:14px;font-size:1rem;margin:8px 0 16px;background:#fff}textarea{min-height:115px}.check{display:block;background:rgba(255,255,255,.78);border-radius:16px;padding:12px;margin:9px 0}.neuro{position:fixed;right:18px;bottom:18px;z-index:50;text-align:center}.neuro img{width:96px;height:96px;object-fit:contain;background:#fff;border-radius:50%;border:5px solid #fff;box-shadow:var(--shadow);cursor:pointer;animation:float 3s ease-in-out infinite}@keyframes float{50%{transform:translateY(-12px)}}.panel{display:none;position:fixed;right:18px;bottom:130px;z-index:51;width:min(370px,calc(100vw - 36px));background:#fff;border-radius:28px;padding:20px;box-shadow:var(--shadow)}.panel.ativa{display:block}.report{background:#fff;color:#111;border-radius:14px;padding:28px;margin-top:20px;line-height:1.55}.report h1{text-shadow:none;color:#1d2550;font-size:26pt}.report h2{color:#33258b;break-after:avoid}.report p{orphans:3;widows:3}.report .print-page{page-break-before:always;break-before:page;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:260mm}.report .print-page img{width:100%;max-width:185mm;max-height:250mm;object-fit:contain;border:1px solid #ddd;border-radius:8px}.report .print-page p{font-weight:bold;text-align:center}.dark{--txt:#f5f7ff;--card:rgba(18,23,55,.92)}.contrast{background:#000!important;color:#fff!important}.contrast .aba,.contrast .card,.contrast .panel{background:#000!important;color:#fff!important;border:3px solid #ffff00}.contrast h2,.contrast h3,.contrast label{color:#ffff00}.contrast button{background:#ffff00;color:#000}.note{background:rgba(255,224,130,.45);border-left:8px solid #ffc107;padding:14px;border-radius:14px}.progress{height:16px;background:rgba(255,255,255,.5);border-radius:99px;overflow:hidden}.bar{height:100%;width:8%;background:linear-gradient(90deg,var(--cyan),var(--primary),var(--gold));transition:.3s}@media(max-width:800px){.hero{grid-template-columns:1fr}.aba{padding:20px}.neuro img{width:78px;height:78px}}
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-<a class="skip" href="#conteudo">Pular para conteúdo</a>
-<audio id="somClique" src="assets/audio/clique.mp3"></audio><audio id="somSucesso" src="assets/audio/sucesso.mp3"></audio><audio id="somErro" src="assets/audio/erro.mp3"></audio><audio id="somVitoria" src="assets/audio/vitoria.mp3"></audio><audio id="somAmbiente" src="assets/audio/ambiente.mp3" loop></audio>
-<div class="topbar"><header><h1>Semana 5 — Mão na Massa</h1><p>Guia PWA imersivo para criar, publicar, testar e relatar games educativos acessíveis para pessoas 60+.</p></header><div class="controls"><button id="installBtn" onclick="instalarApp()">Baixar app</button><button onclick="aumentarFonte()">A+</button><button onclick="diminuirFonte()">A-</button><button onclick="document.body.classList.toggle('dark')">Modo escuro</button><button onclick="document.body.classList.toggle('contrast')">Alto contraste</button><button onclick="tocarAmbiente()">Som</button><button onclick="pararAmbiente()">Parar som</button></div><nav aria-label="Abas"><button onclick="aba('inicio')">Início</button><button onclick="aba('jornada')">Jornada</button><button onclick="aba('github')">GitHub</button><button onclick="aba('pastas')">Pastas</button><button onclick="aba('imagens')">Imagens</button><button onclick="aba('sons')">Sons</button><button onclick="aba('games')">Escolher jogo</button><button onclick="aba('prompt')">Prompt HTML</button><button onclick="aba('pwa')">PWA</button><button onclick="aba('publicar')">Publicar</button><button onclick="aba('relatorio')">Relatório/PDF</button></nav></div>
-<main id="conteudo">
-<section id="inicio" class="aba ativa"><div class="hero"><img src="assets/img/capa-neuro.png" alt="Capa da Semana 5"><div><h2>Transforme a ideia do grupo em aplicativo real</h2><p>Este app guia o aluno em etapas: criar conta no GitHub, montar pastas, gerar imagens, escolher um jogo, copiar prompt para gerar HTML, buscar sons, transformar em PWA, publicar e gerar relatório científico em PDF.</p><div class="progress"><div class="bar" id="bar"></div></div><p class="note">As imagens incluídas são apenas modelos. Substitua pelos arquivos reais mantendo exatamente os mesmos nomes.</p><button onclick="aba('jornada')">Começar jornada</button></div></div></section>
-<section id="jornada" class="aba"><h2>Jornada do aluno</h2><div class="cards"><div class="card"><h3>Card 1 — Boas-vindas</h3><p>Entenda a proposta da Semana 5 e o que será entregue.</p></div><div class="card"><h3>Card 2 — Criar conta no GitHub</h3><p>Crie login, senha, usuário e confirme seu e-mail.</p></div><div class="card"><h3>Card 3 — Criar repositório</h3><p>Crie um repositório público para hospedar o jogo.</p></div><div class="card"><h3>Card 4 — Criar pastas</h3><p>Monte index.html, manifest.json, sw.js e assets/img, assets/audio, assets/icons.</p></div><div class="card"><h3>Card 5 — Colocar imagens</h3><p>Substitua as imagens modelo pelos arquivos reais com os mesmos nomes.</p></div><div class="card"><h3>Card 6 — Escolher jogo</h3><p>Escolha memória, sudoku, cruzadas, quiz ou cartas.</p></div><div class="card"><h3>Card 7 — Gerar HTML</h3><p>Copie o prompt específico do jogo escolhido e gere o index.html.</p></div><div class="card"><h3>Card 8 — Buscar sons</h3><p>Baixe sons curtos e renomeie corretamente.</p></div><div class="card"><h3>Card 9 — Transformar em PWA</h3><p>Use manifest, service worker e ícones.</p></div><div class="card"><h3>Card 10 — Publicar</h3><p>Ative GitHub Pages e teste o link.</p></div><div class="card"><h3>Card 11 — Relatório</h3><p>Preencha, anexe vários prints e baixe o PDF sem corte.</p></div></div></section>
-<section id="github" class="aba"><h2>1. Criar conta no GitHub — passo a passo</h2><div class="cards"><div class="card"><h3>Criar conta</h3><ol><li>Acesse github.com.</li><li>Clique em <b>Sign up</b>.</li><li>Digite seu e-mail.</li><li>Crie uma senha forte.</li><li>Escolha um nome de usuário simples.</li><li>Confirme o e-mail recebido.</li><li>Faça login.</li></ol></div><div class="card"><h3>Criar repositório</h3><ol><li>Clique no botão <b>+</b>.</li><li>Clique em <b>New repository</b>.</li><li>Nome: <b>Aula5-PWA</b>.</li><li>Marque <b>Public</b>.</li><li>Clique em <b>Create repository</b>.</li></ol></div><div class="card"><h3>Enviar arquivos</h3><ol><li>Clique em <b>Add file</b>.</li><li>Clique em <b>Upload files</b>.</li><li>Arraste index.html, manifest.json, sw.js e assets.</li><li>Clique em <b>Commit changes</b>.</li></ol></div></div></section>
-<section id="pastas" class="aba"><h2>2. Criar as pastas do jogo</h2><p>O HTML não guarda imagem nem som. Ele aponta para arquivos dentro das pastas. Se o nome estiver errado, a imagem não aparece.</p><pre>Aula5-PWA/
+  <div class="ambient-bg" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  <audio id="somClique" src="assets/audio/clique.mp3"></audio>
+  <audio id="somSucesso" src="assets/audio/sucesso.mp3"></audio>
+  <audio id="somErro" src="assets/audio/erro.mp3"></audio>
+  <audio id="somVitoria" src="assets/audio/vitoria.mp3"></audio>
+  <audio id="somAmbiente" src="assets/audio/ambiente.mp3" loop></audio>
+
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/img/robo-neuro.png" alt="Neuro Guia" />
+      <div>
+        <strong>Neuro Games Studio 60+</strong>
+        <small>UNATI • UEM • Oficina de Games com IA</small>
+      </div>
+    </div>
+    <div class="toolbar" aria-label="Controles de acessibilidade">
+      <button id="btnInstall" class="ghost">📱 Baixar app</button>
+      <button data-action="fontPlus">A+</button>
+      <button data-action="fontMinus">A-</button>
+      <button data-action="dark">🌙</button>
+      <button data-action="contrast">◐ Contraste</button>
+      <button data-action="spacing">↔ Espaço</button>
+      <button data-action="audio">🔊 Som</button>
+    </div>
+  </header>
+
+  <aside class="sidebar" aria-label="Navegação das etapas">
+    <div class="progress-card">
+      <p>Progresso da oficina</p>
+      <div class="progress"><div id="progressFill"></div></div>
+      <strong id="progressText">0%</strong>
+    </div>
+    <nav id="menu"></nav>
+  </aside>
+
+  <main id="conteudo" class="app-shell">
+    <section class="hero tab active" id="inicio">
+      <div class="hero-copy">
+        <span class="pill">Semana 5 — amanhã</span>
+        <h1>Hoje vamos preparar o projeto. O jogo será construído nas próximas semanas.</h1>
+        <p>O aluno vai criar conta no GitHub, montar as pastas, escolher o jogo, planejar imagens, buscar sons e deixar tudo pronto para publicar como PWA.</p>
+        <div class="hero-actions">
+          <button data-goto="github-conta">Começar pela conta GitHub</button>
+          <button id="continueBtn" class="secondary">Continuar de onde parei</button>
+          <button data-goto="cronograma" class="secondary">Ver cronograma</button>
+        </div>
+      </div>
+      <img src="assets/img/capa-neuro.png" alt="Capa principal da Semana 5" class="hero-img" />
+    </section>
+
+    <section class="tab" id="cronograma">
+      <h2>Cronograma até a entrega final</h2>
+      <div class="timeline">
+        <article><strong>Semana 5 — amanhã</strong><p>Criar conta GitHub, repositório, pastas, imagens, sons, prompts e estrutura PWA.</p></article>
+        <article><strong>Semana 6</strong><p>Gerar o HTML do jogo escolhido com IA e adaptar o conteúdo educativo.</p></article>
+        <article><strong>Semana 7</strong><p>Testar acessibilidade, corrigir erros, publicar no GitHub Pages e testar no celular.</p></article>
+        <article><strong>Semana 8</strong><p>Finalizar relatório científico, inserir prints, gerar PDF e apresentar o projeto.</p></article>
+      </div>
+      <button data-done="cronograma">✅ Entendi o cronograma</button>
+    </section>
+
+    <section class="tab" id="github-conta">
+      <h2>Card 1 — Criar sua conta no GitHub</h2>
+      <p class="lead">Amanhã, cada aluno ou grupo deve abrir uma conta gratuita no GitHub. O GitHub será usado para guardar o projeto e publicar o aplicativo.</p>
+      <div class="steps">
+        <article><span>1</span><h3>Acesse o site</h3><p>Abra o navegador e digite: <strong>github.com</strong>.</p></article>
+        <article><span>2</span><h3>Clique em Sign up</h3><p>Esse botão cria uma nova conta. Se você já tiver conta, clique em Sign in.</p></article>
+        <article><span>3</span><h3>Digite seu e-mail</h3><p>Use um e-mail que você consiga abrir na hora, porque o GitHub pode pedir confirmação.</p></article>
+        <article><span>4</span><h3>Crie uma senha</h3><p>Anote em local seguro. Não compartilhe sua senha.</p></article>
+        <article><span>5</span><h3>Escolha nome de usuário</h3><p>Use nome simples, sem acentos e sem espaços. Exemplo: grupo-neuro-uem.</p></article>
+        <article><span>6</span><h3>Confirme o e-mail</h3><p>Abra seu e-mail, procure a mensagem do GitHub e confirme a conta.</p></article>
+      </div>
+      <div class="warning"><strong>Atenção:</strong> sem conta no GitHub, o grupo não conseguirá publicar o PWA no GitHub Pages.</div>
+      <button data-done="github-conta">✅ Minha conta foi criada</button>
+    </section>
+
+    <section class="tab" id="github-repo">
+      <h2>Card 2 — Criar o repositório do projeto</h2>
+      <p>O repositório é a pasta online onde ficará o aplicativo.</p>
+      <ol class="big-list">
+        <li>Clique no botão <strong>+</strong> no canto superior direito.</li>
+        <li>Clique em <strong>New repository</strong>.</li>
+        <li>No nome, digite: <strong>Aula5-PWA</strong> ou o nome do grupo.</li>
+        <li>Marque <strong>Public</strong>.</li>
+        <li>Clique em <strong>Create repository</strong>.</li>
+      </ol>
+      <button data-done="github-repo">✅ Repositório criado</button>
+    </section>
+
+    <section class="tab" id="pastas">
+      <h2>Card 3 — Criar as pastas do jogo</h2>
+      <p>O projeto precisa ter esta estrutura. O GitHub diferencia letras maiúsculas e minúsculas.</p>
+      <pre class="code">Aula5-PWA/
 ├── index.html
+├── style.css
+├── app.js
+├── relatorio.js
 ├── manifest.json
 ├── sw.js
 └── assets/
@@ -43,29 +130,155 @@
     │   └── ambiente.mp3
     └── icons/
         ├── icon-192.png
-        └── icon-512.png</pre><p class="note">No GitHub, <b>capa-neuro.png</b> é diferente de <b>Capa-Neuro.png</b>.</p></section>
-<section id="imagens" class="aba"><h2>3. Imagens que o aluno deve substituir</h2><p>Cards e capa: 1024x1024. Fundo: 1920x1080. Robô: PNG transparente. Os arquivos abaixo já existem como modelo e devem ser substituídos pelos definitivos.</p><div class="cards"><div class="card"><img src="assets/img/fundo-neuro.png" alt="Fundo Neuro"><h3>fundo-neuro.png</h3><p>Fundo geral do app.</p></div><div class="card"><img src="assets/img/robo-neuro.png" alt="Robô Neuro"><h3>robo-neuro.png</h3><p>Assistente flutuante.</p></div><div class="card"><img src="assets/img/capa-neuro.png" alt="Capa Neuro"><h3>capa-neuro.png</h3><p>Tela inicial.</p></div><div class="card"><img src="assets/img/memoria-neuro.png" alt="Memória Neuro"><h3>memoria-neuro.png</h3></div><div class="card"><img src="assets/img/sudoku-neuro.png" alt="Sudoku Neuro"><h3>sudoku-neuro.png</h3></div><div class="card"><img src="assets/img/cruzadas-neuro.png" alt="Cruzadas Neuro"><h3>cruzadas-neuro.png</h3></div><div class="card"><img src="assets/img/quiz-neuro.png" alt="Quiz Neuro"><h3>quiz-neuro.png</h3></div><div class="card"><img src="assets/img/cartas-neuro.png" alt="Cartas Neuro"><h3>cartas-neuro.png</h3></div><div class="card"><img src="assets/img/trofeu-neuro.png" alt="Troféu Neuro"><h3>trofeu-neuro.png</h3></div></div><h3>Prompt para gerar imagens</h3><pre>Crie uma imagem quadrada 1024x1024, estilo anime fofo e profissional, para um jogo educativo de neuroanatomia para pessoas 60+, com botões grandes, cores azul, ciano, roxo, branco e dourado suave, visual acessível, moderno e acolhedor.</pre></section>
-<section id="sons" class="aba"><h2>4. Onde encontrar áudios</h2><div class="cards"><div class="card"><h3>Sites recomendados</h3><ul><li>Pixabay Sound Effects</li><li>Freesound</li><li>Mixkit</li><li>Zapsplat</li><li>BBC Sound Effects</li><li>Gravações próprias no celular</li></ul></div><div class="card"><h3>Nomes obrigatórios</h3><pre>clique.mp3
-sucesso.mp3
-erro.mp3
-vitoria.mp3
-ambiente.mp3</pre></div><div class="card"><h3>Boas práticas 60+</h3><ul><li>Sons curtos.</li><li>Volume baixo.</li><li>Música sempre opcional.</li><li>Som como apoio, nunca obrigação.</li></ul></div></div></section>
-<section id="games" class="aba"><h2>5. Escolha o jogo do grupo</h2><div class="cards" id="gameCards"></div></section>
-<section id="prompt" class="aba"><h2>6. Prompt para gerar o HTML do jogo</h2><p>Depois de escolher o jogo, copie este prompt e peça para a IA gerar o HTML do jogo do grupo.</p><textarea id="promptJogo" readonly>Escolha um jogo na aba “Escolher jogo”.</textarea><button onclick="copiarPrompt()">Copiar prompt</button></section>
-<section id="pwa" class="aba"><h2>7. Transformar em PWA</h2><p>Para instalar como aplicativo, o projeto precisa de manifest.json, sw.js, ícones e registro do Service Worker.</p><pre>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}</pre><p>O botão <b>Baixar app</b> aparece quando o navegador permite instalação. No celular, também é possível usar “Adicionar à tela inicial”.</p></section>
-<section id="publicar" class="aba"><h2>8. Publicar no GitHub Pages</h2><ol><li>Suba todos os arquivos para o repositório.</li><li>Vá em <b>Settings</b>.</li><li>Clique em <b>Pages</b>.</li><li>Branch: <b>main</b>.</li><li>Folder: <b>/root</b>.</li><li>Clique em <b>Save</b>.</li><li>Abra o link no celular.</li><li>Teste imagens, sons, botões, fonte, contraste e relatório.</li></ol></section>
-<section id="relatorio" class="aba"><h2>9. Relatório científico e PDF</h2><p>O PDF será gerado somente com o relatório e as imagens enviadas. Cada print entra ajustado na página, sem corte.</p><label>Nome do grupo</label><input id="grupo"><label>Integrantes</label><textarea id="integrantes"></textarea><label>Nome do jogo</label><input id="nomeJogo"><label>Tipo de jogo</label><input id="tipoJogo"><label>Objetivo geral</label><textarea id="objetivoGeral"></textarea><label>Objetivos específicos</label><textarea id="objetivos"></textarea><label>Introdução</label><textarea id="introducao"></textarea><label>Justificativa extensionista</label><textarea id="justificativa"></textarea><label>Público-alvo</label><input id="publico"><label>Conteúdo trabalhado</label><textarea id="conteudo"></textarea><label>Metodologia de desenvolvimento</label><textarea id="metDev"></textarea><label>Metodologia de aplicação com o público 60+</label><textarea id="metApp"></textarea><label>Recursos visuais</label><textarea id="recVisuais"></textarea><label>Recursos sonoros</label><textarea id="recSonoros"></textarea><label>Acessibilidade</label><textarea id="acessibilidade"></textarea><label>Link do GitHub Pages</label><input id="link"><label>Várias imagens/prints para o PDF</label><input id="prints" type="file" accept="image/*" multiple><label>Dificuldades encontradas</label><textarea id="dificuldades"></textarea><label>Soluções adotadas</label><textarea id="solucoes"></textarea><label>Resultados esperados</label><textarea id="resultados"></textarea><label>Conclusão</label><textarea id="conclusao"></textarea><div class="controls"><button onclick="neuroAjuda()">Neuro Guia preenche o relatório</button><button onclick="gerarRelatorio()">Gerar prévia</button><button onclick="baixarPDF()">Baixar PDF</button><button onclick="limpar()">Limpar</button></div><div id="relatorioFinal" class="report"></div></section>
-</main>
-<div class="panel" id="panel"><h3>Neuro Guia</h3><p>Eu ajudo você a seguir a jornada, escolher o jogo, copiar o prompt e preencher o relatório científico completo.</p><button onclick="neuroAjuda();aba('relatorio')">Preencher relatório</button><button onclick="aba('games')">Escolher jogo</button></div><div class="neuro"><img src="assets/img/robo-neuro.png" alt="Neuro Guia" onclick="document.getElementById('panel').classList.toggle('ativa')"></div>
-<div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div><script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script><script>try{new window.VLibras.Widget('https://vlibras.gov.br/app')}catch(e){}</script>
-<script>
-const $=id=>document.getElementById(id);const sounds=['somClique','somSucesso','somErro','somVitoria'].reduce((a,id)=>(a[id]=$(id),a),{});document.addEventListener('click',e=>{if(e.target.tagName==='BUTTON')play(sounds.somClique)});function play(a){try{a.currentTime=0;a.play()}catch(e){}}function aba(id){document.querySelectorAll('.aba').forEach(x=>x.classList.remove('ativa'));$(id).classList.add('ativa');let i=[...document.querySelectorAll('.aba')].findIndex(x=>x.id===id)+1;$('bar')&&($('bar').style.width=Math.max(8,i*9)+'%');scrollTo({top:0,behavior:'smooth'})}let fs=18;function aumentarFonte(){fs+=2;document.documentElement.style.setProperty('--fs',fs+'px')}function diminuirFonte(){if(fs>16)fs-=2;document.documentElement.style.setProperty('--fs',fs+'px')}function tocarAmbiente(){let a=$('somAmbiente');a.volume=.3;a.play().catch(()=>{})}function pararAmbiente(){let a=$('somAmbiente');a.pause();a.currentTime=0}let installPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('installBtn').style.display='inline-block'});async function instalarApp(){if(installPrompt){installPrompt.prompt();installPrompt=null}else alert('Se o botão não abrir instalação, use no navegador: Adicionar à tela inicial.')}
-const jogos={memoria:['Jogo da Memória','memoria-neuro.png','Criar 10 imagens diferentes; cada imagem aparece 2 vezes; total de 20 cartas; cartas grandes; botão reiniciar; sons e mensagem final.'],sudoku:['Sudoku','sudoku-neuro.png','Grade simples, números grandes, botão verificar, botão dica, botão reiniciar e sem limite obrigatório de tempo.'],cruzadas:['Palavras Cruzadas','cruzadas-neuro.png','5 a 8 palavras, dicas curtas, letras grandes, botão verificar e feedback positivo.'],quiz:['Quiz','quiz-neuro.png','5 a 10 perguntas, alternativas grandes, pontuação, explicação simples, som de acerto e erro.'],cartas:['Cartas Educativas','cartas-neuro.png','Cartas grandes com imagem, pista e conceito; botão revelar, próxima carta, pontuação e finalização.']};
-$('gameCards').innerHTML=Object.entries(jogos).map(([k,v])=>`<div class="card"><img src="assets/img/${v[1]}" alt="${v[0]}"><h3>${v[0]}</h3><p>${v[2]}</p><button onclick="escolherJogo('${k}')">Gerar prompt</button></div>`).join('');
-function escolherJogo(t){const base=`Crie um jogo educativo acessível em HTML, CSS e JavaScript puro, sem backend, sem banco de dados e sem frameworks. Público-alvo: pessoas 60+. Tema: neuroanatomia educativa. Use layout responsivo, botões grandes, fonte ampliada, alto contraste, modo escuro, linguagem simples, instruções curtas, sem tempo obrigatório, feedback positivo, imagens da pasta assets/img e sons da pasta assets/audio. Sons: clique.mp3, sucesso.mp3, erro.mp3 e vitoria.mp3. Visual: anime fofo, azul, ciano, roxo, branco e dourado suave. Entregue em um único index.html.`; const detalhes={memoria:'O jogo deve ser da memória com 10 imagens diferentes, duplicadas em pares, formando 20 cartas no total.',sudoku:'O jogo deve ser sudoku simples com números grandes, botão dica, verificar e reiniciar.',cruzadas:'O jogo deve ser palavras cruzadas com 5 a 8 palavras, dicas curtas e letras grandes.',quiz:'O jogo deve ser quiz com 5 a 10 perguntas, alternativas grandes, pontuação e explicação após cada resposta.',cartas:'O jogo deve ser cartas educativas com imagem, pista, conceito, revelar resposta, próxima carta e pontuação.'};$('promptJogo').value=detalhes[t]+'\n\n'+base;$('tipoJogo').value=jogos[t][0];aba('prompt');play(sounds.somSucesso)}function copiarPrompt(){navigator.clipboard.writeText($('promptJogo').value).then(()=>alert('Prompt copiado!'))}
-function fill(id,txt){if(!$(id).value.trim())$(id).value=txt}function neuroAjuda(){fill('grupo','Grupo Neuro Games 60+');fill('nomeJogo','Game Neuro Educativo');fill('introducao','Este relatório apresenta o desenvolvimento de um jogo educativo em formato PWA, criado com HTML, CSS e JavaScript, voltado ao público 60+. A proposta integra tecnologia, educação, acessibilidade e curricularização da extensão.');fill('objetivoGeral','Favorecer a aprendizagem de conteúdos básicos por meio de uma experiência lúdica, acessível e interativa, desenvolvida em formato PWA para o público 60+.');fill('objetivos','Desenvolver um jogo educativo acessível; organizar imagens, sons e ícones; publicar o projeto no GitHub Pages; testar em celular e tablet; produzir relatório científico com evidências.');fill('justificativa','A atividade se relaciona à curricularização da extensão porque aproxima a universidade da comunidade, permitindo que estudantes criem materiais digitais acessíveis voltados às necessidades de aprendizagem, inclusão digital e participação social de pessoas idosas.');fill('publico','Pessoas idosas 60+ participantes de ações extensionistas.');fill('conteudo','Conteúdos introdutórios de neuroanatomia, memória, atenção, raciocínio, vocabulário e interação digital.');fill('metDev','O jogo foi desenvolvido em HTML, CSS e JavaScript, organizado como aplicativo PWA, com assets em pastas específicas, imagens próprias, sons de interação, botões grandes, controle de fonte, alto contraste, VLibras e navegação simplificada.');fill('metApp','A aplicação deve ocorrer de forma mediada, com apresentação inicial, demonstração do uso, tempo livre para exploração, apoio dos estudantes, observação das dificuldades e coleta de prints ou registros da experiência.');fill('recVisuais','Foram utilizadas imagens educativas, cards grandes, fundo imersivo, personagem Neuro Guia, tela de conclusão, botões arredondados e contraste adequado.');fill('recSonoros','Foram previstos sons de clique, sucesso, erro, vitória e som ambiente opcional, sempre com possibilidade de desligamento.');fill('acessibilidade','Foram incluídos fonte ampliada, botões grandes, contraste visual, modo escuro, alto contraste, VLibras, sons opcionais, linguagem simples, instruções curtas, feedback visual e ausência de tempo obrigatório.');fill('dificuldades','As principais dificuldades envolveram organização de arquivos, caminhos das imagens, publicação no GitHub Pages e adaptação da interface para o público 60+.');fill('solucoes','As soluções incluíram padronização dos nomes dos arquivos, criação de checklist, testes em dispositivos móveis, uso de botões grandes e revisão dos caminhos no HTML.');fill('resultados','Espera-se que o jogo contribua para aprendizagem, inclusão digital, participação social e aproximação entre universidade e comunidade.');fill('conclusao','A construção do jogo permitiu integrar tecnologia, educação, extensão universitária e acessibilidade, favorecendo uma solução digital simples, inclusiva e aplicável em ações com o público 60+.');play(sounds.somSucesso)}
-function file64(file){return new Promise(r=>{let fr=new FileReader();fr.onload=e=>r(e.target.result);fr.readAsDataURL(file)})}async function gerarRelatorio(){const g=id=>$(id).value||'Não informado.';let imgs='';let files=[...$('prints').files];for(let i=0;i<files.length;i++){let src=await file64(files[i]);imgs+=`<section class="print-page"><p>Print ${i+1}: ${files[i].name}</p><img src="${src}" alt="Print ${i+1} do projeto"></section>`}if(!imgs)imgs='<p>Nenhuma imagem/print enviada.</p>';$('relatorioFinal').innerHTML=`<h1>Relatório Científico — Semana 5 PWA Games 60+</h1><h2>1. Identificação</h2><p><b>Grupo:</b> ${g('grupo')}</p><p><b>Integrantes:</b> ${g('integrantes')}</p><p><b>Jogo:</b> ${g('nomeJogo')}</p><p><b>Tipo:</b> ${g('tipoJogo')}</p><h2>2. Introdução</h2><p>${g('introducao')}</p><h2>3. Justificativa extensionista</h2><p>${g('justificativa')}</p><h2>4. Objetivo geral</h2><p>${g('objetivoGeral')}</p><h2>5. Objetivos específicos</h2><p>${g('objetivos')}</p><h2>6. Público-alvo</h2><p>${g('publico')}</p><h2>7. Conteúdo abordado</h2><p>${g('conteudo')}</p><h2>8. Metodologia de desenvolvimento</h2><p>${g('metDev')}</p><h2>9. Metodologia de aplicação</h2><p>${g('metApp')}</p><h2>10. Recursos visuais</h2><p>${g('recVisuais')}</p><h2>11. Recursos sonoros</h2><p>${g('recSonoros')}</p><h2>12. Acessibilidade</h2><p>${g('acessibilidade')}</p><h2>13. Publicação no GitHub Pages</h2><p>${g('link')}</p><h2>14. Evidências com prints</h2>${imgs}<h2>15. Dificuldades encontradas</h2><p>${g('dificuldades')}</p><h2>16. Soluções adotadas</h2><p>${g('solucoes')}</p><h2>17. Resultados esperados</h2><p>${g('resultados')}</p><h2>18. Conclusão</h2><p>${g('conclusao')}</p>`;play(sounds.somVitoria)}async function baixarPDF(){await gerarRelatorio();let el=$('relatorioFinal');let opt={margin:[10,10,10,10],filename:'relatorio-semana5-pwa-games-60mais.pdf',image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true,scrollY:0},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy'],before:'.print-page'}};html2pdf().set(opt).from(el).save()}function limpar(){document.querySelectorAll('#relatorio input,#relatorio textarea').forEach(x=>x.value='');$('relatorioFinal').innerHTML='';play(sounds.somErro)}if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
-</script>
-</body></html>
+        └── icon-512.png</pre>
+      <button data-copy="mkdir Aula5-PWA; cd Aula5-PWA; New-Item index.html,style.css,app.js,relatorio.js,manifest.json,sw.js -ItemType File; mkdir assets; mkdir assets\img; mkdir assets\audio; mkdir assets\icons">📋 Copiar comandos PowerShell</button>
+      <div class="info"><p><strong>Importante:</strong> o HTML não guarda a imagem dentro dele. Ele aponta para o caminho. Se a imagem não aparecer, confira nome, pasta e extensão.</p></div>
+      <button data-done="pastas">✅ Pastas criadas</button>
+    </section>
+
+    <section class="tab" id="imagens">
+      <h2>Card 4 — Imagens que o aluno deve criar</h2>
+      <p>Substitua as imagens-modelo mantendo exatamente estes nomes. Cards e capa: 1024x1024. Fundo: 1920x1080. Robô: PNG transparente.</p>
+      <div class="cards" id="imageCards"></div>
+      <button data-done="imagens">✅ Planejei as imagens</button>
+    </section>
+
+    <section class="tab" id="escolha-jogo">
+      <h2>Card 5 — Escolha o jogo do grupo</h2>
+      <p>Cada grupo escolhe um jogo. O app gera um prompt específico para o jogo escolhido.</p>
+      <div class="game-grid" id="gameGrid"></div>
+      <button data-done="escolha-jogo">✅ Jogo escolhido</button>
+    </section>
+
+    <section class="tab" id="prompt-jogo">
+      <h2>Card 6 — Prompt para gerar o HTML do jogo</h2>
+      <p>Depois de escolher o jogo, copie o prompt e peça para a IA gerar o arquivo HTML do jogo.</p>
+      <label for="promptOutput">Prompt personalizado</label>
+      <textarea id="promptOutput" readonly>Escolha um jogo na etapa anterior.</textarea>
+      <button data-copy-target="promptOutput">📋 Copiar prompt</button>
+      <button data-done="prompt-jogo">✅ Prompt copiado</button>
+    </section>
+
+    <section class="tab" id="sons">
+      <h2>Card 7 — Onde encontrar áudio para o jogo</h2>
+      <p>Use sons curtos, suaves, com volume baixo. O áudio ajuda, mas não deve ser obrigatório.</p>
+      <div class="cards compact">
+        <article><h3>Pixabay Sound Effects</h3><p>Bom para cliques, acertos e sons leves.</p></article>
+        <article><h3>Mixkit</h3><p>Ótimo para sons de interface e vitória.</p></article>
+        <article><h3>Freesound</h3><p>Biblioteca grande; verifique licença.</p></article>
+        <article><h3>Zapsplat</h3><p>Muitos efeitos; pode exigir cadastro gratuito.</p></article>
+        <article><h3>BBC Sound Effects</h3><p>Bom para pesquisa sonora e ambientes.</p></article>
+        <article><h3>Celular</h3><p>O grupo pode gravar sons próprios.</p></article>
+      </div>
+      <pre class="code">assets/audio/clique.mp3     → botão
+assets/audio/sucesso.mp3    → acerto
+assets/audio/erro.mp3       → correção
+assets/audio/vitoria.mp3    → finalização
+assets/audio/ambiente.mp3   → música opcional</pre>
+      <button data-done="sons">✅ Sons organizados</button>
+    </section>
+
+    <section class="tab" id="pwa">
+      <h2>Card 8 — Transformar em PWA</h2>
+      <p>PWA é um site que pode ser instalado como aplicativo. Ele precisa de manifest, service worker e ícones.</p>
+      <div class="cards compact">
+        <article><h3>manifest.json</h3><p>Nome, ícones, tela inicial e cor do app.</p></article>
+        <article><h3>sw.js</h3><p>Arquivo que permite cache e funcionamento offline.</p></article>
+        <article><h3>icons</h3><p>icon-192.png e icon-512.png.</p></article>
+      </div>
+      <button id="btnInstall2">📱 Baixar app neste dispositivo</button>
+      <button data-done="pwa">✅ Entendi o PWA</button>
+    </section>
+
+    <section class="tab" id="pages">
+      <h2>Card 9 — Publicar no GitHub Pages</h2>
+      <ol class="big-list">
+        <li>Entre no repositório.</li>
+        <li>Clique em <strong>Add file</strong> e depois <strong>Upload files</strong>.</li>
+        <li>Envie todos os arquivos e a pasta assets.</li>
+        <li>Clique em <strong>Commit changes</strong>.</li>
+        <li>Vá em <strong>Settings</strong>.</li>
+        <li>Vá em <strong>Pages</strong>.</li>
+        <li>Em Branch, escolha <strong>main</strong>.</li>
+        <li>Em Folder, escolha <strong>/root</strong>.</li>
+        <li>Clique em Save e espere o link aparecer.</li>
+      </ol>
+      <button data-done="pages">✅ Publiquei no GitHub Pages</button>
+    </section>
+
+    <section class="tab" id="testes">
+      <h2>Card 10 — Testes e erros comuns</h2>
+      <div class="faq">
+        <details open><summary>Imagem não aparece</summary><p>Confira se o arquivo está em assets/img e se o nome está exatamente igual. Exemplo: memoria-neuro.png não é Memoria-Neuro.png.</p></details>
+        <details><summary>Som não toca</summary><p>Alguns navegadores só permitem som depois do primeiro clique. Teste após clicar em algum botão.</p></details>
+        <details><summary>PDF não baixa</summary><p>Abra no navegador, não dentro de pré-visualização. Confira a internet, pois a biblioteca html2pdf é carregada por CDN.</p></details>
+        <details><summary>GitHub Pages mostra 404</summary><p>Espere alguns minutos, confira se o arquivo se chama index.html e se Pages está usando main e /root.</p></details>
+      </div>
+      <button data-done="testes">✅ Testes conferidos</button>
+    </section>
+
+    <section class="tab" id="relatorio">
+      <h2>Card 11 — Relatório científico</h2>
+      <p>O Neuro Guia preenche um relatório acadêmico completo. Revise com seu grupo antes de baixar o PDF.</p>
+      <form id="reportForm" class="report-form">
+        <label>Nome do grupo<input id="grupo" /></label>
+        <label>Integrantes<textarea id="integrantes"></textarea></label>
+        <label>Nome do jogo<input id="nomeJogo" /></label>
+        <label>Tipo de jogo<select id="tipoJogo"><option>Memória</option><option>Quiz</option><option>Sudoku</option><option>Palavras Cruzadas</option><option>Cartas Educativas</option><option>Bolhas</option></select></label>
+        <label>Link GitHub Pages<input id="linkGithub" /></label>
+        <label>Introdução<textarea id="introducao"></textarea></label>
+        <label>Justificativa extensionista<textarea id="justificativa"></textarea></label>
+        <label>Objetivo geral<textarea id="objetivoGeral"></textarea></label>
+        <label>Objetivos específicos<textarea id="objetivosEspecificos"></textarea></label>
+        <label>Conteúdo abordado<textarea id="conteudo"></textarea></label>
+        <label>Metodologia de desenvolvimento<textarea id="metodologiaDev"></textarea></label>
+        <label>Metodologia de aplicação com público 60+<textarea id="metodologiaAplicacao"></textarea></label>
+        <label>Recursos visuais<textarea id="recursosVisuais"></textarea></label>
+        <label>Recursos sonoros<textarea id="recursosSonoros"></textarea></label>
+        <label>Recursos de acessibilidade<textarea id="acessibilidadeRel"></textarea></label>
+        <label>Resultados esperados<textarea id="resultados"></textarea></label>
+        <label>Discussão<textarea id="discussao"></textarea></label>
+        <label>Dificuldades encontradas<textarea id="dificuldades"></textarea></label>
+        <label>Soluções adotadas<textarea id="solucoes"></textarea></label>
+        <label>Conclusão<textarea id="conclusao"></textarea></label>
+        <label>Referências<textarea id="referencias"></textarea></label>
+        <label>Adicionar várias imagens/prints ao relatório<input id="prints" type="file" accept="image/*" multiple /></label>
+      </form>
+      <div class="actions">
+        <button id="fillReport">🤖 Neuro Guia preenche tudo</button>
+        <button id="previewReport">👁️ Gerar prévia</button>
+        <button id="downloadPdf">📄 Baixar PDF do relatório</button>
+        <button id="clearReport" class="danger">Limpar</button>
+      </div>
+      <div id="reportPreview" class="paper"></div>
+    </section>
+
+    <section class="tab" id="certificado">
+      <h2>Certificado de conclusão</h2>
+      <p>Após concluir as etapas, gere um certificado simples da Semana 5.</p>
+      <label>Nome do estudante ou grupo<input id="certName" placeholder="Digite o nome" /></label>
+      <button id="makeCert">🏆 Gerar certificado</button>
+      <div id="certPreview" class="certificate"></div>
+    </section>
+  </main>
+
+  <div class="neuro-panel" id="neuroPanel" aria-live="polite">
+    <h3>🤖 Neuro Guia</h3>
+    <p id="neuroText">Olá! Amanhã vamos abrir a conta no GitHub e preparar o projeto. Clique em uma etapa para começar.</p>
+    <div class="neuro-quick">
+      <button data-help="imagem">Imagem não aparece</button>
+      <button data-help="som">Som não toca</button>
+      <button data-help="pdf">PDF não baixa</button>
+      <button data-help="github">GitHub Pages</button>
+    </div>
+  </div>
+  <button class="neuro-float" id="neuroButton" aria-label="Abrir Neuro Guia"><img src="assets/img/robo-neuro.png" alt="Neuro Guia" /></button>
+
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>try{new window.VLibras.Widget('https://vlibras.gov.br/app')}catch(e){}</script>
+  <script src="prompts.js"></script>
+  <script src="relatorio.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

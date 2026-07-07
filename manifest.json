@@ -1,14 +1,14 @@
 {
-  "name": "Semana 5 PWA Games 60+",
-  "short_name": "Semana 5",
-  "description": "PWA educativo acessível para criação de games extensionistas para pessoas 60+.",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
-  "orientation": "portrait-primary",
-  "background_color": "#ffffff",
-  "theme_color": "#6c5ce7",
-  "icons": [
+  "name":"Neuro Games Studio 60+",
+  "short_name":"Neuro Studio",
+  "description":"PWA da oficina de criação de jogos educativos com IA para público 60+.",
+  "start_url":"./index.html",
+  "scope":"./",
+  "display":"standalone",
+  "orientation":"portrait-primary",
+  "background_color":"#ffffff",
+  "theme_color":"#6c5ce7",
+  "icons":[
     {"src":"assets/icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
     {"src":"assets/icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
   ]
