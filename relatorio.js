@@ -5,13 +5,16 @@ const R = {
 
   set(id, text) {
     const el = document.getElementById(id);
-    if (el && !el.value.trim()) el.value = text;
+    if (el) el.value = text;
   },
 
   fill() {
     const tipo = R.get("tipoJogo") || "Memória";
 
+    R.set("grupo", "Grupo de Desenvolvimento do Jogo Educativo");
+    R.set("integrantes", "Nome dos integrantes do grupo.");
     R.set("nomeJogo", `Neuro ${tipo} 60+`);
+    R.set("linkGithub", "Cole aqui o link do GitHub Pages publicado.");
 
     R.set("introducao", `O desenvolvimento de jogos educativos digitais representa uma estratégia inovadora para promover aprendizagem ativa, inclusão digital e participação social. No contexto da curricularização da extensão, a criação de aplicativos em formato Progressive Web App (PWA) permite integrar conhecimentos acadêmicos, tecnologia, acessibilidade e demandas reais da comunidade. Neste projeto, o grupo desenvolveu um jogo educativo voltado ao público 60+, utilizando HTML, CSS e JavaScript, com recursos visuais, sonoros e interativos planejados para favorecer uma experiência simples, acolhedora e acessível.`);
 
@@ -209,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (fillReport) {
     fillReport.addEventListener("click", () => {
       R.fill();
-      alert("Neuro Guia preencheu o relatório. Revise antes de baixar.");
+      alert("Neuro Guia preencheu todo o relatório. Revise antes de baixar.");
     });
   }
 
@@ -252,7 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         pagebreak: {
           mode: ["css", "legacy"],
-          avoid: [".pdf-section", ".print-page"]
+          before: ".print-page"
         }
       };
 
