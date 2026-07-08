@@ -4,13 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#6c5ce7" />
+
   <title>Neuro Games Studio 60+ | Semana 5</title>
+
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
+
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
+
 <body>
-  <div class="ambient-bg" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="ambient-bg" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
   <audio id="somClique" src="assets/audio/clique.mp3"></audio>
   <audio id="somSucesso" src="assets/audio/sucesso.mp3"></audio>
   <audio id="somErro" src="assets/audio/erro.mp3"></audio>
@@ -27,6 +34,7 @@
         <small>UNATI • UEM • Oficina de Games com IA</small>
       </div>
     </div>
+
     <div class="toolbar" aria-label="Controles de acessibilidade">
       <button id="btnInstall" class="ghost">📱 Baixar app</button>
       <button data-action="fontPlus">A+</button>
@@ -41,9 +49,12 @@
   <aside class="sidebar" aria-label="Navegação das etapas">
     <div class="progress-card">
       <p>Progresso da oficina</p>
-      <div class="progress"><div id="progressFill"></div></div>
+      <div class="progress">
+        <div id="progressFill"></div>
+      </div>
       <strong id="progressText">0%</strong>
     </div>
+
     <nav id="menu"></nav>
   </aside>
 
@@ -53,44 +64,100 @@
         <span class="pill">Semana 5 — hoje</span>
         <h1>Hoje vamos preparar o projeto. O jogo será construído nas próximas semanas.</h1>
         <p>O aluno vai criar conta no GitHub, montar as pastas, escolher o jogo, planejar imagens, buscar sons e deixar tudo pronto para publicar como PWA.</p>
+
         <div class="hero-actions">
           <button data-goto="github-conta">Começar pela conta GitHub</button>
           <button id="continueBtn" class="secondary">Continuar de onde parei</button>
           <button data-goto="cronograma" class="secondary">Ver cronograma</button>
         </div>
       </div>
+
       <img src="assets/img/capa-neuro.png" alt="Capa principal da Semana 5" class="hero-img" />
     </section>
 
     <section class="tab" id="cronograma">
       <h2>Cronograma até a entrega final</h2>
+
       <div class="timeline">
-        <article><strong>Semana 5 — amanhã</strong><p>Criar conta GitHub, repositório, pastas, imagens, sons, prompts e estrutura PWA.</p></article>
-        <article><strong>Semana 6</strong><p>Gerar o HTML do jogo escolhido com IA e adaptar o conteúdo educativo.</p></article>
-        <article><strong>Semana 7</strong><p>Testar acessibilidade, corrigir erros, publicar no GitHub Pages e testar no celular.</p></article>
-        <article><strong>Semana 8</strong><p>Finalizar relatório científico, inserir prints, gerar PDF e apresentar o projeto.</p></article>
+        <article>
+          <strong>Semana 5 — hoje</strong>
+          <p>Criar conta no GitHub, repositório, pastas, imagens, sons, prompts e estrutura PWA.</p>
+        </article>
+
+        <article>
+          <strong>Semana 6</strong>
+          <p>Gerar o HTML do jogo escolhido com IA e adaptar o conteúdo educativo.</p>
+        </article>
+
+        <article>
+          <strong>Semana 7</strong>
+          <p>Testar acessibilidade, corrigir erros, publicar no GitHub Pages e testar no celular.</p>
+        </article>
+
+        <article>
+          <strong>Semana 8</strong>
+          <p>Finalizar relatório científico, inserir prints, gerar PDF e apresentar o projeto.</p>
+        </article>
       </div>
+
       <button data-done="cronograma">✅ Entendi o cronograma</button>
     </section>
 
     <section class="tab" id="github-conta">
       <h2>Card 1 — Criar sua conta no GitHub</h2>
-      <p class="lead">Amanhã, cada aluno ou grupo deve abrir uma conta gratuita no GitHub. O GitHub será usado para guardar o projeto e publicar o aplicativo.</p>
+
+      <p class="lead">Hoje, cada aluno ou grupo deve abrir uma conta gratuita no GitHub. O GitHub será usado para guardar o projeto e publicar o aplicativo.</p>
+
       <div class="steps">
-        <article><span>1</span><h3>Acesse o site</h3><p>Abra o navegador e digite: <strong>github.com</strong>.</p></article>
-        <article><span>2</span><h3>Clique em Sign up</h3><p>Esse botão cria uma nova conta. Se você já tiver conta, clique em Sign in.</p></article>
-        <article><span>3</span><h3>Digite seu e-mail</h3><p>Use um e-mail que você consiga abrir na hora, porque o GitHub pode pedir confirmação.</p></article>
-        <article><span>4</span><h3>Crie uma senha</h3><p>Anote em local seguro. Não compartilhe sua senha.</p></article>
-        <article><span>5</span><h3>Escolha nome de usuário</h3><p>Use nome simples, sem acentos e sem espaços. Exemplo: grupo-neuro-uem.</p></article>
-        <article><span>6</span><h3>Confirme o e-mail</h3><p>Abra seu e-mail, procure a mensagem do GitHub e confirme a conta.</p></article>
+        <article>
+          <span>1</span>
+          <h3>Acesse o site</h3>
+          <p>Abra o navegador e digite: <strong>github.com</strong>.</p>
+        </article>
+
+        <article>
+          <span>2</span>
+          <h3>Clique em Sign up</h3>
+          <p>Esse botão cria uma nova conta. Se você já tiver conta, clique em Sign in.</p>
+        </article>
+
+        <article>
+          <span>3</span>
+          <h3>Digite seu e-mail</h3>
+          <p>Use um e-mail que você consiga abrir na hora, porque o GitHub pode pedir confirmação.</p>
+        </article>
+
+        <article>
+          <span>4</span>
+          <h3>Crie uma senha</h3>
+          <p>Anote em local seguro. Não compartilhe sua senha.</p>
+        </article>
+
+        <article>
+          <span>5</span>
+          <h3>Escolha nome de usuário</h3>
+          <p>Use nome simples, sem acentos e sem espaços. Exemplo: grupo-neuro-uem.</p>
+        </article>
+
+        <article>
+          <span>6</span>
+          <h3>Confirme o e-mail</h3>
+          <p>Abra seu e-mail, procure a mensagem do GitHub e confirme a conta.</p>
+        </article>
       </div>
-      <div class="warning"><strong>Atenção:</strong> sem conta no GitHub, o grupo não conseguirá publicar o PWA no GitHub Pages.</div>
+
+      <div class="warning">
+        <strong>Atenção:</strong> sem conta no GitHub, o grupo não conseguirá publicar o PWA no GitHub Pages.
+      </div>
+
       <button data-done="github-conta">✅ Minha conta foi criada</button>
     </section>
 
     <section class="tab" id="github-repo">
       <h2>Card 2 — Criar o repositório do projeto</h2>
+
       <p>O repositório é a pasta online onde ficará o aplicativo.</p>
+
       <ol class="big-list">
         <li>Clique no botão <strong>+</strong> no canto superior direito.</li>
         <li>Clique em <strong>New repository</strong>.</li>
@@ -98,12 +165,15 @@
         <li>Marque <strong>Public</strong>.</li>
         <li>Clique em <strong>Create repository</strong>.</li>
       </ol>
+
       <button data-done="github-repo">✅ Repositório criado</button>
     </section>
 
     <section class="tab" id="pastas">
       <h2>Card 3 — Criar as pastas do jogo</h2>
+
       <p>O projeto precisa ter esta estrutura. O GitHub diferencia letras maiúsculas e minúsculas.</p>
+
       <pre class="code">Aula5-PWA/
 ├── index.html
 ├── style.css
@@ -131,67 +201,125 @@
     └── icons/
         ├── icon-192.png
         └── icon-512.png</pre>
-      <button data-copy="mkdir Aula5-PWA; cd Aula5-PWA; New-Item index.html,style.css,app.js,relatorio.js,manifest.json,sw.js -ItemType File; mkdir assets; mkdir assets\img; mkdir assets\audio; mkdir assets\icons">📋 Copiar comandos PowerShell</button>
-      <div class="info"><p><strong>Importante:</strong> o HTML não guarda a imagem dentro dele. Ele aponta para o caminho. Se a imagem não aparecer, confira nome, pasta e extensão.</p></div>
+
+      <button data-copy='mkdir Aula5-PWA; cd Aula5-PWA; New-Item index.html,style.css,app.js,relatorio.js,manifest.json,sw.js -ItemType File; mkdir assets; mkdir assets\img; mkdir assets\audio; mkdir assets\icons'>
+        📋 Copiar comandos PowerShell
+      </button>
+
+      <div class="info">
+        <p><strong>Importante:</strong> o HTML não guarda a imagem dentro dele. Ele aponta para o caminho. Se a imagem não aparecer, confira nome, pasta e extensão.</p>
+      </div>
+
       <button data-done="pastas">✅ Pastas criadas</button>
     </section>
 
     <section class="tab" id="imagens">
       <h2>Card 4 — Imagens que o aluno deve criar</h2>
+
       <p>Substitua as imagens-modelo mantendo exatamente estes nomes. Cards e capa: 1024x1024. Fundo: 1920x1080. Robô: PNG transparente.</p>
+
       <div class="cards" id="imageCards"></div>
+
       <button data-done="imagens">✅ Planejei as imagens</button>
     </section>
 
     <section class="tab" id="escolha-jogo">
       <h2>Card 5 — Escolha o jogo do grupo</h2>
+
       <p>Cada grupo escolhe um jogo. O app gera um prompt específico para o jogo escolhido.</p>
+
       <div class="game-grid" id="gameGrid"></div>
+
       <button data-done="escolha-jogo">✅ Jogo escolhido</button>
     </section>
 
     <section class="tab" id="prompt-jogo">
       <h2>Card 6 — Prompt para gerar o HTML do jogo</h2>
+
       <p>Depois de escolher o jogo, copie o prompt e peça para a IA gerar o arquivo HTML do jogo.</p>
+
       <label for="promptOutput">Prompt personalizado</label>
       <textarea id="promptOutput" readonly>Escolha um jogo na etapa anterior.</textarea>
+
       <button data-copy-target="promptOutput">📋 Copiar prompt</button>
       <button data-done="prompt-jogo">✅ Prompt copiado</button>
     </section>
 
     <section class="tab" id="sons">
       <h2>Card 7 — Onde encontrar áudio para o jogo</h2>
+
       <p>Use sons curtos, suaves, com volume baixo. O áudio ajuda, mas não deve ser obrigatório.</p>
+
       <div class="cards compact">
-        <article><h3>Pixabay Sound Effects</h3><p>Bom para cliques, acertos e sons leves.</p></article>
-        <article><h3>Mixkit</h3><p>Ótimo para sons de interface e vitória.</p></article>
-        <article><h3>Freesound</h3><p>Biblioteca grande; verifique licença.</p></article>
-        <article><h3>Zapsplat</h3><p>Muitos efeitos; pode exigir cadastro gratuito.</p></article>
-        <article><h3>BBC Sound Effects</h3><p>Bom para pesquisa sonora e ambientes.</p></article>
-        <article><h3>Celular</h3><p>O grupo pode gravar sons próprios.</p></article>
+        <article>
+          <h3>Pixabay Sound Effects</h3>
+          <p>Bom para cliques, acertos e sons leves.</p>
+        </article>
+
+        <article>
+          <h3>Mixkit</h3>
+          <p>Ótimo para sons de interface e vitória.</p>
+        </article>
+
+        <article>
+          <h3>Freesound</h3>
+          <p>Biblioteca grande; verifique licença.</p>
+        </article>
+
+        <article>
+          <h3>Zapsplat</h3>
+          <p>Muitos efeitos; pode exigir cadastro gratuito.</p>
+        </article>
+
+        <article>
+          <h3>BBC Sound Effects</h3>
+          <p>Bom para pesquisa sonora e ambientes.</p>
+        </article>
+
+        <article>
+          <h3>Celular</h3>
+          <p>O grupo pode gravar sons próprios.</p>
+        </article>
       </div>
+
       <pre class="code">assets/audio/clique.mp3     → botão
 assets/audio/sucesso.mp3    → acerto
 assets/audio/erro.mp3       → correção
 assets/audio/vitoria.mp3    → finalização
 assets/audio/ambiente.mp3   → música opcional</pre>
+
       <button data-done="sons">✅ Sons organizados</button>
     </section>
 
     <section class="tab" id="pwa">
       <h2>Card 8 — Transformar em PWA</h2>
+
       <p>PWA é um site que pode ser instalado como aplicativo. Ele precisa de manifest, service worker e ícones.</p>
+
       <div class="cards compact">
-        <article><h3>manifest.json</h3><p>Nome, ícones, tela inicial e cor do app.</p></article>
-        <article><h3>sw.js</h3><p>Arquivo que permite cache e funcionamento offline.</p></article>
-        <article><h3>icons</h3><p>icon-192.png e icon-512.png.</p></article>
+        <article>
+          <h3>manifest.json</h3>
+          <p>Nome, ícones, tela inicial e cor do app.</p>
+        </article>
+
+        <article>
+          <h3>sw.js</h3>
+          <p>Arquivo que permite cache e funcionamento offline.</p>
+        </article>
+
+        <article>
+          <h3>icons</h3>
+          <p>icon-192.png e icon-512.png.</p>
+        </article>
       </div>
+
       <button id="btnInstall2">📱 Baixar app neste dispositivo</button>
       <button data-done="pwa">✅ Entendi o PWA</button>
     </section>
 
     <section class="tab" id="pages">
       <h2>Card 9 — Publicar no GitHub Pages</h2>
+
       <ol class="big-list">
         <li>Entre no repositório.</li>
         <li>Clique em <strong>Add file</strong> e depois <strong>Upload files</strong>.</li>
@@ -203,68 +331,170 @@ assets/audio/ambiente.mp3   → música opcional</pre>
         <li>Em Folder, escolha <strong>/root</strong>.</li>
         <li>Clique em Save e espere o link aparecer.</li>
       </ol>
+
       <button data-done="pages">✅ Publiquei no GitHub Pages</button>
     </section>
 
     <section class="tab" id="testes">
       <h2>Card 10 — Testes e erros comuns</h2>
+
       <div class="faq">
-        <details open><summary>Imagem não aparece</summary><p>Confira se o arquivo está em assets/img e se o nome está exatamente igual. Exemplo: memoria-neuro.png não é Memoria-Neuro.png.</p></details>
-        <details><summary>Som não toca</summary><p>Alguns navegadores só permitem som depois do primeiro clique. Teste após clicar em algum botão.</p></details>
-        <details><summary>PDF não baixa</summary><p>Abra no navegador, não dentro de pré-visualização. Confira a internet, pois a biblioteca html2pdf é carregada por CDN.</p></details>
-        <details><summary>GitHub Pages mostra 404</summary><p>Espere alguns minutos, confira se o arquivo se chama index.html e se Pages está usando main e /root.</p></details>
+        <details open>
+          <summary>Imagem não aparece</summary>
+          <p>Confira se o arquivo está em assets/img e se o nome está exatamente igual. Exemplo: memoria-neuro.png não é Memoria-Neuro.png.</p>
+        </details>
+
+        <details>
+          <summary>Som não toca</summary>
+          <p>Alguns navegadores só permitem som depois do primeiro clique. Teste após clicar em algum botão.</p>
+        </details>
+
+        <details>
+          <summary>PDF não baixa</summary>
+          <p>Abra no navegador, não dentro de pré-visualização. Confira a internet, pois a biblioteca html2pdf é carregada por CDN.</p>
+        </details>
+
+        <details>
+          <summary>GitHub Pages mostra 404</summary>
+          <p>Espere alguns minutos, confira se o arquivo se chama index.html e se Pages está usando main e /root.</p>
+        </details>
       </div>
+
       <button data-done="testes">✅ Testes conferidos</button>
     </section>
 
     <section class="tab" id="relatorio">
       <h2>Card 11 — Relatório científico</h2>
+
       <p>O Neuro Guia preenche um relatório acadêmico completo. Revise com seu grupo antes de baixar o PDF.</p>
+
       <form id="reportForm" class="report-form">
-        <label>Nome do grupo<input id="grupo" /></label>
-        <label>Integrantes<textarea id="integrantes"></textarea></label>
-        <label>Nome do jogo<input id="nomeJogo" /></label>
-        <label>Tipo de jogo<select id="tipoJogo"><option>Memória</option><option>Quiz</option><option>Sudoku</option><option>Palavras Cruzadas</option><option>Cartas Educativas</option><option>Bolhas</option></select></label>
-        <label>Link GitHub Pages<input id="linkGithub" /></label>
-        <label>Introdução<textarea id="introducao"></textarea></label>
-        <label>Justificativa extensionista<textarea id="justificativa"></textarea></label>
-        <label>Objetivo geral<textarea id="objetivoGeral"></textarea></label>
-        <label>Objetivos específicos<textarea id="objetivosEspecificos"></textarea></label>
-        <label>Conteúdo abordado<textarea id="conteudo"></textarea></label>
-        <label>Metodologia de desenvolvimento<textarea id="metodologiaDev"></textarea></label>
-        <label>Metodologia de aplicação com público 60+<textarea id="metodologiaAplicacao"></textarea></label>
-        <label>Recursos visuais<textarea id="recursosVisuais"></textarea></label>
-        <label>Recursos sonoros<textarea id="recursosSonoros"></textarea></label>
-        <label>Recursos de acessibilidade<textarea id="acessibilidadeRel"></textarea></label>
-        <label>Resultados esperados<textarea id="resultados"></textarea></label>
-        <label>Discussão<textarea id="discussao"></textarea></label>
-        <label>Dificuldades encontradas<textarea id="dificuldades"></textarea></label>
-        <label>Soluções adotadas<textarea id="solucoes"></textarea></label>
-        <label>Conclusão<textarea id="conclusao"></textarea></label>
-        <label>Referências<textarea id="referencias"></textarea></label>
-        <label>Adicionar várias imagens/prints ao relatório<input id="prints" type="file" accept="image/*" multiple /></label>
+        <label>Nome do grupo
+          <input id="grupo" />
+        </label>
+
+        <label>Integrantes
+          <textarea id="integrantes"></textarea>
+        </label>
+
+        <label>Nome do jogo
+          <input id="nomeJogo" />
+        </label>
+
+        <label>Tipo de jogo
+          <select id="tipoJogo">
+            <option>Memória</option>
+            <option>Quiz</option>
+            <option>Sudoku</option>
+            <option>Palavras Cruzadas</option>
+            <option>Cartas Educativas</option>
+            <option>Bolhas</option>
+          </select>
+        </label>
+
+        <label>Link GitHub Pages
+          <input id="linkGithub" />
+        </label>
+
+        <label>Introdução
+          <textarea id="introducao"></textarea>
+        </label>
+
+        <label>Justificativa extensionista
+          <textarea id="justificativa"></textarea>
+        </label>
+
+        <label>Objetivo geral
+          <textarea id="objetivoGeral"></textarea>
+        </label>
+
+        <label>Objetivos específicos
+          <textarea id="objetivosEspecificos"></textarea>
+        </label>
+
+        <label>Conteúdo abordado
+          <textarea id="conteudo"></textarea>
+        </label>
+
+        <label>Metodologia de desenvolvimento
+          <textarea id="metodologiaDev"></textarea>
+        </label>
+
+        <label>Metodologia de aplicação com público 60+
+          <textarea id="metodologiaAplicacao"></textarea>
+        </label>
+
+        <label>Recursos visuais
+          <textarea id="recursosVisuais"></textarea>
+        </label>
+
+        <label>Recursos sonoros
+          <textarea id="recursosSonoros"></textarea>
+        </label>
+
+        <label>Recursos de acessibilidade
+          <textarea id="acessibilidadeRel"></textarea>
+        </label>
+
+        <label>Resultados esperados
+          <textarea id="resultados"></textarea>
+        </label>
+
+        <label>Discussão
+          <textarea id="discussao"></textarea>
+        </label>
+
+        <label>Dificuldades encontradas
+          <textarea id="dificuldades"></textarea>
+        </label>
+
+        <label>Soluções adotadas
+          <textarea id="solucoes"></textarea>
+        </label>
+
+        <label>Conclusão
+          <textarea id="conclusao"></textarea>
+        </label>
+
+        <label>Referências
+          <textarea id="referencias"></textarea>
+        </label>
+
+        <label>Adicionar várias imagens/prints ao relatório
+          <input id="prints" type="file" accept="image/*" multiple />
+        </label>
       </form>
+
       <div class="actions">
-        <button id="fillReport">🤖 Neuro Guia preenche tudo</button>
-        <button id="previewReport">👁️ Gerar prévia</button>
-        <button id="downloadPdf">📄 Baixar PDF do relatório</button>
-        <button id="clearReport" class="danger">Limpar</button>
+        <button id="fillReport" type="button">🤖 Neuro Guia preenche tudo</button>
+        <button id="previewReport" type="button">👁️ Gerar prévia</button>
+        <button id="downloadPdf" type="button">📄 Baixar PDF do relatório</button>
+        <button id="clearReport" type="button" class="danger">Limpar</button>
       </div>
-      <div id="reportPreview" class="paper"></div>
+
+      <div id="reportPreview"></div>
     </section>
 
     <section class="tab" id="certificado">
       <h2>Certificado de conclusão</h2>
+
       <p>Após concluir as etapas, gere um certificado simples da Semana 5.</p>
-      <label>Nome do estudante ou grupo<input id="certName" placeholder="Digite o nome" /></label>
-      <button id="makeCert">🏆 Gerar certificado</button>
+
+      <label>Nome do estudante ou grupo
+        <input id="certName" placeholder="Digite o nome" />
+      </label>
+
+      <button id="makeCert" type="button">🏆 Gerar certificado</button>
+
       <div id="certPreview" class="certificate"></div>
     </section>
   </main>
 
   <div class="neuro-panel" id="neuroPanel" aria-live="polite">
     <h3>🤖 Neuro Guia</h3>
-    <p id="neuroText">Olá! Amanhã vamos abrir a conta no GitHub e preparar o projeto. Clique em uma etapa para começar.</p>
+
+    <p id="neuroText">Olá! Hoje vamos abrir a conta no GitHub e preparar o projeto. Clique em uma etapa para começar.</p>
+
     <div class="neuro-quick">
       <button data-help="imagem">Imagem não aparece</button>
       <button data-help="som">Som não toca</button>
@@ -272,13 +502,27 @@ assets/audio/ambiente.mp3   → música opcional</pre>
       <button data-help="github">GitHub Pages</button>
     </div>
   </div>
-  <button class="neuro-float" id="neuroButton" aria-label="Abrir Neuro Guia"><img src="assets/img/robo-neuro.png" alt="Neuro Guia" /></button>
 
-  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <button class="neuro-float" id="neuroButton" aria-label="Abrir Neuro Guia">
+    <img src="assets/img/robo-neuro.png" alt="Neuro Guia" />
+  </button>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>try{new window.VLibras.Widget('https://vlibras.gov.br/app')}catch(e){}</script>
+  <script>
+    try {
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    } catch (e) {}
+  </script>
+
   <script src="prompts.js"></script>
   <script src="relatorio.js"></script>
   <script src="app.js"></script>
 </body>
-</html>
+          </html>
