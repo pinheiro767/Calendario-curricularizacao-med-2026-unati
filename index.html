@@ -1,528 +1,113 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#6c5ce7" />
-
-  <title>Neuro Games Studio 60+ | Semana 5</title>
-
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
-
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#3b2f80">
+  <meta name="description" content="Guia da Semana 6 para criação de jogo educativo PWA.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <title>Semana 6 — Crie seu jogo PWA</title>
+  <style>
+    :root{--bg:#f4f1ff;--surface:#ffffffee;--text:#241f3b;--muted:#625d78;--primary:#5b46c8;--secondary:#168ba6;--accent:#d59a18;--border:#d9d2f3;--ok:#177245;--shadow:0 16px 45px #352a7324;--size:18px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:var(--size);line-height:1.65;color:var(--text);background:radial-gradient(circle at top left,#62cde73d,transparent 31%),radial-gradient(circle at top right,#a082ff3d,transparent 28%),var(--bg)}
+    body.dark{--bg:#151323;--surface:#1f1c34f2;--text:#f5f2ff;--muted:#c9c3df;--border:#504978;--shadow:0 16px 45px #00000057}body.contrast{--bg:#000;--surface:#000;--text:#fff;--muted:#fff;--primary:#ffeb00;--secondary:#00ffff;--accent:#ffeb00;--border:#fff;--ok:#00ff7f;--shadow:none}
+    button,input{font:inherit}button{min-height:48px;border:0;border-radius:14px;padding:.72rem 1rem;cursor:pointer;font-weight:700}button:focus-visible,a:focus-visible,input:focus-visible{outline:4px solid var(--accent);outline-offset:3px}
+    .topbar{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem clamp(1rem,4vw,3rem);background:var(--surface);backdrop-filter:blur(15px);border-bottom:1px solid var(--border)}.brand{font-weight:900}.tools{display:flex;gap:.5rem;flex-wrap:wrap}.tools button{background:var(--primary);color:#fff}.contrast .tools button{color:#000}
+    .hero{max-width:1180px;margin:auto;padding:4rem 1.2rem 2rem;display:grid;grid-template-columns:1.5fr .7fr;gap:2rem;align-items:center}.hero h1{font-size:clamp(2.3rem,6vw,5rem);line-height:1.02;margin:0 0 1rem}.hero p{font-size:1.14em;color:var(--muted);max-width:760px}.badge{display:inline-block;padding:.35rem .75rem;border-radius:999px;background:#5b46c81f;border:1px solid var(--border);font-weight:800}.mascot{min-height:250px;display:grid;place-items:center;font-size:8rem;animation:float 3.5s ease-in-out infinite}@keyframes float{50%{transform:translateY(-12px)}}
+    .container{max-width:1180px;margin:auto;padding:0 1.2rem 5rem}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0 2.5rem}.summary article,.card{background:var(--surface);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow)}.summary article{padding:1.2rem}.summary strong{display:block;font-size:1.7rem;color:var(--primary)}
+    .progress-shell{height:24px;border-radius:999px;overflow:hidden;border:1px solid var(--border);background:var(--surface)}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--secondary));transition:.25s}.step-list{display:grid;gap:1.2rem}.card{padding:1.35rem}.step-head{display:flex;gap:1rem;align-items:flex-start}.number{flex:0 0 48px;height:48px;display:grid;place-items:center;border-radius:15px;background:var(--primary);color:#fff;font-size:1.35rem;font-weight:900}.contrast .number{color:#000}.check-row{margin-top:1rem;display:flex;gap:.8rem;align-items:center;padding:.8rem;border-radius:14px;border:1px dashed var(--border)}.check-row input{width:24px;height:24px}
+    pre{overflow:auto;white-space:pre-wrap;background:#171525;color:#f5f2ff;border-radius:16px;padding:1rem;font-family:Consolas,monospace;line-height:1.45}.copy{background:var(--secondary);color:#fff;margin:.35rem .35rem .35rem 0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.mini{padding:1rem;border:1px solid var(--border);border-radius:16px;background:#ffffff59}.dark .mini{background:#ffffff0a}.notice{border-left:6px solid var(--accent);padding:1rem;background:#d59a181f;border-radius:12px}.success{border-left-color:var(--ok);background:#1772451f}.footer{text-align:center;color:var(--muted);padding:2rem}.hidden{display:none!important}
+    @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:2.5rem}.mascot{min-height:150px;font-size:6rem}.summary,.grid2{grid-template-columns:1fr}.topbar{align-items:flex-start;flex-direction:column}}
+  </style>
 </head>
-
 <body>
-  <div class="ambient-bg" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-
-  <audio id="somClique" src="assets/audio/clique.mp3"></audio>
-  <audio id="somSucesso" src="assets/audio/sucesso.mp3"></audio>
-  <audio id="somErro" src="assets/audio/erro.mp3"></audio>
-  <audio id="somVitoria" src="assets/audio/vitoria.mp3"></audio>
-  <audio id="somAmbiente" src="assets/audio/ambiente.mp3" loop></audio>
-
-  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-
-  <header class="topbar">
-    <div class="brand">
-      <img src="assets/img/robo-neuro.png" alt="Neuro Guia" />
-      <div>
-        <strong>Neuro Games Studio 60+</strong>
-        <small>UNATI • UEM • Oficina de Games com IA</small>
-      </div>
-    </div>
-
-    <div class="toolbar" aria-label="Controles de acessibilidade">
-      <button id="btnInstall" class="ghost">📱 Baixar app</button>
-      <button data-action="fontPlus">A+</button>
-      <button data-action="fontMinus">A-</button>
-      <button data-action="dark">🌙</button>
-      <button data-action="contrast">◐ Contraste</button>
-      <button data-action="spacing">↔ Espaço</button>
-      <button data-action="audio">🔊 Som</button>
-    </div>
-  </header>
-
-  <aside class="sidebar" aria-label="Navegação das etapas">
-    <div class="progress-card">
-      <p>Progresso da oficina</p>
-      <div class="progress">
-        <div id="progressFill"></div>
-      </div>
-      <strong id="progressText">0%</strong>
-    </div>
-
-    <nav id="menu"></nav>
-  </aside>
-
-  <main id="conteudo" class="app-shell">
-    <section class="hero tab active" id="inicio">
-      <div class="hero-copy">
-        <span class="pill">Semana 5 — hoje</span>
-        <h1>Hoje vamos preparar o projeto. O jogo será construído nas próximas semanas.</h1>
-        <p>O aluno vai criar conta no GitHub, montar as pastas, escolher o jogo, planejar imagens, buscar sons e deixar tudo pronto para publicar como PWA.</p>
-
-        <div class="hero-actions">
-          <button data-goto="github-conta">Começar pela conta GitHub</button>
-          <button id="continueBtn" class="secondary">Continuar de onde parei</button>
-          <button data-goto="cronograma" class="secondary">Ver cronograma</button>
-        </div>
-      </div>
-
-      <img src="assets/img/capa-neuro.png" alt="Capa principal da Semana 5" class="hero-img" />
-    </section>
-
-    <section class="tab" id="cronograma">
-      <h2>Cronograma até a entrega final</h2>
-
-      <div class="timeline">
-        <article>
-          <strong>Semana 5 — hoje</strong>
-          <p>Criar conta no GitHub, repositório, pastas, imagens, sons, prompts e estrutura PWA.</p>
-        </article>
-
-        <article>
-          <strong>Semana 6</strong>
-          <p>Gerar o HTML do jogo escolhido com IA e adaptar o conteúdo educativo.</p>
-        </article>
-
-        <article>
-          <strong>Semana 7</strong>
-          <p>Testar acessibilidade, corrigir erros, publicar no GitHub Pages e testar no celular.</p>
-        </article>
-
-        <article>
-          <strong>Semana 8</strong>
-          <p>Finalizar relatório científico, inserir prints, gerar PDF e apresentar o projeto.</p>
-        </article>
-      </div>
-
-      <button data-done="cronograma">✅ Entendi o cronograma</button>
-    </section>
-
-    <section class="tab" id="github-conta">
-      <h2>Card 1 — Criar sua conta no GitHub</h2>
-
-      <p class="lead">Hoje, cada aluno ou grupo deve abrir uma conta gratuita no GitHub. O GitHub será usado para guardar o projeto e publicar o aplicativo.</p>
-
-      <div class="steps">
-        <article>
-          <span>1</span>
-          <h3>Acesse o site</h3>
-          <p>Abra o navegador e digite: <strong>github.com</strong>.</p>
-        </article>
-
-        <article>
-          <span>2</span>
-          <h3>Clique em Sign up</h3>
-          <p>Esse botão cria uma nova conta. Se você já tiver conta, clique em Sign in.</p>
-        </article>
-
-        <article>
-          <span>3</span>
-          <h3>Digite seu e-mail</h3>
-          <p>Use um e-mail que você consiga abrir na hora, porque o GitHub pode pedir confirmação.</p>
-        </article>
-
-        <article>
-          <span>4</span>
-          <h3>Crie uma senha</h3>
-          <p>Anote em local seguro. Não compartilhe sua senha.</p>
-        </article>
-
-        <article>
-          <span>5</span>
-          <h3>Escolha nome de usuário</h3>
-          <p>Use nome simples, sem acentos e sem espaços. Exemplo: grupo-neuro-uem.</p>
-        </article>
-
-        <article>
-          <span>6</span>
-          <h3>Confirme o e-mail</h3>
-          <p>Abra seu e-mail, procure a mensagem do GitHub e confirme a conta.</p>
-        </article>
-      </div>
-
-      <div class="warning">
-        <strong>Atenção:</strong> sem conta no GitHub, o grupo não conseguirá publicar o PWA no GitHub Pages.
-      </div>
-
-      <button data-done="github-conta">✅ Minha conta foi criada</button>
-    </section>
-
-    <section class="tab" id="github-repo">
-      <h2>Card 2 — Criar o repositório do projeto</h2>
-
-      <p>O repositório é a pasta online onde ficará o aplicativo.</p>
-
-      <ol class="big-list">
-        <li>Clique no botão <strong>+</strong> no canto superior direito.</li>
-        <li>Clique em <strong>New repository</strong>.</li>
-        <li>No nome, digite: <strong>Aula5-PWA</strong> ou o nome do grupo.</li>
-        <li>Marque <strong>Public</strong>.</li>
-        <li>Clique em <strong>Create repository</strong>.</li>
-      </ol>
-
-      <button data-done="github-repo">✅ Repositório criado</button>
-    </section>
-
-    <section class="tab" id="pastas">
-      <h2>Card 3 — Criar as pastas do jogo</h2>
-
-      <p>O projeto precisa ter esta estrutura. O GitHub diferencia letras maiúsculas e minúsculas.</p>
-
-      <pre class="code">Aula5-PWA/
-├── index.html
-├── style.css
-├── app.js
-├── relatorio.js
-├── manifest.json
-├── sw.js
-└── assets/
-    ├── img/
-    │   ├── fundo-neuro.png
-    │   ├── robo-neuro.png
-    │   ├── capa-neuro.png
-    │   ├── memoria-neuro.png
-    │   ├── sudoku-neuro.png
-    │   ├── cruzadas-neuro.png
-    │   ├── quiz-neuro.png
-    │   ├── cartas-neuro.png
-    │   └── trofeu-neuro.png
-    ├── audio/
-    │   ├── clique.mp3
-    │   ├── sucesso.mp3
-    │   ├── erro.mp3
-    │   ├── vitoria.mp3
-    │   └── ambiente.mp3
-    └── icons/
-        ├── icon-192.png
-        └── icon-512.png</pre>
-
-      <button data-copy='mkdir Aula5-PWA; cd Aula5-PWA; New-Item index.html,style.css,app.js,relatorio.js,manifest.json,sw.js -ItemType File; mkdir assets; mkdir assets\img; mkdir assets\audio; mkdir assets\icons'>
-        📋 Copiar comandos PowerShell
-      </button>
-
-      <div class="info">
-        <p><strong>Importante:</strong> o HTML não guarda a imagem dentro dele. Ele aponta para o caminho. Se a imagem não aparecer, confira nome, pasta e extensão.</p>
-      </div>
-
-      <button data-done="pastas">✅ Pastas criadas</button>
-    </section>
-
-    <section class="tab" id="imagens">
-      <h2>Card 4 — Imagens que o aluno deve criar</h2>
-
-      <p>Substitua as imagens-modelo mantendo exatamente estes nomes. Cards e capa: 1024x1024. Fundo: 1920x1080. Robô: PNG transparente.</p>
-
-      <div class="cards" id="imageCards"></div>
-
-      <button data-done="imagens">✅ Planejei as imagens</button>
-    </section>
-
-    <section class="tab" id="escolha-jogo">
-      <h2>Card 5 — Escolha o jogo do grupo</h2>
-
-      <p>Cada grupo escolhe um jogo. O app gera um prompt específico para o jogo escolhido.</p>
-
-      <div class="game-grid" id="gameGrid"></div>
-
-      <button data-done="escolha-jogo">✅ Jogo escolhido</button>
-    </section>
-
-    <section class="tab" id="prompt-jogo">
-      <h2>Card 6 — Prompt para gerar o HTML do jogo</h2>
-
-      <p>Depois de escolher o jogo, copie o prompt e peça para a IA gerar o arquivo HTML do jogo.</p>
-
-      <label for="promptOutput">Prompt personalizado</label>
-      <textarea id="promptOutput" readonly>Escolha um jogo na etapa anterior.</textarea>
-
-      <button data-copy-target="promptOutput">📋 Copiar prompt</button>
-      <button data-done="prompt-jogo">✅ Prompt copiado</button>
-    </section>
-
-    <section class="tab" id="sons">
-      <h2>Card 7 — Onde encontrar áudio para o jogo</h2>
-
-      <p>Use sons curtos, suaves, com volume baixo. O áudio ajuda, mas não deve ser obrigatório.</p>
-
-      <div class="cards compact">
-        <article>
-          <h3>Pixabay Sound Effects</h3>
-          <p>Bom para cliques, acertos e sons leves.</p>
-        </article>
-
-        <article>
-          <h3>Mixkit</h3>
-          <p>Ótimo para sons de interface e vitória.</p>
-        </article>
-
-        <article>
-          <h3>Freesound</h3>
-          <p>Biblioteca grande; verifique licença.</p>
-        </article>
-
-        <article>
-          <h3>Zapsplat</h3>
-          <p>Muitos efeitos; pode exigir cadastro gratuito.</p>
-        </article>
-
-        <article>
-          <h3>BBC Sound Effects</h3>
-          <p>Bom para pesquisa sonora e ambientes.</p>
-        </article>
-
-        <article>
-          <h3>Celular</h3>
-          <p>O grupo pode gravar sons próprios.</p>
-        </article>
-      </div>
-
-      <pre class="code">assets/audio/clique.mp3     → botão
-assets/audio/sucesso.mp3    → acerto
-assets/audio/erro.mp3       → correção
-assets/audio/vitoria.mp3    → finalização
-assets/audio/ambiente.mp3   → música opcional</pre>
-
-      <button data-done="sons">✅ Sons organizados</button>
-    </section>
-
-    <section class="tab" id="pwa">
-      <h2>Card 8 — Transformar em PWA</h2>
-
-      <p>PWA é um site que pode ser instalado como aplicativo. Ele precisa de manifest, service worker e ícones.</p>
-
-      <div class="cards compact">
-        <article>
-          <h3>manifest.json</h3>
-          <p>Nome, ícones, tela inicial e cor do app.</p>
-        </article>
-
-        <article>
-          <h3>sw.js</h3>
-          <p>Arquivo que permite cache e funcionamento offline.</p>
-        </article>
-
-        <article>
-          <h3>icons</h3>
-          <p>icon-192.png e icon-512.png.</p>
-        </article>
-      </div>
-
-      <button id="btnInstall2">📱 Baixar app neste dispositivo</button>
-      <button data-done="pwa">✅ Entendi o PWA</button>
-    </section>
-
-    <section class="tab" id="pages">
-      <h2>Card 9 — Publicar no GitHub Pages</h2>
-
-      <ol class="big-list">
-        <li>Entre no repositório.</li>
-        <li>Clique em <strong>Add file</strong> e depois <strong>Upload files</strong>.</li>
-        <li>Envie todos os arquivos e a pasta assets.</li>
-        <li>Clique em <strong>Commit changes</strong>.</li>
-        <li>Vá em <strong>Settings</strong>.</li>
-        <li>Vá em <strong>Pages</strong>.</li>
-        <li>Em Branch, escolha <strong>main</strong>.</li>
-        <li>Em Folder, escolha <strong>/root</strong>.</li>
-        <li>Clique em Save e espere o link aparecer.</li>
-      </ol>
-
-      <button data-done="pages">✅ Publiquei no GitHub Pages</button>
-    </section>
-
-    <section class="tab" id="testes">
-      <h2>Card 10 — Testes e erros comuns</h2>
-
-      <div class="faq">
-        <details open>
-          <summary>Imagem não aparece</summary>
-          <p>Confira se o arquivo está em assets/img e se o nome está exatamente igual. Exemplo: memoria-neuro.png não é Memoria-Neuro.png.</p>
-        </details>
-
-        <details>
-          <summary>Som não toca</summary>
-          <p>Alguns navegadores só permitem som depois do primeiro clique. Teste após clicar em algum botão.</p>
-        </details>
-
-        <details>
-          <summary>PDF não baixa</summary>
-          <p>Abra no navegador, não dentro de pré-visualização. Confira a internet, pois a biblioteca html2pdf é carregada por CDN.</p>
-        </details>
-
-        <details>
-          <summary>GitHub Pages mostra 404</summary>
-          <p>Espere alguns minutos, confira se o arquivo se chama index.html e se Pages está usando main e /root.</p>
-        </details>
-      </div>
-
-      <button data-done="testes">✅ Testes conferidos</button>
-    </section>
-
-    <section class="tab" id="relatorio">
-      <h2>Card 11 — Relatório científico</h2>
-
-      <p>O Neuro Guia preenche um relatório acadêmico completo. Revise com seu grupo antes de baixar o PDF.</p>
-
-      <form id="reportForm" class="report-form">
-        <label>Nome do grupo
-          <input id="grupo" />
-        </label>
-
-        <label>Integrantes
-          <textarea id="integrantes"></textarea>
-        </label>
-
-        <label>Nome do jogo
-          <input id="nomeJogo" />
-        </label>
-
-        <label>Tipo de jogo
-          <select id="tipoJogo">
-            <option>Memória</option>
-            <option>Quiz</option>
-            <option>Sudoku</option>
-            <option>Palavras Cruzadas</option>
-            <option>Cartas Educativas</option>
-            <option>Bolhas</option>
-          </select>
-        </label>
-
-        <label>Link GitHub Pages
-          <input id="linkGithub" />
-        </label>
-
-        <label>Introdução
-          <textarea id="introducao"></textarea>
-        </label>
-
-        <label>Justificativa extensionista
-          <textarea id="justificativa"></textarea>
-        </label>
-
-        <label>Objetivo geral
-          <textarea id="objetivoGeral"></textarea>
-        </label>
-
-        <label>Objetivos específicos
-          <textarea id="objetivosEspecificos"></textarea>
-        </label>
-
-        <label>Conteúdo abordado
-          <textarea id="conteudo"></textarea>
-        </label>
-
-        <label>Metodologia de desenvolvimento
-          <textarea id="metodologiaDev"></textarea>
-        </label>
-
-        <label>Metodologia de aplicação com público 60+
-          <textarea id="metodologiaAplicacao"></textarea>
-        </label>
-
-        <label>Recursos visuais
-          <textarea id="recursosVisuais"></textarea>
-        </label>
-
-        <label>Recursos sonoros
-          <textarea id="recursosSonoros"></textarea>
-        </label>
-
-        <label>Recursos de acessibilidade
-          <textarea id="acessibilidadeRel"></textarea>
-        </label>
-
-        <label>Resultados esperados
-          <textarea id="resultados"></textarea>
-        </label>
-
-        <label>Discussão
-          <textarea id="discussao"></textarea>
-        </label>
-
-        <label>Dificuldades encontradas
-          <textarea id="dificuldades"></textarea>
-        </label>
-
-        <label>Soluções adotadas
-          <textarea id="solucoes"></textarea>
-        </label>
-
-        <label>Conclusão
-          <textarea id="conclusao"></textarea>
-        </label>
-
-        <label>Referências
-          <textarea id="referencias"></textarea>
-        </label>
-
-        <label>Adicionar várias imagens/prints ao relatório
-          <input id="prints" type="file" accept="image/*" multiple />
-        </label>
-      </form>
-
-      <div class="actions">
-        <button id="fillReport" type="button">🤖 Neuro Guia preenche tudo</button>
-        <button id="previewReport" type="button">👁️ Gerar prévia</button>
-        <button id="downloadPdf" type="button">📄 Baixar PDF do relatório</button>
-        <button id="clearReport" type="button" class="danger">Limpar</button>
-      </div>
-
-      <div id="reportPreview"></div>
-    </section>
-
-    <section class="tab" id="certificado">
-      <h2>Certificado de conclusão</h2>
-
-      <p>Após concluir as etapas, gere um certificado simples da Semana 5.</p>
-
-      <label>Nome do estudante ou grupo
-        <input id="certName" placeholder="Digite o nome" />
-      </label>
-
-      <button id="makeCert" type="button">🏆 Gerar certificado</button>
-
-      <div id="certPreview" class="certificate"></div>
-    </section>
-  </main>
-
-  <div class="neuro-panel" id="neuroPanel" aria-live="polite">
-    <h3>🤖 Neuro Guia</h3>
-
-    <p id="neuroText">Olá! Hoje vamos abrir a conta no GitHub e preparar o projeto. Clique em uma etapa para começar.</p>
-
-    <div class="neuro-quick">
-      <button data-help="imagem">Imagem não aparece</button>
-      <button data-help="som">Som não toca</button>
-      <button data-help="pdf">PDF não baixa</button>
-      <button data-help="github">GitHub Pages</button>
-    </div>
-  </div>
-
-  <button class="neuro-float" id="neuroButton" aria-label="Abrir Neuro Guia">
-    <img src="assets/img/robo-neuro.png" alt="Neuro Guia" />
-  </button>
-
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    try {
-      new window.VLibras.Widget("https://vlibras.gov.br/app");
-    } catch (e) {}
-  </script>
-
-  <script src="prompts.js"></script>
-  <script src="relatorio.js"></script>
-  <script src="app.js"></script>
-</body>
-          </html>
+<header class="topbar"><div class="brand">🧠 Semana 6 — Jogo PWA</div><div class="tools"><button id="minus">A−</button><button id="plus">A+</button><button id="dark">Modo escuro</button><button id="contrast">Alto contraste</button><button id="install" class="hidden">Instalar app</button></div></header>
+<main>
+<section class="hero"><div><span class="badge">Meta da aula</span><h1>Crie, publique e teste seu jogo.</h1><p>Ao final da Semana 6, o grupo deverá ter um jogo educativo funcional, publicado no GitHub Pages, com imagens, sons, acessibilidade básica e configuração PWA.</p></div><div class="mascot" aria-label="Robô guia">🤖</div></section>
+<div class="container">
+<section class="summary"><article><strong>Semana 6</strong>Criação completa</article><article><strong>Semana 7</strong>Testes e relatório</article><article><strong>Entrega</strong>Link do GitHub Pages</article></section>
+<section><h2>Progresso: <span id="progressText">0%</span></h2><div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div></section>
+<section class="step-list">
+<article class="card"><div class="step-head"><div class="number">1</div><div><h2>Abrir o repositório</h2><p>Entre no GitHub, abra o repositório criado anteriormente e confirme que ele é público.</p></div></div><div class="check-row"><input class="step" id="c1" type="checkbox"><label for="c1">Repositório aberto e público.</label></div></article>
+<article class="card"><div class="step-head"><div class="number">2</div><div><h2>Criar pastas e subpastas</h2><p>Todos devem criar diretamente no GitHub.</p></div></div><pre>index.html
+style.css
+app.js
+manifest.json
+sw.js
+assets/
+├── img/
+│   ├── capa.png
+│   ├── fundo.png
+│   ├── robo.png
+│   ├── trofeu.png
+│   ├── sucesso.png
+│   ├── erro.png
+│   └── jogo/
+│       ├── imagem01.png
+│       └── ...
+├── audio/
+│   ├── clique.mp3
+│   ├── acerto.mp3
+│   ├── erro.mp3
+│   ├── vitoria.mp3
+│   └── ambiente.mp3
+└── icons/
+    ├── icon-192.png
+    └── icon-512.png</pre><p class="notice">Use Add file → Create new file. No GitHub, a pasta nasce quando um arquivo é criado dentro dela.</p><button class="copy" data-copy="assets/img/README.md">Copiar assets/img</button><button class="copy" data-copy="assets/img/jogo/README.md">Copiar assets/img/jogo</button><button class="copy" data-copy="assets/audio/README.md">Copiar assets/audio</button><button class="copy" data-copy="assets/icons/README.md">Copiar assets/icons</button><div class="check-row"><input class="step" id="c2" type="checkbox"><label for="c2">Pastas criadas.</label></div></article>
+<article class="card"><div class="step-head"><div class="number">3</div><div><h2>Definir o jogo</h2><p>Escolha memória, quiz, sudoku, palavras cruzadas, cartas ou bolhas.</p></div></div><pre>Nome do jogo:
+Tipo:
+Tema:
+Público:
+Conteúdo educativo:
+Quantidade de perguntas, cartas ou desafios:</pre><div class="check-row"><input class="step" id="c3" type="checkbox"><label for="c3">Jogo definido.</label></div></article>
+<article class="card"><div class="step-head"><div class="number">4</div><div><h2>Gerar imagens</h2><p>Produza capa, fundo, robô, troféu, sucesso, erro e imagens específicas.</p></div></div><div class="grid2"><div class="mini"><b>capa.png</b><br>1024 × 1024</div><div class="mini"><b>fundo.png</b><br>1920 × 1080</div><div class="mini"><b>robo.png</b><br>PNG transparente</div><div class="mini"><b>ícones</b><br>192 e 512 px</div></div><h3>Prompt da capa</h3><pre id="p1">Crie uma capa quadrada de 1024 × 1024 px para um jogo educativo sobre [TEMA]. Público-alvo: [PÚBLICO]. Use estilo anime 3D fofo, moderno, científico e acolhedor. Inclua o título “[NOME DO JOGO]”. Use alta nitidez, contraste adequado e elementos grandes.</pre><button class="copy" data-target="p1">Copiar prompt</button><h3>Prompt do fundo</h3><pre id="p2">Crie um fundo horizontal de 1920 × 1080 px para um jogo educativo sobre [TEMA]. Use estilo anime 3D fofo e científico, com tons pastéis. Não inclua textos e deixe áreas livres para cards, botões e perguntas.</pre><button class="copy" data-target="p2">Copiar prompt</button><h3>Prompt das imagens do jogo</h3><pre id="p3">Crie [QUANTIDADE] imagens educativas diferentes sobre [TEMA]. Cada imagem deve representar um conceito. Use o mesmo estilo, paleta e iluminação. Formato quadrado, sem texto pequeno, com o elemento principal centralizado. Público: [PÚBLICO].</pre><button class="copy" data-target="p3">Copiar prompt</button><div class="check-row"><input class="step" id="c4" type="checkbox"><label for="c4">Imagens produzidas.</label></div></article>
+<article class="card"><div class="step-head"><div class="number">5</div><div><h2>Selecionar sons e efeitos</h2><p>Use sons curtos, suaves e opcionais, sempre verificando a licença.</p></div></div><pre>clique.mp3   → botões
+acerto.mp3   → resposta correta
+erro.mp3     → resposta incorreta
+vitoria.mp3  → conclusão
+ambiente.mp3 → trilha opcional</pre><p class="notice">O usuário deve poder desligar o som. O jogo precisa ser compreensível sem áudio.</p><div class="check-row"><input class="step" id="c5" type="checkbox"><label for="c5">Sons organizados.</label></div></article>
+<article class="card"><div class="step-head"><div class="number">6</div><div><h2>Enviar os assets</h2><p>Entre em cada pasta e use Add file → Upload files.</p></div></div><pre>assets/img/capa.png
+assets/img/fundo.png
+assets/img/jogo/imagem01.png
+assets/audio/clique.mp3
+assets/icons/icon-192.png</pre><p class="notice">Use nomes em letras minúsculas, sem espaços e sem acentos.</p><div class="check-row"><input class="step" id="c6" type="checkbox"><label for="c6">Assets enviados.</label></div></article>
+<article class="card"><div class="step-head"><div class="number">7</div><div><h2>Gerar o código com IA</h2><p>Use o prompt completo abaixo.</p></div></div><pre id="p4">Crie um jogo educativo completo e acessível em HTML, CSS e JavaScript puro.
+
+Não use backend, banco de dados ou frameworks.
+
+Tipo: [TIPO].
+Tema: [TEMA].
+Público: [PÚBLICO].
+Conteúdo: [CONTEÚDO].
+
+O projeto deve funcionar no GitHub Pages e como PWA instalável.
+
+Entregue, separadamente e por completo:
+1. index.html
+2. style.css
+3. app.js
+4. manifest.json
+5. sw.js
+
+Use imagens de assets/img e assets/img/jogo, sons de assets/audio e ícones de assets/icons.
+
+Inclua tela inicial, instruções, iniciar, reiniciar, pontuação, mensagem final, sons opcionais, controle de volume, fonte ampliável, alto contraste, modo escuro, botões grandes, textos alternativos, navegação por teclado, VLibras, responsividade, ausência de tempo obrigatório, salvamento local, manifest e service worker válidos.</pre><button class="copy" data-target="p4">Copiar prompt completo</button><div class="check-row"><input class="step" id="c7" type="checkbox"><label for="c7">Código gerado.</label></div></article>
+<article class="card"><div class="step-head"><div class="number">8</div><div><h2>Criar os arquivos</h2><p>No GitHub, crie index.html, style.css, app.js, manifest.json e sw.js.</p></div></div><div class="check-row"><input class="step" id="c8" type="checkbox"><label for="c8">Arquivos criados e salvos.</label></div></article>
+<article class="card"><div class="step-head"><div class="number">9</div><div><h2>Publicar no GitHub Pages</h2><p>Settings → Pages → Deploy from a branch → main → /root → Save.</p></div></div><div class="check-row"><input class="step" id="c9" type="checkbox"><label for="c9">Link público funcionando.</label></div></article>
+<article class="card"><div class="step-head"><div class="number">10</div><div><h2>Teste mínimo</h2><p>Teste abertura, imagens, botões, pontuação, reinício, sons, fonte, contraste e celular.</p></div></div><div class="check-row"><input class="step" id="c10" type="checkbox"><label for="c10">Teste mínimo concluído.</label></div></article>
+<article class="card"><div class="step-head"><div class="number">11</div><div><h2>Entrega da Semana 6</h2><p class="notice success"><b>Entregar:</b> jogo funcional, link do GitHub Pages, repositório organizado, imagens, sons, acessibilidade básica, PWA e três prints.</p></div></div><div class="check-row"><input class="step" id="c11" type="checkbox"><label for="c11">Entrega completa.</label></div></article>
+</section></div></main>
+<footer class="footer">O progresso fica salvo neste dispositivo.</footer>
+<script>
+const root=document.documentElement,steps=[...document.querySelectorAll('.step')],all=[...document.querySelectorAll('input[type=checkbox]')];
+function progress(){const n=steps.filter(x=>x.checked).length,p=Math.round(n/steps.length*100);progressText.textContent=p+'%';progressBar.style.width=p+'%'}
+all.forEach((x,i)=>{const k='s6-'+i;x.checked=localStorage.getItem(k)==='1';x.onchange=()=>{localStorage.setItem(k,x.checked?'1':'0');progress()}});progress();
+let size=Number(localStorage.getItem('s6-size'))||18;function apply(){root.style.setProperty('--size',size+'px');localStorage.setItem('s6-size',size)}apply();plus.onclick=()=>{size=Math.min(26,size+2);apply()};minus.onclick=()=>{size=Math.max(14,size-2);apply()};
+if(localStorage.getItem('s6-dark')==='1')document.body.classList.add('dark');if(localStorage.getItem('s6-contrast')==='1')document.body.classList.add('contrast');dark.onclick=()=>{document.body.classList.toggle('dark');localStorage.setItem('s6-dark',document.body.classList.contains('dark')?'1':'0')};contrast.onclick=()=>{document.body.classList.toggle('contrast');localStorage.setItem('s6-contrast',document.body.classList.contains('contrast')?'1':'0')};
+document.querySelectorAll('.copy').forEach(b=>b.onclick=async()=>{const t=b.dataset.copy||(document.getElementById(b.dataset.target)?.innerText||'');try{await navigator.clipboard.writeText(t);const o=b.textContent;b.textContent='Copiado!';setTimeout(()=>b.textContent=o,1200)}catch{alert('Selecione e copie manualmente.')}});
+let promptEvent;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();promptEvent=e;install.classList.remove('hidden')});install.onclick=async()=>{if(!promptEvent)return;promptEvent.prompt();await promptEvent.userChoice;promptEvent=null;install.classList.add('hidden')};
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(console.error));
+</script>
+<div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div><script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script><script>if(window.VLibras)new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+</body></html>
