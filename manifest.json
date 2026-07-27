@@ -1,15 +1,32 @@
 {
-  "name": "Semana 6 — Crie seu jogo PWA",
-  "short_name": "Semana 6 PWA",
-  "description": "Guia passo a passo para criação e publicação de jogo educativo PWA.",
+  "name": "Semana 6 — Neuro Games Studio 60+",
+  "short_name": "Semana 6",
+  "description": "Guia interativo para criação de jogos educativos PWA acessíveis em Neuroanatomia.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f1ff",
-  "theme_color": "#3b2f80",
+  "orientation": "any",
+  "background_color": "#09071a",
+  "theme_color": "#25195f",
   "lang": "pt-BR",
   "icons": [
-    {"src":"assets/icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"assets/icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
