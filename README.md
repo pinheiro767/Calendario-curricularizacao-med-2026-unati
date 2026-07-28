@@ -74,28 +74,12 @@ Coloque exatamente estes quatro arquivos em `assets/audio/`:
 O aplicativo agora possui um Painel de Sons visível para testar cada arquivo. O som ambiente começa somente depois de um toque do usuário, pois celulares e navegadores bloqueiam reprodução automática.
 
 
-## Correção desta versão
+## Alterações desta versão
 
-A seção visual intitulada “Espaços das imagens essenciais do layout” foi removida.
-Ela era apenas um quadro de orientação e não deveria aparecer para o público.
-
-As imagens continuam sendo usadas normalmente nos locais corretos:
-- capa-semana6.png na abertura;
-- fundo-neuro.png no fundo do aplicativo;
-- painel-missao.png atrás do texto da missão;
-- robo-neuro.png na abertura;
-- robo-falando.png nas orientações;
-- robo-celebrando.png na conclusão.
-
-
-## Painel da missão
-
-Nesta versão não é necessário criar `painel-missao.png`.
-
-A moldura da missão inicial é produzida automaticamente pelo CSS, com:
-- bordas futuristas;
-- gradiente azul-ciano, roxo e dourado;
-- fundo translúcido;
-- área limpa para título, objetivo, botões e progresso.
-
-Portanto, não coloque `painel-missao.png` na pasta de imagens.
+- O arquivo `painel-missao.png` não é mais necessário.
+- A missão aparece diretamente sobre a imagem `capa-semana6.png`.
+- Foi incluído o botão **Ver exemplo pronto**.
+- O botão abre:
+  https://pinheiro767.github.io/gameneuro/
+- A seção “Espaços das imagens essenciais do layout” foi removida.
+- Os sons `ambiente.mp3`, `clique.mp3`, `erro.mp3` e `vitoria.mp3` continuam integrados.
