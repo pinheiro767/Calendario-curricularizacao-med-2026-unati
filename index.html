@@ -273,6 +273,103 @@ conclusao.mp3</pre>
       </article>
     </section>
 
+
+    <section id="reportSection" class="report-section" aria-labelledby="reportTitle">
+      <div class="report-toolbar no-print">
+        <div>
+          <span class="tag">RELATÓRIO DO DIA</span>
+          <h2 id="reportTitle">Registro da produção do jogo</h2>
+          <p>Preencha manualmente ou use o Robô Neuro para criar um texto inicial que poderá ser revisado.</p>
+        </div>
+        <div class="report-actions">
+          <button id="robotFillReport" class="primary" type="button">🤖 Preencher com o Robô</button>
+          <button id="saveReport" class="secondary" type="button">💾 Salvar relatório</button>
+          <button id="clearReport" class="secondary" type="button">🗑️ Limpar</button>
+          <button id="generatePdf" class="pdf-button" type="button">📄 Gerar PDF</button>
+        </div>
+      </div>
+
+      <article id="printableReport" class="report-paper">
+        <header class="report-header">
+          <div>
+            <span class="report-kicker">NEURO GAMES STUDIO 60+</span>
+            <h2>Relatório de atividades - Semana 6</h2>
+            <p>Criação e finalização de jogo educativo em formato PWA</p>
+          </div>
+          <img src="assets/img/robo-neuro.png" alt="Robô Neuro" class="report-logo required-image" data-name="robo-neuro.png">
+        </header>
+
+        <div class="report-meta">
+          <label>Data
+            <input id="reportDate" type="date">
+          </label>
+          <label>Grupo
+            <input id="reportGroup" type="text" placeholder="Ex.: Grupo 3">
+          </label>
+          <label>Jogo desenvolvido
+            <input id="reportGame" type="text" placeholder="Ex.: Jogo da memória">
+          </label>
+          <label>Participantes
+            <input id="reportParticipants" type="text" placeholder="Nomes dos integrantes">
+          </label>
+        </div>
+
+        <section class="report-block">
+          <h3>1. Introdução</h3>
+          <textarea id="reportIntroduction" rows="7" placeholder="Apresente o objetivo da atividade e o jogo desenvolvido."></textarea>
+        </section>
+
+        <section class="report-block">
+          <h3>2. Metodologia</h3>
+          <textarea id="reportMethodology" rows="9" placeholder="Descreva as etapas realizadas, as ferramentas utilizadas, a organização dos arquivos, a inserção de imagens, sons, acessibilidade e Libras."></textarea>
+        </section>
+
+        <section class="report-block">
+          <h3>3. Resultados</h3>
+          <textarea id="reportResults" rows="9" placeholder="Registre o que foi produzido, o que funcionou, os testes realizados e os resultados observados."></textarea>
+        </section>
+
+        <section class="report-block">
+          <h3>4. Dificuldades e soluções</h3>
+          <textarea id="reportDifficulties" rows="7" placeholder="Informe os problemas encontrados e como foram resolvidos."></textarea>
+        </section>
+
+        <section class="report-block">
+          <h3>5. Considerações finais</h3>
+          <textarea id="reportConclusion" rows="7" placeholder="Faça uma síntese da atividade e indique os próximos passos."></textarea>
+        </section>
+
+        <section class="report-block image-index-block">
+          <div class="image-index-heading">
+            <div>
+              <h3>6. Índice de imagens do game</h3>
+              <p>As imagens são ajustadas integralmente no PDF, sem recorte.</p>
+            </div>
+            <div class="no-print image-controls">
+              <label class="upload-button">
+                📷 Selecionar imagens
+                <input id="reportImages" type="file" accept="image/*" multiple hidden>
+              </label>
+              <button id="addAppImages" class="secondary" type="button">Adicionar imagens do app</button>
+              <button id="clearImages" class="secondary" type="button">Remover imagens</button>
+            </div>
+          </div>
+          <div id="reportGallery" class="report-gallery">
+            <p class="empty-gallery">Nenhuma imagem adicionada ao relatório.</p>
+          </div>
+        </section>
+
+        <footer class="report-footer">
+          <p>Relatório gerado pelo PWA Semana 6 - Neuro Games Studio 60+.</p>
+          <p id="reportGeneratedAt"></p>
+        </footer>
+      </article>
+
+      <div class="pdf-help no-print">
+        <strong>Como salvar:</strong> ao tocar em “Gerar PDF”, escolha <em>Salvar como PDF</em> na tela de impressão do celular ou computador. O layout foi configurado para evitar cortes de textos e imagens.
+      </div>
+    </section>
+
     <section id="conclusion" class="conclusion hidden">
       <div>
         <span class="tag">MISSÃO CONCLUÍDA</span>

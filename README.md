@@ -83,3 +83,25 @@ O aplicativo agora possui um Painel de Sons visível para testar cada arquivo. O
   https://pinheiro767.github.io/gameneuro/
 - A seção “Espaços das imagens essenciais do layout” foi removida.
 - Os sons `ambiente.mp3`, `clique.mp3`, `erro.mp3` e `vitoria.mp3` continuam integrados.
+
+
+## Relatório do dia e PDF
+
+Esta versão inclui uma nova seção de relatório com:
+
+- data, grupo, jogo e participantes;
+- Introdução;
+- Metodologia;
+- Resultados;
+- Dificuldades e soluções;
+- Considerações finais;
+- preenchimento manual;
+- preenchimento inicial pelo Robô Neuro;
+- salvamento local no dispositivo;
+- seleção de imagens do game;
+- inclusão automática das imagens do aplicativo;
+- índice de imagens com legendas;
+- geração de PDF por meio da opção de impressão do navegador.
+
+Ao clicar em **Gerar PDF**, escolha **Salvar como PDF**.
+O CSS de impressão usa `object-fit: contain` e bloqueios de quebra de página para manter as imagens inteiras, sem cortes.

@@ -74,3 +74,203 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js"));
 });
+
+
+/* RELATÓRIO DO DIA */
+const REPORT_FIELDS = [
+  "reportDate", "reportGroup", "reportGame", "reportParticipants",
+  "reportIntroduction", "reportMethodology", "reportResults",
+  "reportDifficulties", "reportConclusion"
+];
+
+function getSelectedGameName() {
+  const selected = document.querySelector(".game.selected");
+  return selected?.dataset.game || localStorage.getItem("s6-report-game") || "jogo educativo de Neuroanatomia";
+}
+
+function saveReportData(showMessage = false) {
+  REPORT_FIELDS.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) localStorage.setItem(`s6-${id}`, element.value);
+  });
+  if (showMessage) alert("Relatório salvo neste dispositivo.");
+}
+
+function loadReportData() {
+  REPORT_FIELDS.forEach(id => {
+    const element = document.getElementById(id);
+    const saved = localStorage.getItem(`s6-${id}`);
+    if (element && saved !== null) element.value = saved;
+  });
+  const date = document.getElementById("reportDate");
+  if (date && !date.value) date.value = new Date().toISOString().slice(0, 10);
+}
+
+function robotFillReport() {
+  const game = getSelectedGameName();
+  const completed = [...document.querySelectorAll(".step-check")].filter(item => item.checked).length;
+  const total = document.querySelectorAll(".step-check").length;
+  const tested = [...document.querySelectorAll(".test-check")].filter(item => item.checked).length;
+
+  document.getElementById("reportGame").value =
+    document.getElementById("reportGame").value || game;
+
+  document.getElementById("reportIntroduction").value =
+`A atividade da Semana 6 teve como objetivo finalizar o ${game}, desenvolvido como recurso educativo em Neuroanatomia para o público com 60 anos ou mais. A proposta integrou conteúdo científico, tecnologia, acessibilidade e princípios de usabilidade, buscando produzir um aplicativo claro, interativo e adequado para uso em celular, tablet e computador.`;
+
+  document.getElementById("reportMethodology").value =
+`O trabalho foi desenvolvido em etapas. Inicialmente, o grupo revisou o tipo de jogo e organizou a estrutura do projeto com os arquivos index.html, style.css, app.js, manifest.json e sw.js. Em seguida, preparou e nomeou as imagens, inseriu os conteúdos educativos e utilizou inteligência artificial como apoio para criação e revisão do código. Também foram adicionados sons de ambiente, clique, erro e vitória, com controle de volume e opção para desligar o áudio. Foram implementados recursos de acessibilidade, como aumento de fonte, alto contraste, modo escuro, leitura em voz alta, botões grandes e Libras. Ao final, o jogo foi testado em diferentes tamanhos de tela e quanto ao funcionamento offline.`;
+
+  document.getElementById("reportResults").value =
+`Ao término da atividade, ${completed} de ${total} etapas principais estavam marcadas como concluídas e ${tested} itens do checklist de testes haviam sido verificados. O grupo produziu uma versão funcional do ${game}, com interface visual, imagens educativas, recursos sonoros, acessibilidade e configuração de PWA. O aplicativo foi preparado para publicação no GitHub Pages e para instalação no dispositivo do usuário.`;
+
+  document.getElementById("reportDifficulties").value =
+`Durante o desenvolvimento, foram observadas dificuldades relacionadas à organização dos arquivos, aos nomes e caminhos das imagens e dos sons, à atualização do cache do service worker e à adaptação do layout para diferentes dispositivos. As soluções envolveram conferência dos nomes dos arquivos, revisão dos caminhos das pastas, atualização da versão do cache, testes no navegador e ajustes no HTML, CSS e JavaScript. Este texto deve ser revisado pelo grupo para registrar somente as dificuldades realmente encontradas.`;
+
+  document.getElementById("reportConclusion").value =
+`A atividade permitiu integrar conhecimentos de Neuroanatomia, produção de recursos educacionais e desenvolvimento de aplicações web. O ${game} apresenta potencial para apoiar ações educativas com o público 60+, desde que seja submetido a novos testes de clareza, acessibilidade, conteúdo e funcionamento. Como próximos passos, o grupo deverá corrigir eventuais falhas, revisar as informações científicas e preparar a apresentação e a testagem com os usuários.`;
+
+  saveReportData(false);
+  alert("O Robô Neuro criou uma versão inicial. Revise e adapte o texto antes de gerar o PDF.");
+}
+
+let reportImageItems = [];
+
+function renderReportGallery() {
+  const gallery = document.getElementById("reportGallery");
+  if (!gallery) return;
+  gallery.innerHTML = "";
+
+  if (!reportImageItems.length) {
+    gallery.innerHTML = '<p class="empty-gallery">Nenhuma imagem adicionada ao relatório.</p>';
+    return;
+  }
+
+  reportImageItems.forEach((item, index) => {
+    const figure = document.createElement("figure");
+    figure.className = "report-figure";
+    figure.innerHTML = `
+      <div class="report-image-frame">
+        <img src="${item.src}" alt="${item.caption || `Imagem ${index + 1}`}">
+      </div>
+      <figcaption>
+        <strong>Figura ${index + 1}.</strong>
+        <input class="caption-input" type="text" value="${item.caption || ""}" aria-label="Legenda da figura ${index + 1}">
+      </figcaption>
+    `;
+    const captionInput = figure.querySelector(".caption-input");
+    captionInput.addEventListener("input", event => {
+      reportImageItems[index].caption = event.target.value;
+    });
+    gallery.appendChild(figure);
+  });
+}
+
+function addUploadedReportImages(files) {
+  [...files].forEach(file => {
+    if (!file.type.startsWith("image/")) return;
+    const reader = new FileReader();
+    reader.onload = event => {
+      reportImageItems.push({
+        src: event.target.result,
+        caption: file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ")
+      });
+      renderReportGallery();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function addApplicationImages() {
+  const game = getSelectedGameName();
+  const gameFileMap = {
+    "Memória": "memoria.png",
+    "Sudoku": "sudoku.png",
+    "Caça-palavras": "caca-palavras.png",
+    "Quiz": "quiz.png",
+    "Cartas": "cartas.png",
+    "Bolha Neuro Shop": "bolhas.png"
+  };
+
+  const images = [
+    ["assets/img/capa-semana6.png", "Tela de abertura da Semana 6"],
+    ...(gameFileMap[game] ? [[`assets/img/${gameFileMap[game]}`, `Capa do jogo ${game}`]] : []),
+    ["assets/img/1.png", "Abertura e apresentação da missão"],
+    ["assets/img/2.png", "Organização das pastas do projeto"],
+    ["assets/img/3.png", "Preparação e nomeação das imagens"],
+    ["assets/img/4.png", "Criação do código com inteligência artificial"],
+    ["assets/img/5.png", "Inserção dos recursos sonoros"],
+    ["assets/img/6.png", "Acessibilidade e Libras"],
+    ["assets/img/7.png", "Testes finais do jogo"]
+  ];
+
+  const existing = new Set(reportImageItems.map(item => item.src));
+  images.forEach(([src, caption]) => {
+    if (!existing.has(src)) reportImageItems.push({ src, caption });
+  });
+  renderReportGallery();
+}
+
+function prepareReportForPrint() {
+  saveReportData(false);
+  document.querySelectorAll(".caption-input").forEach((input, index) => {
+    if (reportImageItems[index]) reportImageItems[index].caption = input.value;
+  });
+  document.getElementById("reportGeneratedAt").textContent =
+    `Gerado em ${new Date().toLocaleString("pt-BR")}.`;
+  document.title = "Relatorio-Semana-6-Neuro-Games";
+  document.body.classList.add("printing-report");
+  window.print();
+  setTimeout(() => document.body.classList.remove("printing-report"), 800);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadReportData();
+
+  REPORT_FIELDS.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) element.addEventListener("input", () => saveReportData(false));
+  });
+
+  const robotButton = document.getElementById("robotFillReport");
+  if (robotButton) robotButton.addEventListener("click", robotFillReport);
+
+  const saveButton = document.getElementById("saveReport");
+  if (saveButton) saveButton.addEventListener("click", () => saveReportData(true));
+
+  const clearButton = document.getElementById("clearReport");
+  if (clearButton) clearButton.addEventListener("click", () => {
+    if (!confirm("Deseja apagar o texto do relatório?")) return;
+    REPORT_FIELDS.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.value = id === "reportDate" ? new Date().toISOString().slice(0,10) : "";
+        localStorage.removeItem(`s6-${id}`);
+      }
+    });
+  });
+
+  const imageInput = document.getElementById("reportImages");
+  if (imageInput) imageInput.addEventListener("change", event => addUploadedReportImages(event.target.files));
+
+  const appImagesButton = document.getElementById("addAppImages");
+  if (appImagesButton) appImagesButton.addEventListener("click", addApplicationImages);
+
+  const clearImagesButton = document.getElementById("clearImages");
+  if (clearImagesButton) clearImagesButton.addEventListener("click", () => {
+    reportImageItems = [];
+    renderReportGallery();
+    if (imageInput) imageInput.value = "";
+  });
+
+  const pdfButton = document.getElementById("generatePdf");
+  if (pdfButton) pdfButton.addEventListener("click", prepareReportForPrint);
+
+  document.querySelectorAll(".game").forEach(button => {
+    button.addEventListener("click", () => {
+      localStorage.setItem("s6-report-game", button.dataset.game);
+      const gameField = document.getElementById("reportGame");
+      if (gameField && !gameField.value) gameField.value = button.dataset.game;
+    });
+  });
+});
