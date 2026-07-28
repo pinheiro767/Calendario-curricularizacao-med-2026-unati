@@ -3,67 +3,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#25195f">
-  <meta name="description" content="Semana 6 — Guia interativo para criação de jogos educativos PWA acessíveis em Neuroanatomia.">
+  <meta name="theme-color" content="#21145f">
+  <meta name="description" content="Semana 6 — Guia visual para criação dos jogos educativos PWA.">
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/png" href="assets/icons/favicon.png">
-  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="icon" href="assets/icons/favicon.png">
   <link rel="stylesheet" href="style.css">
-  <title>Semana 6 — Neuro Games PWA</title>
+  <title>Semana 6 — Neuro Games Studio 60+</title>
 </head>
 <body>
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-  <header class="topbar">
-    <div class="brand"><span class="brand-icon">🧠</span><div><strong>Neuro Games Studio 60+</strong><small>Semana 6 — Criação do jogo completo</small></div></div>
-    <div class="access-tools" aria-label="Ferramentas de acessibilidade">
-      <button id="fontMinus" type="button" aria-label="Diminuir fonte">A−</button>
-      <button id="fontPlus" type="button" aria-label="Aumentar fonte">A+</button>
-      <button id="contrastBtn" type="button">Alto contraste</button>
-      <button id="darkBtn" type="button">Modo escuro</button>
-      <button id="readBtn" type="button">Ler página</button>
-      <button id="stopReadBtn" type="button">Parar leitura</button>
-      <button id="soundToggle" type="button">Som: ligado</button>
-      <label class="volume-label">Volume <input id="volumeControl" type="range" min="0" max="1" step="0.1" value="0.8"></label>
-      <button id="installBtn" class="install hidden" type="button">Instalar PWA</button>
+  <a class="skip" href="#main">Pular para o conteúdo</a>
+
+  <header class="toolbar">
+    <div class="brand">
+      <span>🧠</span>
+      <div>
+        <strong>Neuro Games Studio 60+</strong>
+        <small>Semana 6</small>
+      </div>
+    </div>
+    <div class="tools">
+      <button id="fontMinus">A−</button>
+      <button id="fontPlus">A+</button>
+      <button id="contrast">Alto contraste</button>
+      <button id="dark">Modo escuro</button>
+      <button id="read">Ler instruções</button>
+      <button id="stopRead">Parar leitura</button>
+      <button id="sound">Som ligado</button>
+      <label>Volume <input id="volume" type="range" min="0" max="1" value=".8" step=".1"></label>
+      <button id="install" class="hidden">Instalar</button>
     </div>
   </header>
 
-  <main id="conteudo">
-    <section class="hero" aria-labelledby="heroTitle">
-      <img class="hero-bg" src="assets/img/capa-semana6.png" alt="Estudantes, computadores, jogos educativos, pessoas 60+ e o Robô Neuro">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <div class="mission-panel">
-          <img src="assets/img/painel-missao.png" class="mission-frame" alt="" aria-hidden="true" onerror="this.style.display='none'">
-          <div class="mission-copy">
-            <span class="eyebrow">Missão da Semana 6</span>
-            <h1 id="heroTitle">Finalize o jogo educativo do seu grupo</h1>
-            <p>Organize os arquivos, prepare imagens, gere o código, adicione sons, acessibilidade, Libras e teste o PWA completo.</p>
-            <div class="hero-actions"><button class="primary" data-go="passo1">Começar missão</button><button class="secondary" id="playIntro">Ouvir abertura</button></div>
-            <div class="progress-card" aria-live="polite"><div class="progress-info"><strong>Progresso</strong><span id="progressText">0%</span></div><div class="progress-track"><div id="progressBar" class="progress-bar"></div></div></div>
+  <main id="main">
+    <section class="hero">
+      <img class="hero-cover required-image"
+           src="assets/img/capa-semana6.png"
+           data-name="capa-semana6.png"
+           alt="Estudantes, público 60+, jogos educativos e o Robô Neuro">
+      <div class="hero-shade"></div>
+
+      <div class="hero-layout">
+        <section class="mission">
+          <img class="mission-art required-image"
+               src="assets/img/painel-missao.png"
+               data-name="painel-missao.png"
+               alt="">
+          <div class="mission-text">
+            <span class="tag">MISSÃO DA SEMANA 6</span>
+            <h1>Finalizar o jogo educativo do grupo</h1>
+            <p>Organize pastas, imagens, código, sons, acessibilidade, Libras e testes finais.</p>
+            <div class="progress-label">
+              <strong>Progresso da missão</strong>
+              <span id="progressText">0%</span>
+            </div>
+            <div class="progress"><div id="progressBar"></div></div>
+            <button class="primary" data-scroll="step1">Começar</button>
+            <button class="secondary audio" data-audio="assets/audio/ambiente.mp3" data-loop="true">Ouvir abertura</button>
           </div>
-        </div>
-        <img class="hero-robot" src="assets/img/robo-neuro.png" alt="Robô Neuro segurando um tablet">
+        </section>
+
+        <figure class="robot-main">
+          <img class="required-image"
+               src="assets/img/robo-neuro.png"
+               data-name="robo-neuro.png"
+               alt="Robô Neuro de corpo inteiro segurando um tablet">
+          <figcaption>Robô Neuro — guia da missão</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="games-section" aria-labelledby="gamesTitle">
-      <div class="section-heading"><span class="eyebrow">Jogos dos grupos</span><h2 id="gamesTitle">Cada grupo trabalha com um jogo diferente</h2><p>Selecione o jogo do seu grupo para destacar as orientações específicas.</p></div>
+    <section class="image-map">
+      <h2>Espaços das imagens essenciais do layout</h2>
+      <p>Todos estes espaços já estão programados. Basta colocar os arquivos com os nomes exatos em <code>assets/img</code>.</p>
+      <div class="image-map-grid">
+        <div><strong>Fundo geral</strong><code>fundo-neuro.png</code></div>
+        <div><strong>Capa panorâmica</strong><code>capa-semana6.png</code></div>
+        <div><strong>Painel da missão</strong><code>painel-missao.png</code></div>
+        <div><strong>Robô principal</strong><code>robo-neuro.png</code></div>
+        <div><strong>Robô explicando</strong><code>robo-falando.png</code></div>
+        <div><strong>Robô celebrando</strong><code>robo-celebrando.png</code></div>
+      </div>
+    </section>
+
+    <section class="games">
+      <div class="heading">
+        <span class="tag">JOGOS DOS GRUPOS</span>
+        <h2>Selecione o jogo recebido pelo grupo</h2>
+      </div>
       <div class="game-grid">
-        <button class="game-card" data-game="memória"><img src="assets/img/memoria.png" alt="Jogo da memória"><span>Memória</span></button>
-        <button class="game-card" data-game="sudoku"><img src="assets/img/sudoku.png" alt="Sudoku"><span>Sudoku</span></button>
-        <button class="game-card" data-game="caça-palavras"><img src="assets/img/caca-palavras.png" alt="Caça-palavras"><span>Caça-palavras</span></button>
-        <button class="game-card" data-game="quiz"><img src="assets/img/quiz.png" alt="Quiz"><span>Quiz</span></button>
-        <button class="game-card" data-game="cartas"><img src="assets/img/cartas.png" alt="Cartas educativas"><span>Cartas</span></button>
-        <button class="game-card" data-game="bolhas"><img src="assets/img/bolhas.png" alt="Bolha Neuro Shop"><span>Bolha Neuro Shop</span></button>
+        <button class="game" data-game="Memória"><img class="required-image" src="assets/img/memoria.png" data-name="memoria.png" alt="Jogo da memória"><span>Memória</span></button>
+        <button class="game" data-game="Sudoku"><img class="required-image" src="assets/img/sudoku.png" data-name="sudoku.png" alt="Sudoku de Neuroanatomia"><span>Sudoku</span></button>
+        <button class="game" data-game="Caça-palavras"><img class="required-image" src="assets/img/caca-palavras.png" data-name="caca-palavras.png" alt="Caça-palavras"><span>Caça-palavras</span></button>
+        <button class="game" data-game="Quiz"><img class="required-image" src="assets/img/quiz.png" data-name="quiz.png" alt="Quiz"><span>Quiz</span></button>
+        <button class="game" data-game="Cartas"><img class="required-image" src="assets/img/cartas.png" data-name="cartas.png" alt="Cartas educativas"><span>Cartas</span></button>
+        <button class="game" data-game="Bolha Neuro Shop"><img class="required-image" src="assets/img/bolhas.png" data-name="bolhas.png" alt="Bolhas educativas"><span>Bolha Neuro Shop</span></button>
       </div>
-      <div id="gameChoice" class="choice-box" aria-live="polite">Nenhum jogo selecionado.</div>
+      <div id="selectedGame" class="info">Nenhum jogo selecionado.</div>
     </section>
 
-    <section class="steps-section">
-      <article id="passo1" class="step-card"><div class="step-media"><img src="assets/img/1.png" alt="Alunos com jogos criados"></div><div class="step-content"><span class="step-number">Passo 1 de 7</span><h2>Abertura da Semana 6</h2><p>Cada grupo deverá concluir o jogo recebido: memória, sudoku, caça-palavras, quiz, cartas ou Bolha Neuro Shop.</p><div class="robot-tip"><img src="assets/img/robo-falando.png" alt="Robô Neuro explicando"><p><strong>Neuro diz:</strong> hoje o objetivo é sair com o jogo funcional, acessível e publicado.</p></div><ul><li>Confirmar qual jogo o grupo recebeu.</li><li>Revisar tema, regras e conteúdo educativo.</li><li>Dividir responsabilidades.</li></ul><button class="audio-btn" data-audio="assets/audio/passo1.mp3">Ouvir instrução</button><label class="complete-row"><input type="checkbox" class="step-check"> Concluímos esta etapa</label></div></article>
 
-      <article id="passo2" class="step-card"><div class="step-media"><img src="assets/img/2.png" alt="Estrutura de pastas"></div><div class="step-content"><span class="step-number">Passo 2 de 7</span><h2>Organizar as pastas do jogo</h2><p>A estrutura pode ser criada no GitHub ou com ajuda do ChatGPT ou Gemini.</p><pre><code>index.html
+    <section class="audio-panel" aria-labelledby="audioTitle">
+      <div class="heading">
+        <span class="tag">PAINEL DE SONS</span>
+        <h2 id="audioTitle">Testar os sons colocados no aplicativo</h2>
+        <p>Os arquivos devem estar dentro de <code>assets/audio</code> com estes nomes exatos.</p>
+      </div>
+      <div class="audio-grid">
+        <button class="sound-test" data-audio="assets/audio/ambiente.mp3" data-loop="true">🎵 Iniciar som ambiente</button>
+        <button class="sound-test" data-audio="assets/audio/clique.mp3">🖱️ Testar clique</button>
+        <button class="sound-test" data-audio="assets/audio/erro.mp3">❌ Testar erro</button>
+        <button class="sound-test" data-audio="assets/audio/vitoria.mp3">🏆 Testar vitória</button>
+        <button id="stopAllSounds" class="secondary">⏹️ Parar todos os sons</button>
+      </div>
+      <div id="audioStatus" class="info" aria-live="polite">Nenhum som está tocando.</div>
+    </section>
+
+    <section class="steps">
+      <article id="step1" class="step">
+        <div class="step-image">
+          <img class="required-image" src="assets/img/1.png" data-name="1.png" alt="Abertura da Semana 6">
+        </div>
+        <div class="step-body">
+          <span class="step-tag">PASSO 1 DE 7</span>
+          <h2>Abertura da Semana 6</h2>
+          <p>Conheça a missão e confirme qual jogo o grupo deverá finalizar.</p>
+          <div class="robot-speech">
+            <img class="required-image" src="assets/img/robo-falando.png" data-name="robo-falando.png" alt="Robô Neuro explicando">
+            <p><strong>Neuro diz:</strong> nesta semana o grupo deverá concluir o jogo, inserir acessibilidade, sons e Libras.</p>
+          </div>
+          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 1</button>
+          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
+        </div>
+      </article>
+
+      <article id="step2" class="step">
+        <div class="step-image">
+          <img class="required-image" src="assets/img/2.png" data-name="2.png" alt="Organização das pastas do jogo">
+        </div>
+        <div class="step-body">
+          <span class="step-tag">PASSO 2 DE 7</span>
+          <h2>Organizar as pastas do jogo</h2>
+          <p>Crie a estrutura diretamente no GitHub ou peça ao ChatGPT ou Gemini para preparar os arquivos.</p>
+          <pre>index.html
 style.css
 app.js
 manifest.json
@@ -74,57 +155,162 @@ assets/
 │   └── jogo/
 ├── audio/
 ├── libras/
-└── icons/</code></pre><div class="notice">No GitHub, uma pasta é criada quando você cria um arquivo dentro dela. Exemplo: <code>assets/img/README.md</code>.</div><button class="copy-btn" data-copy="Crie a estrutura completa de arquivos e pastas para um jogo educativo PWA com index.html, style.css, app.js, manifest.json, sw.js e as pastas assets/img/jogo, assets/audio, assets/libras e assets/icons. O projeto deve funcionar no GitHub Pages.">Copiar prompt da estrutura</button><button class="audio-btn" data-audio="assets/audio/passo2.mp3">Ouvir instrução</button><label class="complete-row"><input type="checkbox" class="step-check"> Concluímos esta etapa</label></div></article>
+└── icons/</pre>
+          <button class="copy" data-copy="Crie a estrutura completa de um jogo educativo PWA com index.html, style.css, app.js, manifest.json, sw.js e as pastas assets/img/jogo, assets/audio, assets/libras e assets/icons.">Copiar prompt</button>
+          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 2</button>
+          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
+        </div>
+      </article>
 
-      <article id="passo3" class="step-card"><div class="step-media"><img src="assets/img/3.png" alt="Imagens sendo nomeadas"></div><div class="step-content"><span class="step-number">Passo 3 de 7</span><h2>Preparar e nomear as imagens</h2><p>Crie as imagens do jogo separadamente e envie para <code>assets/img/jogo/</code>.</p><div class="memory-box"><h3>Regra especial para memória</h3><pre><code>1.png forma par com 2.png
-3.png forma par com 4.png
-5.png forma par com 6.png</code></pre></div><button class="copy-btn" data-copy="Crie imagens para um jogo da memória educativo sobre Neuroanatomia. Nomeie os arquivos em sequência. 1.png forma par com 2.png. 3.png forma par com 4.png. 5.png forma par com 6.png. Informe se cada par deve ser idêntico ou representar conceitos relacionados. Todas as imagens devem ser quadradas, claras, com o mesmo estilo visual e sem textos pequenos.">Copiar prompt para memória</button><div id="dynamicGameTip" class="notice">Selecione o jogo do grupo para receber uma orientação específica.</div><button class="audio-btn" data-audio="assets/audio/passo3.mp3">Ouvir instrução</button><label class="complete-row"><input type="checkbox" class="step-check"> Concluímos esta etapa</label></div></article>
+      <article id="step3" class="step">
+        <div class="step-image">
+          <img class="required-image" src="assets/img/3.png" data-name="3.png" alt="Preparação e nomeação das imagens">
+        </div>
+        <div class="step-body">
+          <span class="step-tag">PASSO 3 DE 7</span>
+          <h2>Preparar e nomear as imagens</h2>
+          <p>Crie cada imagem separadamente e salve em <code>assets/img/jogo</code>.</p>
+          <div class="info">
+            <strong>No jogo da memória:</strong><br>
+            1.png forma par com 2.png;<br>
+            3.png forma par com 4.png;<br>
+            5.png forma par com 6.png.
+          </div>
+          <button class="copy" data-copy="Crie imagens para um jogo da memória sobre Neuroanatomia. 1.png forma par com 2.png. 3.png forma par com 4.png. 5.png forma par com 6.png. Indique se os pares são idênticos ou representam conceitos relacionados.">Copiar prompt da memória</button>
+          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 3</button>
+          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
+        </div>
+      </article>
 
-      <article id="passo4" class="step-card"><div class="step-media"><img src="assets/img/4.png" alt="Alunos usando IA"></div><div class="step-content"><span class="step-number">Passo 4 de 7</span><h2>Criar o jogo com inteligência artificial</h2><p>Use ChatGPT ou Gemini e peça os cinco arquivos completos.</p><textarea id="mainPrompt" rows="22">Crie um jogo educativo completo em HTML, CSS e JavaScript puro.
+      <article id="step4" class="step">
+        <div class="step-image">
+          <img class="required-image" src="assets/img/4.png" data-name="4.png" alt="Criação do jogo com inteligência artificial">
+        </div>
+        <div class="step-body">
+          <span class="step-tag">PASSO 4 DE 7</span>
+          <h2>Criar o jogo com inteligência artificial</h2>
+          <p>Use ChatGPT ou Gemini para gerar os cinco arquivos completos.</p>
+          <textarea id="promptCode" rows="18">Crie um jogo educativo completo em HTML, CSS e JavaScript puro.
 
-Tipo de jogo: [INFORME O JOGO].
+Tipo de jogo: [JOGO DO GRUPO].
 Tema: Neuroanatomia.
 Público-alvo: pessoas com 60 anos ou mais.
 
-O projeto deve funcionar no GitHub Pages e como PWA instalável.
-Não use backend, banco de dados ou frameworks.
+Entregue:
+index.html
+style.css
+app.js
+manifest.json
+sw.js
 
-Entregue separadamente e por completo:
-1. index.html
-2. style.css
-3. app.js
-4. manifest.json
-5. sw.js
+Inclua imagens, sons, Libras, alto contraste, aumento de fonte, leitura em voz alta, botões grandes, controle de volume, navegação por teclado, funcionamento offline e instalação como PWA.</textarea>
+          <button class="copy" data-target="promptCode">Copiar prompt completo</button>
+          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 4</button>
+          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
+        </div>
+      </article>
 
-Use assets/img, assets/img/jogo, assets/audio, assets/libras e assets/icons.
-
-Inclua tela inicial, instruções, iniciar, voltar, reiniciar, pontuação, explicações, mensagem final, responsividade, fonte ampliável, alto contraste, modo escuro, botões grandes, teclado, textos alternativos, leitura em voz alta, controle de som e volume, feedback visual e sonoro, instruções escritas, botão de Libras, vídeo em Libras ou VLibras, ausência de tempo obrigatório, funcionamento offline e compatibilidade com GitHub Pages.
-
-Forneça código completo, comentado e adequado a estudantes iniciantes.</textarea><button class="copy-btn" data-target="mainPrompt">Copiar prompt completo</button><button class="audio-btn" data-audio="assets/audio/passo4.mp3">Ouvir instrução</button><label class="complete-row"><input type="checkbox" class="step-check"> Concluímos esta etapa</label></div></article>
-
-      <article id="passo5" class="step-card"><div class="step-media"><img src="assets/img/5.png" alt="Arquivos de áudio"></div><div class="step-content"><span class="step-number">Passo 5 de 7</span><h2>Inserir os sons de cada etapa</h2><p>Busque os áudios na internet e verifique a licença de uso.</p><pre><code>abertura.mp3
+      <article id="step5" class="step">
+        <div class="step-image">
+          <img class="required-image" src="assets/img/5.png" data-name="5.png" alt="Inserção dos sons do jogo">
+        </div>
+        <div class="step-body">
+          <span class="step-tag">PASSO 5 DE 7</span>
+          <h2>Inserir os sons de cada etapa</h2>
+          <p>Busque os áudios na internet, verifique as licenças e salve em <code>assets/audio</code>.</p>
+          <pre>abertura.mp3
 clique.mp3
 acerto.mp3
 erro.mp3
 mudanca-fase.mp3
-conclusao.mp3</code></pre><ul><li>Botão para ligar e desligar som.</li><li>Controle de volume.</li><li>Feedback visual junto com cada som.</li><li>Nenhuma informação apenas por áudio.</li></ul><div class="sound-demo"><button data-demo-sound="assets/audio/clique.mp3">Testar clique</button><button data-demo-sound="assets/audio/acerto.mp3">Testar acerto</button><button data-demo-sound="assets/audio/erro.mp3">Testar erro</button><button data-demo-sound="assets/audio/conclusao.mp3">Testar conclusão</button></div><button class="audio-btn" data-audio="assets/audio/passo5.mp3">Ouvir instrução</button><label class="complete-row"><input type="checkbox" class="step-check"> Concluímos esta etapa</label></div></article>
+conclusao.mp3</pre>
+          <p>O jogo deverá possuir botão para ligar e desligar o som e controle de volume.</p>
+          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 5</button>
+          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
+        </div>
+      </article>
 
-      <article id="passo6" class="step-card"><div class="step-media"><img src="assets/img/6.png" alt="Pessoa 60+ usando recursos de acessibilidade"></div><div class="step-content"><span class="step-number">Passo 6 de 7</span><h2>Adicionar acessibilidade e Libras</h2><div class="access-grid"><div><h3>Visual</h3><ul><li>A+ e A−</li><li>Alto contraste</li><li>Modo escuro</li><li>Botões grandes</li></ul></div><div><h3>Auditiva</h3><ul><li>Instruções escritas</li><li>Legenda ou transcrição</li><li>Feedback visual</li><li>Controle de som</li></ul></div><div><h3>Motora</h3><ul><li>Áreas grandes de toque</li><li>Navegação por teclado</li><li>Sem tempo obrigatório</li><li>Voltar e reiniciar</li></ul></div><div><h3>Libras</h3><ul><li>Botão visível</li><li>Vídeo sinalizado</li><li>Integração com VLibras</li><li>Texto equivalente</li></ul></div></div><div class="libras-demo"><img src="assets/img/libras.png" alt="Pessoa realizando Libras"><pre><code>assets/libras/
-├── instrucoes.mp4
-├── como-jogar.mp4
-└── conclusao.mp4</code></pre></div><button id="openLibras">Abrir demonstração de Libras</button><button class="audio-btn" data-audio="assets/audio/passo6.mp3">Ouvir instrução</button><label class="complete-row"><input type="checkbox" class="step-check"> Concluímos esta etapa</label></div></article>
+      <article id="step6" class="step">
+        <div class="step-image">
+          <img class="required-image" src="assets/img/6.png" data-name="6.png" alt="Acessibilidade e Libras">
+        </div>
+        <div class="step-body">
+          <span class="step-tag">PASSO 6 DE 7</span>
+          <h2>Adicionar acessibilidade e Libras</h2>
+          <p>Todos os jogos deverão possuir recursos para pessoas 60+ e pessoas surdas.</p>
+          <div class="access-grid">
+            <div><strong>Visual</strong><p>A+, A−, alto contraste, modo escuro, botões grandes.</p></div>
+            <div><strong>Auditiva</strong><p>Instruções escritas, legenda e feedback visual.</p></div>
+            <div><strong>Libras</strong><p>Botão de Libras, vídeo sinalizado e VLibras.</p></div>
+            <div><strong>Motora</strong><p>Navegação por teclado, toque amplo e sem tempo obrigatório.</p></div>
+          </div>
+          <div class="support-images">
+            <figure><img class="required-image" src="assets/img/acessibilidade.png" data-name="acessibilidade.png" alt="Painel de acessibilidade"><figcaption>acessibilidade.png</figcaption></figure>
+            <figure><img class="required-image" src="assets/img/libras.png" data-name="libras.png" alt="Intérprete de Libras"><figcaption>libras.png</figcaption></figure>
+            <figure><img class="required-image" src="assets/img/publico60.png" data-name="publico60.png" alt="Pessoas 60+ usando o jogo"><figcaption>publico60.png</figcaption></figure>
+          </div>
+          <button id="openLibras">Abrir vídeo em Libras</button>
+          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 6</button>
+          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
+        </div>
+      </article>
 
-      <article id="passo7" class="step-card"><div class="step-media"><img src="assets/img/7.png" alt="Testes em celular, tablet e computador"></div><div class="step-content"><span class="step-number">Passo 7 de 7</span><h2>Testar o jogo completo</h2><div class="check-grid"><label><input type="checkbox" class="test-check"> Imagens carregam</label><label><input type="checkbox" class="test-check"> Sons funcionam</label><label><input type="checkbox" class="test-check"> Som pode ser desligado</label><label><input type="checkbox" class="test-check"> Volume pode ser ajustado</label><label><input type="checkbox" class="test-check"> Libras funciona</label><label><input type="checkbox" class="test-check"> Instruções escritas aparecem</label><label><input type="checkbox" class="test-check"> Fonte aumenta e diminui</label><label><input type="checkbox" class="test-check"> Alto contraste funciona</label><label><input type="checkbox" class="test-check"> Botões são grandes</label><label><input type="checkbox" class="test-check"> Abre no celular</label><label><input type="checkbox" class="test-check"> Abre no tablet</label><label><input type="checkbox" class="test-check"> Abre no computador</label><label><input type="checkbox" class="test-check"> Funciona sem internet</label><label><input type="checkbox" class="test-check"> Pode ser instalado como PWA</label><label><input type="checkbox" class="test-check"> GitHub Pages está ativo</label></div><button class="audio-btn" data-audio="assets/audio/passo7.mp3">Ouvir instrução</button><label class="complete-row"><input type="checkbox" class="step-check"> Concluímos esta etapa</label></div></article>
+      <article id="step7" class="step">
+        <div class="step-image">
+          <img class="required-image" src="assets/img/7.png" data-name="7.png" alt="Teste completo dos jogos">
+        </div>
+        <div class="step-body">
+          <span class="step-tag">PASSO 7 DE 7</span>
+          <h2>Testar o jogo completo</h2>
+          <div class="check-grid">
+            <label><input class="test-check" type="checkbox"> Imagens</label>
+            <label><input class="test-check" type="checkbox"> Sons</label>
+            <label><input class="test-check" type="checkbox"> Libras</label>
+            <label><input class="test-check" type="checkbox"> Acessibilidade</label>
+            <label><input class="test-check" type="checkbox"> Funcionamento offline</label>
+            <label><input class="test-check" type="checkbox"> Instalação do PWA</label>
+            <label><input class="test-check" type="checkbox"> Celular</label>
+            <label><input class="test-check" type="checkbox"> Tablet</label>
+            <label><input class="test-check" type="checkbox"> Computador</label>
+          </div>
+          <button class="audio" data-audio="assets/audio/vitoria.mp3">Ouvir passo 7</button>
+          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
+        </div>
+      </article>
     </section>
 
-    <section id="finalSection" class="final-section hidden" aria-live="polite"><img src="assets/img/robo-celebrando.png" alt="Robô Neuro celebrando"><div><span class="eyebrow">Missão concluída</span><h2>O jogo está pronto para a Semana 7</h2><p>Agora o grupo poderá realizar testes finais, corrigir problemas e preparar a apresentação ao público 60+.</p><button id="celebrateBtn" class="primary">Celebrar conclusão</button></div></section>
+    <section id="conclusion" class="conclusion hidden">
+      <div>
+        <span class="tag">MISSÃO CONCLUÍDA</span>
+        <h2>Jogo pronto para a Semana 7</h2>
+        <p>Agora o grupo poderá corrigir detalhes e preparar a apresentação ao público 60+.</p>
+        <div class="final-assets">
+          <img class="required-image" src="assets/img/trofeu.png" data-name="trofeu.png" alt="Troféu tecnológico">
+          <img class="required-image" src="assets/img/jogo-pronto.png" data-name="jogo-pronto.png" alt="Estudantes mostrando o jogo pronto">
+          <img class="required-image" src="assets/img/certificado-visual.png" data-name="certificado-visual.png" alt="Moldura comemorativa">
+        </div>
+      </div>
+      <img class="celebrating required-image" src="assets/img/robo-celebrando.png" data-name="robo-celebrando.png" alt="Robô Neuro celebrando">
+    </section>
   </main>
 
-  <div id="librasModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="librasTitle"><div class="modal-card"><button id="closeLibras" class="modal-close" aria-label="Fechar">×</button><h2 id="librasTitle">Demonstração de Libras</h2><video controls preload="metadata"><source src="assets/libras/instrucoes.mp4" type="video/mp4">Seu navegador não suporta vídeo.</video><p>Substitua <code>assets/libras/instrucoes.mp4</code> pelo vídeo sinalizado preparado pelo grupo.</p></div></div>
+  <div id="librasModal" class="modal hidden">
+    <div class="modal-card">
+      <button id="closeLibras" aria-label="Fechar">×</button>
+      <h2>Instruções em Libras</h2>
+      <video controls>
+        <source src="assets/libras/instrucoes.mp4" type="video/mp4">
+      </video>
+      <p>Coloque o vídeo em <code>assets/libras/instrucoes.mp4</code>.</p>
+    </div>
+  </div>
 
-  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+  </div>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>if(window.VLibras){new window.VLibras.Widget('https://vlibras.gov.br/app');}</script>
+  <script>if(window.VLibras){new window.VLibras.Widget("https://vlibras.gov.br/app");}</script>
   <script src="app.js"></script>
 </body>
 </html>

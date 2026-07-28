@@ -1,13 +1,11 @@
 {
   "name": "Semana 6 — Neuro Games Studio 60+",
   "short_name": "Semana 6",
-  "description": "Guia interativo para criação de jogos educativos PWA acessíveis em Neuroanatomia.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "orientation": "any",
-  "background_color": "#09071a",
-  "theme_color": "#25195f",
+  "background_color": "#09071b",
+  "theme_color": "#21145f",
   "lang": "pt-BR",
   "icons": [
     {
