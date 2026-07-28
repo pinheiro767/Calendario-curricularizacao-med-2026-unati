@@ -86,3 +86,16 @@ As imagens continuam sendo usadas normalmente nos locais corretos:
 - robo-neuro.png na abertura;
 - robo-falando.png nas orientações;
 - robo-celebrando.png na conclusão.
+
+
+## Painel da missão
+
+Nesta versão não é necessário criar `painel-missao.png`.
+
+A moldura da missão inicial é produzida automaticamente pelo CSS, com:
+- bordas futuristas;
+- gradiente azul-ciano, roxo e dourado;
+- fundo translúcido;
+- área limpa para título, objetivo, botões e progresso.
+
+Portanto, não coloque `painel-missao.png` na pasta de imagens.
