@@ -72,3 +72,17 @@ Coloque exatamente estes quatro arquivos em `assets/audio/`:
 - vitoria.mp3
 
 O aplicativo agora possui um Painel de Sons visível para testar cada arquivo. O som ambiente começa somente depois de um toque do usuário, pois celulares e navegadores bloqueiam reprodução automática.
+
+
+## Correção desta versão
+
+A seção visual intitulada “Espaços das imagens essenciais do layout” foi removida.
+Ela era apenas um quadro de orientação e não deveria aparecer para o público.
+
+As imagens continuam sendo usadas normalmente nos locais corretos:
+- capa-semana6.png na abertura;
+- fundo-neuro.png no fundo do aplicativo;
+- painel-missao.png atrás do texto da missão;
+- robo-neuro.png na abertura;
+- robo-falando.png nas orientações;
+- robo-celebrando.png na conclusão.

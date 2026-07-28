@@ -1,4 +1,4 @@
-const CACHE="semana6-v3-sounds";
+const CACHE="semana6-v4-sem-caixas";
 const CORE=["./","./index.html","./style.css","./app.js","./manifest.json"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)));self.skipWaiting()});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))));self.clients.claim()});
