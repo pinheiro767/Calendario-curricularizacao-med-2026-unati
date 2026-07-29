@@ -105,3 +105,9 @@ Esta versão inclui uma nova seção de relatório com:
 
 Ao clicar em **Gerar PDF**, escolha **Salvar como PDF**.
 O CSS de impressão usa `object-fit: contain` e bloqueios de quebra de página para manter as imagens inteiras, sem cortes.
+
+
+## Correção das imagens auxiliares
+As imagens `acessibilidade.png`, `libras.png` e `publico60.png` agora são opcionais.
+Quando alguma delas não estiver na pasta `assets/img`, o respectivo card é ocultado automaticamente, sem mostrar ícone de imagem quebrada ou nome do arquivo.
+Se houver apenas `libras.png`, somente essa imagem será exibida e centralizada.

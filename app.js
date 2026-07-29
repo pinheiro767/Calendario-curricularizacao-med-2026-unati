@@ -1,3 +1,13 @@
+
+// Imagens auxiliares de acessibilidade são opcionais.
+// Se um arquivo não existir, o card inteiro é ocultado para não mostrar imagem quebrada.
+document.querySelectorAll(".optional-support-image").forEach(img => {
+  img.addEventListener("error", () => {
+    const figure = img.closest("figure");
+    if (figure) figure.remove();
+    else img.remove();
+  });
+});
 const $=(s,c=document)=>c.querySelector(s);
 const $$=(s,c=document)=>[...c.querySelectorAll(s)];
 let font=Number(localStorage.getItem("s6-font")||18);
