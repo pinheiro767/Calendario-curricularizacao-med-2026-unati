@@ -68,7 +68,14 @@ document.addEventListener("DOMContentLoaded",()=>{
   $$("[data-scroll]").forEach(b=>b.onclick=()=>document.getElementById(b.dataset.scroll).scrollIntoView({behavior:"smooth"}));
   $$(".audio, .sound-test").forEach(b=>b.onclick=()=>{playClick();play(b.dataset.audio,b.dataset.loop==="true")});
   $$(".copy").forEach(b=>b.onclick=()=>copyText(b.dataset.copy||document.getElementById(b.dataset.target).value,b));
-  $$(".game").forEach(b=>b.onclick=()=>{$$(".game").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");$("#selectedGame").innerHTML=`<strong>Jogo selecionado:</strong> ${b.dataset.game}`});
+  $$(".game").forEach(b=>b.onclick=()=>{
+    $$(".game").forEach(x=>x.classList.remove("selected"));
+    b.classList.add("selected");
+    const sudokuLink = b.dataset.game === "Sudoku"
+      ? ' — <a href="https://pinheiro767.github.io/sudoku-game-neuro/" target="_blank" rel="noopener noreferrer">abrir exemplo jogável</a>'
+      : "";
+    $("#selectedGame").innerHTML=`<strong>Jogo selecionado:</strong> ${b.dataset.game}${sudokuLink}`;
+  });
 
 
   const stopBtn=document.getElementById("stopAllSounds");

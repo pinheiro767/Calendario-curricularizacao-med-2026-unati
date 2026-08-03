@@ -78,9 +78,13 @@ O aplicativo agora possui um Painel de Sons visível para testar cada arquivo. O
 
 - O arquivo `painel-missao.png` não é mais necessário.
 - A missão aparece diretamente sobre a imagem `capa-semana6.png`.
-- Foi incluído o botão **Ver exemplo pronto**.
-- O botão abre:
+- O botão e o endereço do **Exemplo Neuro** original foram preservados:
   https://pinheiro767.github.io/gameneuro/
+- Foi acrescentado o botão **Jogar exemplo: Sudoku Neuro** na abertura.
+- Foi incluído um card com os dois exemplos na seção **Jogos dos grupos**.
+- Ao selecionar **Sudoku**, também aparece um link direto para o exemplo jogável.
+- O novo botão do Sudoku abre:
+  https://pinheiro767.github.io/sudoku-game-neuro/
 - A seção “Espaços das imagens essenciais do layout” foi removida.
 - Os sons `ambiente.mp3`, `clique.mp3`, `erro.mp3` e `vitoria.mp3` continuam integrados.
 

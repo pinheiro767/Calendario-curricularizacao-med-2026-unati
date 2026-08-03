@@ -84,6 +84,23 @@ textarea{width:100%;color:#fff;background:#080714;border:1px solid var(--border)
 .example-link:hover{
   transform:translateY(-2px);
 }
+.example-link.sudoku-link{background:linear-gradient(135deg,var(--cyan),var(--purple))}
+.example-actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:flex-end}
+.game-example{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.5rem;
+  margin-top:1rem;
+  padding:1.35rem;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(105,231,255,.12),rgba(154,114,255,.14));
+}
+.game-example h3{margin:.25rem 0;font-size:1.45rem}
+.game-example p{margin:.2rem 0;color:var(--muted)}
+#selectedGame a{color:var(--gold);font-weight:900}
+@media(max-width:700px){.game-example{align-items:stretch;flex-direction:column}.example-actions{flex-direction:column}.game-example .example-link{width:100%;text-align:center}}
 
 
 /* RELATÓRIO DO DIA */
