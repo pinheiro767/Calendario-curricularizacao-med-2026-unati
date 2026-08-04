@@ -85,6 +85,9 @@ O aplicativo agora possui um Painel de Sons visível para testar cada arquivo. O
 - Ao selecionar **Sudoku**, também aparece um link direto para o exemplo jogável.
 - O novo botão do Sudoku abre:
   https://pinheiro767.github.io/sudoku-game-neuro/
+- Foi acrescentado um terceiro exemplo, **Palavras Cruzadas Neuro**, sem remover os anteriores:
+  https://pinheiro767.github.io/palavras-cruzadas-neuro/
+- Ao selecionar **Caça-palavras**, aparece um link direto para o exemplo de Palavras Cruzadas.
 - A seção “Espaços das imagens essenciais do layout” foi removida.
 - Os sons `ambiente.mp3`, `clique.mp3`, `erro.mp3` e `vitoria.mp3` continuam integrados.
 
@@ -115,3 +118,11 @@ O CSS de impressão usa `object-fit: contain` e bloqueios de quebra de página p
 As imagens `acessibilidade.png`, `libras.png` e `publico60.png` agora são opcionais.
 Quando alguma delas não estiver na pasta `assets/img`, o respectivo card é ocultado automaticamente, sem mostrar ícone de imagem quebrada ou nome do arquivo.
 Se houver apenas `libras.png`, somente essa imagem será exibida e centralizada.
+
+## Nova etapa: pesquisa e integração de áudios
+
+- O roteiro agora possui 8 etapas.
+- A nova etapa 6 apresenta Pixabay, Mixkit e Freesound como fontes de pesquisa.
+- Há orientação para conferir licenças e registrar os créditos quando necessário.
+- Foi incluído um prompt completo para solicitar ao ChatGPT a integração dos arquivos MP3.
+- As etapas de acessibilidade e testes passaram a ser as etapas 7 e 8.

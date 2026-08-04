@@ -71,10 +71,14 @@ document.addEventListener("DOMContentLoaded",()=>{
   $$(".game").forEach(b=>b.onclick=()=>{
     $$(".game").forEach(x=>x.classList.remove("selected"));
     b.classList.add("selected");
-    const sudokuLink = b.dataset.game === "Sudoku"
-      ? ' — <a href="https://pinheiro767.github.io/sudoku-game-neuro/" target="_blank" rel="noopener noreferrer">abrir exemplo jogável</a>'
+    const exampleLinks = {
+      "Sudoku": "https://pinheiro767.github.io/sudoku-game-neuro/",
+      "Caça-palavras": "https://pinheiro767.github.io/palavras-cruzadas-neuro/"
+    };
+    const exampleLink = exampleLinks[b.dataset.game]
+      ? ` — <a href="${exampleLinks[b.dataset.game]}" target="_blank" rel="noopener noreferrer">abrir exemplo jogável</a>`
       : "";
-    $("#selectedGame").innerHTML=`<strong>Jogo selecionado:</strong> ${b.dataset.game}${sudokuLink}`;
+    $("#selectedGame").innerHTML=`<strong>Jogo selecionado:</strong> ${b.dataset.game}${exampleLink}`;
   });
 
 
@@ -136,7 +140,7 @@ function robotFillReport() {
 `A atividade da Semana 6 teve como objetivo finalizar o ${game}, desenvolvido como recurso educativo em Neuroanatomia para o público com 60 anos ou mais. A proposta integrou conteúdo científico, tecnologia, acessibilidade e princípios de usabilidade, buscando produzir um aplicativo claro, interativo e adequado para uso em celular, tablet e computador.`;
 
   document.getElementById("reportMethodology").value =
-`O trabalho foi desenvolvido em etapas. Inicialmente, o grupo revisou o tipo de jogo e organizou a estrutura do projeto com os arquivos index.html, style.css, app.js, manifest.json e sw.js. Em seguida, preparou e nomeou as imagens, inseriu os conteúdos educativos e utilizou inteligência artificial como apoio para criação e revisão do código. Também foram adicionados sons de ambiente, clique, erro e vitória, com controle de volume e opção para desligar o áudio. Foram implementados recursos de acessibilidade, como aumento de fonte, alto contraste, modo escuro, leitura em voz alta, botões grandes e Libras. Ao final, o jogo foi testado em diferentes tamanhos de tela e quanto ao funcionamento offline.`;
+`O trabalho foi desenvolvido em etapas. Inicialmente, o grupo revisou o tipo de jogo e organizou a estrutura do projeto com os arquivos index.html, style.css, app.js, manifest.json e sw.js. Em seguida, preparou e nomeou as imagens, inseriu os conteúdos educativos e utilizou inteligência artificial como apoio para criação e revisão do código. O grupo pesquisou áudios com licença adequada, organizou os arquivos na pasta assets/audio e utilizou um prompt para solicitar sua integração ao projeto. Também foram adicionados sons de ambiente, clique, acerto, erro, mudança de fase e vitória, com controle de volume e opção para desligar o áudio. Foram implementados recursos de acessibilidade, como aumento de fonte, alto contraste, modo escuro, leitura em voz alta, botões grandes e Libras. Ao final, o jogo foi testado em diferentes tamanhos de tela e quanto ao funcionamento offline.`;
 
   document.getElementById("reportResults").value =
 `Ao término da atividade, ${completed} de ${total} etapas principais estavam marcadas como concluídas e ${tested} itens do checklist de testes haviam sido verificados. O grupo produziu uma versão funcional do ${game}, com interface visual, imagens educativas, recursos sonoros, acessibilidade e configuração de PWA. O aplicativo foi preparado para publicação no GitHub Pages e para instalação no dispositivo do usuário.`;

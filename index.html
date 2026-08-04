@@ -67,6 +67,12 @@
                  rel="noopener noreferrer">
                 Jogar exemplo: Sudoku Neuro
               </a>
+              <a class="example-link crossword-link"
+                 href="https://pinheiro767.github.io/palavras-cruzadas-neuro/"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Jogar exemplo: Palavras Cruzadas
+              </a>
               <button class="secondary audio"
                       data-audio="assets/audio/ambiente.mp3"
                       data-loop="true">
@@ -120,6 +126,13 @@
              aria-label="Abrir o Sudoku Neuro em uma nova aba">
             Jogar Sudoku Neuro
           </a>
+          <a class="example-link crossword-link"
+             href="https://pinheiro767.github.io/palavras-cruzadas-neuro/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Abrir o Palavras Cruzadas Neuro em uma nova aba">
+            Jogar Palavras Cruzadas
+          </a>
         </div>
       </aside>
     </section>
@@ -147,7 +160,7 @@
           <img class="required-image" src="assets/img/1.png" data-name="1.png" alt="Abertura da Semana 6">
         </div>
         <div class="step-body">
-          <span class="step-tag">PASSO 1 DE 7</span>
+          <span class="step-tag">PASSO 1 DE 8</span>
           <h2>Abertura da Semana 6</h2>
           <p>Conheça a missão e confirme qual jogo o grupo deverá finalizar.</p>
           <div class="robot-speech">
@@ -164,7 +177,7 @@
           <img class="required-image" src="assets/img/2.png" data-name="2.png" alt="Organização das pastas do jogo">
         </div>
         <div class="step-body">
-          <span class="step-tag">PASSO 2 DE 7</span>
+          <span class="step-tag">PASSO 2 DE 8</span>
           <h2>Organizar as pastas do jogo</h2>
           <p>Crie a estrutura diretamente no GitHub ou peça ao ChatGPT ou Gemini para preparar os arquivos.</p>
           <pre>index.html
@@ -190,7 +203,7 @@ assets/
           <img class="required-image" src="assets/img/3.png" data-name="3.png" alt="Preparação e nomeação das imagens">
         </div>
         <div class="step-body">
-          <span class="step-tag">PASSO 3 DE 7</span>
+          <span class="step-tag">PASSO 3 DE 8</span>
           <h2>Preparar e nomear as imagens</h2>
           <p>Crie cada imagem separadamente e salve em <code>assets/img/jogo</code>.</p>
           <div class="info">
@@ -210,7 +223,7 @@ assets/
           <img class="required-image" src="assets/img/4.png" data-name="4.png" alt="Criação do jogo com inteligência artificial">
         </div>
         <div class="step-body">
-          <span class="step-tag">PASSO 4 DE 7</span>
+          <span class="step-tag">PASSO 4 DE 8</span>
           <h2>Criar o jogo com inteligência artificial</h2>
           <p>Use ChatGPT ou Gemini para gerar os cinco arquivos completos.</p>
           <textarea id="promptCode" rows="18">Crie um jogo educativo completo em HTML, CSS e JavaScript puro.
@@ -238,7 +251,7 @@ Inclua imagens, sons, Libras, alto contraste, aumento de fonte, leitura em voz a
           <img class="required-image" src="assets/img/5.png" data-name="5.png" alt="Inserção dos sons do jogo">
         </div>
         <div class="step-body">
-          <span class="step-tag">PASSO 5 DE 7</span>
+          <span class="step-tag">PASSO 5 DE 8</span>
           <h2>Inserir os sons de cada etapa</h2>
           <p>Busque os áudios na internet, verifique as licenças e salve em <code>assets/audio</code>.</p>
           <pre>abertura.mp3
@@ -253,12 +266,74 @@ conclusao.mp3</pre>
         </div>
       </article>
 
-      <article id="step6" class="step">
+      <article id="step6" class="step audio-guide-step">
+        <div class="step-image">
+          <img class="required-image" src="assets/img/5.png" data-name="5.png" alt="Pesquisa e integração de áudios no jogo">
+        </div>
+        <div class="step-body">
+          <span class="step-tag">PASSO 6 DE 8</span>
+          <h2>Encontrar áudios e pedir ao ChatGPT para incluí-los</h2>
+          <p>Procure efeitos curtos, faça o download em MP3 e confira a licença de cada arquivo antes de utilizá-lo.</p>
+
+          <div class="audio-source-grid">
+            <a href="https://pixabay.com/sound-effects/" target="_blank" rel="noopener noreferrer">
+              <strong>Pixabay — efeitos sonoros</strong>
+              <span>Pesquise: click, success, error, victory e ambient.</span>
+            </a>
+            <a href="https://mixkit.co/free-sound-effects/game/" target="_blank" rel="noopener noreferrer">
+              <strong>Mixkit — sons para jogos</strong>
+              <span>Efeitos gratuitos sob a licença indicada pelo Mixkit.</span>
+            </a>
+            <a href="https://freesound.org/" target="_blank" rel="noopener noreferrer">
+              <strong>Freesound</strong>
+              <span>Confira a licença Creative Commons de cada som e dê os créditos quando exigido.</span>
+            </a>
+          </div>
+
+          <div class="info license-alert">
+            <strong>Atenção aos direitos autorais:</strong> não baixe músicas aleatórias do YouTube. Guarde o nome do autor, o endereço da página e a licença do áudio. Prefira arquivos CC0 ou aqueles cuja licença permita uso no projeto.
+          </div>
+
+          <h3>1. Renomeie os arquivos baixados</h3>
+          <pre>ambiente.mp3
+clique.mp3
+acerto.mp3
+erro.mp3
+mudanca-fase.mp3
+vitoria.mp3</pre>
+          <p>Coloque todos dentro da pasta <code>assets/audio</code>.</p>
+
+          <h3>2. Anexe o projeto e os áudios ao ChatGPT</h3>
+          <p>Envie o arquivo ZIP do jogo e os arquivos MP3. Depois, copie o prompt abaixo:</p>
+          <textarea id="promptAudio" rows="20">Atue como programador especialista em jogos educativos PWA acessíveis para pessoas com 60 anos ou mais.
+
+Vou anexar o arquivo ZIP completo do meu jogo e os arquivos de áudio MP3.
+
+Inclua os áudios no projeto sem remover nem substituir nenhuma função, imagem, etapa, exemplo de jogo ou recurso de acessibilidade já existente.
+
+Use estes caminhos:
+assets/audio/ambiente.mp3 — música ambiente em volume baixo e repetição;
+assets/audio/clique.mp3 — clique nos botões;
+assets/audio/acerto.mp3 — resposta correta;
+assets/audio/erro.mp3 — resposta incorreta;
+assets/audio/mudanca-fase.mp3 — início de uma nova fase;
+assets/audio/vitoria.mp3 — conclusão do jogo.
+
+Adicione botão para ligar e desligar o som, controle de volume, respeito à preferência do usuário salva no localStorage e tratamento para arquivos ausentes. Não inicie áudio automaticamente antes da primeira interação do usuário. Atualize o service worker e a versão do cache para o PWA funcionar offline.
+
+Entregue o projeto completo em ZIP, pronto para substituir os arquivos no GitHub Pages. Antes de finalizar, verifique se HTML, CSS e JavaScript continuam funcionando.</textarea>
+          <button class="copy" data-target="promptAudio">Copiar prompt para o ChatGPT</button>
+          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 6</button>
+          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
+        </div>
+      </article>
+
+      <article id="step7" class="step">
         <div class="step-image">
           <img class="required-image" src="assets/img/6.png" data-name="6.png" alt="Acessibilidade e Libras">
         </div>
         <div class="step-body">
-          <span class="step-tag">PASSO 6 DE 7</span>
+          <span class="step-tag">PASSO 7 DE 8</span>
           <h2>Adicionar acessibilidade e Libras</h2>
           <p>Todos os jogos deverão possuir recursos para pessoas 60+ e pessoas surdas.</p>
           <div class="access-grid">
@@ -273,17 +348,17 @@ conclusao.mp3</pre>
             <figure><img class="optional-support-image" src="assets/img/publico60.png" data-name="publico60.png" alt="Pessoas 60+ usando o jogo"><figcaption>publico60.png</figcaption></figure>
           </div>
           <button id="openLibras">Abrir vídeo em Libras</button>
-          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 6</button>
+          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 7</button>
           <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
         </div>
       </article>
 
-      <article id="step7" class="step">
+      <article id="step8" class="step">
         <div class="step-image">
           <img class="required-image" src="assets/img/7.png" data-name="7.png" alt="Teste completo dos jogos">
         </div>
         <div class="step-body">
-          <span class="step-tag">PASSO 7 DE 7</span>
+          <span class="step-tag">PASSO 8 DE 8</span>
           <h2>Testar o jogo completo</h2>
           <div class="check-grid">
             <label><input class="test-check" type="checkbox"> Imagens</label>
@@ -296,7 +371,7 @@ conclusao.mp3</pre>
             <label><input class="test-check" type="checkbox"> Tablet</label>
             <label><input class="test-check" type="checkbox"> Computador</label>
           </div>
-          <button class="audio" data-audio="assets/audio/vitoria.mp3">Ouvir passo 7</button>
+          <button class="audio" data-audio="assets/audio/vitoria.mp3">Ouvir passo 8</button>
           <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
         </div>
       </article>
