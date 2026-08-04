@@ -126,3 +126,11 @@ Se houver apenas `libras.png`, somente essa imagem será exibida e centralizada.
 - Há orientação para conferir licenças e registrar os créditos quando necessário.
 - Foi incluído um prompt completo para solicitar ao ChatGPT a integração dos arquivos MP3.
 - As etapas de acessibilidade e testes passaram a ser as etapas 7 e 8.
+
+## Chamada por QR Code
+
+- Foi incluído um cartão de chamada antes da seleção dos jogos.
+- O QR Code abre o formulário da turma de terça-feira.
+- Também existe um botão para abrir a chamada sem utilizar a câmera.
+- O arquivo deve permanecer em `assets/img/qr-chamada-terca.png`.
+- Link do formulário: https://forms.gle/o9KSqSdUc5D6g3ZZ6

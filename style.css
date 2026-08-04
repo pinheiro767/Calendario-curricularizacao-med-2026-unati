@@ -103,6 +103,15 @@ textarea{width:100%;color:#fff;background:#080714;border:1px solid var(--border)
 .game-example p{margin:.2rem 0;color:var(--muted)}
 #selectedGame a{color:var(--gold);font-weight:900}
 @media(max-width:700px){.game-example{align-items:stretch;flex-direction:column}.example-actions{flex-direction:column}.game-example .example-link{width:100%;text-align:center}}
+.attendance-card{display:grid;grid-template-columns:1fr minmax(240px,340px);gap:2rem;align-items:center;margin:1.5rem 0 2rem;padding:clamp(1.3rem,3vw,2.2rem);border:2px solid var(--cyan);border-radius:26px;background:linear-gradient(135deg,rgba(105,231,255,.15),rgba(154,114,255,.18));box-shadow:var(--shadow)}
+.attendance-card h3{margin:.25rem 0;font-size:clamp(1.7rem,3vw,2.5rem)}
+.attendance-card p{color:var(--muted)}
+.attendance-card ol{padding-left:1.4rem}
+.attendance-button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.75rem 1.1rem;color:#07101b;font-weight:900;text-decoration:none;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--gold))}
+.qr-link{display:grid;gap:.65rem;justify-items:center;padding:1rem;color:var(--text);font-weight:900;text-align:center;text-decoration:none;border-radius:20px;background:#fff}
+.qr-link img{width:min(100%,310px);height:auto;aspect-ratio:1;background:#fff}
+.qr-link span{color:#151126}
+@media(max-width:760px){.attendance-card{grid-template-columns:1fr}.qr-link{width:min(100%,360px);margin:auto}.attendance-button{width:100%;text-align:center}}
 
 
 /* RELATÓRIO DO DIA */
