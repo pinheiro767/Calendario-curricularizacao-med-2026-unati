@@ -130,7 +130,7 @@ Se houver apenas `libras.png`, somente essa imagem será exibida e centralizada.
 ## Chamada por QR Code
 
 - Foi incluído um cartão de chamada antes da seleção dos jogos.
-- O QR Code abre o formulário da turma de terça-feira.
+- O QR Code abre o formulário da turma de quarta-feira.
 - Também existe um botão para abrir a chamada sem utilizar a câmera.
-- O arquivo deve permanecer em `assets/img/qr-chamada-terca.png`.
-- Link do formulário: https://forms.gle/o9KSqSdUc5D6g3ZZ6
+- O arquivo deve permanecer em `assets/img/qr-chamada-quarta.png`.
+- Link do formulário: https://forms.gle/wWcLwwWqhAiKG2QW7
