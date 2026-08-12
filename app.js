@@ -10,9 +10,9 @@ document.querySelectorAll(".optional-support-image").forEach(img => {
 });
 const $=(s,c=document)=>c.querySelector(s);
 const $$=(s,c=document)=>[...c.querySelectorAll(s)];
-let font=Number(localStorage.getItem("s7-font")||18);
+let font=Number(localStorage.getItem("s6-font")||18);
 let soundOn=localStorage.getItem("s6-sound")!=="0";
-let volume=Number(localStorage.getItem("s7-volume")||.8);
+let volume=Number(localStorage.getItem("s6-volume")||.8);
 let audio=null, ambienteAudio=null, deferredPrompt=null;
 
 function placeholder(img){
