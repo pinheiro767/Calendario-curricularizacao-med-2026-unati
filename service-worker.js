@@ -1,5 +1,4 @@
-const CACHE_NAME = 'neuro-unati-pro-v1';
-const ASSETS = ['./','./index.html','./manifest.json','./assets/icons/icon-192.svg','./assets/icons/icon-512.svg'];
-self.addEventListener('install', e => e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS))));
-self.addEventListener('activate', e => e.waitUntil(caches.keys().then(keys => Promise.all(keys.map(k => k !== CACHE_NAME ? caches.delete(k) : null)))));
-self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('./index.html')))));
+const CACHE='neurogames-unati-v1';
+const FILES=["./", "./index.html", "./manifest.webmanifest", "./assets/capa-neurogames.png", "./assets/missao-neuro.png", "./assets/publico-alto.png", "./assets/robo-neuro.png", "./assets/publico-intermediario.png", "./assets/estacoes-rodizio.png", "./assets/publico-baixo.png", "./assets/acessibilidade.png", "./assets/sem-internet.png", "./assets/avaliacao-cruzada.png", "./assets/problema-tecnico.png", "./assets/correcao-tecnica.png", "./assets/missao-cumprida.png", "./assets/ensaio-equipe.png"];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES))));
+self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));

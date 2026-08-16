@@ -1,541 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#21145f">
-  <meta name="description" content="Semana 6 — Guia visual para criação dos jogos educativos PWA.">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="assets/icons/favicon.png">
-  <link rel="stylesheet" href="style.css">
-  <title>Semana 7 — Neuro Games Studio 60+</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#34148f"><link rel="manifest" href="manifest.webmanifest">
+<title>NeuroGames — Plano de Contingência UNATI</title>
+<style>
+:root{--violet:#6d28d9;--cyan:#06b6d4;--pink:#ec4899;--gold:#f59e0b;--ink:#17133a;--paper:#f8f7ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;color:var(--ink);background:linear-gradient(135deg,#f7f4ff,#eafcff);min-height:100vh}
+.bubbles{position:fixed;inset:0;z-index:-1;overflow:hidden}.bubbles i{position:absolute;border-radius:50%;opacity:.18;filter:blur(1px);animation:float 16s infinite ease-in-out;background:linear-gradient(135deg,var(--cyan),var(--violet),var(--pink))}
+.bubbles i:nth-child(1){width:180px;height:180px;left:3%;top:70%;}.bubbles i:nth-child(2){width:260px;height:260px;right:2%;top:12%;animation-delay:-4s}.bubbles i:nth-child(3){width:110px;height:110px;left:45%;top:20%;animation-delay:-8s}.bubbles i:nth-child(4){width:220px;height:220px;left:22%;bottom:-80px;animation-delay:-11s}@keyframes float{50%{transform:translateY(-45px) translateX(25px) scale(1.08)}}
+header{position:sticky;top:0;z-index:10;background:#ffffffdd;backdrop-filter:blur(15px);border-bottom:1px solid #ddd6fe;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-weight:900;color:#4c1d95}.nav{display:flex;gap:8px;flex-wrap:wrap}.btn,button{border:0;border-radius:16px;padding:12px 16px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;background:linear-gradient(135deg,var(--violet),#8b5cf6);color:#fff;box-shadow:0 8px 22px #6d28d933}.btn.alt{background:linear-gradient(135deg,var(--cyan),#2563eb)}.btn.gold{background:linear-gradient(135deg,#f59e0b,#f97316)}
+main{max-width:1180px;margin:auto;padding:28px 18px 80px}.hero{min-height:70vh;border-radius:32px;overflow:hidden;position:relative;display:flex;align-items:end;background:url('assets/capa-neurogames.png') center/cover;box-shadow:0 22px 60px #2e106544}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#160a46e8 0%,#160a4666 55%,transparent)}.heroText{position:relative;z-index:2;color:#fff;padding:38px;max-width:780px}.hero h1{font-size:clamp(2rem,5vw,4.5rem);margin:.15em 0}.tag{display:inline-block;background:#ffffff22;border:1px solid #ffffff55;padding:8px 12px;border-radius:999px;font-weight:800}
+section{margin-top:30px}.card{background:#ffffffdf;backdrop-filter:blur(12px);border:1px solid #e9d5ff;border-radius:25px;padding:24px;box-shadow:0 14px 35px #312e8120}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.scenario{overflow:hidden;padding:0}.scenario img,.wideimg{width:100%;display:block;object-fit:cover}.scenario img{height:175px}.scenario div{padding:18px}.choice{display:block;width:100%;text-align:left;margin:9px 0;background:#f5f3ff;color:#312e81;border:2px solid #ddd6fe;box-shadow:none}.choice:hover,.choice.selected{border-color:#7c3aed;background:#ede9fe}.step{display:none}.step.active{display:block}.progress{height:12px;background:#e5e7eb;border-radius:99px;overflow:hidden;margin:12px 0 22px}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));width:0}.result{padding:22px;border-radius:20px;margin-top:18px}.ok{background:#dcfce7;border:2px solid #22c55e}.warn{background:#fff7ed;border:2px solid #f97316}
+details{background:#fff;border-radius:20px;padding:16px;margin:12px 0;border:1px solid #ddd6fe}summary{font-weight:900;cursor:pointer}.report textarea{width:100%;min-height:300px;border:2px solid #ddd6fe;border-radius:18px;padding:16px;font:inherit;line-height:1.5}.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.gallery img{width:100%;height:160px;object-fit:cover;border-radius:18px}
+footer{text-align:center;padding:25px;color:#5b21b6;font-weight:700}
+@media(max-width:650px){header{position:relative}.hero{min-height:62vh}.heroText{padding:24px}.scenario img{height:150px}}
+@media print{header,.bubbles,.no-print,.hero{display:none!important}body{background:#fff}.card{box-shadow:none;border:0;padding:0}main{max-width:none;padding:10mm}.report textarea{border:0;min-height:auto;height:auto;overflow:visible}section{break-inside:auto}.report{break-inside:auto}}
+</style>
 </head>
 <body>
-  <a class="skip" href="#main">Pular para o conteúdo</a>
+<div class="bubbles"><i></i><i></i><i></i><i></i></div>
+<header><div class="brand">🧠 NeuroGames • UNATI 60+</div><nav class="nav"><a class="btn alt" href="#hoje">Aula de hoje</a><a class="btn" href="#simulador">Simulador</a><button onclick="document.getElementById('semana7').open=!document.getElementById('semana7').open">Sessões</button></nav></header>
+<main>
+<div class="hero"><div class="heroText"><span class="tag">ENSAIO OPERACIONAL • 90 MIN</span><h1>Plano de Contingência NeuroGames — UNATI</h1><p>Decida, simule, teste e construa um plano capaz de responder a diferentes situações reais da atividade.</p><a class="btn gold" href="#simulador">Iniciar missão</a></div></div>
 
-  <header class="toolbar">
-    <div class="brand">
-      <span>🧠</span>
-      <div>
-        <strong>Neuro Games Studio 60+</strong>
-        <small>Semana 6</small>
-      </div>
-    </div>
-    <div class="tools">
-      <button id="fontMinus">A−</button>
-      <button id="fontPlus">A+</button>
-      <button id="contrast">Alto contraste</button>
-      <button id="dark">Modo escuro</button>
-      <button id="read">Ler instruções</button>
-      <button id="stopRead">Parar leitura</button>
-      <button id="sound">Som ligado</button>
-      <label>Volume <input id="volume" type="range" min="0" max="1" value=".8" step=".1"></label>
-      <button id="install" class="hidden">Instalar</button>
-    </div>
-  </header>
+<section id="hoje" class="card"><h2>📍 Sessão — Aula de hoje</h2><p>As duas turmas trabalham juntas em uma simulação operacional: cenários de comparecimento, funções da equipe, acessibilidade, falhas técnicas, avaliação cruzada e Plano B acadêmico.</p><a class="btn alt" target="_blank" rel="noopener" href="https://forms.gle/3YcJEqTNmbN8wWHQ7">✅ Fazer chamada</a></section>
 
-  <main id="main">
-    <section class="hero">
-      <img class="hero-cover required-image"
-           src="assets/img/capa-semana6.png"
-           data-name="capa-semana6.png"
-           alt="Estudantes, público 60+, jogos educativos e o Robô Neuro">
-      <div class="hero-shade"></div>
+<section><details id="semana7"><summary>📁 Sessões anteriores — abrir/fechar</summary><div class="card"><h3>MISSÃO DA SEMANA 7 — PREPARAÇÃO</h3><p>Preparação das pastas, organização dos NeuroGames e conferência prévia dos recursos. Esta missão permanece recolhida e só aparece quando o estudante abre a sessão.</p></div></details></section>
 
-      <div class="hero-layout">
-        <section class="mission">
-<div class="mission-text">
-            <span class="tag">MISSÃO DA SEMANA 6</span>
-            <h1>Finalizar o jogo educativo do grupo</h1>
-            <p>Organize pastas, imagens, código, sons, acessibilidade, Libras e testes finais.</p>
-            <div class="progress-label">
-              <strong>Progresso da missão</strong>
-              <span id="progressText">0%</span>
-            </div>
-            <div class="progress"><div id="progressBar"></div></div>
-            <div class="hero-actions">
-              <button class="primary" data-scroll="step1">Começar</button>
-              <a class="example-link"
-                 href="https://pinheiro767.github.io/gameneuro/"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                Ver exemplo Neuro
-              </a>
-              <a class="example-link sudoku-link"
-                 href="https://pinheiro767.github.io/sudoku-game-neuro/"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                Jogar exemplo: Sudoku Neuro
-              </a>
-              <a class="example-link crossword-link"
-                 href="https://pinheiro767.github.io/palavras-cruzadas-neuro/"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                Jogar exemplo: Palavras Cruzadas
-              </a>
-              <button class="secondary audio"
-                      data-audio="assets/audio/ambiente.mp3"
-                      data-loop="true">
-                Ouvir abertura
-              </button>
-            </div>
-          </div>
-        </section>
+<section><h2>Quatro cenários</h2><div class="grid">
+<div class="card scenario"><img src="assets/publico-alto.png"><div><b>A — Público alto</b><p>Muitos inscritos comparecem: estações simultâneas e rodízio.</p></div></div>
+<div class="card scenario"><img src="assets/publico-intermediario.png"><div><b>B — Público intermediário</b><p>8–15 participantes: menos estações e atendimento individualizado.</p></div></div>
+<div class="card scenario"><img src="assets/publico-baixo.png"><div><b>C — Público baixo</b><p>1–7 participantes: experiência acompanhada, sem sobrecarregar o público.</p></div></div>
+<div class="card scenario"><img src="assets/avaliacao-cruzada.png"><div><b>D — Zero participantes</b><p>Ativar avaliação técnica/por pares dos NeuroGames.</p></div></div>
+</div></section>
 
-        <figure class="robot-main">
-          <img class="required-image"
-               src="assets/img/robo-neuro.png"
-               data-name="robo-neuro.png"
-               alt="Robô Neuro de corpo inteiro segurando um tablet">
-          <figcaption>Robô Neuro — guia da missão</figcaption>
-        </figure>
-      </div>
-    </section>
-    <section class="games">
-      <div class="heading">
-        <span class="tag">JOGOS DOS GRUPOS</span>
-        <h2>Selecione o jogo recebido pelo grupo</h2>
-      </div>
-      <aside class="attendance-card" aria-labelledby="attendanceTitle">
-        <div class="attendance-copy">
-          <span class="tag">CHAMADA DE HOJE</span>
-          <h3 id="attendanceTitle">Turma de quarta-feira</h3>
-          <p>Antes de iniciar o jogo, escaneie o QR Code com a câmera do celular e registre sua presença.</p>
-          <ol>
-            <li>Abra a câmera do celular.</li>
-            <li>Aponte para o QR Code.</li>
-            <li>Abra o formulário e responda à chamada.</li>
-          </ol>
-          <a class="attendance-button"
-             href="https://forms.gle/ZXgj4DoXxcvxDrtq7"
-             target="_blank"
-             rel="noopener noreferrer">
-            Abrir chamada sem escanear
-          </a>
-        </div>
-        <a class="qr-link"
-           href="https://forms.gle/ZXgj4DoXxcvxDrtq7"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="Abrir o formulário da chamada de quarta-feira">
-          <img src="assets/img/qr-chamada-quarta.png"
-               alt="QR Code para acessar a chamada da turma de terça-feira"
-               width="1600"
-               height="1600">
-          <span>Escaneie para registrar a presença</span>
-        </a>
-      </aside>
-      <div class="game-grid">
-        <button class="game" data-game="Memória"><img class="required-image" src="assets/img/memoria.png" data-name="memoria.png" alt="Jogo da memória"><span>Memória</span></button>
-        <button class="game" data-game="Sudoku"><img class="required-image" src="assets/img/sudoku.png" data-name="sudoku.png" alt="Sudoku de Neuroanatomia"><span>Sudoku</span></button>
-        <button class="game" data-game="Caça-palavras"><img class="required-image" src="assets/img/caca-palavras.png" data-name="caca-palavras.png" alt="Caça-palavras"><span>Caça-palavras</span></button>
-        <button class="game" data-game="Quiz"><img class="required-image" src="assets/img/quiz.png" data-name="quiz.png" alt="Quiz"><span>Quiz</span></button>
-        <button class="game" data-game="Cartas"><img class="required-image" src="assets/img/cartas.png" data-name="cartas.png" alt="Cartas educativas"><span>Cartas</span></button>
-        <button class="game" data-game="Bolha Neuro Shop"><img class="required-image" src="assets/img/bolhas.png" data-name="bolhas.png" alt="Bolhas educativas"><span>Bolha Neuro Shop</span></button>
-      </div>
-      <div id="selectedGame" class="info">Nenhum jogo selecionado.</div>
-        <div class="info"><strong>Teste dos jogos dos colegas:</strong> depois de jogar, abra o instrumento científico para avaliar usabilidade, acessibilidade, aprendizagem e adequação ao público 60+. <a class="example-link" href="teste-colegas/index.html">Abrir teste científico dos colegas</a></div>
-      <aside class="game-example" aria-labelledby="gameExamplesTitle">
-        <div>
-          <span class="tag">EXEMPLOS PRÁTICOS</span>
-          <h3 id="gameExamplesTitle">Jogos Neuro prontos</h3>
-          <p>Abra os exemplos para observar a organização, a interação e os recursos de acessibilidade.</p>
-        </div>
-        <div class="example-actions">
-          <a class="example-link"
-             href="https://pinheiro767.github.io/gameneuro/"
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="Abrir o exemplo Neuro em uma nova aba">
-            Abrir exemplo Neuro
-          </a>
-          <a class="example-link sudoku-link"
-             href="https://pinheiro767.github.io/sudoku-game-neuro/"
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="Abrir o Sudoku Neuro em uma nova aba">
-            Jogar Sudoku Neuro
-          </a>
-          <a class="example-link crossword-link"
-             href="https://pinheiro767.github.io/palavras-cruzadas-neuro/"
-             target="_blank"
-             rel="noopener noreferrer"
-             aria-label="Abrir o Palavras Cruzadas Neuro em uma nova aba">
-            Jogar Palavras Cruzadas
-          </a>
-        </div>
-      </aside>
-    </section>
+<section id="simulador" class="card"><h2>🎯 Construa seu Plano UNATI</h2><p>Escolha as respostas. Não é necessário escrever.</p><div class="progress"><span id="bar"></span></div>
+<div id="steps"></div><div id="finalResult"></div></section>
 
+<section class="card"><h2>🧪 Avaliação cruzada</h2><img class="wideimg" src="assets/ensaio-equipe.png" style="border-radius:20px;max-height:430px;object-fit:cover"><p>Quando necessário, cada grupo testa um NeuroGame que não seja o próprio, sem explicação inicial dos autores. Verifique descoberta da tarefa, botões, legibilidade, correção do conteúdo, imagens, áudio, contraste, celular e barreiras para pessoas 60+.</p></section>
 
-    <section class="audio-panel" aria-labelledby="audioTitle">
-      <div class="heading">
-        <span class="tag">PAINEL DE SONS</span>
-        <h2 id="audioTitle">Testar os sons colocados no aplicativo</h2>
-        <p>Os arquivos devem estar dentro de <code>assets/audio</code> com estes nomes exatos.</p>
-      </div>
-      <div class="audio-grid">
-        <button class="sound-test" data-audio="assets/audio/ambiente.mp3" data-loop="true">🎵 Iniciar som ambiente</button>
-        <button class="sound-test" data-audio="assets/audio/clique.mp3">🖱️ Testar clique</button>
-        <button class="sound-test" data-audio="assets/audio/erro.mp3">❌ Testar erro</button>
-        <button class="sound-test" data-audio="assets/audio/vitoria.mp3">🏆 Testar vitória</button>
-        <button id="stopAllSounds" class="secondary">⏹️ Parar todos os sons</button>
-      </div>
-      <div id="audioStatus" class="info" aria-live="polite">Nenhum som está tocando.</div>
-    </section>
+<section class="card"><h2>♿ Acessibilidade e contingências técnicas</h2><div class="gallery"><img src="assets/acessibilidade.png"><img src="assets/sem-internet.png"><img src="assets/problema-tecnico.png"><img src="assets/correcao-tecnica.png"></div></section>
 
-    <section class="steps">
-      <article id="step1" class="step">
-        <div class="step-image">
-          <img class="required-image" src="assets/img/1.png" data-name="1.png" alt="Abertura da Semana 6">
-        </div>
-        <div class="step-body">
-          <span class="step-tag">PASSO 1 DE 8</span>
-          <h2>Abertura da Semana 6</h2>
-          <p>Conheça a missão e confirme qual jogo o grupo deverá finalizar.</p>
-          <div class="robot-speech">
-            <img class="required-image" src="assets/img/robo-falando.png" data-name="robo-falando.png" alt="Robô Neuro explicando">
-            <p><strong>Neuro diz:</strong> nesta semana o grupo deverá concluir o jogo, inserir acessibilidade, sons e Libras.</p>
-          </div>
-          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 1</button>
-          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
-        </div>
-      </article>
+<section id="relatorio" class="card report"><h2>📄 Relatório científico do ensaio</h2><p>O grupo pode redigir sozinho ou solicitar uma estrutura de apoio. O texto deve registrar somente o que efetivamente ocorreu e distinguir participação UNATI de avaliação por pares.</p>
+<div class="no-print"><button onclick="modelo()">✨ Ajuda da IA — gerar estrutura</button> <button class="btn alt" onclick="window.print()">🖨️ Gerar PDF / Imprimir</button></div>
+<textarea id="texto" placeholder="Escreva aqui o relatório científico do grupo..."></textarea></section>
 
-      <article id="step2" class="step">
-        <div class="step-image">
-          <img class="required-image" src="assets/img/2.png" data-name="2.png" alt="Organização das pastas do jogo">
-        </div>
-        <div class="step-body">
-          <span class="step-tag">PASSO 2 DE 8</span>
-          <h2>Organizar as pastas do jogo</h2>
-          <p>Crie a estrutura diretamente no GitHub ou peça ao ChatGPT ou Gemini para preparar os arquivos.</p>
-          <pre>index.html
-style.css
-app.js
-manifest.json
-sw.js
+<section class="card"><h2>🏁 Missão concluída</h2><img class="wideimg" src="assets/missao-cumprida.png" style="border-radius:20px"><p>Antes de encerrar, confirme: responsáveis definidos, estratégia para público alto/baixo, acessibilidade, funcionamento sem internet, falhas técnicas e plano para ausência de participantes.</p></section>
 
-assets/
-├── img/
-│   └── jogo/
-├── audio/
-├── libras/
-└── icons/</pre>
-          <button class="copy" data-copy="Crie a estrutura completa de um jogo educativo PWA com index.html, style.css, app.js, manifest.json, sw.js e as pastas assets/img/jogo, assets/audio, assets/libras e assets/icons.">Copiar prompt</button>
-          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 2</button>
-          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
-        </div>
-      </article>
+<section class="card"><h2>Galeria da missão</h2><div class="gallery" id="gallery"></div></section>
+</main><footer>NeuroGames • preparação acadêmica para atividade UNATI 60+</footer>
+<script>
+const questions=[
+["Chegaram muitos participantes. Como organizar?",["Uma única fila para todos","Estações simultâneas com rodízio","Todos os alunos atendem a mesma pessoa"],1],
+["Compareceram apenas 3 pessoas. O que fazer?",["Distribuir os 54 alunos entre elas","Permitir 2–3 jogos por participante e dividir funções","Cancelar"],1],
+["Qual divisão de funções é mais adequada?",["Mediador, apoio tecnológico, observador de usabilidade, acessibilidade e registrador","Todos fazem tudo ao mesmo tempo","Somente um aluno trabalha"],0],
+["Uma participante tem dificuldade para ler.",["Manter a interface","Aumentar fonte/contraste e verificar botões amplos","Pedir que outra pessoa jogue"],1],
+["O Wi-Fi caiu.",["Encerrar imediatamente","Usar versão offline/PWA e recursos previamente preparados","Esperar indefinidamente"],1],
+["Um jogo não abre.",["Insistir no mesmo dispositivo","Testar outro dispositivo/arquivo e acionar apoio técnico sem paralisar a estação","Excluir o jogo sem testar"],1],
+["Nenhum inscrito compareceu.",["Esperar 90 minutos","Ativar avaliação cruzada dos jogos, identificada como avaliação por pares","Registrar como participação UNATI"],1],
+["Como registrar o resultado?",["Descrever somente o cenário real e distinguir dados UNATI de avaliação por pares","Completar dados que faltaram","Usar resultados simulados como se fossem reais"],0]
+];
+let answers=Array(questions.length).fill(null), current=0;
+const steps=document.getElementById("steps");
+questions.forEach((q,i)=>{let d=document.createElement("div");d.className="step"+(i===0?" active":"");d.innerHTML=`<h3>Etapa ${i+1} de ${questions.length}</h3><h2>${q[0]}</h2>`+q[1].map((x,j)=>`<button class="choice" onclick="pick(${i},${j},this)">${x}</button>`).join("")+`<div class="no-print" style="margin-top:16px">${i?`<button onclick="go(${i-1})">← Voltar</button>`:""} ${i<questions.length-1?`<button onclick="next(${i})">Continuar →</button>`:`<button class="btn gold" onclick="evaluatePlan()">Avaliar plano</button>`}</div>`;steps.appendChild(d)});
+function pick(i,j,el){answers[i]=j;el.parentNode.querySelectorAll(".choice").forEach(b=>b.classList.remove("selected"));el.classList.add("selected")}
+function go(n){document.querySelectorAll(".step").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".step")[n].classList.add("active");current=n;update()}
+function next(i){if(answers[i]===null){alert("Escolha uma opção antes de continuar.");return}go(i+1)}
+function update(){document.getElementById("bar").style.width=((current+1)/questions.length*100)+"%"}
+function evaluatePlan(){if(answers.some(x=>x===null)){alert("Complete todas as etapas.");return}let score=answers.reduce((s,a,i)=>s+(a===questions[i][2]),0), pct=Math.round(score/questions.length*100), ok=pct>=75;document.getElementById("finalResult").innerHTML=`<div class="result ${ok?"ok":"warn"}"><h2>${ok?"✅ PLANO APTO":"🔧 PLANO PRECISA SER REESTRUTURADO"}</h2><p><b>${score}/${questions.length}</b> decisões adequadas (${pct}%).</p><p>${ok?"O grupo contemplou os elementos essenciais. Revise as decisões antes da atividade real.":"Revise especialmente organização do público, acessibilidade, contingência técnica, Plano B e integridade do registro científico."}</p><a class="btn" href="#relatorio">Ir para o relatório</a></div>`}
+function modelo(){document.getElementById("texto").value=`RELATÓRIO CIENTÍFICO — ENSAIO OPERACIONAL NEUROGAMES / UNATI 60+
 
-      <article id="step3" class="step">
-        <div class="step-image">
-          <img class="required-image" src="assets/img/3.png" data-name="3.png" alt="Preparação e nomeação das imagens">
-        </div>
-        <div class="step-body">
-          <span class="step-tag">PASSO 3 DE 8</span>
-          <h2>Preparar e nomear as imagens</h2>
-          <p>Crie cada imagem separadamente e salve em <code>assets/img/jogo</code>.</p>
-          <div class="info">
-            <strong>No jogo da memória:</strong><br>
-            1.png forma par com 2.png;<br>
-            3.png forma par com 4.png;<br>
-            5.png forma par com 6.png.
-          </div>
-          <button class="copy" data-copy="Crie imagens para um jogo da memória sobre Neuroanatomia. 1.png forma par com 2.png. 3.png forma par com 4.png. 5.png forma par com 6.png. Indique se os pares são idênticos ou representam conceitos relacionados.">Copiar prompt da memória</button>
-          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 3</button>
-          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
-        </div>
-      </article>
+Título:
+Plano de Contingência e Ensaio Operacional dos NeuroGames
 
-      <article id="step4" class="step">
-        <div class="step-image">
-          <img class="required-image" src="assets/img/4.png" data-name="4.png" alt="Criação do jogo com inteligência artificial">
-        </div>
-        <div class="step-body">
-          <span class="step-tag">PASSO 4 DE 8</span>
-          <h2>Criar o jogo com inteligência artificial</h2>
-          <p>Use ChatGPT ou Gemini para gerar os cinco arquivos completos.</p>
-          <textarea id="promptCode" rows="18">Crie um jogo educativo completo em HTML, CSS e JavaScript puro.
+Objetivo:
+Descrever o ensaio operacional realizado para preparar as equipes para diferentes cenários de participação e intercorrências durante a atividade NeuroGames — UNATI 60+.
 
-Tipo de jogo: [JOGO DO GRUPO].
-Tema: Neuroanatomia.
-Público-alvo: pessoas com 60 anos ou mais.
+Método:
+A atividade foi organizada como simulação acadêmica com tomada de decisão em cenários de público alto, intermediário, baixo e ausência de participantes. As equipes definiram funções de mediação, apoio tecnológico, observação de usabilidade, acessibilidade e registro. Também foram previstas situações de falha de conexão, dificuldade de leitura e falha de funcionamento dos jogos.
 
-Entregue:
-index.html
-style.css
-app.js
-manifest.json
-sw.js
+Resultados do ensaio:
+[O grupo deve completar somente com aquilo que realmente observou.]
 
-Inclua imagens, sons, Libras, alto contraste, aumento de fonte, leitura em voz alta, botões grandes, controle de volume, navegação por teclado, funcionamento offline e instalação como PWA.</textarea>
-          <button class="copy" data-target="promptCode">Copiar prompt completo</button>
-          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 4</button>
-          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
-        </div>
-      </article>
+Avaliação por pares:
+[Preencher somente se houve avaliação cruzada. Não apresentar esses dados como resultados obtidos com participantes da UNATI.]
 
-      <article id="step5" class="step">
-        <div class="step-image">
-          <img class="required-image" src="assets/img/5.png" data-name="5.png" alt="Inserção dos sons do jogo">
-        </div>
-        <div class="step-body">
-          <span class="step-tag">PASSO 5 DE 8</span>
-          <h2>Inserir os sons de cada etapa</h2>
-          <p>Busque os áudios na internet, verifique as licenças e salve em <code>assets/audio</code>.</p>
-          <pre>abertura.mp3
-clique.mp3
-acerto.mp3
-erro.mp3
-mudanca-fase.mp3
-conclusao.mp3</pre>
-          <p>O jogo deverá possuir botão para ligar e desligar o som e controle de volume.</p>
-          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 5</button>
-          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
-        </div>
-      </article>
+Problemas identificados e correções:
+[Registrar problemas reais encontrados e as medidas adotadas.]
 
-      <article id="step6" class="step audio-guide-step">
-        <div class="step-image">
-          <img class="required-image" src="assets/img/5.png" data-name="5.png" alt="Pesquisa e integração de áudios no jogo">
-        </div>
-        <div class="step-body">
-          <span class="step-tag">PASSO 6 DE 8</span>
-          <h2>Encontrar áudios e pedir ao ChatGPT para incluí-los</h2>
-          <p>Procure efeitos curtos, faça o download em MP3 e confira a licença de cada arquivo antes de utilizá-lo.</p>
+Plano de contingência final:
+[Descrever a estratégia aprovada pelo grupo.]
 
-          <div class="audio-source-grid">
-            <a href="https://pixabay.com/sound-effects/" target="_blank" rel="noopener noreferrer">
-              <strong>Pixabay — efeitos sonoros</strong>
-              <span>Pesquise: click, success, error, victory e ambient.</span>
-            </a>
-            <a href="https://mixkit.co/free-sound-effects/game/" target="_blank" rel="noopener noreferrer">
-              <strong>Mixkit — sons para jogos</strong>
-              <span>Efeitos gratuitos sob a licença indicada pelo Mixkit.</span>
-            </a>
-            <a href="https://freesound.org/" target="_blank" rel="noopener noreferrer">
-              <strong>Freesound</strong>
-              <span>Confira a licença Creative Commons de cada som e dê os créditos quando exigido.</span>
-            </a>
-          </div>
-
-          <div class="info license-alert">
-            <strong>Atenção aos direitos autorais:</strong> não baixe músicas aleatórias do YouTube. Guarde o nome do autor, o endereço da página e a licença do áudio. Prefira arquivos CC0 ou aqueles cuja licença permita uso no projeto.
-          </div>
-
-          <h3>1. Renomeie os arquivos baixados</h3>
-          <pre>ambiente.mp3
-clique.mp3
-acerto.mp3
-erro.mp3
-mudanca-fase.mp3
-vitoria.mp3</pre>
-          <p>Coloque todos dentro da pasta <code>assets/audio</code>.</p>
-
-          <h3>2. Anexe o projeto e os áudios ao ChatGPT</h3>
-          <p>Envie o arquivo ZIP do jogo e os arquivos MP3. Depois, copie o prompt abaixo:</p>
-          <textarea id="promptAudio" rows="20">Atue como programador especialista em jogos educativos PWA acessíveis para pessoas com 60 anos ou mais.
-
-Vou anexar o arquivo ZIP completo do meu jogo e os arquivos de áudio MP3.
-
-Inclua os áudios no projeto sem remover nem substituir nenhuma função, imagem, etapa, exemplo de jogo ou recurso de acessibilidade já existente.
-
-Use estes caminhos:
-assets/audio/ambiente.mp3 — música ambiente em volume baixo e repetição;
-assets/audio/clique.mp3 — clique nos botões;
-assets/audio/acerto.mp3 — resposta correta;
-assets/audio/erro.mp3 — resposta incorreta;
-assets/audio/mudanca-fase.mp3 — início de uma nova fase;
-assets/audio/vitoria.mp3 — conclusão do jogo.
-
-Adicione botão para ligar e desligar o som, controle de volume, respeito à preferência do usuário salva no localStorage e tratamento para arquivos ausentes. Não inicie áudio automaticamente antes da primeira interação do usuário. Atualize o service worker e a versão do cache para o PWA funcionar offline.
-
-Entregue o projeto completo em ZIP, pronto para substituir os arquivos no GitHub Pages. Antes de finalizar, verifique se HTML, CSS e JavaScript continuam funcionando.</textarea>
-          <button class="copy" data-target="promptAudio">Copiar prompt para o ChatGPT</button>
-          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 6</button>
-          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
-        </div>
-      </article>
-
-      <article id="step7" class="step">
-        <div class="step-image">
-          <img class="required-image" src="assets/img/6.png" data-name="6.png" alt="Acessibilidade e Libras">
-        </div>
-        <div class="step-body">
-          <span class="step-tag">PASSO 7 DE 8</span>
-          <h2>Adicionar acessibilidade e Libras</h2>
-          <p>Todos os jogos deverão possuir recursos para pessoas 60+ e pessoas surdas.</p>
-          <div class="access-grid">
-            <div><strong>Visual</strong><p>A+, A−, alto contraste, modo escuro, botões grandes.</p></div>
-            <div><strong>Auditiva</strong><p>Instruções escritas, legenda e feedback visual.</p></div>
-            <div><strong>Libras</strong><p>Botão de Libras, vídeo sinalizado e VLibras.</p></div>
-            <div><strong>Motora</strong><p>Navegação por teclado, toque amplo e sem tempo obrigatório.</p></div>
-          </div>
-          <div class="support-images">
-            <figure><img class="optional-support-image" src="assets/img/acessibilidade.png" data-name="acessibilidade.png" alt="Painel de acessibilidade"><figcaption>acessibilidade.png</figcaption></figure>
-            <figure><img class="optional-support-image" src="assets/img/libras.png" data-name="libras.png" alt="Intérprete de Libras"><figcaption>libras.png</figcaption></figure>
-            <figure><img class="optional-support-image" src="assets/img/publico60.png" data-name="publico60.png" alt="Pessoas 60+ usando o jogo"><figcaption>publico60.png</figcaption></figure>
-          </div>
-          <button id="openLibras">Abrir vídeo em Libras</button>
-          <button class="audio" data-audio="assets/audio/clique.mp3">Ouvir passo 7</button>
-          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
-        </div>
-      </article>
-
-      <article id="step8" class="step">
-        <div class="step-image">
-          <img class="required-image" src="assets/img/7.png" data-name="7.png" alt="Teste completo dos jogos">
-        </div>
-        <div class="step-body">
-          <span class="step-tag">PASSO 8 DE 8</span>
-          <h2>Testar o jogo completo</h2>
-          <div class="check-grid">
-            <label><input class="test-check" type="checkbox"> Imagens</label>
-            <label><input class="test-check" type="checkbox"> Sons</label>
-            <label><input class="test-check" type="checkbox"> Libras</label>
-            <label><input class="test-check" type="checkbox"> Acessibilidade</label>
-            <label><input class="test-check" type="checkbox"> Funcionamento offline</label>
-            <label><input class="test-check" type="checkbox"> Instalação do PWA</label>
-            <label><input class="test-check" type="checkbox"> Celular</label>
-            <label><input class="test-check" type="checkbox"> Tablet</label>
-            <label><input class="test-check" type="checkbox"> Computador</label>
-          </div>
-          <button class="audio" data-audio="assets/audio/vitoria.mp3">Ouvir passo 8</button>
-          <label class="done"><input class="step-check" type="checkbox"> Etapa concluída</label>
-        </div>
-      </article>
-    </section>
-
-
-    <section id="reportSection" class="report-section" aria-labelledby="reportTitle">
-      <div class="report-toolbar no-print">
-        <div>
-          <span class="tag">RELATÓRIO DO DIA</span>
-          <h2 id="reportTitle">Registro da produção do jogo</h2>
-          <p>Preencha manualmente ou use o Robô Neuro para criar um texto inicial que poderá ser revisado.</p>
-        </div>
-        <div class="report-actions">
-          <button id="robotFillReport" class="primary" type="button">🤖 Preencher com o Robô</button>
-          <button id="saveReport" class="secondary" type="button">💾 Salvar relatório</button>
-          <button id="clearReport" class="secondary" type="button">🗑️ Limpar</button>
-          <button id="generatePdf" class="pdf-button" type="button">📄 Gerar PDF</button>
-        </div>
-      </div>
-
-      <article id="printableReport" class="report-paper">
-        <header class="report-header">
-          <div>
-            <span class="report-kicker">NEURO GAMES STUDIO 60+</span>
-            <h2>Relatório de atividades - Semana 6</h2>
-            <p>Criação e finalização de jogo educativo em formato PWA</p>
-          </div>
-          <img src="assets/img/robo-neuro.png" alt="Robô Neuro" class="report-logo required-image" data-name="robo-neuro.png">
-        </header>
-
-        <div class="report-meta">
-          <label>Data
-            <input id="reportDate" type="date">
-          </label>
-          <label>Grupo
-            <input id="reportGroup" type="text" placeholder="Ex.: Grupo 3">
-          </label>
-          <label>Jogo desenvolvido
-            <input id="reportGame" type="text" placeholder="Ex.: Jogo da memória">
-          </label>
-          <label>Participantes
-            <input id="reportParticipants" type="text" placeholder="Nomes dos integrantes">
-          </label>
-        </div>
-
-        <section class="report-block">
-          <h3>1. Introdução</h3>
-          <textarea id="reportIntroduction" rows="7" placeholder="Apresente o objetivo da atividade e o jogo desenvolvido."></textarea>
-        </section>
-
-        <section class="report-block">
-          <h3>2. Metodologia</h3>
-          <textarea id="reportMethodology" rows="9" placeholder="Descreva as etapas realizadas, as ferramentas utilizadas, a organização dos arquivos, a inserção de imagens, sons, acessibilidade e Libras."></textarea>
-        </section>
-
-        <section class="report-block">
-          <h3>3. Resultados</h3>
-          <textarea id="reportResults" rows="9" placeholder="Registre o que foi produzido, o que funcionou, os testes realizados e os resultados observados."></textarea>
-        </section>
-
-        <section class="report-block">
-          <h3>4. Dificuldades e soluções</h3>
-          <textarea id="reportDifficulties" rows="7" placeholder="Informe os problemas encontrados e como foram resolvidos."></textarea>
-        </section>
-
-        <section class="report-block">
-          <h3>5. Considerações finais</h3>
-          <textarea id="reportConclusion" rows="7" placeholder="Faça uma síntese da atividade e indique os próximos passos."></textarea>
-        </section>
-
-        <section class="report-block image-index-block">
-          <div class="image-index-heading">
-            <div>
-              <h3>6. Índice de imagens do game</h3>
-              <p>As imagens são ajustadas integralmente no PDF, sem recorte.</p>
-            </div>
-            <div class="no-print image-controls">
-              <label class="upload-button">
-                📷 Selecionar imagens
-                <input id="reportImages" type="file" accept="image/*" multiple hidden>
-              </label>
-              <button id="addAppImages" class="secondary" type="button">Adicionar imagens do app</button>
-              <button id="clearImages" class="secondary" type="button">Remover imagens</button>
-            </div>
-          </div>
-          <div id="reportGallery" class="report-gallery">
-            <p class="empty-gallery">Nenhuma imagem adicionada ao relatório.</p>
-          </div>
-        </section>
-
-        <footer class="report-footer">
-          <p>Relatório gerado pelo PWA Semana 6 - Neuro Games Studio 60+.</p>
-          <p id="reportGeneratedAt"></p>
-        </footer>
-      </article>
-
-      <div class="pdf-help no-print">
-        <strong>Como salvar:</strong> ao tocar em “Gerar PDF”, escolha <em>Salvar como PDF</em> na tela de impressão do celular ou computador. O layout foi configurado para evitar cortes de textos e imagens.
-      </div>
-    </section>
-
-    <section id="conclusion" class="conclusion hidden">
-      <div>
-        <span class="tag">MISSÃO CONCLUÍDA</span>
-        <h2>Jogo pronto para a Semana 7</h2>
-        <p>Agora o grupo poderá corrigir detalhes e preparar a apresentação ao público 60+.</p>
-        <div class="final-assets">
-          <img class="required-image" src="assets/img/trofeu.png" data-name="trofeu.png" alt="Troféu tecnológico">
-          <img class="required-image" src="assets/img/jogo-pronto.png" data-name="jogo-pronto.png" alt="Estudantes mostrando o jogo pronto">
-          <img class="required-image" src="assets/img/certificado-visual.png" data-name="certificado-visual.png" alt="Moldura comemorativa">
-        </div>
-      </div>
-      <img class="celebrating required-image" src="assets/img/robo-celebrando.png" data-name="robo-celebrando.png" alt="Robô Neuro celebrando">
-    </section>
-  </main>
-
-  <div id="librasModal" class="modal hidden">
-    <div class="modal-card">
-      <button id="closeLibras" aria-label="Fechar">×</button>
-      <h2>Instruções em Libras</h2>
-      <video controls>
-        <source src="assets/libras/instrucoes.mp4" type="video/mp4">
-      </video>
-      <p>Coloque o vídeo em <code>assets/libras/instrucoes.mp4</code>.</p>
-    </div>
-  </div>
-
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>if(window.VLibras){new window.VLibras.Widget("https://vlibras.gov.br/app");}</script>
-  <script src="app.js"></script>
-</body>
-</html>
+Conclusão:
+[Redigir uma síntese baseada exclusivamente no ensaio realizado, sem atribuir resultados a participantes 60+ quando não houve participação.]`;document.getElementById("texto").scrollIntoView({behavior:"smooth"})}
+const imgs=["capa-neurogames.png","missao-neuro.png","publico-alto.png","robo-neuro.png","publico-intermediario.png","estacoes-rodizio.png","publico-baixo.png","acessibilidade.png","sem-internet.png","avaliacao-cruzada.png","problema-tecnico.png","correcao-tecnica.png","missao-cumprida.png","ensaio-equipe.png"];
+document.getElementById("gallery").innerHTML=imgs.map(x=>`<img loading="lazy" src="assets/${x}">`).join("");
+update();
+if("serviceWorker" in navigator) navigator.serviceWorker.register("./service-worker.js");
+</script></body></html>
