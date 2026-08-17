@@ -13,6 +13,7 @@ header{position:sticky;top:0;z-index:10;background:#ffffffdd;backdrop-filter:blu
 main{max-width:1180px;margin:auto;padding:28px 18px 80px}.hero{min-height:70vh;border-radius:32px;overflow:hidden;position:relative;display:flex;align-items:end;background:url('assets/capa-neurogames.png') center/cover;box-shadow:0 22px 60px #2e106544}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#160a46e8 0%,#160a4666 55%,transparent)}.heroText{position:relative;z-index:2;color:#fff;padding:38px;max-width:780px}.hero h1{font-size:clamp(2rem,5vw,4.5rem);margin:.15em 0}.tag{display:inline-block;background:#ffffff22;border:1px solid #ffffff55;padding:8px 12px;border-radius:999px;font-weight:800}
 section{margin-top:30px}.card{background:#ffffffdf;backdrop-filter:blur(12px);border:1px solid #e9d5ff;border-radius:25px;padding:24px;box-shadow:0 14px 35px #312e8120}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.scenario{overflow:hidden;padding:0}.scenario img,.wideimg{width:100%;display:block;object-fit:cover}.scenario img{height:175px}.scenario div{padding:18px}.choice{display:block;width:100%;text-align:left;margin:9px 0;background:#f5f3ff;color:#312e81;border:2px solid #ddd6fe;box-shadow:none}.choice:hover,.choice.selected{border-color:#7c3aed;background:#ede9fe}.step{display:none}.step.active{display:block}.progress{height:12px;background:#e5e7eb;border-radius:99px;overflow:hidden;margin:12px 0 22px}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));width:0}.result{padding:22px;border-radius:20px;margin-top:18px}.ok{background:#dcfce7;border:2px solid #22c55e}.warn{background:#fff7ed;border:2px solid #f97316}
 details{background:#fff;border-radius:20px;padding:16px;margin:12px 0;border:1px solid #ddd6fe}summary{font-weight:900;cursor:pointer}.report textarea{width:100%;min-height:300px;border:2px solid #ddd6fe;border-radius:18px;padding:16px;font:inherit;line-height:1.5}.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.gallery img{width:100%;height:160px;object-fit:cover;border-radius:18px}
+.field{margin:16px 0}.field label{display:block;font-weight:900;margin-bottom:7px}.field input,.field select{width:100%;padding:13px;border:2px solid #ddd6fe;border-radius:14px;font:inherit;background:#fff}.photoBox{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:12px}.photoItem{background:#f5f3ff;border-radius:18px;padding:8px}.photoItem img{width:100%;height:160px;object-fit:cover;border-radius:13px}.photoItem input{margin-top:7px;width:100%;padding:8px}.checkgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}.checkitem{background:#f5f3ff;border:1px solid #ddd6fe;border-radius:14px;padding:10px}
 footer{text-align:center;padding:25px;color:#5b21b6;font-weight:700}
 @media(max-width:650px){header{position:relative}.hero{min-height:62vh}.heroText{padding:24px}.scenario img{height:150px}}
 @media print{header,.bubbles,.no-print,.hero{display:none!important}body{background:#fff}.card{box-shadow:none;border:0;padding:0}main{max-width:none;padding:10mm}.report textarea{border:0;min-height:auto;height:auto;overflow:visible}section{break-inside:auto}.report{break-inside:auto}}
@@ -42,9 +43,26 @@ footer{text-align:center;padding:25px;color:#5b21b6;font-weight:700}
 
 <section class="card"><h2>♿ Acessibilidade e contingências técnicas</h2><div class="gallery"><img src="assets/acessibilidade.png"><img src="assets/sem-internet.png"><img src="assets/problema-tecnico.png"><img src="assets/correcao-tecnica.png"></div></section>
 
-<section id="relatorio" class="card report"><h2>📄 Relatório científico do ensaio</h2><p>O grupo pode redigir sozinho ou solicitar uma estrutura de apoio. O texto deve registrar somente o que efetivamente ocorreu e distinguir participação UNATI de avaliação por pares.</p>
-<div class="no-print"><button onclick="modelo()">✨ Ajuda da IA — gerar estrutura</button> <button class="btn alt" onclick="window.print()">🖨️ Gerar PDF / Imprimir</button></div>
-<textarea id="texto" placeholder="Escreva aqui o relatório científico do grupo..."></textarea></section>
+<section id="relatorio" class="card report">
+<h2>📄 Relatório científico do dia + Plano de Contingência</h2>
+<p>Registre somente o que realmente ocorreu. O relatório diferencia ensaio/simulação, participação UNATI e avaliação por pares.</p>
+<div class="grid"><div class="field"><label>Data</label><input id="rData" type="date"></div><div class="field"><label>Turma / grupo</label><input id="rGrupo"></div><div class="field"><label>NeuroGame</label><input id="rJogo"></div><div class="field"><label>Nº de estudantes</label><input id="rN" type="number"></div></div>
+<h3>1. Cenário observado</h3><div class="field"><select id="rCenario"><option>Ensaio prévio — sem público externo</option><option>A — público alto</option><option>B — público intermediário</option><option>C — público baixo</option><option>D — nenhum participante / Plano B</option></select></div>
+<h3>2. Funções e organização</h3><div class="checkgrid">
+<label class="checkitem"><input class="pc" type="checkbox" value="Estações simultâneas"> Estações simultâneas</label><label class="checkitem"><input class="pc" type="checkbox" value="Rodízio"> Rodízio</label><label class="checkitem"><input class="pc" type="checkbox" value="Mediador"> Mediador</label><label class="checkitem"><input class="pc" type="checkbox" value="Apoio tecnológico"> Apoio tecnológico</label><label class="checkitem"><input class="pc" type="checkbox" value="Observador de usabilidade"> Observador de usabilidade</label><label class="checkitem"><input class="pc" type="checkbox" value="Apoio de acessibilidade"> Apoio de acessibilidade</label><label class="checkitem"><input class="pc" type="checkbox" value="Registrador"> Registrador</label></div>
+<h3>3. Plano contingente detalhado</h3><div class="grid">
+<div class="field"><label>Público alto</label><select id="pAlto"><option>Estações simultâneas + rodízio</option><option>Reorganizar número de estações</option></select></div>
+<div class="field"><label>Público baixo</label><select id="pBaixo"><option>Atendimento individualizado + 2–3 jogos opcionais</option><option>Reorganizar equipes</option></select></div>
+<div class="field"><label>Sem participantes</label><select id="pZero"><option>Avaliação cruzada/por pares</option><option>Reestruturar plano</option></select></div>
+<div class="field"><label>Sem internet</label><select id="pNet"><option>Acionar PWA/offline</option><option>Usar recurso local previamente testado</option></select></div>
+<div class="field"><label>Jogo não abre</label><select id="pFalha"><option>Outro dispositivo + apoio técnico</option><option>Substituir temporariamente por outro NeuroGame</option></select></div>
+<div class="field"><label>Dificuldade visual</label><select id="pVis"><option>Aumentar fonte/contraste e facilitar navegação</option><option>Reavaliar interface</option></select></div>
+<div class="field"><label>Dificuldade com áudio</label><select id="pAudio"><option>Alternativa visual/legenda e uso sem som</option><option>Reavaliar recurso</option></select></div>
+<div class="field"><label>Pouca familiaridade digital</label><select id="pDigital"><option>Orientação gradual preservando autonomia</option><option>Reorganizar mediação</option></select></div></div>
+<h3>4. Observações reais do dia</h3><textarea id="rObs" placeholder="O que ocorreu, problemas encontrados, soluções testadas e correções realizadas..."></textarea>
+<h3>5. Fotos do grupo e dos jogos</h3><p>Inclua fotografias do grupo, dos jogos e das etapas da atividade. Adicione uma legenda para cada foto.</p><div class="no-print"><label class="btn alt">📷 Adicionar fotos<input id="photoInput" type="file" accept="image/*" multiple style="display:none"></label></div><div id="photoBox" class="photoBox"></div>
+<h3>6. Relatório científico</h3><textarea id="texto" style="min-height:420px" placeholder="Escreva o relatório ou use a ajuda da IA..."></textarea><div class="no-print" style="margin-top:12px"><button onclick="modeloCompleto()">✨ Ajuda da IA — estruturar com os dados</button> <button class="btn alt" onclick="window.print()">🖨️ Gerar PDF / Imprimir</button></div>
+</section>
 
 <section class="card"><h2>🏁 Missão concluída</h2><img class="wideimg" src="assets/missao-cumprida.png" style="border-radius:20px"><p>Antes de encerrar, confirme: responsáveis definidos, estratégia para público alto/baixo, acessibilidade, funcionamento sem internet, falhas técnicas e plano para ausência de participantes.</p></section>
 
@@ -69,31 +87,52 @@ function go(n){document.querySelectorAll(".step").forEach(x=>x.classList.remove(
 function next(i){if(answers[i]===null){alert("Escolha uma opção antes de continuar.");return}go(i+1)}
 function update(){document.getElementById("bar").style.width=((current+1)/questions.length*100)+"%"}
 function evaluatePlan(){if(answers.some(x=>x===null)){alert("Complete todas as etapas.");return}let score=answers.reduce((s,a,i)=>s+(a===questions[i][2]),0), pct=Math.round(score/questions.length*100), ok=pct>=75;document.getElementById("finalResult").innerHTML=`<div class="result ${ok?"ok":"warn"}"><h2>${ok?"✅ PLANO APTO":"🔧 PLANO PRECISA SER REESTRUTURADO"}</h2><p><b>${score}/${questions.length}</b> decisões adequadas (${pct}%).</p><p>${ok?"O grupo contemplou os elementos essenciais. Revise as decisões antes da atividade real.":"Revise especialmente organização do público, acessibilidade, contingência técnica, Plano B e integridade do registro científico."}</p><a class="btn" href="#relatorio">Ir para o relatório</a></div>`}
-function modelo(){document.getElementById("texto").value=`RELATÓRIO CIENTÍFICO — ENSAIO OPERACIONAL NEUROGAMES / UNATI 60+
+function modeloCompleto(){
+ const v=id=>document.getElementById(id)?.value||"Não informado";
+ const fun=[...document.querySelectorAll(".pc:checked")].map(x=>x.value).join(", ")||"Não selecionadas";
+ document.getElementById("texto").value=`RELATÓRIO CIENTÍFICO — NEUROGAMES / UNATI 60+
 
-Título:
-Plano de Contingência e Ensaio Operacional dos NeuroGames
+IDENTIFICAÇÃO
+Data: ${v("rData")}
+Grupo: ${v("rGrupo")}
+NeuroGame: ${v("rJogo")}
+Número de estudantes: ${v("rN")}
+Cenário registrado: ${v("rCenario")}
 
-Objetivo:
-Descrever o ensaio operacional realizado para preparar as equipes para diferentes cenários de participação e intercorrências durante a atividade NeuroGames — UNATI 60+.
+OBJETIVO
+Descrever o ensaio operacional e o plano de contingência elaborado para a atividade NeuroGames — UNATI 60+, considerando comparecimento, organização das equipes, acessibilidade, funcionamento tecnológico e alternativas diante de intercorrências.
 
-Método:
-A atividade foi organizada como simulação acadêmica com tomada de decisão em cenários de público alto, intermediário, baixo e ausência de participantes. As equipes definiram funções de mediação, apoio tecnológico, observação de usabilidade, acessibilidade e registro. Também foram previstas situações de falha de conexão, dificuldade de leitura e falha de funcionamento dos jogos.
+ORGANIZAÇÃO OPERACIONAL
+Funções e estratégias selecionadas: ${fun}.
 
-Resultados do ensaio:
-[O grupo deve completar somente com aquilo que realmente observou.]
+PLANO DE CONTINGÊNCIA
+Público alto: ${v("pAlto")}.
+Público baixo: ${v("pBaixo")}.
+Ausência de participantes: ${v("pZero")}.
+Falha de internet: ${v("pNet")}.
+Jogo não abre: ${v("pFalha")}.
+Dificuldade visual: ${v("pVis")}.
+Dificuldade com áudio: ${v("pAudio")}.
+Pouca familiaridade digital: ${v("pDigital")}.
 
-Avaliação por pares:
-[Preencher somente se houve avaliação cruzada. Não apresentar esses dados como resultados obtidos com participantes da UNATI.]
+PROCEDIMENTO
+A equipe analisou cenários operacionais e definiu respostas para diferentes níveis de comparecimento. Foram considerados distribuição de funções, rodízio, apoio tecnológico, usabilidade, acessibilidade, registro e contingências. Na ausência de público, a alternativa acadêmica prevista é a avaliação cruzada dos NeuroGames, identificada como avaliação por pares.
 
-Problemas identificados e correções:
-[Registrar problemas reais encontrados e as medidas adotadas.]
+OBSERVAÇÕES E RESULTADOS DO DIA
+${v("rObs")}
 
-Plano de contingência final:
-[Descrever a estratégia aprovada pelo grupo.]
+REGISTRO FOTOGRÁFICO
+As fotografias anexadas documentam o grupo, os NeuroGames e/ou etapas efetivamente realizadas. As legendas devem indicar objetivamente o conteúdo de cada imagem.
 
-Conclusão:
-[Redigir uma síntese baseada exclusivamente no ensaio realizado, sem atribuir resultados a participantes 60+ quando não houve participação.]`;document.getElementById("texto").scrollIntoView({behavior:"smooth"})}
+INTEGRIDADE DO REGISTRO
+Resultados de simulação ou avaliação por pares não devem ser apresentados como resultados obtidos com participantes da UNATI.
+
+CONCLUSÃO
+O plano foi estruturado para permitir continuidade da atividade diante de variações de comparecimento e intercorrências técnicas, contemplando organização, acessibilidade, autonomia, funcionamento dos jogos e Plano B acadêmico. O grupo deve ajustar esta conclusão de acordo com o que efetivamente ocorreu no dia.`;
+}
+document.getElementById("photoInput").addEventListener("change",e=>{
+ [...e.target.files].forEach(file=>{const r=new FileReader();r.onload=ev=>{const d=document.createElement("div");d.className="photoItem";d.innerHTML=`<img src="${ev.target.result}"><input placeholder="Legenda da foto">`;document.getElementById("photoBox").appendChild(d)};r.readAsDataURL(file)})
+});
 const imgs=["capa-neurogames.png","missao-neuro.png","publico-alto.png","robo-neuro.png","publico-intermediario.png","estacoes-rodizio.png","publico-baixo.png","acessibilidade.png","sem-internet.png","avaliacao-cruzada.png","problema-tecnico.png","correcao-tecnica.png","missao-cumprida.png","ensaio-equipe.png"];
 document.getElementById("gallery").innerHTML=imgs.map(x=>`<img loading="lazy" src="assets/${x}">`).join("");
 update();
